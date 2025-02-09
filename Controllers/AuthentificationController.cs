@@ -37,6 +37,7 @@ namespace Forum.Controllers
             if (ModelState.IsValid)
             {
                 var utilisateur = await contextget.Utilisateurs
+                    .Include(u => u.Etablissements)
                     .FirstOrDefaultAsync(u => u.Email == modele.Email);
 
                 if (utilisateur != null)
@@ -56,15 +57,25 @@ namespace Forum.Controllers
                         bool hasForumAccess = utilisateur.Role == "Admin" || utilisateur.Id_classe != null;
                         HttpContext.Session.SetString("UserHasForumAccess", hasForumAccess ? "true" : "false");
 
-
                         ModelState.Clear();
 
-                        if (utilisateur.Role == "Admin")
+                        // Vérifier si c'est un admin sans établissement
+                        if (utilisateur.Role == "Admin" && utilisateur.Etablissements == null)
+                        {
+                            return RedirectToAction("Etablissement", "Signup");
+                        }
+                        else if (utilisateur.Role == "Admin")
+                        {
                             return RedirectToAction("Admin", "Dashboard");
+                        }
                         else if (utilisateur.Role == "Professeur")
+                        {
                             return RedirectToAction("Professeur", "Dashboard");
+                        }
                         else
+                        {
                             return RedirectToAction("Etudiant", "Dashboard");
+                        }
                     }
 
                     ViewBag.MessageError = "Email ou mot de passe incorrect.";
