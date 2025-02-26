@@ -1,5 +1,17 @@
 ﻿<Project>
   <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/Forum/css/home.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\home.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-UCVtPyxn2lRRtPRmPcRZn9Rdz4U28foJNJeKAdCdhxs="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"12"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022UCVtPyxn2lRRtPRmPcRZn9Rdz4U28foJNJeKAdCdhxs=\u0022"},{"Name":"Last-Modified","Value":"Wed, 26 Feb 2025 13:23:48 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Forum/css/home.ctnfjnteaw.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\home.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"ctnfjnteaw"},{"Name":"integrity","Value":"sha256-UCVtPyxn2lRRtPRmPcRZn9Rdz4U28foJNJeKAdCdhxs="},{"Name":"label","Value":"_content/Forum/css/home.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"12"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022UCVtPyxn2lRRtPRmPcRZn9Rdz4U28foJNJeKAdCdhxs=\u0022"},{"Name":"Last-Modified","Value":"Wed, 26 Feb 2025 13:23:48 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Forum/css/site.c2tiyv64ts.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>

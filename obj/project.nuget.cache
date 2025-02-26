@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "x+OpBHAdBE8=",
+  "dgSpecHash": "54p7hhgpfAA=",
   "success": true,
-  "projectFilePath": "C:\\ishak\\Forum\\forum\\Forum.csproj",
+  "projectFilePath": "C:\\ishak\\Forum\\Forum\\Forum.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\n.pereira\\.nuget\\packages\\entityframework\\6.5.1\\entityframework.6.5.1.nupkg.sha512",
     "C:\\Users\\n.pereira\\.nuget\\packages\\google.protobuf\\3.21.9\\google.protobuf.3.21.9.nupkg.sha512",

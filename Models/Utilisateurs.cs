@@ -2,13 +2,13 @@
 
 namespace Forum.Models
 {
-    public class Utilisateur // Utilise le singulier pour le nom de la classe
+    public class Utilisateur 
     {
         [Key]
-        public int Id { get; set; } // Clé primaire
+        public int Id { get; set; } 
 
         [Required]
-        [StringLength(100)]
+        [StringLength(70)]
         public string Nom { get; set; }
 
         [Required]
@@ -16,7 +16,7 @@ namespace Forum.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(255)]
+        [StringLength(100)]
         public string MotDePasse { get; set; }
 
         public DateTime DateInscription { get; set; } = DateTime.Now;
