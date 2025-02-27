@@ -12,6 +12,18 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"ctnfjnteaw"},{"Name":"integrity","Value":"sha256-UCVtPyxn2lRRtPRmPcRZn9Rdz4U28foJNJeKAdCdhxs="},{"Name":"label","Value":"_content/Forum/css/home.css"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"12"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022UCVtPyxn2lRRtPRmPcRZn9Rdz4U28foJNJeKAdCdhxs=\u0022"},{"Name":"Last-Modified","Value":"Wed, 26 Feb 2025 13:23:48 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Forum/css/signup.2275uuq0ey.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\signup.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"2275uuq0ey"},{"Name":"integrity","Value":"sha256-\u002BmhxDUtWZHIOjMP9U4n77uddQL8yZ/DRyG59uv5Ums4="},{"Name":"label","Value":"_content/Forum/css/signup.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"137"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022\u002BmhxDUtWZHIOjMP9U4n77uddQL8yZ/DRyG59uv5Ums4=\u0022"},{"Name":"Last-Modified","Value":"Wed, 26 Feb 2025 14:42:58 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Forum/css/signup.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\signup.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-\u002BmhxDUtWZHIOjMP9U4n77uddQL8yZ/DRyG59uv5Ums4="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"137"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022\u002BmhxDUtWZHIOjMP9U4n77uddQL8yZ/DRyG59uv5Ums4=\u0022"},{"Name":"Last-Modified","Value":"Wed, 26 Feb 2025 14:42:58 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Forum/css/site.c2tiyv64ts.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>

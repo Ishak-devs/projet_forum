@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "54p7hhgpfAA=",
+  "dgSpecHash": "IOdv5K3vP3M=",
   "success": true,
   "projectFilePath": "C:\\ishak\\Forum\\Forum\\Forum.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\n.pereira\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\n.pereira\\.nuget\\packages\\entityframework\\6.5.1\\entityframework.6.5.1.nupkg.sha512",
     "C:\\Users\\n.pereira\\.nuget\\packages\\google.protobuf\\3.21.9\\google.protobuf.3.21.9.nupkg.sha512",
     "C:\\Users\\n.pereira\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

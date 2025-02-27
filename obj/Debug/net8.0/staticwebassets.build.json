@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Hqs7kEyOasbZesOoo30DRdJMAoWDbToYGPdkEcQ2zkQ=",
+  "Hash": "zxjmWfN2aXlqKxGBbLXdrIEMT1KN2etI/mp/hAneXbk=",
   "Source": "Forum",
   "BasePath": "_content/Forum",
   "Mode": "Default",
@@ -78,6 +78,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\home.css"
+    },
+    {
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\signup.css",
+      "SourceId": "Forum",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
+      "BasePath": "_content/Forum",
+      "RelativePath": "css/signup#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "2275uuq0ey",
+      "Integrity": "+mhxDUtWZHIOjMP9U4n77uddQL8yZ/DRyG59uv5Ums4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\signup.css"
     },
     {
       "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\site.css",
@@ -1420,6 +1441,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-UCVtPyxn2lRRtPRmPcRZn9Rdz4U28foJNJeKAdCdhxs="
+        }
+      ]
+    },
+    {
+      "Route": "css/signup.2275uuq0ey.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\signup.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "137"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+mhxDUtWZHIOjMP9U4n77uddQL8yZ/DRyG59uv5Ums4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 26 Feb 2025 14:42:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "2275uuq0ey"
+        },
+        {
+          "Name": "label",
+          "Value": "css/signup.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-+mhxDUtWZHIOjMP9U4n77uddQL8yZ/DRyG59uv5Ums4="
+        }
+      ]
+    },
+    {
+      "Route": "css/signup.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\signup.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "137"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+mhxDUtWZHIOjMP9U4n77uddQL8yZ/DRyG59uv5Ums4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 26 Feb 2025 14:42:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-+mhxDUtWZHIOjMP9U4n77uddQL8yZ/DRyG59uv5Ums4="
         }
       ]
     },

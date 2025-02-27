@@ -1,4 +1,5 @@
 wwwroot\css\home.css
+wwwroot\css\signup.css
 wwwroot\css\site.css
 wwwroot\favicon.ico
 wwwroot\js\site.js

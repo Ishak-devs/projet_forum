@@ -1,10 +1,11 @@
-﻿using System.Drawing;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Forum.Models;
 
 namespace Forum.Controllers
 {
     public class SignupController : Controller
     {
+        //[Route ("Signup")]
         [HttpGet]
         public IActionResult Signup()
         {
@@ -12,31 +13,18 @@ namespace Forum.Controllers
         }
 
         //VERIFICATIONS DES CHAMPS
-        [HttpPost]
-        public ActionResult Signup(string nom, string prénom,string email, string password)
-        {
-            nom = Request.Form["nom"];
-            prénom = Request.Form["prénom"];
-            email = Request.Form["email"];
-            password = Request.Form["password"];
 
-            if (string.IsNullOrEmpty(nom))
+        [HttpPost]
+        public ActionResult Signup(Elève elève)
+        {
+            if (!ModelState.IsValid)
             {
-                ViewBag.Errornom = "Le Nom est obligatoire";
+                return View(elève);
             }
-            if (string.IsNullOrEmpty(prénom))
-            {
-                ViewBag.Errorprénom = "Le prénom est obligatoire";
-            }
-            if (string.IsNullOrEmpty(email))
-            {
-                ViewBag.Erroremail = "L'email est obligatoire";
-            }
-            if (string.IsNullOrEmpty(password))
-            {
-                ViewBag.Errorpassword = "Mot de passe obligatoire";
-            }
-            return View();
+
+            ViewBag.message_ok = "Inscription réussie.";
+            return View(new Elève());
         }
     }
 }
+
