@@ -8,6 +8,11 @@
 @*
 *@
 @{
+    // @if (TempData["message_ok"] != null)
+    // {
+    //     <p style="color: green">@TempData["message_ok"]</p>
+
+    // }
 }
 
 <form method="post">
@@ -28,9 +33,4 @@
 
     <button type="submit">S'inscrire</button>
 
-    @if (TempData["message_ok"] != null)
-    {
-        <span style="color: green">@TempData["message_ok"]</span>
-
-    }
 </form>

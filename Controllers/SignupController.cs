@@ -23,8 +23,8 @@ namespace Forum.Controllers
 
             ModelState.Clear();
             //ViewBag.message_ok = "Inscription réussie.";
-            TempData["message_ok"] = "inscription réussie";
-            return RedirectToAction ("Signup");
+            //TempData["message_ok"] = "inscription réussie";
+            return RedirectToAction ("Index");
             //return View(new Elève());
         }
     }
