@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Forum.Models;
+using AspNetCoreGeneratedDocument;
 
 namespace Forum.Controllers
 {
@@ -14,16 +15,26 @@ namespace Forum.Controllers
 
 
         [HttpPost]
-        public ActionResult Authentification(Elève elève)
+        public ActionResult Authentification(Elève eleve)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(elève);
-            }
 
-            ModelState.Clear();
-            return RedirectToAction("Index");
+            ViewBag.Messagesuccess = "confirmation";
+                
+
+            return View(eleve);
+
+
+            //    if (!ModelState.IsValid)
+            //    {
+            //        return View(elève);
+            //    }
+            //    else
+            //    {
+            //        ModelState.Clear();
+
+            //    }
+
+            //}
         }
     }
 }
-
