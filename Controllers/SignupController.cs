@@ -5,26 +5,36 @@ namespace Forum.Controllers
 {
     public class SignupController : Controller
     {
-        //[Route ("Signup")]
+
         [HttpGet]
         public IActionResult Signup()
         {
             return View();
         }
 
-        //VERIFICATIONS DES CHAMPS
 
         [HttpPost]
-        public ActionResult Signup(Elève elève)
+        public ActionResult Signup(SignupViewModel eleve)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(elève);
+                ViewBag.Messagesuccess = "Inscription réussie !";
             }
+            //else
+            //{
+            //    ViewBag.MessageError = "Il y a des erreurs dans le formulaire. Veuillez corriger les champs indiqués.";
+            //}
 
-            ViewBag.message_ok = "Inscription réussie.";
-            return View(new Elève());
+            return View(eleve);
+
+
+            //    else
+            //    {
+            //        ModelState.Clear();
+
+            //    }
+
+            //}
         }
     }
 }
-

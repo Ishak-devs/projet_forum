@@ -1,15 +1,27 @@
-﻿@*
+﻿@model Forum.Models.LoginViewModel
+@*
 
 *@
 @{
+    if (ViewBag.Messagesuccess != null)
+    {
+        <p style="color: green">@ViewBag.Messagesuccess</p>
+    }
+    // if (ViewBag.MessageError != null)
+    // {
+    //     <p style="color: red">@ViewBag.MessageError</p>
+    // }
+
     //fORMULAIRE DE CONNEXION
     <form method="post">
 
-        <label for="mail">Email :</label><input type="email" id="mail" />
-        <p style="color: red">@ViewBag.Erroremail</p>
+        <label asp-for="Email">Email :</label>
+        <input type="text" asp-for="Email"/>
+        <span style="color: red">@Html.ValidationMessageFor(e => e.Email)</span>
 
-        <label for="password">Mot de passe :</label><input type="password" id="password" />
-        <p style="color: red">@ViewBag.Errorpassword</p>
+        <label asp-for="Password">Mot de passe :</label>
+        <input type="text" asp-for="Password" />
+        <span style="color: red">@Html.ValidationMessageFor(e => e.Password)</span>
 
         <button type="submit">Se connecter</button>
 

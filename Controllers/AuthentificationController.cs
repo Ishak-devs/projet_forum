@@ -1,29 +1,40 @@
-﻿using System.Drawing;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Forum.Models;
 
 namespace Forum.Controllers
 {
     public class AuthentificationController : Controller
     {
+
         [HttpGet]
         public IActionResult Authentification()
         {
             return View();
         }
 
-        //VERIFICATIONS DES CHAMPS
+
         [HttpPost]
-        public ActionResult Authentification(string email, string password)
+        public ActionResult Authentification(LoginViewModel eleve)
         {
-            if (string.IsNullOrEmpty(email))
+            if (ModelState.IsValid)
             {
-                ViewBag.Erroremail = "L'email est obligatoire";
+                ViewBag.Messagesuccess = "Vous êtes connecté !";
             }
-            if (string.IsNullOrEmpty(password))
-            {
-                ViewBag.Errorpassword = "Mot de passe obligatoire";
-            }
-            return View();
+            //else
+            //{
+            //    ViewBag.MessageError = "Il y a des erreurs dans le formulaire. Veuillez corriger les champs indiqués.";
+            //}
+
+            return View(eleve);
+
+
+            //    else
+            //    {
+            //        ModelState.Clear();
+
+            //    }
+
+            //}
         }
     }
 }
