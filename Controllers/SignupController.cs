@@ -12,7 +12,6 @@ namespace Forum.Controllers
             return View();
         }
 
-        //VERIFICATIONS DES CHAMPS
 
         [HttpPost]
         public ActionResult Signup(Elève elève)
@@ -22,8 +21,11 @@ namespace Forum.Controllers
                 return View(elève);
             }
 
-            ViewBag.message_ok = "Inscription réussie.";
-            return View(new Elève());
+            ModelState.Clear();
+            //ViewBag.message_ok = "Inscription réussie.";
+            TempData["message_ok"] = "inscription réussie";
+            return RedirectToAction ("Signup");
+            //return View(new Elève());
         }
     }
 }
