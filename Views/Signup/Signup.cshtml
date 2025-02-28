@@ -1,9 +1,7 @@
-﻿@model Forum.Models.Eleve
+﻿@model Forum.Models.SignupViewModel
 <head>
     <link rel="stylesheet" href="~/css/signup.css" asp-append-version="true" />
 </head>
-
-
 
 @*
 *@
@@ -17,10 +15,10 @@
     {
         <p style="color: green">@ViewBag.Messagesuccess</p>
     }
-    if (ViewBag.MessageError != null)
-    {
-        <p style="color: red">@ViewBag.MessageError</p>
-    }
+    // if (ViewBag.MessageError != null)
+    // {
+    //     <p style="color: red">@ViewBag.MessageError</p>
+    // }
 
 }
 
@@ -34,10 +32,10 @@
     <label asp-for="Prenom">Prénom :</label><input type="text" asp-for="Prenom" />
     <span style="color: red">@Html.ValidationMessageFor(e => e.Prenom)</span>
 
-    <label asp-for="Email">Email :</label><input type="email" asp-for="Email" />
+    <label asp-for="Email">Email :</label><input type="text" asp-for="Email" />
     <span style="color: red">@Html.ValidationMessageFor(e => e.Email)</span>
 
-    <label asp-for="Password">Mot de passe :</label><input type="password" asp-for="Password" />
+    <label asp-for="Password">Mot de passe :</label><input type="text" asp-for="Password" />
     <span style="color: red">@Html.ValidationMessageFor(e => e.Password)</span>
 
     <button type="submit">S'inscrire</button>

@@ -14,16 +14,16 @@ namespace Forum.Controllers
 
 
         [HttpPost]
-        public ActionResult Signup(Eleve eleve)
+        public ActionResult Signup(SignupViewModel eleve)
         {
             if (ModelState.IsValid)
             {
-                ViewBag.Messagesuccess = "Vous êtes connecté !";
+                ViewBag.Messagesuccess = "Inscription réussie !";
             }
-            else
-            {
-                ViewBag.MessageError = "Il y a des erreurs dans le formulaire. Veuillez corriger les champs indiqués.";
-            }
+            //else
+            //{
+            //    ViewBag.MessageError = "Il y a des erreurs dans le formulaire. Veuillez corriger les champs indiqués.";
+            //}
 
             return View(eleve);
 

@@ -1,4 +1,4 @@
-﻿@model Forum.Models.Eleve
+﻿@model Forum.Models.LoginViewModel
 @*
 
 *@
@@ -7,10 +7,10 @@
     {
         <p style="color: green">@ViewBag.Messagesuccess</p>
     }
-    if (ViewBag.MessageError != null)
-    {
-        <p style="color: red">@ViewBag.MessageError</p>
-    }
+    // if (ViewBag.MessageError != null)
+    // {
+    //     <p style="color: red">@ViewBag.MessageError</p>
+    // }
 
     //fORMULAIRE DE CONNEXION
     <form method="post">
