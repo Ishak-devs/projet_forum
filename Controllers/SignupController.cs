@@ -5,7 +5,7 @@ namespace Forum.Controllers
 {
     public class SignupController : Controller
     {
-        //[Route ("Signup")]
+
         [HttpGet]
         public IActionResult Signup()
         {
@@ -14,19 +14,27 @@ namespace Forum.Controllers
 
 
         [HttpPost]
-        public ActionResult Signup(Elève elève)
+        public ActionResult Signup(Eleve eleve)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(elève);
+                ViewBag.Messagesuccess = "Vous êtes connecté !";
+            }
+            else
+            {
+                ViewBag.MessageError = "Il y a des erreurs dans le formulaire. Veuillez corriger les champs indiqués.";
             }
 
-            ModelState.Clear();
-            //ViewBag.message_ok = "Inscription réussie.";
-            //TempData["message_ok"] = "inscription réussie";
-            return RedirectToAction ("Index");
-            //return View(new Elève());
+            return View(eleve);
+
+
+            //    else
+            //    {
+            //        ModelState.Clear();
+
+            //    }
+
+            //}
         }
     }
 }
-

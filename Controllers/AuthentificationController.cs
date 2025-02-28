@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Forum.Models;
-using AspNetCoreGeneratedDocument;
 
 namespace Forum.Controllers
 {
     public class AuthentificationController : Controller
     {
-        //[Route ("Signup")]
+
         [HttpGet]
         public IActionResult Authentification()
         {
@@ -15,19 +14,20 @@ namespace Forum.Controllers
 
 
         [HttpPost]
-        public ActionResult Authentification(Elève eleve)
+        public ActionResult Authentification(Eleve eleve)
         {
-
-            ViewBag.Messagesuccess = "confirmation";
-                
+            if (ModelState.IsValid)
+            {
+                ViewBag.Messagesuccess = "Vous êtes connecté !";
+            }
+            else
+            {
+                ViewBag.MessageError = "Il y a des erreurs dans le formulaire. Veuillez corriger les champs indiqués.";
+            }
 
             return View(eleve);
 
 
-            //    if (!ModelState.IsValid)
-            //    {
-            //        return View(elève);
-            //    }
             //    else
             //    {
             //        ModelState.Clear();

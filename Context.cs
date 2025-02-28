@@ -5,7 +5,7 @@ public class ApplicationDbContext : DbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-    public DbSet<Elève> Elèves { get; set; } 
+    public DbSet<Eleve> Eleves { get; set; } 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

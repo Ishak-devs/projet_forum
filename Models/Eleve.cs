@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Forum.Models
 {
-    public class Elève 
+    public class Eleve 
     {
         [Key]
         public int Id { get; set; } 
@@ -24,8 +25,8 @@ namespace Forum.Models
         [DataType(DataType.Password)]
         [StringLength(100)]
         public string Password { get; set; }
-        
-        
+
+        [BindNever]
         public DateTime DateInscription { get; set; } = DateTime.Now;
     }
 }
