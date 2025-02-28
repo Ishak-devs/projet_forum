@@ -18,7 +18,10 @@ namespace Forum.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 ViewBag.Messagesuccess = "Vous êtes connecté !";
+                ModelState.Clear();
+                return View(new LoginViewModel());
             }
             //else
             //{
@@ -30,7 +33,7 @@ namespace Forum.Controllers
 
             //    else
             //    {
-            //        ModelState.Clear();
+            
 
             //    }
 

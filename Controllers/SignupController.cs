@@ -19,6 +19,8 @@ namespace Forum.Controllers
             if (ModelState.IsValid)
             {
                 ViewBag.Messagesuccess = "Inscription réussie !";
+                ModelState.Clear();
+                return View(new SignupViewModel());
             }
             //else
             //{
