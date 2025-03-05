@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\Forum.gseslzbk8w.bundle.scp.css"
     },
     {
+      "Id": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\authentification.css",
+      "PackagePath": "staticwebassets\\css\\authentification.css"
+    },
+    {
       "Id": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\home.css",
       "PackagePath": "staticwebassets\\css\\home.css"
     },
