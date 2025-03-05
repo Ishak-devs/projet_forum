@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zxjmWfN2aXlqKxGBbLXdrIEMT1KN2etI/mp/hAneXbk=",
+  "Hash": "fEK1WSR3wCm83EIojBwQaA/Fpfe5ieuFao5BxDzSvCE=",
   "Source": "Forum",
   "BasePath": "_content/Forum",
   "Mode": "Default",
@@ -57,6 +57,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\ishak\\Forum\\Forum\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Forum.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\authentification.css",
+      "SourceId": "Forum",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
+      "BasePath": "_content/Forum",
+      "RelativePath": "css/authentification#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "dyjx89twm7",
+      "Integrity": "u4DszuiY1WLPnENub5+KbAlwyJCcCHdKlyaXaKLaRqk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\authentification.css"
     },
     {
       "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\home.css",
@@ -1363,6 +1384,88 @@
   ],
   "Endpoints": [
     {
+      "Route": "css/authentification.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\authentification.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "14"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"u4DszuiY1WLPnENub5+KbAlwyJCcCHdKlyaXaKLaRqk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Feb 2025 14:08:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-u4DszuiY1WLPnENub5+KbAlwyJCcCHdKlyaXaKLaRqk="
+        }
+      ]
+    },
+    {
+      "Route": "css/authentification.dyjx89twm7.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\authentification.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "14"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"u4DszuiY1WLPnENub5+KbAlwyJCcCHdKlyaXaKLaRqk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 28 Feb 2025 14:08:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "dyjx89twm7"
+        },
+        {
+          "Name": "label",
+          "Value": "css/authentification.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-u4DszuiY1WLPnENub5+KbAlwyJCcCHdKlyaXaKLaRqk="
+        }
+      ]
+    },
+    {
       "Route": "css/home.css",
       "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\home.css",
       "Selectors": [],
@@ -1713,7 +1816,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 25 Feb 2025 08:45:32 GMT"
+          "Value": "Fri, 28 Feb 2025 14:17:29 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1750,7 +1853,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 25 Feb 2025 08:45:32 GMT"
+          "Value": "Fri, 28 Feb 2025 14:17:29 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1795,7 +1898,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 25 Feb 2025 08:45:32 GMT"
+          "Value": "Fri, 28 Feb 2025 14:17:29 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1840,7 +1943,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 25 Feb 2025 08:45:32 GMT"
+          "Value": "Fri, 28 Feb 2025 14:17:29 GMT"
         },
         {
           "Name": "Cache-Control",
