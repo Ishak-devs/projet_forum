@@ -1,0 +1,14 @@
+﻿@model Forum.Models.ClasseViewModel
+@{
+    <form method="post">
+
+
+        <label asp-for="Classe">Classe :</label>
+        <input type="text" asp-for="Classe" />
+        <span style="color: red">@Html.ValidationMessageFor(c => c.Classe)</span>
+
+        <button type="submit">Se connecter</button>
+
+    </form>
+
+}
