@@ -20,6 +20,5 @@ namespace Forum.Models
         [StringLength(100)]
         public string Password { get; set; }
 
-        public DateTime DateInscription { get; set; } = DateTime.Now;
     }
 }

@@ -2,10 +2,13 @@
 @{
     <form method="post">
 
-
         <label asp-for="Classe">Classe :</label>
         <input type="text" asp-for="Classe" />
         <span style="color: red">@Html.ValidationMessageFor(c => c.Classe)</span>
+
+      <select asp-for="id_eleve" asp-items="Model.Eleves">
+          <option value="">Sélectionnez un élève</option>
+            </select>
 
         <button type="submit">Se connecter</button>
 
