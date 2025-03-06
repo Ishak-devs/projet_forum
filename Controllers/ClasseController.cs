@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Forum.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Forum.Controllers
 {
@@ -21,9 +22,11 @@ namespace Forum.Controllers
             .Select(e => new SelectListItem
             {
                 Value = e.Id.ToString(),
-                Text = e.Nom
+                Text = e.Nom + "  " + e.Prenom
+
             })
-            .ToList();
+         
+            .ToList();  //Méthode tolist pour convertir un tableau en liste
 
             var model = new ClasseViewModel
             {
@@ -34,8 +37,21 @@ namespace Forum.Controllers
         }
 
         [HttpPost]
-        public ActionResult Creeclasse(ClasseViewModel classeview)
+        public ActionResult Creeclasse(ClasseViewModel classeview, string ajout_eleve)
         {
+
+            if (ajout_eleve == "ajouter" && classeview.id_eleve.HasValue) //On vérifie si un élève à été séléctionné.
+            {
+                if (classeview.Eleveschoisis == null) //Vérification de l'état de Eleve choisis avant de créer une liste.
+                {
+                    classeview.Eleveschoisis = new List<int>(); //Création d'une liste d'élève ajouté au groupe de classe dans le modele.
+                }
+                if (!classeview.Eleveschoisis.Contains(classeview.id_eleve.Value))
+                {
+                    classeview.Eleveschoisis.Add(classeview.id_eleve.Value); //Ajouter un élève à Eleveschoisis grace à la méthode add;
+                }
+            }
+
             if (ModelState.IsValid)
             { 
 

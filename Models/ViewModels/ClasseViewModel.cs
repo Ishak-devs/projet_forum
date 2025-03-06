@@ -10,8 +10,10 @@ namespace Forum.Models
         public string Classe { get; set; }
 
         [Required(ErrorMessage = "veuillez ajouter des eleves")]
-        public int id_eleve { get; set; }
+        public int? id_eleve { get; set; }
 
         public SelectList Eleves { get; set; }
+
+        public List <int> Eleveschoisis {  get; set; } = new List<int>(); //Element de stockage temporaire avant d'ajouter les élèves au groupe de classe.
     }
 }
