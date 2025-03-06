@@ -6,35 +6,46 @@
         <input type="text" asp-for="Classe" />
         <span style="color: red">@Html.ValidationMessageFor(c => c.Classe)</span>
 
-      <select asp-for="id_eleve" asp-items="Model.Eleves">
-          <option value="">Sélectionnez des élèves</option>
-            </select>
+        <select asp-for="id_eleve" asp-items="Model.Eleves">
+            <option value="">Sélectionnez des élèves</option>
+        </select>
 
         <button type="submit" name="ajout_eleve" value="ajouter">Ajouter</button>
 
         <br />
         <br />
-        <ul>
 
-            @foreach (var id_eleve in Model.Eleveschoisis) //Boucle avec deux paramètres permettant de récupérer les id des élèves ajoutés à la liste.
-                if (Model.Eleves != null) {
-
-                
+            @if (Model.Eleveschoisis == null || !Model.Eleveschoisis.Any()) //Vérification de l'état de la liste 
             {
-                var eleve = Model.Eleves.FirstOrDefault(e => e.Value == id_eleve.ToString()); //Variable permettant de stocker les eleves dans une liste.
-                if (eleve != null) //Vérification de l'état de la liste.
-                {
-                    <li>@eleve.Text</li> //Affichage de la variable que nous venons de créer.
-                }
-                else {
-                    <span>aucun élève ajouté au groupe de classe.</span>
- 
-                }
+                <p>Aucun élève n'a été ajouté.</p>
+                
             }
+            else {
+                <ul>
+                @foreach (var id_eleve in Model.Eleveschoisis) //Boucle avec deux paramètres permettant de récupérer les id des élèves ajoutés à la liste.
+                  
+                    {
+                          if (Model.Eleves != null)
+                          {
+
+                          
+                        var eleve = Model.Eleves.FirstOrDefault(e => e.Value == id_eleve.ToString()); //Variable permettant de stocker les eleves dans une liste.
+                        if (eleve != null) //Vérification de l'état de la liste.
+                        {
+                            <li>@eleve.Text</li>  //Affichage de la variable que nous venons de créer.
+
+                        }
             }
 
-        </ul>
+                    else
+                    {
+                        <span>Erreur</span>
 
+                    }
+            
+            }
+                </ul>
+
+            }
     </form>
-
-}
+    }

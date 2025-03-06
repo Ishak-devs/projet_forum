@@ -52,13 +52,14 @@ namespace Forum.Controllers
                 }
             }
 
-            if (ModelState.IsValid)
-            { 
+            //if (ModelState.IsValid)
+            //{ 
 
-                ViewBag.Messagesuccess = "Vous êtes connecté !";
-                ModelState.Clear();
-                return View(new ClasseViewModel());
-            }
+            //    ViewBag.Messagesuccess = "Vous êtes connecté !";
+            //    ModelState.Clear();
+            //    return View(new ClasseViewModel());
+            //}
+
             //else
             //{
             //    ViewBag.MessageError = "Il y a des erreurs dans le formulaire. Veuillez corriger les champs indiqués.";
