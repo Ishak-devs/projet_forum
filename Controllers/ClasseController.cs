@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+
+
+using Microsoft.AspNetCore.Mvc;
 using Forum.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Forum.Migrations;
@@ -26,12 +29,14 @@ namespace Forum.Controllers
                 Text = e.Nom + "  " + e.Prenom
 
             })
-         
+
             .ToList();  //Méthode tolist pour convertir un tableau en liste
+
 
             var model = new ClasseViewModel
             {
-                Eleves = new SelectList(Eleves, "Value", "Text")
+                Eleves = new SelectList(Eleves, "Value", "Text"),
+                Eleveschoisis = new List<int>()
             };
 
             return View(model);
@@ -58,6 +63,7 @@ namespace Forum.Controllers
 
                     ViewBag.Message_eleve = "Elève ajouté !";
                 }
+
                 if (!classeview.Eleveschoisis.Contains(classeview.id_eleve.Value)) //Vérification de l'existence de l'id dans la liste afin d'éviter les doublons.
                 {
                     classeview.Eleveschoisis.Add(classeview.id_eleve.Value); //Ajouter un élève à Eleveschoisis grace à la méthode add.
