@@ -14,6 +14,6 @@ namespace Forum.Models
 
         public SelectList Eleves { get; set; }
 
-        public List <int> Eleveschoisis {  get; set; } = new List<int>(); //Element de stockage temporaire avant d'ajouter les élèves au groupe de classe.
+        public List <int> Eleveschoisis {  get; set; } //Element de stockage temporaire avant d'ajouter les élèves au groupe de classe.
     }
 }

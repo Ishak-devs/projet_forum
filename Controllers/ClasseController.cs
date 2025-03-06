@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Forum.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+//using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Forum.Controllers
 {
@@ -45,10 +45,13 @@ namespace Forum.Controllers
                 if (classeview.Eleveschoisis == null) //Vérification de l'état de Eleve choisis avant de créer une liste.
                 {
                     classeview.Eleveschoisis = new List<int>(); //Création d'une liste d'élève ajouté au groupe de classe dans le modele.
+
+                    ViewBag.Message_eleve = "Elève ajouté !";
                 }
-                if (!classeview.Eleveschoisis.Contains(classeview.id_eleve.Value))
+                if (!classeview.Eleveschoisis.Contains(classeview.id_eleve.Value)) //Vérification de l'existence de l'id dans la liste afin d'éviter les doublons.
                 {
-                    classeview.Eleveschoisis.Add(classeview.id_eleve.Value); //Ajouter un élève à Eleveschoisis grace à la méthode add;
+                    classeview.Eleveschoisis.Add(classeview.id_eleve.Value); //Ajouter un élève à Eleveschoisis grace à la méthode add.
+
                 }
             }
 
@@ -69,6 +72,7 @@ namespace Forum.Controllers
 
 
             //    else
+            //    {
             //    {
 
 
