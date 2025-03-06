@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Forum.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Forum.Migrations;
 //using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Forum.Controllers
@@ -39,6 +40,15 @@ namespace Forum.Controllers
         [HttpPost]
         public ActionResult Creeclasse(ClasseViewModel classeview, string ajout_eleve)
         {
+            var Eleves = contextpost.Eleves
+           .Select(e => new SelectListItem
+           {
+               Value = e.Id.ToString(),
+               Text = e.Nom + "  " + e.Prenom
+
+           })
+
+           .ToList();
 
             if (ajout_eleve == "ajouter" && classeview.id_eleve.HasValue) //On vérifie si un élève à été séléctionné.
             {
@@ -67,7 +77,7 @@ namespace Forum.Controllers
             //{
             //    ViewBag.MessageError = "Il y a des erreurs dans le formulaire. Veuillez corriger les champs indiqués.";
             //}
-
+            classeview.Eleves = new SelectList(Eleves, "Value", "Text"); //On enregistre les élèves choisis et on les renvoies
             return View(classeview);
 
 
