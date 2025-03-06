@@ -29,11 +29,9 @@ namespace Forum.Controllers
          
             .ToList();  //Méthode tolist pour convertir un tableau en liste
 
-
             var model = new ClasseViewModel
             {
-                Eleves = new SelectList(Eleves, "Value", "Text"),
-                Eleveschoisis = new List<int>()
+                Eleves = new SelectList(Eleves, "Value", "Text")
             };
 
             return View(model);
@@ -60,7 +58,6 @@ namespace Forum.Controllers
 
                     ViewBag.Message_eleve = "Elève ajouté !";
                 }
-
                 if (!classeview.Eleveschoisis.Contains(classeview.id_eleve.Value)) //Vérification de l'existence de l'id dans la liste afin d'éviter les doublons.
                 {
                     classeview.Eleveschoisis.Add(classeview.id_eleve.Value); //Ajouter un élève à Eleveschoisis grace à la méthode add.
