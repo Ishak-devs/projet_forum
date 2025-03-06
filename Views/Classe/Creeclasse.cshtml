@@ -10,30 +10,30 @@
             <option value="">Sélectionnez des élèves</option>
         </select>
 
+        <input type="hidden" asp-for="Eleveschoisis" value="@string.Join(",", Model.Eleveschoisis)" />
         <button type="submit" name="ajout_eleve" value="ajouter">Ajouter</button>
     </form>
         <br />
         <br />
-    if (ViewBag.Message_eleve != null)
-    {
-        <p style="color: green">@ViewBag.Message_eleve</p>
-        <p>@string.Join(", ", Model.Eleveschoisis)</p> //On affiche les int de elevechoisis grace à string join.
-    }
+    // if (ViewBag.Message_eleve != null)
+    // {
+    //     <p style="color: green">@ViewBag.Message_eleve</p>
+    //     <p>@string.Join(", ", Model.Eleveschoisis)</p> On affiche les int de elevechoisis grace à string join.
+    // }
     // <p>@Model.Eleveschoisis</p>
 
     // }
     
-// <ul>
+        
+        
+        
+        @foreach (var eleve in Model.Eleveschoisis)
+        {
+            <li>@eleve</li>
+        }
 
-//     @foreach (var eleve in Model.Eleveschoisis)
-//     {
-//         <li>@eleve</li>
-//     }
-// </ul>
 
 }
-
-
         @*     @if (Model.Eleveschoisis == null || !Model.Eleveschoisis.Any())  *@
         @*     { *@
         @*         <p>Aucun élève n'a été ajouté.</p> *@
