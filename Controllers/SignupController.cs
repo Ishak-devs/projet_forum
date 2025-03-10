@@ -4,10 +4,16 @@ using Forum.Models;
 namespace Forum.Controllers
 {
     public class SignupController : Controller
+        
     {
-        private readonly ApplicationDbContext contextget;
 
-      [HttpGet]
+        private readonly ApplicationDbContext contextget;
+        public SignupController(ApplicationDbContext context) 
+        {
+            contextget = context ;
+        }
+
+        [HttpGet]
         public IActionResult Signup()
         {
             return View();
@@ -15,7 +21,7 @@ namespace Forum.Controllers
 
 
         [HttpPost]
-        public ActionResult Signup(SignupViewModel eleve, ApplicationDbContext contextget)
+        public ActionResult Signup(SignupViewModel eleve)
         {
             if (ModelState.IsValid)
             {
@@ -32,7 +38,6 @@ namespace Forum.Controllers
                 //Sauvegarder les changements dans la base de données
                 contextget.SaveChanges();
 
-
                 ViewBag.Messagesuccess = "Inscription réussie !";
                 ModelState.Clear();
                 return View(new SignupViewModel());
@@ -43,7 +48,6 @@ namespace Forum.Controllers
             //}
 
             return View(eleve);
-
 
             //    else
             //    {
