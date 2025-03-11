@@ -39,8 +39,8 @@
     <label asp-for="Password">Mot de passe :</label><input type="text" asp-for="Password" />
     <span style="color: red">@Html.ValidationMessageFor(e => e.Password)</span>
 
-    <input type="radio" id="Role" name="Role" value="Elève" /> Elève
-    <input type="radio" id="Role" name="Role" value="Professeur" /> Professeur
+    <input type="radio" name="Role" value="Elève" asp-for="Role" /> Elève
+    <input type="radio" name="Role" value="Professeur" asp-for="Role" /> Professeur
     <span style="color: red">@Html.ValidationMessageFor(r => r.Role)</span>
 
     <button type="submit">S'inscrire</button>
