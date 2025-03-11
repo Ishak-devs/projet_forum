@@ -13,7 +13,7 @@ namespace Forum.Models
         [StringLength(50)]
         public string Prenom { get; set; }
 
-        [StringLength(30)]
+        //[StringLength(30)]
         public string Matiere { get; set; }
 
         [StringLength(100)]

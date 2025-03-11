@@ -23,5 +23,8 @@ namespace Forum.Models
         [DataType(DataType.Password)]
         [StringLength(100, MinimumLength = 8, ErrorMessage = "Le Mot de passe doit contenir au moins 2 caractères.")]
         public string Password { get; set; }
+
+        [Required(ErrorMessage ="Choisissez votre rôle")]
+        public string Role { get; set; }
     }
 }

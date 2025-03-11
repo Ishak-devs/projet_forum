@@ -148,4 +148,3 @@ C:\ishak\Forum\forum\obj\Debug\net8.0\Forum.pdb
 C:\ishak\Forum\forum\obj\Debug\net8.0\Forum.genruntimeconfig.cache
 C:\ishak\Forum\forum\obj\Debug\net8.0\ref\Forum.dll
 C:\ishak\Forum\forum\bin\Debug\net8.0\BCrypt.Net-Next.dll
-C:\ishak\Forum\Forum\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
