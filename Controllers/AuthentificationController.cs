@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+//using Microsoft.EntityFrameworkCore;
 using Forum.Models;
 using System.Data.Entity;
 //using Microsoft.AspNetCore.Identity;
+using System.Linq;
 
 namespace Forum.Controllers
 {
@@ -25,12 +26,12 @@ namespace Forum.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult> AuthentificationAsync(LoginViewModel eleve)
+        public IActionResult Authentification(LoginViewModel eleve)
         {
             //if (ModelState.IsValid)
             //{
-                var utilisateurExiste = await contextget.Eleves //Initialisation de la variable utilisateurExiste
-                 .AnyAsync(e => e.Email == eleve.Email && e.Password == eleve.Password); //Méthode async pour verifier les données
+                var utilisateurExiste = contextget.Eleves //Initialisation de la variable utilisateurExiste
+                 .Any(e => e.Email == eleve.Email && e.Password == eleve.Password); //Méthode async pour verifier les données
 
 
                 //Si les données sont ok
