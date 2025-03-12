@@ -10,10 +10,14 @@
     {
         <p style="color: green">@ViewBag.Messagesuccess</p>
     }
-  
+
     if (ViewBag.MessageError != null)
     {
         <p style="color: red">@ViewBag.MessageError</p>
+    }
+    if (ViewBag.Message_error_email != null)
+    {
+        <p style="color: red">@ViewBag.Message_error_email</p>
     }
 
     //fORMULAIRE DE CONNEXION
