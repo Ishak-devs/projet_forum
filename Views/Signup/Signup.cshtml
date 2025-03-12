@@ -2,7 +2,7 @@
 <head>
     <link rel="stylesheet" href="~/css/signup.css" asp-append-version="true" />
 </head>
-
+<body class="corp_inscription">
 @*
 *@
 @{
@@ -23,25 +23,26 @@
 
 }
 
-<form method="post">
+<form class="forminscription" method="post">
 
-    <h1>S'inscrire</h1>
+    <h1 class="inscriptionh1">S'inscrire</h1>
 
-    <label asp-for="Nom">Nom :</label><input type="text" asp-for="Nom" />
+    <label class="labelnom" asp-for="Nom">Nom :</label><input class="inputnom" type="text" asp-for="Nom" />
     <span style="color: red">@Html.ValidationMessageFor(e => e.Nom)</span>
 
-    <label asp-for="Prenom">Prénom :</label><input type="text" asp-for="Prenom" />
+    <label class="labelprenom" asp-for="Prenom">Prénom :</label><input class="inputprenom" type="text" asp-for="Prenom" />
     <span style="color: red">@Html.ValidationMessageFor(e => e.Prenom)</span>
-
-    <label asp-for="Email">Email :</label><input type="text" asp-for="Email" />
+     
+    <label class="labelemail" asp-for="Email">Email :</label><input class="inputemail" type="text" asp-for="Email" />
     <span style="color: red">@Html.ValidationMessageFor(e => e.Email)</span>
 
-    <label asp-for="Password">Mot de passe :</label><input type="text" asp-for="Password" />
+    <label class="labelpassword" asp-for="Password">Mot de passe :</label><input class="inputpassword" type="text" asp-for="Password" />
     <span style="color: red">@Html.ValidationMessageFor(e => e.Password)</span>
 
-    <input type="radio" name="Role" value="Elève" asp-for="Role" /> Elève
-    <input type="radio" name="Role" value="Professeur" asp-for="Role" /> Professeur
+    <input type="radio" class="inputradio" name="Role" value="Elève" asp-for="Role" /> Elève
+    <input type="radio" class="inputradioprof" name="Role" value="Professeur" asp-for="Role" /> Professeur
     <span style="color: red">@Html.ValidationMessageFor(r => r.Role)</span>
 
-    <button type="submit">S'inscrire</button>
+    <button class="button_inscription" type="submit">S'inscrire</button>
 </form>
+</body>

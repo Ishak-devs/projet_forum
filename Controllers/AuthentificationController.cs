@@ -54,7 +54,7 @@ namespace Forum.Controllers
                     {
                         ViewBag.Messagesuccess = "Vous êtes connecté en tant qu'élève !";
                         ModelState.Clear();
-                        return View();
+                        return RedirectToAction("Eleve", "Dashboard");
                         //return View(new LoginViewModel());
                     }
 
