@@ -11,10 +11,10 @@
         <p style="color: green">@ViewBag.Messagesuccess</p>
     }
   
-    // if (ViewBag.MessageError != null)
-    // {
-    //     <p style="color: red">@ViewBag.MessageError</p>
-    // }
+    if (ViewBag.MessageError != null)
+    {
+        <p style="color: red">@ViewBag.MessageError</p>
+    }
 
     //fORMULAIRE DE CONNEXION
     <form method="post">
@@ -32,6 +32,10 @@
         <label asp-for="Password">Mot de passe :</label>
         <input type="text" asp-for="Password" />
         <span style="color: red">@Html.ValidationMessageFor(e => e.Password)</span>
+
+        <input type="radio" name="Role" value="Elève" asp-for="Role" /> Elève
+        <input type="radio" name="Role" value="Professeur" asp-for="Role" /> Professeur
+        <span style="color: red">@Html.ValidationMessageFor(r => r.Role)</span>
 
         <button type="submit">Se connecter</button>
 
