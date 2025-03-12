@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Forum.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Forum.Controllers
 {
@@ -8,9 +9,17 @@ namespace Forum.Controllers
     {
 
         private readonly ApplicationDbContext contextget;
-        public SignupController(ApplicationDbContext context) 
+
+        //Initialisation de la valeur passwordhasher lié a l'entité Eleve
+        private readonly PasswordHasher<Eleve> passwordHasher;
+        private readonly PasswordHasher<Professeur> profsseurHasher;
+
+        public SignupController(ApplicationDbContext context, PasswordHasher<Eleve> passwordHasher, PasswordHasher<Professeur> profsseurHasher) 
         {
             contextget = context ;
+            //On récupere passwordhasher pour l'utiliser dans notre class
+            this.passwordHasher = passwordHasher;
+            this.profsseurHasher = profsseurHasher;
         }
 
         [HttpGet]
@@ -23,17 +32,21 @@ namespace Forum.Controllers
         [HttpPost]
         public ActionResult Signup(SignupViewModel modele)
         {
+
             //if (ModelState.IsValid)
             //{
             if (modele.Role == "Elève")
             {
+                //Méthode HashPassword pour hashé le mdp
+
                 //Récuperer l'élève à ajouter depuis le formulaire
                 var newEleve = new Eleve
                 {
                     Nom = modele.Nom,
                     Prenom = modele.Prenom,
                     Email = modele.Email,
-                    Password = modele.Password,
+                    //on hash le mot de passe
+                    Password = passwordHasher.HashPassword(null, modele.Password)
                 };
                 contextget.Add(newEleve);
                 //Sauvegarder les changements dans la base de données
@@ -48,7 +61,7 @@ namespace Forum.Controllers
                     Nom = modele.Nom,
                     Prenom = modele.Prenom,
                     Email = modele.Email,
-                    Password = modele.Password
+                    Password = profsseurHasher.HashPassword(null, modele.Password)
                 };
                 contextget.Add(newProfesseur);
                 contextget.SaveChanges();

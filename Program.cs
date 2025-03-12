@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Forum.Models; // Assure-toi d'importer ton DbContext
+using Forum.Models;
+using Microsoft.AspNetCore.Identity; //Import de dbcontext !
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // Ajouter les services au conteneur
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<PasswordHasher<Eleve>>();
+builder.Services.AddSingleton<PasswordHasher<Professeur>>();
 
 var app = builder.Build();
 
