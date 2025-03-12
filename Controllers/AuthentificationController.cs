@@ -82,9 +82,9 @@ namespace Forum.Controllers
 
 
                     //Si les données sont ok
-                    if (Professeur != null && elevePasswordHasher.VerifyHashedPassword(null, Professeur.Password, modele.Password) == PasswordVerificationResult.Success)
+                    if (Professeur != null && professeurPasswordHasher.VerifyHashedPassword(null, Professeur.Password, modele.Password) == PasswordVerificationResult.Success)
                     {
-                        ViewBag.Messagesuccess = "Vous êtes connecté en tant qu'élève !";
+                        ViewBag.Messagesuccess = "Vous êtes connecté en tant que professeur !";
                         ModelState.Clear();
                         return View();
                         //return View(new LoginViewModel());
