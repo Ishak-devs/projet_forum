@@ -17,7 +17,7 @@ namespace Forum.Controllers
         public SignupController(ApplicationDbContext context, PasswordHasher<Eleve> passwordHasher, PasswordHasher<Professeur> profsseurHasher) 
         {
             contextget = context ;
-            //On récupere passwordhasher pour l'utiliser dans notre class
+            //On récupere passwordhasher que nous avons initialisé pour l'utiliser dans notre class
             this.passwordHasher = passwordHasher;
             this.profsseurHasher = profsseurHasher;
         }
@@ -37,7 +37,6 @@ namespace Forum.Controllers
             //{
             if (modele.Role == "Elève")
             {
-                //Méthode HashPassword pour hashé le mdp
 
                 //Récuperer l'élève à ajouter depuis le formulaire
                 var newEleve = new Eleve
