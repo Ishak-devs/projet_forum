@@ -72,6 +72,18 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"x8nyj62glo"},{"Name":"integrity","Value":"sha256-z2p54P\u002BJq9/2i4rm1PB2EMgPsv1USaQykiryqb0fOpE="},{"Name":"label","Value":"_content/Forum/Forum.bundle.scp.css"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"987"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022z2p54P\u002BJq9/2i4rm1PB2EMgPsv1USaQykiryqb0fOpE=\u0022"},{"Name":"Last-Modified","Value":"Wed, 12 Mar 2025 16:52:23 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Forum/js/signup.bf0y4nucbg.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\signup.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"bf0y4nucbg"},{"Name":"integrity","Value":"sha256-WamyiSjIIuX/195oAw3LZOILLTREoM\u002BnFiAIvVl2Rco="},{"Name":"label","Value":"_content/Forum/js/signup.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1061"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022WamyiSjIIuX/195oAw3LZOILLTREoM\u002BnFiAIvVl2Rco=\u0022"},{"Name":"Last-Modified","Value":"Thu, 13 Mar 2025 10:02:32 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Forum/js/signup.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\signup.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-WamyiSjIIuX/195oAw3LZOILLTREoM\u002BnFiAIvVl2Rco="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1061"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022WamyiSjIIuX/195oAw3LZOILLTREoM\u002BnFiAIvVl2Rco=\u0022"},{"Name":"Last-Modified","Value":"Thu, 13 Mar 2025 10:02:32 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Forum/js/site.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>

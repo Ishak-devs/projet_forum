@@ -3,6 +3,7 @@ wwwroot\css\home.css
 wwwroot\css\signup.css
 wwwroot\css\site.css
 wwwroot\favicon.ico
+wwwroot\js\signup.js
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.css.map

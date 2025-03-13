@@ -495,6 +495,88 @@
       ]
     },
     {
+      "Route": "js/signup.bf0y4nucbg.js",
+      "AssetFile": "js/signup.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1061"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"WamyiSjIIuX/195oAw3LZOILLTREoM+nFiAIvVl2Rco=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Mar 2025 10:02:32 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "bf0y4nucbg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-WamyiSjIIuX/195oAw3LZOILLTREoM+nFiAIvVl2Rco="
+        },
+        {
+          "Name": "label",
+          "Value": "js/signup.js"
+        }
+      ]
+    },
+    {
+      "Route": "js/signup.js",
+      "AssetFile": "js/signup.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1061"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"WamyiSjIIuX/195oAw3LZOILLTREoM+nFiAIvVl2Rco=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Mar 2025 10:02:32 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-WamyiSjIIuX/195oAw3LZOILLTREoM+nFiAIvVl2Rco="
+        }
+      ]
+    },
+    {
       "Route": "js/site.js",
       "AssetFile": "js/site.js",
       "Selectors": [],

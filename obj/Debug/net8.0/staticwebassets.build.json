@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "l8uIY2XVPjw87QZzqi2v1bFUn5x8N9R9Gotf6+zhVJE=",
+  "Hash": "03aGtDl5kceaTZV9pc6vFlEuIdrHnbbs/yfFCjdXaVY=",
   "Source": "Forum",
   "BasePath": "_content/Forum",
   "Mode": "Default",
@@ -162,6 +162,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\js\\signup.js",
+      "SourceId": "Forum",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
+      "BasePath": "_content/Forum",
+      "RelativePath": "js/signup#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "bf0y4nucbg",
+      "Integrity": "WamyiSjIIuX/195oAw3LZOILLTREoM+nFiAIvVl2Rco=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\signup.js"
     },
     {
       "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\js\\site.js",
@@ -1954,6 +1975,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-z2p54P+Jq9/2i4rm1PB2EMgPsv1USaQykiryqb0fOpE="
+        }
+      ]
+    },
+    {
+      "Route": "js/signup.bf0y4nucbg.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\js\\signup.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1061"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"WamyiSjIIuX/195oAw3LZOILLTREoM+nFiAIvVl2Rco=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Mar 2025 10:02:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "bf0y4nucbg"
+        },
+        {
+          "Name": "label",
+          "Value": "js/signup.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-WamyiSjIIuX/195oAw3LZOILLTREoM+nFiAIvVl2Rco="
+        }
+      ]
+    },
+    {
+      "Route": "js/signup.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\js\\signup.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1061"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"WamyiSjIIuX/195oAw3LZOILLTREoM+nFiAIvVl2Rco=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Mar 2025 10:02:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-WamyiSjIIuX/195oAw3LZOILLTREoM+nFiAIvVl2Rco="
         }
       ]
     },
