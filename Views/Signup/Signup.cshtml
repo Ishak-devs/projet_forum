@@ -55,7 +55,7 @@
                 </select>
 
 
-        <div id="Autre_matiere" style="display: none;">
+        <div id="Autre_matiere_input" style="display: none;">
             <label class="labelmatiere">Autre matière :</label>
             <input class="inputmatiere" type="text" placeholder="Entrez la matière" />
             @* <span style="color: red">@Html.ValidationMessageFor(e => e.OtherMatiere)</span> *@
@@ -85,9 +85,9 @@
                           const Autre_matiere = document.getElementById("Autre_matiere");
 
                        if (Matiere_saisie.value === 'Autre') {
-                           Autre_matiere.style.display = 'block';
+                           Autre_matiere_input.style.display = 'block';
                        } else {
-                           Autre_matiere.style.display = 'none';
+                           Autre_matiere_input.style.display = 'none';
                        }
                     }
 </script>
