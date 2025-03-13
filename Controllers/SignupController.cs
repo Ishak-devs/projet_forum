@@ -23,7 +23,6 @@ namespace Forum.Controllers
         }
 
 
-
         [HttpGet]
         public IActionResult Signup()
         {

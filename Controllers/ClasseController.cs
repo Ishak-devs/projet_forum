@@ -5,24 +5,25 @@ using Microsoft.AspNetCore.Mvc;
 using Forum.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Forum.Migrations;
+using Microsoft.AspNetCore.Identity;
 //using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Forum.Controllers
 {
     public class ClasseController : Controller
     {
-        private readonly ApplicationDbContext contextpost;
+        private readonly ApplicationDbContext contextget;
 
         public ClasseController(ApplicationDbContext context)
         {
-            contextpost = context;
+            contextget = context;
         }
 
 
         [HttpGet]
         public IActionResult Creeclasse()
         {
-            var Eleves = contextpost.Eleves
+            var Eleves = contextget.Eleves
             .Select(e => new SelectListItem
             {
                 Value = e.Id.ToString(),
@@ -45,7 +46,7 @@ namespace Forum.Controllers
         [HttpPost]
         public ActionResult Creeclasse(ClasseViewModel classeview, string ajout_eleve)
         {
-            var Eleves = contextpost.Eleves
+            var Eleves = contextget.Eleves
            .Select(e => new SelectListItem
            {
                Value = e.Id.ToString(),
@@ -60,41 +61,66 @@ namespace Forum.Controllers
                 if (classeview.Eleveschoisis == null) //Vérification de l'état de Eleve choisis avant de créer une liste.
                 {
                     classeview.Eleveschoisis = new List<int>(); //Création d'une liste d'élève ajouté au groupe de classe dans le modele.
-
                     ViewBag.Message_eleve = "Elève ajouté !";
-                }
 
-                if (!classeview.Eleveschoisis.Contains(classeview.id_eleve.Value)) //Vérification de l'existence de l'id dans la liste afin d'éviter les doublons.
-                {
-                    classeview.Eleveschoisis.Add(classeview.id_eleve.Value); //Ajouter un élève à Eleveschoisis grace à la méthode add.
+
+                    if (!classeview.Eleveschoisis.Contains(classeview.id_eleve.Value)) //Vérification de l'existence de l'id dans la liste afin d'éviter les doublons.
+                    {
+                        classeview.Eleveschoisis.Add(classeview.id_eleve.Value); //Ajouter un élève à Eleveschoisis grace à la méthode add.
+
+                    }
 
                 }
+                classeview.Eleves = new SelectList(Eleves, "Value", "Text");
+
+                //    var newClasse = new ClasseViewModel
+                //    {
+                //        Classe = classeview.Classe
+                //    };
+                //    contextget.Add(newClasse);
+                //    //Sauvegarder les changements dans la base de données
+                //    contextget.SaveChanges();
+
+                //    //ViewBag.Message_eleve = "Elève ajouté !";
+                //}
+
+             
+                    var newClasse = new ClasseViewModel
+                    {
+                        Classe = classeview.Classe,
+                        //id_professeur = id_professeur.Id,
+                        id_eleve = classeview.id_eleve
+                    };
+                    contextget.Add(newClasse);
+                    contextget.SaveChanges();
+                
+
+                //if (ModelState.IsValid)
+                //{ 
+
+                //    ViewBag.Messagesuccess = "Vous êtes connecté !";
+                //    ModelState.Clear();
+                //    return View(new ClasseViewModel());
+                //}
+
+                //else
+                //{
+                //    ViewBag.MessageError = "Il y a des erreurs dans le formulaire. Veuillez corriger les champs indiqués.";
+                //}
+                //On enregistre les élèves choisis et on les renvoies
+                return View(classeview);
+
+                //    else
+                //    {
+                //    {
+
+
+                //    }
+
+                //}
             }
-
-            //if (ModelState.IsValid)
-            //{ 
-
-            //    ViewBag.Messagesuccess = "Vous êtes connecté !";
-            //    ModelState.Clear();
-            //    return View(new ClasseViewModel());
-            //}
-
-            //else
-            //{
-            //    ViewBag.MessageError = "Il y a des erreurs dans le formulaire. Veuillez corriger les champs indiqués.";
-            //}
-            classeview.Eleves = new SelectList(Eleves, "Value", "Text"); //On enregistre les élèves choisis et on les renvoies
             return View(classeview);
-
-
-            //    else
-            //    {
-            //    {
-
-
-            //    }
-
-            //}
         }
     }
-}
+    }
+
