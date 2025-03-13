@@ -48,8 +48,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>awxmkw97vw</Fingerprint>
-      <Integrity>GrmvZd3ae+4ZLiqyaCVukOsnjzmHYoazypQ/TEBV1dI=</Integrity>
+      <Fingerprint>69bumhtuja</Fingerprint>
+      <Integrity>ep6paniHglxI8IjM9MG4WLMr1wt0DkboR763h43zWGc=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\signup.css'))</OriginalItemSpec>

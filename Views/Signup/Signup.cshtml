@@ -3,45 +3,70 @@
     <link rel="stylesheet" href="~/css/signup.css" asp-append-version="true" />
 </head>
 <body class="corp_inscription">
-@*
+    @*
 *@
-@{
-    // @if (TempData["message_ok"] != null)
-    // {
-    //     <p style="color: green">@TempData["message_ok"]</p>
+    @{
+        // @if (TempData["message_ok"] != null)
+        // {
+        //     <p style="color: green">@TempData["message_ok"]</p>
 
-    // }
-    if (ViewBag.Messagesuccess != null)
-    {
-        <p style="color: green">@ViewBag.Messagesuccess</p>
+        // }
+        if (ViewBag.Messagesuccess != null)
+        {
+            <p style="color: green">@ViewBag.Messagesuccess</p>
+
+        }
+        // if (ViewBag.MessageError != null)
+        // {
+        //     <p style="color: red">@ViewBag.MessageError</p>
+        // }
 
     }
-    // if (ViewBag.MessageError != null)
-    // {
-    //     <p style="color: red">@ViewBag.MessageError</p>
-    // }
 
-}
+    <form class="forminscription" method="post">
 
-<form class="forminscription" method="post">
+        <h1 class="inscriptionh1">S'inscrire</h1>
 
-    <h1 class="inscriptionh1">S'inscrire</h1>
+        <label class="labelnom" asp-for="Nom">Nom :</label><input class="inputnom" type="text" asp-for="Nom" />
+        <span style="color: red">@Html.ValidationMessageFor(e => e.Nom)</span>
 
-    <label class="labelnom" asp-for="Nom">Nom :</label><input class="inputnom" type="text" asp-for="Nom" />
-    <span style="color: red">@Html.ValidationMessageFor(e => e.Nom)</span>
+        <label class="labelprenom" asp-for="Prenom">Prénom :</label><input class="inputprenom" type="text" asp-for="Prenom" />
+        <span style="color: red">@Html.ValidationMessageFor(e => e.Prenom)</span>
 
-    <label class="labelprenom" asp-for="Prenom">Prénom :</label><input class="inputprenom" type="text" asp-for="Prenom" />
-    <span style="color: red">@Html.ValidationMessageFor(e => e.Prenom)</span>
+        <label class="labelemail" asp-for="Email">Email :</label><input class="inputemail" type="text" asp-for="Email" />
+        <span style="color: red">@Html.ValidationMessageFor(e => e.Email)</span>
+
+        <label class="labelpassword" asp-for="Password">Mot de passe :</label><input class="inputpassword" type="text" asp-for="Password" />
+        <span style="color: red">@Html.ValidationMessageFor(e => e.Password)</span>
+
+        <input type="radio" class="inputradio" name="Role" value="Elève" asp-for="Role" /> Elève
+        <input type="radio" class="inputradioprof" name="Role" value="Professeur" asp-for="Role" /> Professeur
+        <span style="color: red">@Html.ValidationMessageFor(r => r.Role)</span>
+
+        @{
+            if (Model.Role == "Professeur")   //we set a condition to display input for matiere
      
-    <label class="labelemail" asp-for="Email">Email :</label><input class="inputemail" type="text" asp-for="Email" />
-    <span style="color: red">@Html.ValidationMessageFor(e => e.Email)</span>
+            {
 
-    <label class="labelpassword" asp-for="Password">Mot de passe :</label><input class="inputpassword" type="text" asp-for="Password" />
-    <span style="color: red">@Html.ValidationMessageFor(e => e.Password)</span>
+                <select class="inputmatiere" asp-for="Matiere">
+                    <option value="">Selectionnez votre matière</option>
+                    <option value="Français">Français</option>
+                    <option value="Anglais">Anglais</option>
+                    <option value="Maths">Maths</option>
+                    <option value="Histore">Histore</option>
+                    <option value="Autre">Autre</option>
+                </select>
 
-    <input type="radio" class="inputradio" name="Role" value="Elève" asp-for="Role" /> Elève
-    <input type="radio" class="inputradioprof" name="Role" value="Professeur" asp-for="Role" /> Professeur
-    <span style="color: red">@Html.ValidationMessageFor(r => r.Role)</span>
+                if (Model.Matiere == "Autre")
+                {
+                    <label class="labelmatiere" asp-for="AutreMatiere"></label>
+                    <input class="inputmatiere" type="text" asp-for="Matiere" />
+                }
+                
+                <span style="color: red">@Html.ValidationMessageFor(e => e.Matiere)</span>
+            }
+        }
+
 
     <button class="button_inscription" type="submit">S'inscrire</button>
 </form>

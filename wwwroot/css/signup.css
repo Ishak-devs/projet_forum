@@ -10,35 +10,35 @@
 }*/
 
 /* Formulaire d'inscription */
-.forminscription {
+/*.forminscription {
     background-color: #ffffff;
     padding: 40px;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Ombre douce */
-    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);*/ /* Ombre douce */
+    /*width: 100%;
     max-width: 480px;
     box-sizing: border-box;
-}
+}*/
 
 /* Titre du formulaire */
-.inscriptionh1 {
+/*.inscriptionh1 {
     text-align: center;
     color: #333;
     font-size: 26px;
     margin-bottom: 30px;
-}
+}*/
 
 /* Styles des labels */
-.labelnom, .labelprenom, .labelemail, .labelpassword {
+/*.labelnom, .labelprenom, .labelemail, .labelpassword {
     font-size: 14px;
     font-weight: 600;
     color: #333;
     margin-bottom: 8px;
     display: block;
-}
+}*/
 
 /* Champs de saisie */
-.inputnom, .inputprenom, .inputemail, .inputpassword {
+/*.inputnom, .inputprenom, .inputemail, .inputpassword {
     width: 100%;
     padding: 12px;
     margin-bottom: 20px;
@@ -47,39 +47,39 @@
     font-size: 14px;
     box-sizing: border-box;
     transition: border-color 0.3s ease;
-}
+}*/
 
     /* Effet au focus sur les champs de saisie */
-    .inputnom:focus, .inputprenom:focus, .inputemail:focus, .inputpassword:focus {
+    /*.inputnom:focus, .inputprenom:focus, .inputemail:focus, .inputpassword:focus {
         border-color: #007bff;
         outline: none;
-    }
+    }*/
 
 /* Boutons radio */
-.inputradio, .inputradioprof {
+/*.inputradio, .inputradioprof {
     margin-right: 10px;
     margin-bottom: 15px;
     vertical-align: middle;
-}
+}*/
 
 /* Label des boutons radio */
-label[for="Role"] {
+/*label[for="Role"] {
     font-size: 14px;
     color: #333;
     margin-right: 20px;
-}
+}*/
 
 /* Messages d'erreur */
-span {
+/*span {
     color: red;
     font-size: 12px;
     display: block;
     margin-top: -10px;
     margin-bottom: 15px;
-}
+}*/
 
 /* Bouton d'inscription */
-.button_inscription {
+/*.button_inscription {
     width: 100%;
     padding: 14px;
     background-color: #28a745;
@@ -90,15 +90,15 @@ span {
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
+}*/
 
     /* Effet au survol du bouton */
-    .button_inscription:hover {
+    /*.button_inscription:hover {
         background-color: #218838;
-    }
+    }*/
 
 /* Responsivité - sur les petits écrans */
-@media (max-width: 480px) {
+/*@media (max-width: 480px) {
     .forminscription {
         padding: 25px;
         width: 90%;
@@ -111,4 +111,4 @@ span {
     .button_inscription {
         font-size: 14px;
     }
-}
+}*/
