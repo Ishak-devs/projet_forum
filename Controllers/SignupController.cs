@@ -22,6 +22,8 @@ namespace Forum.Controllers
             this.profsseurHasher = profsseurHasher;
         }
 
+
+
         [HttpGet]
         public IActionResult Signup()
         {
@@ -70,7 +72,9 @@ namespace Forum.Controllers
                 // Ajouter le professeur dans la table Professeur
                 
                     ViewBag.Messagesuccess = "Inscription réussie !";
-                    ModelState.Clear();
+                    //ViewBag.SelectedRole = modele.Role; 
+                    //ViewBag.SelectedMatiere = modele.Matiere;
+                ModelState.Clear();
                     return View(new SignupViewModel());
                 }
             else

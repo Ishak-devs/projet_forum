@@ -43,31 +43,39 @@
         <input type="radio" class="inputradioprof" name="Role" value="Professeur" asp-for="Role" /> Professeur
         <span style="color: red">@Html.ValidationMessageFor(r => r.Role)</span>
 
-        @{
-            if (Model.Role == "Professeur")   //we set a condition to display input for matiere
-     
-            {
-
-                <select class="inputmatiere" asp-for="Matiere">
+        <select class="inputmatiere" id="Matiere_saisie" style="display: none; onchange="verif_role">
                     <option value="">Selectionnez votre matière</option>
                     <option value="Français">Français</option>
                     <option value="Anglais">Anglais</option>
                     <option value="Maths">Maths</option>
                     <option value="Histore">Histore</option>
-                    <option value="Autre">Autre</option>
+            <option value="Autre" id="Autre_matiere" style="display: none;" onchange="verif_role">Autre</option>
                 </select>
-
-                if (Model.Matiere == "Autre")
-                {
-                    <label class="labelmatiere" asp-for="AutreMatiere"></label>
-                    <input class="inputmatiere" type="text" asp-for="Matiere" />
-                }
-                
-                <span style="color: red">@Html.ValidationMessageFor(e => e.Matiere)</span>
-            }
-        }
-
 
     <button class="button_inscription" type="submit">S'inscrire</button>
 </form>
+
+<script>
+    function verif_role() {
+        const role_saisie = document.querySelector('input[name="Role"]:checked').value;
+        const Matiere_saisie = document.getElementById("Matiere_saisie");
+        const Autre_matiere = document.getElementById("Autre_matiere");
+
+         if (role_saisie === 'Professeur') {
+                        Matiere_saisie.style.display = 'block';
+                } else {
+                    Matiere_saisie.style.display = 'none';
+                    Autre_matiere.style.disaplay = 'none';
+                         
+                }
+
+                if (Matiere_saisie === 'Autre') {
+                    Autre_matiere.style.display = 'block';
+                } else {
+                    Autre_matiere.style.display = 'none';
+                }
+            }
+
+</script>
+
 </body>
