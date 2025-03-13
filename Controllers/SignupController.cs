@@ -62,7 +62,8 @@ namespace Forum.Controllers
                     Nom = modele.Nom,
                     Prenom = modele.Prenom,
                     Email = modele.Email,
-                    Password = profsseurHasher.HashPassword(null, modele.Password)
+                    Password = profsseurHasher.HashPassword(null, modele.Password),
+                    Matiere = modele.Matiere
                 };
                 contextget.Add(newProfesseur);
                 contextget.SaveChanges();
@@ -79,7 +80,7 @@ namespace Forum.Controllers
                 }
             else
             {
-                ViewBag.Messagesuccess = "Problème d'inscription !";
+                ViewBag.MessageError = "Problème d'inscription !";
             }
             //}
             //else
