@@ -31,7 +31,5 @@ namespace Forum.Models
         [StringLength(30)]
         public string Matiere { get; set; }
 
-        //[Required(ErrorMessage = "Matière enseignée")]
-        //public string AutreMatiere { get; set; }
     }
 }

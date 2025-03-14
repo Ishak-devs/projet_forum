@@ -4,7 +4,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Forum.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Forum.Migrations;
+//using Forum.Migrations;
 using Microsoft.AspNetCore.Identity;
 //using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
@@ -88,15 +88,30 @@ namespace Forum.Controllers
                 //}
 
              
-                    var newClasse = new ClasseViewModel
-                    {
-                        Classe = classeview.Classe,
-                        id_professeur = int.Parse(profId)
+                    //var newClasse = new ClasseViewModel
+                    //{
+                    //    Classe = classeview.Classe,
+                    //    id_professeur = int.Parse(profId)
 
+                    //};
+                    //contextget.Add(newClasse);
+                    //contextget.SaveChanges();
+
+
+                foreach (var eleveId in classeview.Eleveschoisis)
+                {
+                    var newDetailsClasse = new Details_classe
+                    {
+                        //Id_classe = Details_classe.Id, 
+                        id_eleve = eleveId,        
+                        id_professeur = int.Parse(profId) 
                     };
-                    contextget.Add(newClasse);
-                    contextget.SaveChanges();
-                
+
+                    contextget.Details_classe.Add(newDetailsClasse); 
+                }
+
+                contextget.SaveChanges();
+
 
                 //if (ModelState.IsValid)
                 //{ 

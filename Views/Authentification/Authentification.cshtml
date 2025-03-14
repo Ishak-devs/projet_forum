@@ -30,13 +30,6 @@
 
     //fORMULAIRE DE CONNEXION
     <form method="post">
-
-        <div class="liens">
-            <a href="">Espace admin</a>
-            <a href="">Espace élève</a>
-            <a href="">Espace professeur</a>
-        </div>
-
         <label asp-for="Email">Email :</label>
         <input type="text" asp-for="Email"/>
         <span style="color: red">@Html.ValidationMessageFor(e => e.Email)</span>

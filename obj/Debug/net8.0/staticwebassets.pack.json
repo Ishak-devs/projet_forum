@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\authentification.css"
     },
     {
+      "Id": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\header.css",
+      "PackagePath": "staticwebassets\\css\\header.css"
+    },
+    {
       "Id": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\home.css",
       "PackagePath": "staticwebassets\\css\\home.css"
     },

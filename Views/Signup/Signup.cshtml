@@ -22,27 +22,27 @@
         // }
 
     }
-
+     
     <form class="forminscription" method="post">
 
         <h1 class="inscriptionh1">S'inscrire</h1>
 
         <label class="labelnom" asp-for="Nom">Nom :</label><input class="inputnom" type="text" asp-for="Nom" />
-        <span style="color: red">@Html.ValidationMessageFor(e => e.Nom)</span>
+        <span class="span_nom_signup" style="color: red">@Html.ValidationMessageFor(e => e.Nom)</span>
 
         <label class="labelprenom" asp-for="Prenom">Prénom :</label><input class="inputprenom" type="text" asp-for="Prenom" />
-        <span style="color: red">@Html.ValidationMessageFor(e => e.Prenom)</span>
+        <span class="span_prenom_signup" style="color: red">@Html.ValidationMessageFor(e => e.Prenom)</span>
 
         <label class="labelemail" asp-for="Email">Email :</label><input class="inputemail" type="text" asp-for="Email" />
-        <span style="color: red">@Html.ValidationMessageFor(e => e.Email)</span>
+        <span class="span_email_signup" style="color: red">@Html.ValidationMessageFor(e => e.Email)</span>
 
         <label class="labelpassword" asp-for="Password">Mot de passe :</label><input class="inputpassword" type="text" asp-for="Password" />
-        <span style="color: red">@Html.ValidationMessageFor(e => e.Password)</span>
+        <span class="span_mdp_signup" style="color: red">@Html.ValidationMessageFor(e => e.Password)</span>
 
 
         <input type="radio" class="inputradio" name="Role" value="Elève" asp-for="Role" onchange="verif_role()" /> Elève
         <input type="radio" class="inputradioprof" name="Role" value="Professeur" asp-for="Role" onchange="verif_role()" /> Professeur
-        <span style="color: red">@Html.ValidationMessageFor(r => r.Role)</span>
+        <span class="role" style="color: red">@Html.ValidationMessageFor(r => r.Role)</span>
 
 
         <select class="inputmatiere" asp-for="Matiere" id="Matiere_saisie" style="display: none;" onchange="verif_autre_matiere()">

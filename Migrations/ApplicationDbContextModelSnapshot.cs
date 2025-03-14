@@ -32,19 +32,37 @@ namespace Forum.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.HasKey("Id");
+
+                    b.ToTable("Classes");
+                });
+
+            modelBuilder.Entity("Forum.Models.Details_classe", b =>
+                {
+                    b.Property<int>("Id_details_classe")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_details_classe"));
+
+                    b.Property<int>("Id_classe")
+                        .HasColumnType("int");
+
                     b.Property<int>("id_eleve")
                         .HasColumnType("int");
 
                     b.Property<int>("id_professeur")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id_details_classe");
+
+                    b.HasIndex("Id_classe");
 
                     b.HasIndex("id_eleve");
 
                     b.HasIndex("id_professeur");
 
-                    b.ToTable("Classes");
+                    b.ToTable("Details_classe");
                 });
 
             modelBuilder.Entity("Forum.Models.Eleve", b =>
@@ -118,8 +136,14 @@ namespace Forum.Migrations
                     b.ToTable("Professeurs");
                 });
 
-            modelBuilder.Entity("Forum.Models.Classe", b =>
+            modelBuilder.Entity("Forum.Models.Details_classe", b =>
                 {
+                    b.HasOne("Forum.Models.Classe", "Classe")
+                        .WithMany()
+                        .HasForeignKey("Id_classe")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Forum.Models.Eleve", "Eleve")
                         .WithMany()
                         .HasForeignKey("id_eleve")
@@ -131,6 +155,8 @@ namespace Forum.Migrations
                         .HasForeignKey("id_professeur")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Classe");
 
                     b.Navigation("Eleve");
 

@@ -1,114 +1,249 @@
-﻿/* Corps de la page */
-/*.corp_inscription {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f6f9;*/ /* Fond de page clair */
-    /*display: flex;
+﻿/* Style général du body */
+/*body.corp_inscription {
+    font-family: 'Arial', sans-serif;*/ /* Police simple et moderne */
+    /*background-color: #f8f8f8;*/ /* Fond gris clair */
+/*    margin: 0;
+    padding: 0;*/
+/*    display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;*/ /* Prend toute la hauteur de la fenêtre */
-    /*margin: 0;
-}*/
+    align-items: center;*/
+    /*height: 100vh;*/ /* Centrer le contenu verticalement et horizontalement */
+    /*min-height: 100vh;*/ /* Assurer que le body prend toujours toute la hauteur de l'écran */
+/*}*/
 
-/* Formulaire d'inscription */
+/* Style général du formulaire */
 /*.forminscription {
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);*/ /* Ombre douce */
+    background-color: #fff;*/ /* Fond blanc pour le formulaire */
+    /*padding: 20px;
+    border-radius: 8px;*/ /* Coins arrondis */
+    /*box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);*/ /* Ombre légère pour l'effet de profondeur */
     /*width: 100%;
-    max-width: 480px;
-    box-sizing: border-box;
-}*/
+    max-width: 450px;*/ /* Limite la largeur pour une meilleure lisibilité */
+    /*box-sizing: border-box;*/ /* S'assure que le padding et les bordures ne sortent pas de la largeur définie */
+/*}*/
 
-/* Titre du formulaire */
+/* Style du titre du formulaire */
 /*.inscriptionh1 {
-    text-align: center;
-    color: #333;
-    font-size: 26px;
-    margin-bottom: 30px;
-}*/
+    text-align: center;*/ /* Centrer le titre */
+    /*color: #333;*/ /* Gris foncé pour un texte sobre */
+    /*font-size: 20px;
+    margin-bottom: 15px;*/ /* Espacement sous le titre */
+/*}*/
 
-/* Styles des labels */
-/*.labelnom, .labelprenom, .labelemail, .labelpassword {
-    font-size: 14px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 8px;
-    display: block;
-}*/
+/* Style des labels */
+/*.labelnom, .labelprenom, .labelemail, .labelpassword, .labelmatiere {
+    display: block;*/ /* Force les labels à occuper une ligne entière */
+    /*font-size: 14px;
+    color: #555;*/ /* Gris clair pour les labels */
+    /*margin-bottom: 5px;*/ /* Espacement léger sous chaque label */
+/*}*/
 
-/* Champs de saisie */
-/*.inputnom, .inputprenom, .inputemail, .inputpassword {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    box-sizing: border-box;
-    transition: border-color 0.3s ease;
-}*/
+/* Style des champs de saisie (inputs) */
+/*.inputnom, .inputprenom, .inputemail, .inputpassword, .inputmatiere {
+    width: 100%;*/ /* Champs de saisie prennent toute la largeur du formulaire */
+    /*padding: 8px;
+    margin-bottom: 15px;*/ /* Espacement sous chaque champ */
+    /*border: 1px solid #ccc;*/ /* Bordure légère */
+    /*border-radius: 5px;*/ /* Coins arrondis pour un effet doux */
+    /*font-size: 14px;
+    color: #333;*/ /* Gris foncé pour une bonne lisibilité */
+    /*box-sizing: border-box;*/ /* Assure que le padding et la bordure sont inclus dans la largeur totale */
+/*}*/
 
-    /* Effet au focus sur les champs de saisie */
-    /*.inputnom:focus, .inputprenom:focus, .inputemail:focus, .inputpassword:focus {
-        border-color: #007bff;
-        outline: none;
-    }*/
-
-/* Boutons radio */
-/*.inputradio, .inputradioprof {
-    margin-right: 10px;
-    margin-bottom: 15px;
-    vertical-align: middle;
-}*/
-
-/* Label des boutons radio */
-/*label[for="Role"] {
-    font-size: 14px;
-    color: #333;
-    margin-right: 20px;
-}*/
-
-/* Messages d'erreur */
-/*span {
-    color: red;
+/* Style des messages de validation */
+/*.span_nom_signup, .span_prenom_signup, .span_email_signup, .span_mdp_signup, .role {
     font-size: 12px;
-    display: block;
-    margin-top: -10px;
-    margin-bottom: 15px;
-}*/
+    color: #d9534f;*/ /* Rouge léger pour les messages d'erreur */
+/*}*/
 
-/* Bouton d'inscription */
+/* Style des boutons radio */
+/*.inputradio, .inputradioprof {
+    margin-right: 8px;*/ /* Espacement léger entre les boutons radio */
+/*}*/
+
+/* Style du sélecteur (select) */
+/*.inputmatiere {
+    width: 100%;*/ /* Prend toute la largeur disponible */
+    /*padding: 8px;
+    margin-bottom: 15px;*/ /* Espacement sous le sélecteur */
+    /*border: 1px solid #ccc;*/ /* Bordure discrète */
+    /*border-radius: 5px;*/ /* Coins arrondis */
+    /*font-size: 14px;
+    color: #333;*/ /* Gris foncé */
+    /*cursor: pointer;*/ /* Curseur qui indique que c'est un élément interactif */
+/*}*/
+
+/* Style pour la section "Autre matière" */
+/*#Autre_matiere_input {
+    display: none;*/ /* Cacher cette section par défaut */
+    /*margin-bottom: 15px;
+}
+
+    #Autre_matiere_input input {
+        width: 100%;*/ /* Champ de saisie prend toute la largeur */
+        /*padding: 8px;
+        border: 1px solid #ccc;*/ /* Bordure discrète */
+        /*border-radius: 5px;*/ /* Coins arrondis */
+        /*font-size: 14px;
+        color: #333;*/ /* Gris foncé */
+        /*box-sizing: border-box;*/ /* Assurer que le padding est inclus dans la largeur totale */
+    /*}*/
+
+/* Style du bouton d'inscription */
 /*.button_inscription {
-    width: 100%;
-    padding: 14px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}*/
+    width: 100%;*/ /* Bouton prend toute la largeur */
+    /*padding: 10px;
+    background-color: #5bc0de;*/ /* Bleu clair, couleur professionnelle et apaisante */
+    /*color: #fff;*/ /* Texte blanc */
+    /*border: none;*/ /* Pas de bordure pour un effet moderne */
+    /*border-radius: 5px;*/ /* Coins arrondis */
+    /*font-size: 14px;
+    cursor: pointer;*/ /* Curseur pour indiquer que c'est un bouton cliquable */
+    /*transition: background-color 0.3s ease;*/ /* Transition douce au survol */
+/*}*/
 
     /* Effet au survol du bouton */
     /*.button_inscription:hover {
-        background-color: #218838;
-    }*/
+        background-color: #31b0d5;*/ /* Bleu un peu plus foncé au survol */
+    /*}*/
 
-/* Responsivité - sur les petits écrans */
-/*@media (max-width: 480px) {
+/* Adaptation aux écrans plus petits */
+/*@media (max-width: 600px) {
     .forminscription {
-        padding: 25px;
-        width: 90%;
+        width: 90%;*/ /* Plus large sur les petits écrans */
+    /*}
+
+    .inscriptionh1 {
+        font-size: 18px;*/ /* Réduire la taille du titre sur les petits écrans */
+    /*}
+
+    .inputnom, .inputprenom, .inputemail, .inputpassword, .inputmatiere, .button_inscription {
+        font-size: 13px;*/ /* Réduire légèrement la taille de la police pour les petits écrans */
+    /*}
+}*/
+
+/* Style général du body */
+body.corp_inscription {
+    font-family: 'Arial', sans-serif; /* Police simple et moderne */
+    background-color: #f8f8f8; /* Fond gris clair */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Hauteur de la fenêtre pour centrer verticalement */
+    min-height: 100vh; /* Assurer que le body prend toute la hauteur de l'écran */
+    flex-direction: column; /* Centrer les éléments dans le corps de la page */
+}
+
+/* Style général du formulaire */
+.forminscription {
+    background-color: #fff; /* Fond blanc pour le formulaire */
+    padding: 20px;
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Ombre légère pour l'effet de profondeur */
+    width: 100%;
+    position: center;
+    max-width: 450px; /* Limite la largeur pour une meilleure lisibilité */
+    box-sizing: border-box; /* S'assure que le padding et les bordures ne sortent pas de la largeur définie */
+}
+
+/* Style du titre du formulaire */
+.inscriptionh1 {
+    text-align: center; /* Centrer le titre */
+    color: #333; /* Gris foncé pour un texte sobre */
+    font-size: 20px;
+    margin-bottom: 15px; /* Espacement sous le titre */
+}
+
+/* Style des labels */
+.labelnom, .labelprenom, .labelemail, .labelpassword, .labelmatiere {
+    display: block; /* Force les labels à occuper une ligne entière */
+    font-size: 14px;
+    color: #555; /* Gris clair pour les labels */
+    margin-bottom: 5px; /* Espacement léger sous chaque label */
+}
+
+/* Style des champs de saisie (inputs) */
+.inputnom, .inputprenom, .inputemail, .inputpassword, .inputmatiere {
+    width: 100%; /* Champs de saisie prennent toute la largeur du formulaire */
+    padding: 8px;
+    margin-bottom: 15px; /* Espacement sous chaque champ */
+    border: 1px solid #ccc; /* Bordure légère */
+    border-radius: 5px; /* Coins arrondis pour un effet doux */
+    font-size: 14px;
+    color: #333; /* Gris foncé pour une bonne lisibilité */
+    box-sizing: border-box; /* Assure que le padding et la bordure sont inclus dans la largeur totale */
+}
+
+/* Style des messages de validation */
+.span_nom_signup, .span_prenom_signup, .span_email_signup, .span_mdp_signup, .role {
+    font-size: 12px;
+    color: #d9534f; /* Rouge léger pour les messages d'erreur */
+}
+
+/* Style des boutons radio */
+.inputradio, .inputradioprof {
+    margin-right: 8px; /* Espacement léger entre les boutons radio */
+}
+
+/* Style du sélecteur (select) */
+.inputmatiere {
+    width: 100%; /* Prend toute la largeur disponible */
+    padding: 8px;
+    margin-bottom: 15px; /* Espacement sous le sélecteur */
+    border: 1px solid #ccc; /* Bordure discrète */
+    border-radius: 5px; /* Coins arrondis */
+    font-size: 14px;
+    color: #333; /* Gris foncé */
+    cursor: pointer; /* Curseur qui indique que c'est un élément interactif */
+}
+
+/* Style pour la section "Autre matière" */
+#Autre_matiere_input {
+    display: none; /* Cacher cette section par défaut */
+    margin-bottom: 15px;
+}
+
+    #Autre_matiere_input input {
+        width: 100%; /* Champ de saisie prend toute la largeur */
+        padding: 8px;
+        border: 1px solid #ccc; /* Bordure discrète */
+        border-radius: 5px; /* Coins arrondis */
+        font-size: 14px;
+        color: #333; /* Gris foncé */
+        box-sizing: border-box; /* Assurer que le padding est inclus dans la largeur totale */
+    }
+
+/* Style du bouton d'inscription */
+.button_inscription {
+    width: 100%; /* Bouton prend toute la largeur */
+    padding: 10px;
+    background-color: #5bc0de; /* Bleu clair, couleur professionnelle et apaisante */
+    color: #fff; /* Texte blanc */
+    border: none; /* Pas de bordure pour un effet moderne */
+    border-radius: 5px; /* Coins arrondis */
+    font-size: 14px;
+    cursor: pointer; /* Curseur pour indiquer que c'est un bouton cliquable */
+    transition: background-color 0.3s ease; /* Transition douce au survol */
+}
+
+    /* Effet au survol du bouton */
+    .button_inscription:hover {
+        background-color: #31b0d5; /* Bleu un peu plus foncé au survol */
+    }
+
+/* Adaptation aux écrans plus petits */
+@media (max-width: 600px) {
+    .forminscription {
+        width: 90%; /* Plus large sur les petits écrans */
     }
 
     .inscriptionh1 {
-        font-size: 22px;
+        font-size: 18px; /* Réduire la taille du titre sur les petits écrans */
     }
 
-    .button_inscription {
-        font-size: 14px;
+    .inputnom, .inputprenom, .inputemail, .inputpassword, .inputmatiere, .button_inscription {
+        font-size: 13px; /* Réduire légèrement la taille de la police pour les petits écrans */
     }
-}*/
+}
