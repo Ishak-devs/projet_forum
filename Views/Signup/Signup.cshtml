@@ -6,20 +6,11 @@
     @*
 *@
     @{
-        // @if (TempData["message_ok"] != null)
-        // {
-        //     <p style="color: green">@TempData["message_ok"]</p>
-
-        // }
         if (ViewBag.Messagesuccess != null)
         {
             <p style="color: green">@ViewBag.Messagesuccess</p>
 
         }
-        // if (ViewBag.MessageError != null)
-        // {
-        //     <p style="color: red">@ViewBag.MessageError</p>
-        // }
 
     }
      
@@ -58,7 +49,6 @@
         <div id="Autre_matiere_input" style="display: none;">
             <label class="labelmatiere">Autre matière :</label>
             <input class="inputmatiere" type="text" placeholder="Entrez la matière" />
-            @* <span style="color: red">@Html.ValidationMessageFor(e => e.OtherMatiere)</span> *@
         </div>
 
     <button class="button_inscription" type="submit">S'inscrire</button>

@@ -12,7 +12,7 @@ namespace Forum.Models
         [Required(ErrorMessage = "veuillez ajouter des eleves")]
         public int? id_eleve { get; set; }
 
-        //[Required()]
+        [Required()]
         public int? id_professeur { get; set; }
 
         public SelectList Eleves { get; set; }

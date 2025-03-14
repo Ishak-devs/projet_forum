@@ -17,14 +17,6 @@
     </form>
     <br />
     <br />
-    // if (ViewBag.Message_eleve != null)
-    // {
-    //     <p style="color: green">@ViewBag.Message_eleve</p>
-    //     <p>@string.Join(", ", Model.Eleveschoisis)</p> On affiche les int de elevechoisis grace à string join.
-    // }
-            // <p>@Model.Eleveschoisis</p>
-
-    // }
 
 
     @foreach (var eleve in Model.Eleveschoisis)
@@ -33,27 +25,3 @@
     }
 
 }
-@*     @if (Model.Eleveschoisis == null || !Model.Eleveschoisis.Any())  *@
-@*     { *@
-@*         <p>Aucun élève n'a été ajouté.</p> *@
-
-@*     } *@
-@*     else { *@
-@*         <ul> *@
-@*         @foreach (var id_eleve in Model.Eleveschoisis)  *@
-
-@*             { *@
-@*                   if (Model.Eleves != null) *@
-@*                   { *@
-
-
-@*                 var eleve = Model.Eleves.FirstOrDefault(e => e.Value == id_eleve.ToString());  *@
-@*                 if (eleve != null)  *@
-@*                 { *@
-@*                     <li>@eleve.Text</li>   *@
-@*                 } *@
-
-@*                 } *@
-@*     } *@
-@* </ul> *@
-@*     } *@

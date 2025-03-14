@@ -10,14 +10,12 @@ namespace Forum.Controllers
 
         private readonly ApplicationDbContext contextget;
 
-        //Initialisation de la valeur passwordhasher lié a l'entité Eleve
         private readonly PasswordHasher<Eleve> passwordHasher;
         private readonly PasswordHasher<Professeur> profsseurHasher;
 
         public SignupController(ApplicationDbContext context, PasswordHasher<Eleve> passwordHasher, PasswordHasher<Professeur> profsseurHasher)
         {
             contextget = context;
-            //On récupere passwordhasher que nous avons initialisé pour l'utiliser dans notre class
             this.passwordHasher = passwordHasher;
             this.profsseurHasher = profsseurHasher;
         }
@@ -33,23 +31,14 @@ namespace Forum.Controllers
         [HttpPost]
         public ActionResult Signup(SignupViewModel modele)
         {
-           
-                //    //ViewBag.MessageError = "Il y a des erreurs dans le formulaire. Veuillez corriger les champs indiqués.";
-                //    //return View(modele);
-                //    ViewBag.Messagesuccess = "Inscription réussie !";
-                //    ModelState.Clear();
-                //    return View(new SignupViewModel());
-                //}
-
-                //if (ModelState.IsValid)
-                //{
                 if (modele.Role == "Elève")
                 {
-                    if (!string.IsNullOrEmpty(modele.Nom) &&
-     !string.IsNullOrEmpty(modele.Prenom) &&
-     !string.IsNullOrEmpty(modele.Email) &&
-     !string.IsNullOrEmpty(modele.Password) &&
-     !string.IsNullOrEmpty(modele.Role))
+                    if 
+                        (!string.IsNullOrEmpty(modele.Nom) &&
+                         !string.IsNullOrEmpty(modele.Prenom) &&
+                         !string.IsNullOrEmpty(modele.Email) &&
+                         !string.IsNullOrEmpty(modele.Password) &&
+                         !string.IsNullOrEmpty(modele.Role))
                     {
                         {
                             //Récuperer l'élève à ajouter depuis le formulaire
