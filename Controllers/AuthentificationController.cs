@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Forum.Models;
 //using System.Data.Entity;
 //using Microsoft.AspNetCore.Identity;
-using System.Linq;
+//using System.Linq;
 using Microsoft.AspNetCore.Identity;
-
+using System.Threading.Tasks;
 namespace Forum.Controllers
 {
     public class AuthentificationController : Controller
@@ -52,9 +52,14 @@ namespace Forum.Controllers
                         //Si les données sont ok
                         if (Eleve != null && elevePasswordHasher.VerifyHashedPassword(null, Eleve.Password, modele.Password) == PasswordVerificationResult.Success)
                     {
+                        //Stockage de l'id dans une vraible de session
+                        HttpContext.Session.SetString("Eleve_id", Eleve.Id.ToString());
+                        //Console.WriteLine("Eleve ID stored in session: " + HttpContext.Session.GetString("Eleve_id"));
                         ViewBag.Messagesuccess = "Vous êtes connecté en tant qu'élève !";
+                        ViewBag.SessionEleveId = HttpContext.Session.GetString("Eleve_id");
+
                         ModelState.Clear();
-                        return RedirectToAction("Eleve", "Dashboard");
+                        //return RedirectToAction("Eleve", "Dashboard");
                         //return View(new LoginViewModel());
                     }
 
@@ -84,6 +89,7 @@ namespace Forum.Controllers
                     //Si les données sont ok
                     if (Professeur != null && professeurPasswordHasher.VerifyHashedPassword(null, Professeur.Password, modele.Password) == PasswordVerificationResult.Success)
                     {
+                        HttpContext.Session.SetString("Prof_id", Professeur.Id.ToString());
                         ViewBag.Messagesuccess = "Vous êtes connecté en tant que professeur !";
                         ModelState.Clear();
                         return View();

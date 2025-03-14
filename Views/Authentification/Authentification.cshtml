@@ -19,6 +19,10 @@
     {
         <p style="color: red">@ViewBag.Message_error_email</p>
     }
+    if (ViewBag.SessionEleveId != null)
+    {
+        <p style="color: orange">@ViewBag.SessionEleveId</p>
+    }
 
     //fORMULAIRE DE CONNEXION
     <form method="post">

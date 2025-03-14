@@ -16,5 +16,6 @@ namespace Forum.Models
         [ForeignKey("Eleve")]
         public int id_eleve { get; set; }
         public virtual Eleve Eleve { get; set; }
+
     }
 }
