@@ -13,7 +13,7 @@ namespace Forum.Models
         public int? id_eleve { get; set; }
 
         //[Required()]
-        //public int? id_professeur { get; set; }
+        public int? id_professeur { get; set; }
 
         public SelectList Eleves { get; set; }
 

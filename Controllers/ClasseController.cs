@@ -56,6 +56,9 @@ namespace Forum.Controllers
 
            .ToList();
 
+            //Récupération de l'id du professeur connecté souhaitant crée une classe
+            var profId = HttpContext.Session.GetString("Prof_id");
+
             if (ajout_eleve == "ajouter" && classeview.id_eleve.HasValue) //On vérifie si un élève à été séléctionné.
             {
                 if (classeview.Eleveschoisis == null) //Vérification de l'état de Eleve choisis avant de créer une liste.
@@ -88,8 +91,8 @@ namespace Forum.Controllers
                     var newClasse = new ClasseViewModel
                     {
                         Classe = classeview.Classe,
-                        //id_professeur = id_professeur.Id,
-                        id_eleve = classeview.id_eleve
+                        id_professeur = int.Parse(profId)
+
                     };
                     contextget.Add(newClasse);
                     contextget.SaveChanges();
