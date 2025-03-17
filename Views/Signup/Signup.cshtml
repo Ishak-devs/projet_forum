@@ -14,45 +14,48 @@
 
     }
      
-    <form class="forminscription" method="post">
+    <div class="formulaire_signup">
+        <form class="forminscription" method="post">
 
-        <h1 class="inscriptionh1">S'inscrire</h1>
+            <h1 class="inscriptionh1">S'inscrire</h1>
 
-        <label class="labelnom" asp-for="Nom">Nom :</label><input class="inputnom" type="text" asp-for="Nom" />
-        <span class="span_nom_signup" style="color: red">@Html.ValidationMessageFor(e => e.Nom)</span>
+            <label class="labelnom" asp-for="Nom">Nom :</label><input class="inputnom" type="text" asp-for="Nom" />
+            <span class="span_nom_signup" style="color: red">@Html.ValidationMessageFor(e => e.Nom)</span>
 
-        <label class="labelprenom" asp-for="Prenom">Prénom :</label><input class="inputprenom" type="text" asp-for="Prenom" />
-        <span class="span_prenom_signup" style="color: red">@Html.ValidationMessageFor(e => e.Prenom)</span>
+            <label class="labelprenom" asp-for="Prenom">Prénom :</label><input class="inputprenom" type="text" asp-for="Prenom" />
+            <span class="span_prenom_signup" style="color: red">@Html.ValidationMessageFor(e => e.Prenom)</span>
 
-        <label class="labelemail" asp-for="Email">Email :</label><input class="inputemail" type="text" asp-for="Email" />
-        <span class="span_email_signup" style="color: red">@Html.ValidationMessageFor(e => e.Email)</span>
+            <label class="labelemail" asp-for="Email">Email :</label><input class="inputemail" type="text" asp-for="Email" />
+            <span class="span_email_signup" style="color: red">@Html.ValidationMessageFor(e => e.Email)</span>
 
-        <label class="labelpassword" asp-for="Password">Mot de passe :</label><input class="inputpassword" type="text" asp-for="Password" />
-        <span class="span_mdp_signup" style="color: red">@Html.ValidationMessageFor(e => e.Password)</span>
-
-
-        <input type="radio" class="inputradio" name="Role" value="Elève" asp-for="Role" onchange="verif_role()" /> Elève
-        <input type="radio" class="inputradioprof" name="Role" value="Professeur" asp-for="Role" onchange="verif_role()" /> Professeur
-        <span class="role" style="color: red">@Html.ValidationMessageFor(r => r.Role)</span>
+            <label class="labelpassword" asp-for="Password">Mot de passe :</label><input class="inputpassword" type="text" asp-for="Password" />
+            <span class="span_mdp_signup" style="color: red">@Html.ValidationMessageFor(e => e.Password)</span>
 
 
-        <select class="inputmatiere" asp-for="Matiere" id="Matiere_saisie" style="display: none;" onchange="verif_autre_matiere()">
-                    <option value="">Selectionnez votre matière</option>
-                    <option value="Français">Français</option>
-                    <option value="Anglais">Anglais</option>
-                    <option value="Maths">Maths</option>
-                    <option value="Histore">Histore</option>
-            <option value="Autre" id="Autre_matiere">Autre</option>
-                </select>
+            <input type="radio" class="inputradio" name="Role" value="Elève" asp-for="Role" onchange="verif_role()" /> Elève
+            <input type="radio" class="inputradioprof" name="Role" value="Professeur" asp-for="Role" onchange="verif_role()" /> Professeur
+            <span class="role" style="color: red">@Html.ValidationMessageFor(r => r.Role)</span>
 
 
-        <div id="Autre_matiere_input" style="display: none;">
-            <label class="labelmatiere">Autre matière :</label>
-            <input class="inputmatiere" type="text" placeholder="Entrez la matière" />
-        </div>
+            <select class="inputmatiere" asp-for="Matiere" id="Matiere_saisie" style="display: none;" onchange="verif_autre_matiere()">
+                <option value="">Selectionnez votre matière</option>
+                <option value="Français">Français</option>
+                <option value="Anglais">Anglais</option>
+                <option value="Maths">Maths</option>
+                <option value="Histore">Histore</option>
+                <option value="Autre" id="Autre_matiere">Autre</option>
+            </select>
 
-    <button class="button_inscription" type="submit">S'inscrire</button>
-</form>
+
+            <div id="Autre_matiere_input" style="display: none;">
+                <label class="labelmatiere">Autre matière :</label>
+                <input class="inputmatiere" type="text" placeholder="Entrez la matière" />
+            </div>
+
+            <button class="button_inscription" type="submit">S'inscrire</button>
+        </form>
+    </div>
+   
 
     <script src="~/js/signup.js"></script>
 

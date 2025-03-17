@@ -5,6 +5,9 @@
 @*
 
 *@
+<body class="body_login">
+
+</body>
 @{
     if (ViewBag.Messagesuccess != null)
     {
@@ -20,21 +23,24 @@
         <p style="color: red">@ViewBag.Message_error_email</p>
     }
 
-    //fORMULAIRE DE CONNEXION
-    <form method="post">
-        <label asp-for="Email">Email :</label>
-        <input type="text" asp-for="Email"/>
-        <span style="color: red">@Html.ValidationMessageFor(e => e.Email)</span>
+    <div class="div_login">
+        <form class="form_login" method="post">
+            <label class="label_login" asp-for="Email">Email :</label>
+            <input class="input_login" type="text" asp-for="Email" />
+            <span class="span_email" style="color: red">@Html.ValidationMessageFor(e => e.Email)</span>
 
-        <label asp-for="Password">Mot de passe :</label>
-        <input type="text" asp-for="Password" />
-        <span style="color: red">@Html.ValidationMessageFor(e => e.Password)</span>
+            <label class="label_mdp_login" asp-for="Password">Mot de passe :</label>
+            <input class="input_mdp_login" type="text" asp-for="Password" />
+            <span class="span_mdp_login" style="color: red">@Html.ValidationMessageFor(e => e.Password)</span>
 
-        <input type="radio" name="Role" value="Elève" asp-for="Role" /> Elève
-        <input type="radio" name="Role" value="Professeur" asp-for="Role" /> Professeur
-        <span style="color: red">@Html.ValidationMessageFor(r => r.Role)</span>
+            <input class="input_radio_login" type="radio" name="Role" value="Elève" asp-for="Role" /> Elève
+            <input class="input_radio_prof_login" type="radio" name="Role" value="Professeur" asp-for="Role" /> Professeur
+            <span class="span_role_login" style="color: red">@Html.ValidationMessageFor(r => r.Role)</span>
 
-        <button type="submit">Se connecter</button>
+            <button class="button_login" type="submit">Se connecter</button>
 
-    </form>
+        </form>
+    </div>
+
+    
 }
