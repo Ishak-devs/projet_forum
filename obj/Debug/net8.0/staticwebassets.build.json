@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "oorYQR+WpVSobu8DDrqCPbvCTZCakzbPlbwKbeEN3GA=",
+  "Hash": "PeUIFKty2mcYzTHQBEziACRrhlPJcxrUVm+TvMsAkRw=",
   "Source": "Forum",
   "BasePath": "_content/Forum",
   "Mode": "Default",
@@ -136,8 +136,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "c8i49s40bt",
-      "Integrity": "tPEgrPsAKJ7xWq5a6fw3cE6l9j6wtGphDewUlW3Hplc=",
+      "Fingerprint": "zaau4hoog1",
+      "Integrity": "q3dUzU4x44wYmTNJQOAAkIyOJTQxXT32qKtF+06jW/4=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\signup.css"
@@ -1672,51 +1672,6 @@
       ]
     },
     {
-      "Route": "css/signup.c8i49s40bt.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\css\\signup.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "4947"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"tPEgrPsAKJ7xWq5a6fw3cE6l9j6wtGphDewUlW3Hplc=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 17 Mar 2025 10:53:15 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "c8i49s40bt"
-        },
-        {
-          "Name": "label",
-          "Value": "css/signup.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-tPEgrPsAKJ7xWq5a6fw3cE6l9j6wtGphDewUlW3Hplc="
-        }
-      ]
-    },
-    {
       "Route": "css/signup.css",
       "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\css\\signup.css",
       "Selectors": [],
@@ -1727,7 +1682,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4947"
+          "Value": "5042"
         },
         {
           "Name": "Content-Type",
@@ -1735,11 +1690,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"tPEgrPsAKJ7xWq5a6fw3cE6l9j6wtGphDewUlW3Hplc=\""
+          "Value": "\"q3dUzU4x44wYmTNJQOAAkIyOJTQxXT32qKtF+06jW/4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 17 Mar 2025 10:53:15 GMT"
+          "Value": "Mon, 17 Mar 2025 11:09:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1749,7 +1704,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-tPEgrPsAKJ7xWq5a6fw3cE6l9j6wtGphDewUlW3Hplc="
+          "Value": "sha256-q3dUzU4x44wYmTNJQOAAkIyOJTQxXT32qKtF+06jW/4="
+        }
+      ]
+    },
+    {
+      "Route": "css/signup.zaau4hoog1.css",
+      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\css\\signup.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5042"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"q3dUzU4x44wYmTNJQOAAkIyOJTQxXT32qKtF+06jW/4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Mar 2025 11:09:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "zaau4hoog1"
+        },
+        {
+          "Name": "label",
+          "Value": "css/signup.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-q3dUzU4x44wYmTNJQOAAkIyOJTQxXT32qKtF+06jW/4="
         }
       ]
     },

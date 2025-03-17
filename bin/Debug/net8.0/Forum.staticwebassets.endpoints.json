@@ -331,51 +331,6 @@
       ]
     },
     {
-      "Route": "css/signup.c8i49s40bt.css",
-      "AssetFile": "css/signup.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "4947"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"tPEgrPsAKJ7xWq5a6fw3cE6l9j6wtGphDewUlW3Hplc=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 17 Mar 2025 10:53:15 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "c8i49s40bt"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-tPEgrPsAKJ7xWq5a6fw3cE6l9j6wtGphDewUlW3Hplc="
-        },
-        {
-          "Name": "label",
-          "Value": "css/signup.css"
-        }
-      ]
-    },
-    {
       "Route": "css/signup.css",
       "AssetFile": "css/signup.css",
       "Selectors": [],
@@ -390,7 +345,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4947"
+          "Value": "5042"
         },
         {
           "Name": "Content-Type",
@@ -398,17 +353,62 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"tPEgrPsAKJ7xWq5a6fw3cE6l9j6wtGphDewUlW3Hplc=\""
+          "Value": "\"q3dUzU4x44wYmTNJQOAAkIyOJTQxXT32qKtF+06jW/4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 17 Mar 2025 10:53:15 GMT"
+          "Value": "Mon, 17 Mar 2025 11:09:34 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-tPEgrPsAKJ7xWq5a6fw3cE6l9j6wtGphDewUlW3Hplc="
+          "Value": "sha256-q3dUzU4x44wYmTNJQOAAkIyOJTQxXT32qKtF+06jW/4="
+        }
+      ]
+    },
+    {
+      "Route": "css/signup.zaau4hoog1.css",
+      "AssetFile": "css/signup.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5042"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"q3dUzU4x44wYmTNJQOAAkIyOJTQxXT32qKtF+06jW/4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 17 Mar 2025 11:09:34 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "zaau4hoog1"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-q3dUzU4x44wYmTNJQOAAkIyOJTQxXT32qKtF+06jW/4="
+        },
+        {
+          "Name": "label",
+          "Value": "css/signup.css"
         }
       ]
     },

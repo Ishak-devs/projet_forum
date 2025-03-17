@@ -36,17 +36,17 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"ctnfjnteaw"},{"Name":"integrity","Value":"sha256-UCVtPyxn2lRRtPRmPcRZn9Rdz4U28foJNJeKAdCdhxs="},{"Name":"label","Value":"_content/Forum/css/home.css"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"12"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022UCVtPyxn2lRRtPRmPcRZn9Rdz4U28foJNJeKAdCdhxs=\u0022"},{"Name":"Last-Modified","Value":"Sat, 01 Mar 2025 10:14:35 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/Forum/css/signup.c8i49s40bt.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\signup.css'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"c8i49s40bt"},{"Name":"integrity","Value":"sha256-tPEgrPsAKJ7xWq5a6fw3cE6l9j6wtGphDewUlW3Hplc="},{"Name":"label","Value":"_content/Forum/css/signup.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"4947"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022tPEgrPsAKJ7xWq5a6fw3cE6l9j6wtGphDewUlW3Hplc=\u0022"},{"Name":"Last-Modified","Value":"Mon, 17 Mar 2025 10:53:15 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Forum/css/signup.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\signup.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-tPEgrPsAKJ7xWq5a6fw3cE6l9j6wtGphDewUlW3Hplc="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"4947"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022tPEgrPsAKJ7xWq5a6fw3cE6l9j6wtGphDewUlW3Hplc=\u0022"},{"Name":"Last-Modified","Value":"Mon, 17 Mar 2025 10:53:15 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-q3dUzU4x44wYmTNJQOAAkIyOJTQxXT32qKtF\u002B06jW/4="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"5042"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022q3dUzU4x44wYmTNJQOAAkIyOJTQxXT32qKtF\u002B06jW/4=\u0022"},{"Name":"Last-Modified","Value":"Mon, 17 Mar 2025 11:09:34 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Forum/css/signup.zaau4hoog1.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\signup.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"zaau4hoog1"},{"Name":"integrity","Value":"sha256-q3dUzU4x44wYmTNJQOAAkIyOJTQxXT32qKtF\u002B06jW/4="},{"Name":"label","Value":"_content/Forum/css/signup.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"5042"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022q3dUzU4x44wYmTNJQOAAkIyOJTQxXT32qKtF\u002B06jW/4=\u0022"},{"Name":"Last-Modified","Value":"Mon, 17 Mar 2025 11:09:34 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Forum/css/site.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>

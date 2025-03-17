@@ -1,18 +1,19 @@
 ﻿/* Style général du body */
-body.corp_inscription {
+.corp_inscription {
     font-family: 'Arial', sans-serif; /* Police simple et moderne */
     background-color: #f8f8f8; /* Fond gris clair */
     margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Hauteur de la fenêtre pour centrer verticalement */
-    min-height: 100vh; /* Assurer que le body prend toute la hauteur de l'écran */
-    flex-direction: column; /* Centrer les éléments dans le corps de la page */
+    height: 100%; /* Permet de prendre toute la hauteur de la page */
+    /*padding: 0;
+    display: flex;*/
+    /*    justify-content: center;
+    align-items: center;*/
+    /*height: 100vh;*/ /* Hauteur de la fenêtre pour centrer verticalement */
+    /*min-height: 100vh;*/ /* Assurer que le body prend toute la hauteur de l'écran */
+    /*flex-direction: column;*/ /* Centrer les éléments dans le corps de la page */
 }
 .formulaire_signup {
-    height: 100%;
+/*    height: 100%;*/
     margin: 0;
     display: flex;
     justify-content: center; /* Centre horizontalement */
