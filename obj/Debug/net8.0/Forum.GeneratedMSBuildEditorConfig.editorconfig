@@ -20,8 +20,8 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[D:/Projet/projet_forum/Views/Authentification/Authentification.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVudGlmaWNhdGlvblxBdXRoZW50aWZpY2F0aW9uLmNzaHRtbA==
+[D:/Projet/projet_forum/Views/Authentification/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVudGlmaWNhdGlvblxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Projet/projet_forum/Views/Classe/Creeclasse.cshtml]
@@ -36,8 +36,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFByb2Zlc3NldXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projet/projet_forum/Views/Forum/Forum.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ydW1cRm9ydW0uY3NodG1s
+[D:/Projet/projet_forum/Views/Forum/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ydW1cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Projet/projet_forum/Views/Home/Index.cshtml]
@@ -56,8 +56,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projet/projet_forum/Views/Signup/Signup.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2lnbnVwXFNpZ251cC5jc2h0bWw=
+[D:/Projet/projet_forum/Views/Signup/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2lnbnVwXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Projet/projet_forum/Views/_ViewImports.cshtml]

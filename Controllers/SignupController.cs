@@ -22,14 +22,14 @@ namespace Forum.Controllers
 
 
         [HttpGet]
-        public IActionResult Signup()
+        public IActionResult Index()
         {
             return View();
         }
 
 
         [HttpPost]
-        public ActionResult Signup(SignupViewModel modele)
+        public ActionResult Index(SignupViewModel modele)
         {
                 if (modele.Role == "Elève")
                 {
