@@ -88,7 +88,7 @@ namespace Forum.Controllers
                     contextget.Details_classe.Add(newDetailsClasse); 
                 }
 
-                contextget.SaveChanges();
+                //contextget.SaveChanges();
 
                 return View(classeview);
 

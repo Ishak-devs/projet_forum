@@ -31,69 +31,74 @@ namespace Forum.Controllers
         [HttpPost]
         public ActionResult Index(SignupViewModel modele)
         {
-                if (modele.Role == "Elève")
-                {
-                    if 
-                        (!string.IsNullOrEmpty(modele.Nom) &&
-                         !string.IsNullOrEmpty(modele.Prenom) &&
-                         !string.IsNullOrEmpty(modele.Email) &&
-                         !string.IsNullOrEmpty(modele.Password) &&
-                         !string.IsNullOrEmpty(modele.Role))
-                    {
-                        {
-                            //Récuperer l'élève à ajouter depuis le formulaire
-                            var newEleve = new Eleve
-                            {
-                                Nom = modele.Nom,
-                                Prenom = modele.Prenom,
-                                Email = modele.Email,
-                                Password = passwordHasher.HashPassword(null, modele.Password) //on hash le mot de passe
-                            };
-                            contextget.Add(newEleve);
-                            contextget.SaveChanges();
-                            ViewBag.Messagesuccess = "Inscription de l'élève réussie !";
-                            ModelState.Clear();
-                            return View(new SignupViewModel());
-
-                        }
-                    }
-
-
-                    else if (modele.Role == "Professeur")
-                    {
-                    if (ModelState.IsValid)
-                    {
-                       
-
-                        {
-                            {
-
-                                var newProfesseur = new Professeur
-                                {
-                                    Nom = modele.Nom,
-                                    Prenom = modele.Prenom,
-                                    Email = modele.Email,
-                                    Password = profsseurHasher.HashPassword(null, modele.Password),
-                                    Matiere = modele.Matiere
-                                };
-                                contextget.Add(newProfesseur);
-                                contextget.SaveChanges();
-                                ViewBag.Messagesuccess = "Inscription du professeur réussie !";
-                            }
-                        }
-
-
-                        ModelState.Clear();
-                        return View(new SignupViewModel());
-                    }
-
-                    ViewBag.MessageError = "Il y a des erreurs dans le formulaire.";
-                    return View(modele);
-
-                }
+            if (!ModelState.IsValid)
+            {
+                ViewBag.MessageError = "Il y a des erreurs dans le formulaire.";
+                return View(modele);
             }
-            return View();
+            //if (modele.Role == "Elève")
+            //    {
+            //        if 
+            //            (!string.IsNullOrEmpty(modele.Nom) &&
+            //             !string.IsNullOrEmpty(modele.Prenom) &&
+            //             !string.IsNullOrEmpty(modele.Email) &&
+            //             !string.IsNullOrEmpty(modele.Password) &&
+            //             !string.IsNullOrEmpty(modele.Role))
+            //        {
+            //            {
+            //                //Récuperer l'élève à ajouter depuis le formulaire
+            //                var newEleve = new Eleve
+            //                {
+            //                    Nom = modele.Nom,
+            //                    Prenom = modele.Prenom,
+            //                    Email = modele.Email,
+            //                    Password = passwordHasher.HashPassword(null, modele.Password) //on hash le mot de passe
+            //                };
+            //                contextget.Add(newEleve);
+            //                contextget.SaveChanges();
+            //                ViewBag.Messagesuccess = "Inscription de l'élève réussie !";
+            //                ModelState.Clear();
+            //                return View(new SignupViewModel());
 
+            //            }
+            //        }
+            if (modele.Role == "Elève")
+            {
+                var newEleve = new Eleve
+                {
+                    Nom = modele.Nom,
+                    Prenom = modele.Prenom,
+                    Email = modele.Email,
+                    Password = passwordHasher.HashPassword(null, modele.Password)
+                };
+                contextget.Add(newEleve);
+                contextget.SaveChanges();
+                ViewBag.Messagesuccess = "Inscription de l'élève réussie !";
+            }
+
+
+            else if (modele.Role == "Professeur")
+            {
+                var newProfesseur = new Professeur
+                {
+                    Nom = modele.Nom,
+                    Prenom = modele.Prenom,
+                    Email = modele.Email,
+                    Password = profsseurHasher.HashPassword(null, modele.Password),
+                    Matiere = modele.Matiere
+                };
+                contextget.Add(newProfesseur);
+                contextget.SaveChanges();
+                ViewBag.Messagesuccess = "Inscription du professeur réussie !";
+            }
+            else
+            {
+                ViewBag.MessageError = "Rôle invalide.";
+                return View(modele);
+            }
+
+            ModelState.Clear();
+            return View(new SignupViewModel());
         }
     }
 }

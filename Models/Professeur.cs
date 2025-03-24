@@ -22,5 +22,6 @@ namespace Forum.Models
         [StringLength(100)]
         public string Password { get; set; }
 
+
     }
 }

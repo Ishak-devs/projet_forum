@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "D4areewVJq3umDSWdjfEjix1hBxS9QugcbimQcpX7m4=",
+  "Hash": "hfL4M/bBQ+sKbluWb7llheIivERSTVfOZ7g8CovJSeA=",
   "Source": "Forum",
   "BasePath": "_content/Forum",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "Forum\\wwwroot",
       "Source": "Forum",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "D:\\Projet\\projet_forum\\obj\\Debug\\net8.0\\scopedcss\\bundle\\Forum.styles.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\obj\\Debug\\net8.0\\scopedcss\\bundle\\Forum.styles.css",
       "SourceId": "Forum",
       "SourceType": "Computed",
-      "ContentRoot": "D:\\Projet\\projet_forum\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/Forum",
       "RelativePath": "Forum#[.{fingerprint}]?.styles.css",
       "AssetKind": "All",
@@ -35,13 +35,13 @@
       "Integrity": "z2p54P+Jq9/2i4rm1PB2EMgPsv1USaQykiryqb0fOpE=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "D:\\Projet\\projet_forum\\obj\\Debug\\net8.0\\scopedcss\\bundle\\Forum.styles.css"
+      "OriginalItemSpec": "C:\\ishak\\Forum\\Forum\\obj\\Debug\\net8.0\\scopedcss\\bundle\\Forum.styles.css"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Forum.bundle.scp.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Forum.bundle.scp.css",
       "SourceId": "Forum",
       "SourceType": "Computed",
-      "ContentRoot": "D:\\Projet\\projet_forum\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/Forum",
       "RelativePath": "Forum#[.{fingerprint}]!.bundle.scp.css",
       "AssetKind": "All",
@@ -56,13 +56,13 @@
       "Integrity": "z2p54P+Jq9/2i4rm1PB2EMgPsv1USaQykiryqb0fOpE=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "D:\\Projet\\projet_forum\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Forum.bundle.scp.css"
+      "OriginalItemSpec": "C:\\ishak\\Forum\\Forum\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Forum.bundle.scp.css"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\css\\authentification.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\authentification.css",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "css/authentification#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -80,10 +80,10 @@
       "OriginalItemSpec": "wwwroot\\css\\authentification.css"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\css\\header.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\header.css",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "css/header#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -101,10 +101,10 @@
       "OriginalItemSpec": "wwwroot\\css\\header.css"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\css\\home.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\home.css",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "css/home#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -122,10 +122,10 @@
       "OriginalItemSpec": "wwwroot\\css\\home.css"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\css\\signup.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\signup.css",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "css/signup#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -136,17 +136,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "pi2gqbay52",
-      "Integrity": "PwlNZ3jL44CoYu++Z+R/2agPhqiV4OQegNkrJZXJiis=",
+      "Fingerprint": "b8i25tjy2p",
+      "Integrity": "Nc6QwpgX7UGzheXSgVr/0VQNi4WmjNJe0eaqBnoo/w8=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\signup.css"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\css\\site.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\site.css",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "css/site#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -164,10 +164,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\favicon.ico",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\favicon.ico",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "favicon#[.{fingerprint}]?.ico",
       "AssetKind": "All",
@@ -185,10 +185,10 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\js\\signup.js",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\js\\signup.js",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "js/signup#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -206,10 +206,10 @@
       "OriginalItemSpec": "wwwroot\\js\\signup.js"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\js\\site.js",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\js\\site.js",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "js/site#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -227,10 +227,10 @@
       "OriginalItemSpec": "wwwroot\\js\\site.js"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -241,17 +241,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "ozu22stjof",
-      "Integrity": "ZMvmWDSU4zY1Z29EQGm5Mubfz/YxF4hiReGqx84o4tA=",
+      "Fingerprint": "mpyigms19s",
+      "Integrity": "xlexqj9/k3uobVwGfciZcj/eDdooaNgcf4OFLtLUygM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -269,10 +269,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -283,17 +283,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "6gzpyzhau4",
-      "Integrity": "SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7/p4nS6D/0=",
+      "Fingerprint": "bpk8xqwxhs",
+      "Integrity": "z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -311,10 +311,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -325,17 +325,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "gjcw7pocpk",
-      "Integrity": "hA1uBYAPgKq7OVoXF7sqU9NtylyP0K7AJn0a4zQcTbg=",
+      "Fingerprint": "ve6x09088i",
+      "Integrity": "SZ2mKaD4A+b+HIvttwl+TvLFnVy8o8/X40j+EKVwyvY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -353,10 +353,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -367,17 +367,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "6l4ir0ityv",
-      "Integrity": "ukKL5IDSyNoXFyp0wkgXeBpBITyM7JsCE6Dp96H1vI8=",
+      "Fingerprint": "9b9oa1qrmt",
+      "Integrity": "22wR6QTidoeiRZXp6zkRQyMSUb/FB+Av11jqmZJF6uU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -395,10 +395,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -409,17 +409,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "nakmwdwsxp",
-      "Integrity": "P4Ski6RrsG4nxKfPqaVoyRMoesl9UzArmfT+4fLqKHY=",
+      "Fingerprint": "agp80tu62r",
+      "Integrity": "JtktgiuQAd+AXerCnPMrHCDz1h5AtkH5tobvpuG7xZ4=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -437,10 +437,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -451,17 +451,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "5p029spbuu",
-      "Integrity": "96ayIUEnpKr7n5BIsFK5vJ3qXMXFgvRl9/CBcHs6/Ts=",
+      "Fingerprint": "unj9p35syc",
+      "Integrity": "ysBT/JYxH9gcMnwxT4+MB4sPxOx/JMg9wi77FA13T9A=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -479,10 +479,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -493,17 +493,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "e6q6xbwqzk",
-      "Integrity": "+ugQREUkP4Wnp1VX2L2lvw0Q2mgKYvYAZr1c2or+ysM=",
+      "Fingerprint": "q2ku51ktnl",
+      "Integrity": "3vUJkZSpKL/zG7x6GNvDjs0TxYUo9zMt6dAc8hp9CVo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -521,10 +521,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -535,17 +535,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "dy6jgresuo",
-      "Integrity": "9eX2dpELXvYs+6il2MHwf5OOPVOZjxVK1b1GWgL0B0k=",
+      "Fingerprint": "n1oizzvkh6",
+      "Integrity": "O6lb2kXarGgVw4/RDD42yYPhZIwREthThQFKGmD+3j0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -563,10 +563,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -577,17 +577,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "mk8rdyw69w",
-      "Integrity": "Jtl65EICD4ds6dQZbx1ongvMXj8D127HCg5XRBXXYGw=",
+      "Fingerprint": "7na4sro3qu",
+      "Integrity": "4zbWr0QNFhpUwGkn4WdGWXt80KnhRFv0qXkZyVnhajY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -605,10 +605,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -619,17 +619,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "z7kmom2977",
-      "Integrity": "359CMPAICGkV+zve4A4HJMha3bwqTFTjl+QC1KJK5DQ=",
+      "Fingerprint": "f8imaxxbri",
+      "Integrity": "z0OApR88UEocYXTXHU7Ueycaiib9XbDUmel9Gx0gbx4=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -647,10 +647,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -661,17 +661,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "97yrjpyf9r",
-      "Integrity": "G0PQCDL7ETO6rITRlBIHDKvvSuJFn5p6h+WmbPX5xr4=",
+      "Fingerprint": "0wve5yxp74",
+      "Integrity": "8NXw3kF49FkQVPMdjnGDqoXXRU0TwzsLfCGbK9U8gnk=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -689,10 +689,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -703,17 +703,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "y53cy5s2zj",
-      "Integrity": "BnHmEJpgor1n0UuwNdXG2VhHdV1r9MibuqBVHsgp9a8=",
+      "Fingerprint": "npxfuf8dg6",
+      "Integrity": "a5KlgysZ4fQXw4rzIvXDHErFDPeHRSLccP7kX6HuvSQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -731,10 +731,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -745,17 +745,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "z9shlbduue",
-      "Integrity": "mcVOHRq7FsWaycSfboGsTpzuQZ3cIOR/GDHYxL6q2Yg=",
+      "Fingerprint": "tey0rigmnh",
+      "Integrity": "NbFZxZLmBVNLzb/7B0WdFfb6+8jXHGX6XY190uwgbec=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -773,10 +773,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -787,17 +787,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "2yn17lgxub",
-      "Integrity": "ekoF4YNq4OUU4BoZ6FG2LTKD68LJvW49arNgykHOZfM=",
+      "Fingerprint": "16095smhkz",
+      "Integrity": "5+ExmMkiaI3keYQRLhNibJ5ZXnNuWRbwrXOAZoTXMFg=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -815,10 +815,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -829,17 +829,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "ophe14yye5",
-      "Integrity": "1N1aPW6sTYexHfJCcDS4iElpPdWahP2Fr+Um56w0PjI=",
+      "Fingerprint": "b4skse8du6",
+      "Integrity": "peAGH8Gu/ZL9VnbUGSMN69Ji5MxwbvOb53gDXU2cPaQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -857,10 +857,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -871,17 +871,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "ik6i2hrs65",
-      "Integrity": "wseUsl7uipUzPYc/DBMMTMFA7hBTcxpw29RKOxLzXSc=",
+      "Fingerprint": "u3xrusw2ol",
+      "Integrity": "Wi5ZuFSHLfx6dlEgjvW3BY9TC/1NqdBjj+XFifSSqN4=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -899,10 +899,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -913,17 +913,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "f6zq8v6eb3",
-      "Integrity": "l/hyCcHXdGwW6cO0xfobuAMZk3Nh8dsRdWwdaeSn9qo=",
+      "Fingerprint": "l2av4jpuoj",
+      "Integrity": "vQTf4d3WJi9vmWQNA4kJnjoedgEhMFXFDEMXqtHtgzk=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -941,10 +941,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -955,17 +955,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "89qbw8ngem",
-      "Integrity": "rAnWnVnzChxAAi8NS+Ilr1mE7Sj+do+X/DqyilNsznM=",
+      "Fingerprint": "25iw1kog22",
+      "Integrity": "KuvCVS19rfTjoLgMyDDCdOkRRlhNrY4psEM4uezts2M=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -983,10 +983,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -997,17 +997,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "n5w6o92d9r",
-      "Integrity": "SySIctW5IQsq8JoYGrNJU4ZilHaieJru5P0+8vTcfDA=",
+      "Fingerprint": "m39kt2b5c9",
+      "Integrity": "EuDXUJYKnfZuO8dSLN0f5iVbVasz36AROuAU3NJ3JBo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -1025,10 +1025,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1039,17 +1039,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "jqwzsa9uv6",
-      "Integrity": "hVv0IJy8sIv1uIlVQOHnZFNAGprmLfDV+x0anYPmxYU=",
+      "Fingerprint": "um2aeqy4ik",
+      "Integrity": "Kj4irQWPwfSb5NFeos/h0IroI5/nIg0HtAjQ+w4v6TE=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -1067,10 +1067,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1081,17 +1081,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "1piudyfv7h",
-      "Integrity": "JV8zLOxqX3ENLwiQX8lCiDY3TvQzbeibDAsdYtalZ4w=",
+      "Fingerprint": "o4kw7cc6tf",
+      "Integrity": "6IStRQerBchYSw6J2GWTOWGOnDRrWXmaG0r6nCwN5s4=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -1109,10 +1109,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1123,17 +1123,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "4908xmbfjr",
-      "Integrity": "uAMYHAQlaHq1buKLwrk7FF4qxvcLWntS2/DpdKucfmU=",
+      "Fingerprint": "zwph15dxgs",
+      "Integrity": "c4Ll6eSIg6Eothk8pCWAF8aE923EvtU11pqjBy+NjNM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -1151,10 +1151,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\LICENSE",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/bootstrap/LICENSE#[.{fingerprint}]?",
       "AssetKind": "All",
@@ -1172,10 +1172,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\LICENSE"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/jquery/dist/jquery#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1186,17 +1186,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "7s2n0ol71w",
-      "Integrity": "KSI/3xxCrCexCupdzQJRP1B6Iqg+2NA+X2u38cQdqq8=",
+      "Fingerprint": "fwhahm2icz",
+      "Integrity": "H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/jquery/dist/jquery.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1207,17 +1207,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "ehgnz7f14e",
-      "Integrity": "zp0HUArZHsK1JMJwdk7EyaM+eDINjTdOxADt5Ij2JRs=",
+      "Fingerprint": "dd6z7egasc",
+      "Integrity": "/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/jquery/dist/jquery.min#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -1235,10 +1235,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/jquery/LICENSE#[.{fingerprint}]?.txt",
       "AssetKind": "All",
@@ -1256,10 +1256,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/jquery-validation/dist/additional-methods#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1277,10 +1277,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1298,10 +1298,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1312,17 +1312,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "6d0lkjaslc",
-      "Integrity": "5qqb5VxQ2t2a6Zx/neW5uppLLvaGn4nn0NdYp6g8Lyg=",
+      "Fingerprint": "pzqfkb6aqo",
+      "Integrity": "m0l81WDPiG7CcG7CDsTuZzvcGvyFmrQY5DLIxx3aRGw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1333,17 +1333,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "l1zq2mitth",
-      "Integrity": "6e0N+WJiVKBeTitK1GKSwPi3rbdPpLtuqaiitZjeD2w=",
+      "Fingerprint": "b7iojwaux1",
+      "Integrity": "JwUksNJ6/R07ZiLRoXbGeNrtlFZMFDKX4hemPiHOmCA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/jquery-validation/LICENSE#[.{fingerprint}]?.md",
       "AssetKind": "All",
@@ -1361,10 +1361,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1375,17 +1375,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "03hjc8e09r",
-      "Integrity": "xJbBMLGhYbXlPrrrddrSVmduyF6KEtbxEsYxw7hYZV4=",
+      "Fingerprint": "47otxtyo56",
+      "Integrity": "wJQaJ0XynBE2fq6CexXXhxKu7fstVmQc7V2MHNTo+WQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1396,17 +1396,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "48y08845bh",
-      "Integrity": "RFWFWIIPsjB4DucR4jqwxTWw13ZmtI+s6tVR2LJmZXk=",
+      "Fingerprint": "4v8eqarkd7",
+      "Integrity": "YJa7W8EiQdQpkk93iGEjjnLSUWRpRJbSfzfURh1kxz4=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Identity": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "SourceId": "Forum",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Projet\\projet_forum\\wwwroot\\",
+      "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
       "RelativePath": "lib/jquery-validation-unobtrusive/LICENSE#[.{fingerprint}]?.txt",
       "AssetKind": "All",
@@ -1427,7 +1427,7 @@
   "Endpoints": [
     {
       "Route": "css/authentification.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\css\\authentification.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\authentification.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1448,7 +1448,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 17 Mar 2025 11:38:00 GMT"
+          "Value": "Mon, 24 Mar 2025 09:21:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1464,7 +1464,7 @@
     },
     {
       "Route": "css/authentification.wi9sqnynu5.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\css\\authentification.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\authentification.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1485,7 +1485,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 17 Mar 2025 11:38:00 GMT"
+          "Value": "Mon, 24 Mar 2025 09:21:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1509,7 +1509,7 @@
     },
     {
       "Route": "css/header.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\css\\header.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\header.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1530,7 +1530,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 18 Mar 2025 10:47:29 GMT"
+          "Value": "Mon, 24 Mar 2025 09:21:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1546,7 +1546,7 @@
     },
     {
       "Route": "css/header.g55f6miahp.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\css\\header.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\header.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1567,7 +1567,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 18 Mar 2025 10:47:29 GMT"
+          "Value": "Mon, 24 Mar 2025 09:21:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1591,7 +1591,7 @@
     },
     {
       "Route": "css/home.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\css\\home.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\home.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1612,7 +1612,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Wed, 26 Feb 2025 13:23:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1628,7 +1628,7 @@
     },
     {
       "Route": "css/home.ctnfjnteaw.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\css\\home.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\home.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1649,7 +1649,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Wed, 26 Feb 2025 13:23:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1672,8 +1672,8 @@
       ]
     },
     {
-      "Route": "css/signup.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\css\\signup.css",
+      "Route": "css/signup.b8i25tjy2p.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\signup.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1682,7 +1682,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4541"
+          "Value": "4589"
         },
         {
           "Name": "Content-Type",
@@ -1690,48 +1690,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"PwlNZ3jL44CoYu++Z+R/2agPhqiV4OQegNkrJZXJiis=\""
+          "Value": "\"Nc6QwpgX7UGzheXSgVr/0VQNi4WmjNJe0eaqBnoo/w8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 18 Mar 2025 10:49:35 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-PwlNZ3jL44CoYu++Z+R/2agPhqiV4OQegNkrJZXJiis="
-        }
-      ]
-    },
-    {
-      "Route": "css/signup.pi2gqbay52.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\css\\signup.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "4541"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"PwlNZ3jL44CoYu++Z+R/2agPhqiV4OQegNkrJZXJiis=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 18 Mar 2025 10:49:35 GMT"
+          "Value": "Mon, 24 Mar 2025 09:21:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1741,7 +1704,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "pi2gqbay52"
+          "Value": "b8i25tjy2p"
         },
         {
           "Name": "label",
@@ -1749,13 +1712,50 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-PwlNZ3jL44CoYu++Z+R/2agPhqiV4OQegNkrJZXJiis="
+          "Value": "sha256-Nc6QwpgX7UGzheXSgVr/0VQNi4WmjNJe0eaqBnoo/w8="
+        }
+      ]
+    },
+    {
+      "Route": "css/signup.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\signup.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4589"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Nc6QwpgX7UGzheXSgVr/0VQNi4WmjNJe0eaqBnoo/w8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Mar 2025 09:21:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Nc6QwpgX7UGzheXSgVr/0VQNi4WmjNJe0eaqBnoo/w8="
         }
       ]
     },
     {
       "Route": "css/site.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\css\\site.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1776,7 +1776,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 17 Mar 2025 10:44:24 GMT"
+          "Value": "Wed, 12 Mar 2025 16:52:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1792,7 +1792,7 @@
     },
     {
       "Route": "css/site.rnh1nh1522.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\css\\site.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1813,7 +1813,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 17 Mar 2025 10:44:24 GMT"
+          "Value": "Wed, 12 Mar 2025 16:52:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1837,7 +1837,7 @@
     },
     {
       "Route": "favicon.61n19gt1b8.ico",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\favicon.ico",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\favicon.ico",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1858,7 +1858,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1882,7 +1882,7 @@
     },
     {
       "Route": "favicon.ico",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\favicon.ico",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\favicon.ico",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1903,7 +1903,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1919,7 +1919,7 @@
     },
     {
       "Route": "Forum.bundle.scp.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Forum.bundle.scp.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Forum.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1940,7 +1940,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 17 Mar 2025 10:44:24 GMT"
+          "Value": "Wed, 12 Mar 2025 16:52:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1956,7 +1956,7 @@
     },
     {
       "Route": "Forum.styles.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\obj\\Debug\\net8.0\\scopedcss\\bundle\\Forum.styles.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\obj\\Debug\\net8.0\\scopedcss\\bundle\\Forum.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1977,7 +1977,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 17 Mar 2025 10:44:24 GMT"
+          "Value": "Wed, 12 Mar 2025 16:52:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1993,7 +1993,7 @@
     },
     {
       "Route": "Forum.x8nyj62glo.bundle.scp.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Forum.bundle.scp.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Forum.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2014,7 +2014,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 17 Mar 2025 10:44:24 GMT"
+          "Value": "Wed, 12 Mar 2025 16:52:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2038,7 +2038,7 @@
     },
     {
       "Route": "Forum.x8nyj62glo.styles.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\obj\\Debug\\net8.0\\scopedcss\\bundle\\Forum.styles.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\obj\\Debug\\net8.0\\scopedcss\\bundle\\Forum.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2059,7 +2059,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 17 Mar 2025 10:44:24 GMT"
+          "Value": "Wed, 12 Mar 2025 16:52:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2083,7 +2083,7 @@
     },
     {
       "Route": "js/signup.bf0y4nucbg.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\js\\signup.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\js\\signup.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2104,7 +2104,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 17 Mar 2025 10:44:24 GMT"
+          "Value": "Mon, 24 Mar 2025 09:31:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2128,7 +2128,7 @@
     },
     {
       "Route": "js/signup.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\js\\signup.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\js\\signup.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2149,7 +2149,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 17 Mar 2025 10:44:24 GMT"
+          "Value": "Mon, 24 Mar 2025 09:31:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2165,7 +2165,7 @@
     },
     {
       "Route": "js/site.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\js\\site.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\js\\site.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2186,7 +2186,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2202,7 +2202,7 @@
     },
     {
       "Route": "js/site.xtxxf3hu2r.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\js\\site.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\js\\site.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2223,7 +2223,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2247,7 +2247,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2256,7 +2256,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "215356"
+          "Value": "204136"
         },
         {
           "Name": "Content-Type",
@@ -2264,11 +2264,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ZMvmWDSU4zY1Z29EQGm5Mubfz/YxF4hiReGqx84o4tA=\""
+          "Value": "\"xlexqj9/k3uobVwGfciZcj/eDdooaNgcf4OFLtLUygM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2278,13 +2278,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-ZMvmWDSU4zY1Z29EQGm5Mubfz/YxF4hiReGqx84o4tA="
+          "Value": "sha256-xlexqj9/k3uobVwGfciZcj/eDdooaNgcf4OFLtLUygM="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.css.73kdqttayv.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2305,7 +2305,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2329,7 +2329,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.css.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2350,7 +2350,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2365,8 +2365,8 @@
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/css/bootstrap.min.6gzpyzhau4.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Route": "lib/bootstrap/dist/css/bootstrap.min.bpk8xqwxhs.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2375,7 +2375,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "162726"
+          "Value": "162720"
         },
         {
           "Name": "Content-Type",
@@ -2383,11 +2383,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7/p4nS6D/0=\""
+          "Value": "\"z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2397,7 +2397,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "6gzpyzhau4"
+          "Value": "bpk8xqwxhs"
         },
         {
           "Name": "label",
@@ -2405,13 +2405,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7/p4nS6D/0="
+          "Value": "sha256-z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.min.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2420,7 +2420,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "162726"
+          "Value": "162720"
         },
         {
           "Name": "Content-Type",
@@ -2428,11 +2428,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7/p4nS6D/0=\""
+          "Value": "\"z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2442,13 +2442,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7/p4nS6D/0="
+          "Value": "sha256-z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.min.css.8inm30yfxf.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2469,7 +2469,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2493,7 +2493,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.min.css.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2514,7 +2514,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2529,8 +2529,8 @@
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/css/bootstrap.ozu22stjof.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Route": "lib/bootstrap/dist/css/bootstrap.mpyigms19s.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2539,7 +2539,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "215356"
+          "Value": "204136"
         },
         {
           "Name": "Content-Type",
@@ -2547,11 +2547,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ZMvmWDSU4zY1Z29EQGm5Mubfz/YxF4hiReGqx84o4tA=\""
+          "Value": "\"xlexqj9/k3uobVwGfciZcj/eDdooaNgcf4OFLtLUygM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2561,7 +2561,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "ozu22stjof"
+          "Value": "mpyigms19s"
         },
         {
           "Name": "label",
@@ -2569,13 +2569,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-ZMvmWDSU4zY1Z29EQGm5Mubfz/YxF4hiReGqx84o4tA="
+          "Value": "sha256-xlexqj9/k3uobVwGfciZcj/eDdooaNgcf4OFLtLUygM="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.rtl.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2584,7 +2584,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "214999"
+          "Value": "203803"
         },
         {
           "Name": "Content-Type",
@@ -2592,11 +2592,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"hA1uBYAPgKq7OVoXF7sqU9NtylyP0K7AJn0a4zQcTbg=\""
+          "Value": "\"SZ2mKaD4A+b+HIvttwl+TvLFnVy8o8/X40j+EKVwyvY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2606,13 +2606,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-hA1uBYAPgKq7OVoXF7sqU9NtylyP0K7AJn0a4zQcTbg="
+          "Value": "sha256-SZ2mKaD4A+b+HIvttwl+TvLFnVy8o8/X40j+EKVwyvY="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.rtl.css.4gxs3k148c.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2633,7 +2633,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2657,7 +2657,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.rtl.css.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2678,7 +2678,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2693,8 +2693,8 @@
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/css/bootstrap.rtl.gjcw7pocpk.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Route": "lib/bootstrap/dist/css/bootstrap.rtl.min.9b9oa1qrmt.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2703,7 +2703,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "214999"
+          "Value": "162825"
         },
         {
           "Name": "Content-Type",
@@ -2711,11 +2711,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"hA1uBYAPgKq7OVoXF7sqU9NtylyP0K7AJn0a4zQcTbg=\""
+          "Value": "\"22wR6QTidoeiRZXp6zkRQyMSUb/FB+Av11jqmZJF6uU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2725,52 +2725,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "gjcw7pocpk"
-        },
-        {
-          "Name": "label",
-          "Value": "lib/bootstrap/dist/css/bootstrap.rtl.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-hA1uBYAPgKq7OVoXF7sqU9NtylyP0K7AJn0a4zQcTbg="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/css/bootstrap.rtl.min.6l4ir0ityv.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "162831"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"ukKL5IDSyNoXFyp0wkgXeBpBITyM7JsCE6Dp96H1vI8=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "6l4ir0ityv"
+          "Value": "9b9oa1qrmt"
         },
         {
           "Name": "label",
@@ -2778,13 +2733,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-ukKL5IDSyNoXFyp0wkgXeBpBITyM7JsCE6Dp96H1vI8="
+          "Value": "sha256-22wR6QTidoeiRZXp6zkRQyMSUb/FB+Av11jqmZJF6uU="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.rtl.min.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2793,7 +2748,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "162831"
+          "Value": "162825"
         },
         {
           "Name": "Content-Type",
@@ -2801,11 +2756,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ukKL5IDSyNoXFyp0wkgXeBpBITyM7JsCE6Dp96H1vI8=\""
+          "Value": "\"22wR6QTidoeiRZXp6zkRQyMSUb/FB+Av11jqmZJF6uU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2815,13 +2770,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-ukKL5IDSyNoXFyp0wkgXeBpBITyM7JsCE6Dp96H1vI8="
+          "Value": "sha256-22wR6QTidoeiRZXp6zkRQyMSUb/FB+Av11jqmZJF6uU="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.fctod5rc9n.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2842,7 +2797,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2866,7 +2821,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2887,7 +2842,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2902,8 +2857,8 @@
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/css/bootstrap-grid.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Route": "lib/bootstrap/dist/css/bootstrap.rtl.ve6x09088i.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2912,7 +2867,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "75534"
+          "Value": "203803"
         },
         {
           "Name": "Content-Type",
@@ -2920,11 +2875,101 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"P4Ski6RrsG4nxKfPqaVoyRMoesl9UzArmfT+4fLqKHY=\""
+          "Value": "\"SZ2mKaD4A+b+HIvttwl+TvLFnVy8o8/X40j+EKVwyvY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ve6x09088i"
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/css/bootstrap.rtl.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-SZ2mKaD4A+b+HIvttwl+TvLFnVy8o8/X40j+EKVwyvY="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/bootstrap-grid.agp80tu62r.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "70538"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"JtktgiuQAd+AXerCnPMrHCDz1h5AtkH5tobvpuG7xZ4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "agp80tu62r"
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/css/bootstrap-grid.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-JtktgiuQAd+AXerCnPMrHCDz1h5AtkH5tobvpuG7xZ4="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/bootstrap-grid.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "70538"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"JtktgiuQAd+AXerCnPMrHCDz1h5AtkH5tobvpuG7xZ4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2934,13 +2979,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-P4Ski6RrsG4nxKfPqaVoyRMoesl9UzArmfT+4fLqKHY="
+          "Value": "sha256-JtktgiuQAd+AXerCnPMrHCDz1h5AtkH5tobvpuG7xZ4="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.css.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2961,7 +3006,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2977,7 +3022,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.css.st1cbwfwo5.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2998,7 +3043,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3021,53 +3066,8 @@
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/css/bootstrap-grid.min.5p029spbuu.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "51325"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"96ayIUEnpKr7n5BIsFK5vJ3qXMXFgvRl9/CBcHs6/Ts=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "5p029spbuu"
-        },
-        {
-          "Name": "label",
-          "Value": "lib/bootstrap/dist/css/bootstrap-grid.min.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-96ayIUEnpKr7n5BIsFK5vJ3qXMXFgvRl9/CBcHs6/Ts="
-        }
-      ]
-    },
-    {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.min.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3076,7 +3076,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "51325"
+          "Value": "51319"
         },
         {
           "Name": "Content-Type",
@@ -3084,11 +3084,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"96ayIUEnpKr7n5BIsFK5vJ3qXMXFgvRl9/CBcHs6/Ts=\""
+          "Value": "\"ysBT/JYxH9gcMnwxT4+MB4sPxOx/JMg9wi77FA13T9A=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3098,13 +3098,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-96ayIUEnpKr7n5BIsFK5vJ3qXMXFgvRl9/CBcHs6/Ts="
+          "Value": "sha256-ysBT/JYxH9gcMnwxT4+MB4sPxOx/JMg9wi77FA13T9A="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.min.css.5vj65cig9w.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3125,7 +3125,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3149,7 +3149,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3170,7 +3170,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3185,8 +3185,8 @@
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/css/bootstrap-grid.nakmwdwsxp.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Route": "lib/bootstrap/dist/css/bootstrap-grid.min.unj9p35syc.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3195,7 +3195,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "75534"
+          "Value": "51319"
         },
         {
           "Name": "Content-Type",
@@ -3203,11 +3203,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"P4Ski6RrsG4nxKfPqaVoyRMoesl9UzArmfT+4fLqKHY=\""
+          "Value": "\"ysBT/JYxH9gcMnwxT4+MB4sPxOx/JMg9wi77FA13T9A=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3217,21 +3217,21 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "nakmwdwsxp"
+          "Value": "unj9p35syc"
         },
         {
           "Name": "label",
-          "Value": "lib/bootstrap/dist/css/bootstrap-grid.css"
+          "Value": "lib/bootstrap/dist/css/bootstrap-grid.min.css"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-P4Ski6RrsG4nxKfPqaVoyRMoesl9UzArmfT+4fLqKHY="
+          "Value": "sha256-ysBT/JYxH9gcMnwxT4+MB4sPxOx/JMg9wi77FA13T9A="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3240,7 +3240,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "75607"
+          "Value": "70612"
         },
         {
           "Name": "Content-Type",
@@ -3248,11 +3248,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"+ugQREUkP4Wnp1VX2L2lvw0Q2mgKYvYAZr1c2or+ysM=\""
+          "Value": "\"3vUJkZSpKL/zG7x6GNvDjs0TxYUo9zMt6dAc8hp9CVo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3262,13 +3262,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-+ugQREUkP4Wnp1VX2L2lvw0Q2mgKYvYAZr1c2or+ysM="
+          "Value": "sha256-3vUJkZSpKL/zG7x6GNvDjs0TxYUo9zMt6dAc8hp9CVo="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css.2q4vfeazbq.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3289,7 +3289,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3313,7 +3313,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3334,7 +3334,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3349,53 +3349,8 @@
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.e6q6xbwqzk.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "75607"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"+ugQREUkP4Wnp1VX2L2lvw0Q2mgKYvYAZr1c2or+ysM=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "e6q6xbwqzk"
-        },
-        {
-          "Name": "label",
-          "Value": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-+ugQREUkP4Wnp1VX2L2lvw0Q2mgKYvYAZr1c2or+ysM="
-        }
-      ]
-    },
-    {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3404,7 +3359,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "51400"
+          "Value": "51394"
         },
         {
           "Name": "Content-Type",
@@ -3412,11 +3367,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"9eX2dpELXvYs+6il2MHwf5OOPVOZjxVK1b1GWgL0B0k=\""
+          "Value": "\"O6lb2kXarGgVw4/RDD42yYPhZIwREthThQFKGmD+3j0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3426,13 +3381,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-9eX2dpELXvYs+6il2MHwf5OOPVOZjxVK1b1GWgL0B0k="
+          "Value": "sha256-O6lb2kXarGgVw4/RDD42yYPhZIwREthThQFKGmD+3j0="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3453,7 +3408,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3469,7 +3424,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.o371a8zbv2.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3490,7 +3445,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3513,8 +3468,8 @@
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.dy6jgresuo.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.n1oizzvkh6.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3523,7 +3478,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "51400"
+          "Value": "51394"
         },
         {
           "Name": "Content-Type",
@@ -3531,11 +3486,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"9eX2dpELXvYs+6il2MHwf5OOPVOZjxVK1b1GWgL0B0k=\""
+          "Value": "\"O6lb2kXarGgVw4/RDD42yYPhZIwREthThQFKGmD+3j0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3545,7 +3500,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "dy6jgresuo"
+          "Value": "n1oizzvkh6"
         },
         {
           "Name": "label",
@@ -3553,13 +3508,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-9eX2dpELXvYs+6il2MHwf5OOPVOZjxVK1b1GWgL0B0k="
+          "Value": "sha256-O6lb2kXarGgVw4/RDD42yYPhZIwREthThQFKGmD+3j0="
         }
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/css/bootstrap-reboot.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.q2ku51ktnl.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3568,7 +3523,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6276"
+          "Value": "70612"
         },
         {
           "Name": "Content-Type",
@@ -3576,11 +3531,101 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Jtl65EICD4ds6dQZbx1ongvMXj8D127HCg5XRBXXYGw=\""
+          "Value": "\"3vUJkZSpKL/zG7x6GNvDjs0TxYUo9zMt6dAc8hp9CVo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "q2ku51ktnl"
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-3vUJkZSpKL/zG7x6GNvDjs0TxYUo9zMt6dAc8hp9CVo="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/bootstrap-reboot.7na4sro3qu.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5850"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4zbWr0QNFhpUwGkn4WdGWXt80KnhRFv0qXkZyVnhajY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7na4sro3qu"
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/css/bootstrap-reboot.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4zbWr0QNFhpUwGkn4WdGWXt80KnhRFv0qXkZyVnhajY="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/bootstrap-reboot.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5850"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4zbWr0QNFhpUwGkn4WdGWXt80KnhRFv0qXkZyVnhajY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3590,13 +3635,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Jtl65EICD4ds6dQZbx1ongvMXj8D127HCg5XRBXXYGw="
+          "Value": "sha256-4zbWr0QNFhpUwGkn4WdGWXt80KnhRFv0qXkZyVnhajY="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.css.jeal3x0ldm.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3617,7 +3662,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3641,7 +3686,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.css.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3662,7 +3707,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3678,7 +3723,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.min.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3687,7 +3732,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4653"
+          "Value": "4646"
         },
         {
           "Name": "Content-Type",
@@ -3695,11 +3740,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"359CMPAICGkV+zve4A4HJMha3bwqTFTjl+QC1KJK5DQ=\""
+          "Value": "\"z0OApR88UEocYXTXHU7Ueycaiib9XbDUmel9Gx0gbx4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3709,13 +3754,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-359CMPAICGkV+zve4A4HJMha3bwqTFTjl+QC1KJK5DQ="
+          "Value": "sha256-z0OApR88UEocYXTXHU7Ueycaiib9XbDUmel9Gx0gbx4="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3736,7 +3781,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3752,7 +3797,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.min.css.okkk44j0xs.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3773,7 +3818,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3796,8 +3841,8 @@
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/css/bootstrap-reboot.min.z7kmom2977.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Route": "lib/bootstrap/dist/css/bootstrap-reboot.min.f8imaxxbri.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3806,7 +3851,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4653"
+          "Value": "4646"
         },
         {
           "Name": "Content-Type",
@@ -3814,11 +3859,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"359CMPAICGkV+zve4A4HJMha3bwqTFTjl+QC1KJK5DQ=\""
+          "Value": "\"z0OApR88UEocYXTXHU7Ueycaiib9XbDUmel9Gx0gbx4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3828,7 +3873,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "z7kmom2977"
+          "Value": "f8imaxxbri"
         },
         {
           "Name": "label",
@@ -3836,13 +3881,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-359CMPAICGkV+zve4A4HJMha3bwqTFTjl+QC1KJK5DQ="
+          "Value": "sha256-z0OApR88UEocYXTXHU7Ueycaiib9XbDUmel9Gx0gbx4="
         }
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/css/bootstrap-reboot.mk8rdyw69w.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.0wve5yxp74.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3851,7 +3896,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6276"
+          "Value": "5827"
         },
         {
           "Name": "Content-Type",
@@ -3859,11 +3904,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Jtl65EICD4ds6dQZbx1ongvMXj8D127HCg5XRBXXYGw=\""
+          "Value": "\"8NXw3kF49FkQVPMdjnGDqoXXRU0TwzsLfCGbK9U8gnk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3873,52 +3918,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "mk8rdyw69w"
-        },
-        {
-          "Name": "label",
-          "Value": "lib/bootstrap/dist/css/bootstrap-reboot.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-Jtl65EICD4ds6dQZbx1ongvMXj8D127HCg5XRBXXYGw="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.97yrjpyf9r.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "6250"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"G0PQCDL7ETO6rITRlBIHDKvvSuJFn5p6h+WmbPX5xr4=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "97yrjpyf9r"
+          "Value": "0wve5yxp74"
         },
         {
           "Name": "label",
@@ -3926,13 +3926,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-G0PQCDL7ETO6rITRlBIHDKvvSuJFn5p6h+WmbPX5xr4="
+          "Value": "sha256-8NXw3kF49FkQVPMdjnGDqoXXRU0TwzsLfCGbK9U8gnk="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3941,7 +3941,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6250"
+          "Value": "5827"
         },
         {
           "Name": "Content-Type",
@@ -3949,11 +3949,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"G0PQCDL7ETO6rITRlBIHDKvvSuJFn5p6h+WmbPX5xr4=\""
+          "Value": "\"8NXw3kF49FkQVPMdjnGDqoXXRU0TwzsLfCGbK9U8gnk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3963,13 +3963,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-G0PQCDL7ETO6rITRlBIHDKvvSuJFn5p6h+WmbPX5xr4="
+          "Value": "sha256-8NXw3kF49FkQVPMdjnGDqoXXRU0TwzsLfCGbK9U8gnk="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.cwzlr5n8x4.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3990,7 +3990,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4014,7 +4014,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4035,7 +4035,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4051,7 +4051,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4060,7 +4060,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4725"
+          "Value": "4718"
         },
         {
           "Name": "Content-Type",
@@ -4068,11 +4068,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"BnHmEJpgor1n0UuwNdXG2VhHdV1r9MibuqBVHsgp9a8=\""
+          "Value": "\"a5KlgysZ4fQXw4rzIvXDHErFDPeHRSLccP7kX6HuvSQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4082,13 +4082,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-BnHmEJpgor1n0UuwNdXG2VhHdV1r9MibuqBVHsgp9a8="
+          "Value": "sha256-a5KlgysZ4fQXw4rzIvXDHErFDPeHRSLccP7kX6HuvSQ="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4109,7 +4109,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4125,7 +4125,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.wmug9u23qg.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4146,7 +4146,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4169,8 +4169,8 @@
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.y53cy5s2zj.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.npxfuf8dg6.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4179,7 +4179,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4725"
+          "Value": "4718"
         },
         {
           "Name": "Content-Type",
@@ -4187,11 +4187,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"BnHmEJpgor1n0UuwNdXG2VhHdV1r9MibuqBVHsgp9a8=\""
+          "Value": "\"a5KlgysZ4fQXw4rzIvXDHErFDPeHRSLccP7kX6HuvSQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4201,7 +4201,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "y53cy5s2zj"
+          "Value": "npxfuf8dg6"
         },
         {
           "Name": "label",
@@ -4209,13 +4209,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-BnHmEJpgor1n0UuwNdXG2VhHdV1r9MibuqBVHsgp9a8="
+          "Value": "sha256-a5KlgysZ4fQXw4rzIvXDHErFDPeHRSLccP7kX6HuvSQ="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4224,7 +4224,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "76449"
+          "Value": "71584"
         },
         {
           "Name": "Content-Type",
@@ -4232,11 +4232,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"mcVOHRq7FsWaycSfboGsTpzuQZ3cIOR/GDHYxL6q2Yg=\""
+          "Value": "\"NbFZxZLmBVNLzb/7B0WdFfb6+8jXHGX6XY190uwgbec=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4246,13 +4246,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-mcVOHRq7FsWaycSfboGsTpzuQZ3cIOR/GDHYxL6q2Yg="
+          "Value": "sha256-NbFZxZLmBVNLzb/7B0WdFfb6+8jXHGX6XY190uwgbec="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.css.j75batdsum.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4273,7 +4273,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4297,7 +4297,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.css.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4318,7 +4318,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4333,8 +4333,8 @@
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/css/bootstrap-utilities.min.2yn17lgxub.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Route": "lib/bootstrap/dist/css/bootstrap-utilities.min.16095smhkz.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4343,7 +4343,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "53485"
+          "Value": "53479"
         },
         {
           "Name": "Content-Type",
@@ -4351,11 +4351,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ekoF4YNq4OUU4BoZ6FG2LTKD68LJvW49arNgykHOZfM=\""
+          "Value": "\"5+ExmMkiaI3keYQRLhNibJ5ZXnNuWRbwrXOAZoTXMFg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4365,7 +4365,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "2yn17lgxub"
+          "Value": "16095smhkz"
         },
         {
           "Name": "label",
@@ -4373,13 +4373,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-ekoF4YNq4OUU4BoZ6FG2LTKD68LJvW49arNgykHOZfM="
+          "Value": "sha256-5+ExmMkiaI3keYQRLhNibJ5ZXnNuWRbwrXOAZoTXMFg="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.min.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4388,7 +4388,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "53485"
+          "Value": "53479"
         },
         {
           "Name": "Content-Type",
@@ -4396,11 +4396,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ekoF4YNq4OUU4BoZ6FG2LTKD68LJvW49arNgykHOZfM=\""
+          "Value": "\"5+ExmMkiaI3keYQRLhNibJ5ZXnNuWRbwrXOAZoTXMFg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4410,13 +4410,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-ekoF4YNq4OUU4BoZ6FG2LTKD68LJvW49arNgykHOZfM="
+          "Value": "sha256-5+ExmMkiaI3keYQRLhNibJ5ZXnNuWRbwrXOAZoTXMFg="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4437,7 +4437,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4453,7 +4453,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.min.css.vy0bq9ydhf.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4474,7 +4474,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4497,8 +4497,8 @@
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.b4skse8du6.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4507,7 +4507,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "76307"
+          "Value": "71451"
         },
         {
           "Name": "Content-Type",
@@ -4515,11 +4515,56 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"1N1aPW6sTYexHfJCcDS4iElpPdWahP2Fr+Um56w0PjI=\""
+          "Value": "\"peAGH8Gu/ZL9VnbUGSMN69Ji5MxwbvOb53gDXU2cPaQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "b4skse8du6"
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-peAGH8Gu/ZL9VnbUGSMN69Ji5MxwbvOb53gDXU2cPaQ="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "71451"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"peAGH8Gu/ZL9VnbUGSMN69Ji5MxwbvOb53gDXU2cPaQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4529,13 +4574,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-1N1aPW6sTYexHfJCcDS4iElpPdWahP2Fr+Um56w0PjI="
+          "Value": "sha256-peAGH8Gu/ZL9VnbUGSMN69Ji5MxwbvOb53gDXU2cPaQ="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.ab1c3rmv7g.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4556,7 +4601,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4580,7 +4625,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4601,7 +4646,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4617,7 +4662,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4626,7 +4671,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "53413"
+          "Value": "53407"
         },
         {
           "Name": "Content-Type",
@@ -4634,11 +4679,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"wseUsl7uipUzPYc/DBMMTMFA7hBTcxpw29RKOxLzXSc=\""
+          "Value": "\"Wi5ZuFSHLfx6dlEgjvW3BY9TC/1NqdBjj+XFifSSqN4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4648,13 +4693,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-wseUsl7uipUzPYc/DBMMTMFA7hBTcxpw29RKOxLzXSc="
+          "Value": "sha256-Wi5ZuFSHLfx6dlEgjvW3BY9TC/1NqdBjj+XFifSSqN4="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.56d2bn4wt9.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4675,7 +4720,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4699,7 +4744,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4720,7 +4765,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4735,8 +4780,8 @@
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.ik6i2hrs65.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.u3xrusw2ol.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4745,7 +4790,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "53413"
+          "Value": "53407"
         },
         {
           "Name": "Content-Type",
@@ -4753,11 +4798,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"wseUsl7uipUzPYc/DBMMTMFA7hBTcxpw29RKOxLzXSc=\""
+          "Value": "\"Wi5ZuFSHLfx6dlEgjvW3BY9TC/1NqdBjj+XFifSSqN4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4767,7 +4812,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "ik6i2hrs65"
+          "Value": "u3xrusw2ol"
         },
         {
           "Name": "label",
@@ -4775,13 +4820,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-wseUsl7uipUzPYc/DBMMTMFA7hBTcxpw29RKOxLzXSc="
+          "Value": "sha256-Wi5ZuFSHLfx6dlEgjvW3BY9TC/1NqdBjj+XFifSSqN4="
         }
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.ophe14yye5.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Route": "lib/bootstrap/dist/css/bootstrap-utilities.tey0rigmnh.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4790,7 +4835,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "76307"
+          "Value": "71584"
         },
         {
           "Name": "Content-Type",
@@ -4798,11 +4843,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"1N1aPW6sTYexHfJCcDS4iElpPdWahP2Fr+Um56w0PjI=\""
+          "Value": "\"NbFZxZLmBVNLzb/7B0WdFfb6+8jXHGX6XY190uwgbec=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4812,52 +4857,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "ophe14yye5"
-        },
-        {
-          "Name": "label",
-          "Value": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-1N1aPW6sTYexHfJCcDS4iElpPdWahP2Fr+Um56w0PjI="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/css/bootstrap-utilities.z9shlbduue.css",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "76449"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"mcVOHRq7FsWaycSfboGsTpzuQZ3cIOR/GDHYxL6q2Yg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "z9shlbduue"
+          "Value": "tey0rigmnh"
         },
         {
           "Name": "label",
@@ -4865,103 +4865,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-mcVOHRq7FsWaycSfboGsTpzuQZ3cIOR/GDHYxL6q2Yg="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/js/bootstrap.1piudyfv7h.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "153194"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"JV8zLOxqX3ENLwiQX8lCiDY3TvQzbeibDAsdYtalZ4w=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "1piudyfv7h"
-        },
-        {
-          "Name": "label",
-          "Value": "lib/bootstrap/dist/js/bootstrap.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-JV8zLOxqX3ENLwiQX8lCiDY3TvQzbeibDAsdYtalZ4w="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/js/bootstrap.bundle.f6zq8v6eb3.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "215272"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"l/hyCcHXdGwW6cO0xfobuAMZk3Nh8dsRdWwdaeSn9qo=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "f6zq8v6eb3"
-        },
-        {
-          "Name": "label",
-          "Value": "lib/bootstrap/dist/js/bootstrap.bundle.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-l/hyCcHXdGwW6cO0xfobuAMZk3Nh8dsRdWwdaeSn9qo="
+          "Value": "sha256-NbFZxZLmBVNLzb/7B0WdFfb6+8jXHGX6XY190uwgbec="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.bundle.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4970,7 +4880,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "215272"
+          "Value": "208492"
         },
         {
           "Name": "Content-Type",
@@ -4978,11 +4888,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"l/hyCcHXdGwW6cO0xfobuAMZk3Nh8dsRdWwdaeSn9qo=\""
+          "Value": "\"vQTf4d3WJi9vmWQNA4kJnjoedgEhMFXFDEMXqtHtgzk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4992,13 +4902,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-l/hyCcHXdGwW6cO0xfobuAMZk3Nh8dsRdWwdaeSn9qo="
+          "Value": "sha256-vQTf4d3WJi9vmWQNA4kJnjoedgEhMFXFDEMXqtHtgzk="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.bundle.js.kbynt5jhd9.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5019,7 +4929,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5043,7 +4953,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.bundle.js.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5064,7 +4974,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5079,8 +4989,8 @@
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/js/bootstrap.bundle.min.89qbw8ngem.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Route": "lib/bootstrap/dist/js/bootstrap.bundle.l2av4jpuoj.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5089,7 +4999,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "78474"
+          "Value": "208492"
         },
         {
           "Name": "Content-Type",
@@ -5097,11 +5007,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"rAnWnVnzChxAAi8NS+Ilr1mE7Sj+do+X/DqyilNsznM=\""
+          "Value": "\"vQTf4d3WJi9vmWQNA4kJnjoedgEhMFXFDEMXqtHtgzk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5111,21 +5021,21 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "89qbw8ngem"
+          "Value": "l2av4jpuoj"
         },
         {
           "Name": "label",
-          "Value": "lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+          "Value": "lib/bootstrap/dist/js/bootstrap.bundle.js"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-rAnWnVnzChxAAi8NS+Ilr1mE7Sj+do+X/DqyilNsznM="
+          "Value": "sha256-vQTf4d3WJi9vmWQNA4kJnjoedgEhMFXFDEMXqtHtgzk="
         }
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/js/bootstrap.bundle.min.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Route": "lib/bootstrap/dist/js/bootstrap.bundle.min.25iw1kog22.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5134,7 +5044,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "78474"
+          "Value": "78468"
         },
         {
           "Name": "Content-Type",
@@ -5142,11 +5052,56 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"rAnWnVnzChxAAi8NS+Ilr1mE7Sj+do+X/DqyilNsznM=\""
+          "Value": "\"KuvCVS19rfTjoLgMyDDCdOkRRlhNrY4psEM4uezts2M=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "25iw1kog22"
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-KuvCVS19rfTjoLgMyDDCdOkRRlhNrY4psEM4uezts2M="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/js/bootstrap.bundle.min.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "78468"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KuvCVS19rfTjoLgMyDDCdOkRRlhNrY4psEM4uezts2M=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5156,13 +5111,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-rAnWnVnzChxAAi8NS+Ilr1mE7Sj+do+X/DqyilNsznM="
+          "Value": "sha256-KuvCVS19rfTjoLgMyDDCdOkRRlhNrY4psEM4uezts2M="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.bundle.min.js.c2nslu3uf3.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5183,7 +5138,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5207,7 +5162,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5228,7 +5183,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5244,7 +5199,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.esm.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5253,7 +5208,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "143996"
+          "Value": "139019"
         },
         {
           "Name": "Content-Type",
@@ -5261,11 +5216,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"SySIctW5IQsq8JoYGrNJU4ZilHaieJru5P0+8vTcfDA=\""
+          "Value": "\"EuDXUJYKnfZuO8dSLN0f5iVbVasz36AROuAU3NJ3JBo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5275,13 +5230,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-SySIctW5IQsq8JoYGrNJU4ZilHaieJru5P0+8vTcfDA="
+          "Value": "sha256-EuDXUJYKnfZuO8dSLN0f5iVbVasz36AROuAU3NJ3JBo="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.esm.js.2lgwfvgpvi.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5302,7 +5257,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5326,7 +5281,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.esm.js.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5347,7 +5302,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5362,8 +5317,8 @@
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/js/bootstrap.esm.min.jqwzsa9uv6.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Route": "lib/bootstrap/dist/js/bootstrap.esm.m39kt2b5c9.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5372,7 +5327,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "72022"
+          "Value": "139019"
         },
         {
           "Name": "Content-Type",
@@ -5380,11 +5335,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"hVv0IJy8sIv1uIlVQOHnZFNAGprmLfDV+x0anYPmxYU=\""
+          "Value": "\"EuDXUJYKnfZuO8dSLN0f5iVbVasz36AROuAU3NJ3JBo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5394,21 +5349,21 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "jqwzsa9uv6"
+          "Value": "m39kt2b5c9"
         },
         {
           "Name": "label",
-          "Value": "lib/bootstrap/dist/js/bootstrap.esm.min.js"
+          "Value": "lib/bootstrap/dist/js/bootstrap.esm.js"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-hVv0IJy8sIv1uIlVQOHnZFNAGprmLfDV+x0anYPmxYU="
+          "Value": "sha256-EuDXUJYKnfZuO8dSLN0f5iVbVasz36AROuAU3NJ3JBo="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.esm.min.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5417,7 +5372,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "72022"
+          "Value": "72016"
         },
         {
           "Name": "Content-Type",
@@ -5425,11 +5380,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"hVv0IJy8sIv1uIlVQOHnZFNAGprmLfDV+x0anYPmxYU=\""
+          "Value": "\"Kj4irQWPwfSb5NFeos/h0IroI5/nIg0HtAjQ+w4v6TE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5439,13 +5394,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-hVv0IJy8sIv1uIlVQOHnZFNAGprmLfDV+x0anYPmxYU="
+          "Value": "sha256-Kj4irQWPwfSb5NFeos/h0IroI5/nIg0HtAjQ+w4v6TE="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5466,7 +5421,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5482,7 +5437,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.esm.min.js.wsezl0heh6.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5503,7 +5458,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5526,8 +5481,8 @@
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/js/bootstrap.esm.n5w6o92d9r.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Route": "lib/bootstrap/dist/js/bootstrap.esm.min.um2aeqy4ik.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5536,7 +5491,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "143996"
+          "Value": "72016"
         },
         {
           "Name": "Content-Type",
@@ -5544,11 +5499,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"SySIctW5IQsq8JoYGrNJU4ZilHaieJru5P0+8vTcfDA=\""
+          "Value": "\"Kj4irQWPwfSb5NFeos/h0IroI5/nIg0HtAjQ+w4v6TE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5558,21 +5513,21 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "n5w6o92d9r"
+          "Value": "um2aeqy4ik"
         },
         {
           "Name": "label",
-          "Value": "lib/bootstrap/dist/js/bootstrap.esm.js"
+          "Value": "lib/bootstrap/dist/js/bootstrap.esm.min.js"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-SySIctW5IQsq8JoYGrNJU4ZilHaieJru5P0+8vTcfDA="
+          "Value": "sha256-Kj4irQWPwfSb5NFeos/h0IroI5/nIg0HtAjQ+w4v6TE="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5581,7 +5536,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "153194"
+          "Value": "148168"
         },
         {
           "Name": "Content-Type",
@@ -5589,11 +5544,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"JV8zLOxqX3ENLwiQX8lCiDY3TvQzbeibDAsdYtalZ4w=\""
+          "Value": "\"6IStRQerBchYSw6J2GWTOWGOnDRrWXmaG0r6nCwN5s4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5603,13 +5558,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-JV8zLOxqX3ENLwiQX8lCiDY3TvQzbeibDAsdYtalZ4w="
+          "Value": "sha256-6IStRQerBchYSw6J2GWTOWGOnDRrWXmaG0r6nCwN5s4="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.js.6ukhryfubh.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5630,7 +5585,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5654,7 +5609,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.js.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5675,7 +5630,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5690,53 +5645,8 @@
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/js/bootstrap.min.4908xmbfjr.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "59517"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"uAMYHAQlaHq1buKLwrk7FF4qxvcLWntS2/DpdKucfmU=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "4908xmbfjr"
-        },
-        {
-          "Name": "label",
-          "Value": "lib/bootstrap/dist/js/bootstrap.min.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-uAMYHAQlaHq1buKLwrk7FF4qxvcLWntS2/DpdKucfmU="
-        }
-      ]
-    },
-    {
       "Route": "lib/bootstrap/dist/js/bootstrap.min.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5745,7 +5655,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "59517"
+          "Value": "59511"
         },
         {
           "Name": "Content-Type",
@@ -5753,11 +5663,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"uAMYHAQlaHq1buKLwrk7FF4qxvcLWntS2/DpdKucfmU=\""
+          "Value": "\"c4Ll6eSIg6Eothk8pCWAF8aE923EvtU11pqjBy+NjNM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5767,13 +5677,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-uAMYHAQlaHq1buKLwrk7FF4qxvcLWntS2/DpdKucfmU="
+          "Value": "sha256-c4Ll6eSIg6Eothk8pCWAF8aE923EvtU11pqjBy+NjNM="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.min.js.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5794,7 +5704,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5810,7 +5720,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.min.js.u33ctipx7g.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5831,7 +5741,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5854,8 +5764,98 @@
       ]
     },
     {
+      "Route": "lib/bootstrap/dist/js/bootstrap.min.zwph15dxgs.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "59511"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"c4Ll6eSIg6Eothk8pCWAF8aE923EvtU11pqjBy+NjNM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "zwph15dxgs"
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/js/bootstrap.min.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-c4Ll6eSIg6Eothk8pCWAF8aE923EvtU11pqjBy+NjNM="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/js/bootstrap.o4kw7cc6tf.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "148168"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6IStRQerBchYSw6J2GWTOWGOnDRrWXmaG0r6nCwN5s4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "o4kw7cc6tf"
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/js/bootstrap.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-6IStRQerBchYSw6J2GWTOWGOnDRrWXmaG0r6nCwN5s4="
+        }
+      ]
+    },
+    {
       "Route": "lib/bootstrap/LICENSE",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\LICENSE",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5876,7 +5876,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5892,7 +5892,7 @@
     },
     {
       "Route": "lib/bootstrap/LICENSE.81b7ukuj9c",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\bootstrap\\LICENSE",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5913,7 +5913,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5936,8 +5936,8 @@
       ]
     },
     {
-      "Route": "lib/jquery/dist/jquery.7s2n0ol71w.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Route": "lib/jquery/dist/jquery.fwhahm2icz.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5946,7 +5946,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "299461"
+          "Value": "288580"
         },
         {
           "Name": "Content-Type",
@@ -5954,11 +5954,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"KSI/3xxCrCexCupdzQJRP1B6Iqg+2NA+X2u38cQdqq8=\""
+          "Value": "\"H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5968,7 +5968,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "7s2n0ol71w"
+          "Value": "fwhahm2icz"
         },
         {
           "Name": "label",
@@ -5976,13 +5976,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-KSI/3xxCrCexCupdzQJRP1B6Iqg+2NA+X2u38cQdqq8="
+          "Value": "sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
         }
       ]
     },
     {
       "Route": "lib/jquery/dist/jquery.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5991,7 +5991,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "299461"
+          "Value": "288580"
         },
         {
           "Name": "Content-Type",
@@ -5999,11 +5999,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"KSI/3xxCrCexCupdzQJRP1B6Iqg+2NA+X2u38cQdqq8=\""
+          "Value": "\"H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6013,13 +6013,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-KSI/3xxCrCexCupdzQJRP1B6Iqg+2NA+X2u38cQdqq8="
+          "Value": "sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
         }
       ]
     },
     {
       "Route": "lib/jquery/dist/jquery.min.5pze98is44.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6040,7 +6040,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6063,8 +6063,8 @@
       ]
     },
     {
-      "Route": "lib/jquery/dist/jquery.min.ehgnz7f14e.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Route": "lib/jquery/dist/jquery.min.dd6z7egasc.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6073,7 +6073,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "89503"
+          "Value": "89501"
         },
         {
           "Name": "Content-Type",
@@ -6081,11 +6081,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"zp0HUArZHsK1JMJwdk7EyaM+eDINjTdOxADt5Ij2JRs=\""
+          "Value": "\"/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6095,7 +6095,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "ehgnz7f14e"
+          "Value": "dd6z7egasc"
         },
         {
           "Name": "label",
@@ -6103,13 +6103,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-zp0HUArZHsK1JMJwdk7EyaM+eDINjTdOxADt5Ij2JRs="
+          "Value": "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         }
       ]
     },
     {
       "Route": "lib/jquery/dist/jquery.min.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6118,7 +6118,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "89503"
+          "Value": "89501"
         },
         {
           "Name": "Content-Type",
@@ -6126,11 +6126,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"zp0HUArZHsK1JMJwdk7EyaM+eDINjTdOxADt5Ij2JRs=\""
+          "Value": "\"/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6140,13 +6140,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-zp0HUArZHsK1JMJwdk7EyaM+eDINjTdOxADt5Ij2JRs="
+          "Value": "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         }
       ]
     },
     {
       "Route": "lib/jquery/dist/jquery.min.map",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6167,7 +6167,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6183,7 +6183,7 @@
     },
     {
       "Route": "lib/jquery/LICENSE.mlv21k5csn.txt",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6204,7 +6204,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6228,7 +6228,7 @@
     },
     {
       "Route": "lib/jquery/LICENSE.txt",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6249,7 +6249,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6265,7 +6265,7 @@
     },
     {
       "Route": "lib/jquery-validation/dist/additional-methods.ay5nd8zt9x.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6286,7 +6286,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6310,7 +6310,7 @@
     },
     {
       "Route": "lib/jquery-validation/dist/additional-methods.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6331,7 +6331,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6347,7 +6347,7 @@
     },
     {
       "Route": "lib/jquery-validation/dist/additional-methods.min.9oaff4kq20.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6368,7 +6368,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6392,7 +6392,7 @@
     },
     {
       "Route": "lib/jquery-validation/dist/additional-methods.min.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6413,7 +6413,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6428,53 +6428,8 @@
       ]
     },
     {
-      "Route": "lib/jquery-validation/dist/jquery.validate.6d0lkjaslc.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "52831"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"5qqb5VxQ2t2a6Zx/neW5uppLLvaGn4nn0NdYp6g8Lyg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "6d0lkjaslc"
-        },
-        {
-          "Name": "label",
-          "Value": "lib/jquery-validation/dist/jquery.validate.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-5qqb5VxQ2t2a6Zx/neW5uppLLvaGn4nn0NdYp6g8Lyg="
-        }
-      ]
-    },
-    {
       "Route": "lib/jquery-validation/dist/jquery.validate.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6483,7 +6438,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "52831"
+          "Value": "51171"
         },
         {
           "Name": "Content-Type",
@@ -6491,11 +6446,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"5qqb5VxQ2t2a6Zx/neW5uppLLvaGn4nn0NdYp6g8Lyg=\""
+          "Value": "\"m0l81WDPiG7CcG7CDsTuZzvcGvyFmrQY5DLIxx3aRGw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6505,13 +6460,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-5qqb5VxQ2t2a6Zx/neW5uppLLvaGn4nn0NdYp6g8Lyg="
+          "Value": "sha256-m0l81WDPiG7CcG7CDsTuZzvcGvyFmrQY5DLIxx3aRGw="
         }
       ]
     },
     {
-      "Route": "lib/jquery-validation/dist/jquery.validate.min.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Route": "lib/jquery-validation/dist/jquery.validate.min.b7iojwaux1.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6520,7 +6475,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "24604"
+          "Value": "24601"
         },
         {
           "Name": "Content-Type",
@@ -6528,48 +6483,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"6e0N+WJiVKBeTitK1GKSwPi3rbdPpLtuqaiitZjeD2w=\""
+          "Value": "\"JwUksNJ6/R07ZiLRoXbGeNrtlFZMFDKX4hemPiHOmCA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-6e0N+WJiVKBeTitK1GKSwPi3rbdPpLtuqaiitZjeD2w="
-        }
-      ]
-    },
-    {
-      "Route": "lib/jquery-validation/dist/jquery.validate.min.l1zq2mitth.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "24604"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"6e0N+WJiVKBeTitK1GKSwPi3rbdPpLtuqaiitZjeD2w=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6579,7 +6497,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "l1zq2mitth"
+          "Value": "b7iojwaux1"
         },
         {
           "Name": "label",
@@ -6587,13 +6505,95 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-6e0N+WJiVKBeTitK1GKSwPi3rbdPpLtuqaiitZjeD2w="
+          "Value": "sha256-JwUksNJ6/R07ZiLRoXbGeNrtlFZMFDKX4hemPiHOmCA="
+        }
+      ]
+    },
+    {
+      "Route": "lib/jquery-validation/dist/jquery.validate.min.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "24601"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"JwUksNJ6/R07ZiLRoXbGeNrtlFZMFDKX4hemPiHOmCA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-JwUksNJ6/R07ZiLRoXbGeNrtlFZMFDKX4hemPiHOmCA="
+        }
+      ]
+    },
+    {
+      "Route": "lib/jquery-validation/dist/jquery.validate.pzqfkb6aqo.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "51171"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"m0l81WDPiG7CcG7CDsTuZzvcGvyFmrQY5DLIxx3aRGw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "pzqfkb6aqo"
+        },
+        {
+          "Name": "label",
+          "Value": "lib/jquery-validation/dist/jquery.validate.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-m0l81WDPiG7CcG7CDsTuZzvcGvyFmrQY5DLIxx3aRGw="
         }
       ]
     },
     {
       "Route": "lib/jquery-validation/LICENSE.md",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6614,7 +6614,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6630,7 +6630,7 @@
     },
     {
       "Route": "lib/jquery-validation/LICENSE.x0q3zqp4vz.md",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6651,7 +6651,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6674,8 +6674,8 @@
       ]
     },
     {
-      "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.03hjc8e09r.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.47otxtyo56.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6684,7 +6684,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "19820"
+          "Value": "19385"
         },
         {
           "Name": "Content-Type",
@@ -6692,11 +6692,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"xJbBMLGhYbXlPrrrddrSVmduyF6KEtbxEsYxw7hYZV4=\""
+          "Value": "\"wJQaJ0XynBE2fq6CexXXhxKu7fstVmQc7V2MHNTo+WQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6706,7 +6706,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "03hjc8e09r"
+          "Value": "47otxtyo56"
         },
         {
           "Name": "label",
@@ -6714,13 +6714,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-xJbBMLGhYbXlPrrrddrSVmduyF6KEtbxEsYxw7hYZV4="
+          "Value": "sha256-wJQaJ0XynBE2fq6CexXXhxKu7fstVmQc7V2MHNTo+WQ="
         }
       ]
     },
     {
       "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6729,7 +6729,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "19820"
+          "Value": "19385"
         },
         {
           "Name": "Content-Type",
@@ -6737,11 +6737,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"xJbBMLGhYbXlPrrrddrSVmduyF6KEtbxEsYxw7hYZV4=\""
+          "Value": "\"wJQaJ0XynBE2fq6CexXXhxKu7fstVmQc7V2MHNTo+WQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6751,13 +6751,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-xJbBMLGhYbXlPrrrddrSVmduyF6KEtbxEsYxw7hYZV4="
+          "Value": "sha256-wJQaJ0XynBE2fq6CexXXhxKu7fstVmQc7V2MHNTo+WQ="
         }
       ]
     },
     {
-      "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.48y08845bh.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.4v8eqarkd7.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6766,7 +6766,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5831"
+          "Value": "5824"
         },
         {
           "Name": "Content-Type",
@@ -6774,11 +6774,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"RFWFWIIPsjB4DucR4jqwxTWw13ZmtI+s6tVR2LJmZXk=\""
+          "Value": "\"YJa7W8EiQdQpkk93iGEjjnLSUWRpRJbSfzfURh1kxz4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6788,7 +6788,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "48y08845bh"
+          "Value": "4v8eqarkd7"
         },
         {
           "Name": "label",
@@ -6796,13 +6796,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-RFWFWIIPsjB4DucR4jqwxTWw13ZmtI+s6tVR2LJmZXk="
+          "Value": "sha256-YJa7W8EiQdQpkk93iGEjjnLSUWRpRJbSfzfURh1kxz4="
         }
       ]
     },
     {
       "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6811,7 +6811,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5831"
+          "Value": "5824"
         },
         {
           "Name": "Content-Type",
@@ -6819,11 +6819,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"RFWFWIIPsjB4DucR4jqwxTWw13ZmtI+s6tVR2LJmZXk=\""
+          "Value": "\"YJa7W8EiQdQpkk93iGEjjnLSUWRpRJbSfzfURh1kxz4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6833,13 +6833,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-RFWFWIIPsjB4DucR4jqwxTWw13ZmtI+s6tVR2LJmZXk="
+          "Value": "sha256-YJa7W8EiQdQpkk93iGEjjnLSUWRpRJbSfzfURh1kxz4="
         }
       ]
     },
     {
       "Route": "lib/jquery-validation-unobtrusive/LICENSE.356vix0kms.txt",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6860,7 +6860,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6884,7 +6884,7 @@
     },
     {
       "Route": "lib/jquery-validation-unobtrusive/LICENSE.txt",
-      "AssetFile": "D:\\Projet\\projet_forum\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6905,7 +6905,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 10:14:35 GMT"
+          "Value": "Mon, 24 Feb 2025 08:01:37 GMT"
         },
         {
           "Name": "Cache-Control",
