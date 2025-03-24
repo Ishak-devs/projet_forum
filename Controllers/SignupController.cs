@@ -28,51 +28,26 @@ namespace Forum.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost] //Méthode post pour gerer l inscription
         public ActionResult Index(SignupViewModel modele)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) //Si le modele est invalide alors ...
             {
-                ViewBag.MessageError = "Il y a des erreurs dans le formulaire.";
-                return View(modele);
+                ViewBag.MessageError = "Il y a des erreurs dans le formulaire."; //Message d'erreur
+                return View(modele); //Retourner un modele vide
             }
-            //if (modele.Role == "Elève")
-            //    {
-            //        if 
-            //            (!string.IsNullOrEmpty(modele.Nom) &&
-            //             !string.IsNullOrEmpty(modele.Prenom) &&
-            //             !string.IsNullOrEmpty(modele.Email) &&
-            //             !string.IsNullOrEmpty(modele.Password) &&
-            //             !string.IsNullOrEmpty(modele.Role))
-            //        {
-            //            {
-            //                //Récuperer l'élève à ajouter depuis le formulaire
-            //                var newEleve = new Eleve
-            //                {
-            //                    Nom = modele.Nom,
-            //                    Prenom = modele.Prenom,
-            //                    Email = modele.Email,
-            //                    Password = passwordHasher.HashPassword(null, modele.Password) //on hash le mot de passe
-            //                };
-            //                contextget.Add(newEleve);
-            //                contextget.SaveChanges();
-            //                ViewBag.Messagesuccess = "Inscription de l'élève réussie !";
-            //                ModelState.Clear();
-            //                return View(new SignupViewModel());
 
-            //            }
-            //        }
-            if (modele.Role == "Elève")
+            if (modele.Role == "Elève") 
             {
-                var newEleve = new Eleve
+                var newEleve = new Eleve //Nouvelle eleve a ajouté
                 {
                     Nom = modele.Nom,
                     Prenom = modele.Prenom,
                     Email = modele.Email,
-                    Password = passwordHasher.HashPassword(null, modele.Password)
+                    Password = passwordHasher.HashPassword(null, modele.Password) //On hash le mdp
                 };
-                contextget.Add(newEleve);
-                contextget.SaveChanges();
+                contextget.Add(newEleve); //Ajout a la db
+                contextget.SaveChanges(); //Update database
                 ViewBag.Messagesuccess = "Inscription de l'élève réussie !";
             }
 
@@ -91,11 +66,11 @@ namespace Forum.Controllers
                 contextget.SaveChanges();
                 ViewBag.Messagesuccess = "Inscription du professeur réussie !";
             }
-            else
-            {
-                ViewBag.MessageError = "Rôle invalide.";
-                return View(modele);
-            }
+            //else
+            //{
+            //    ViewBag.MessageError = "Rôle invalide.";
+            //    return View(modele);
+            //}
 
             ModelState.Clear();
             return View(new SignupViewModel());

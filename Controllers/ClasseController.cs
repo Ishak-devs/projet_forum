@@ -21,6 +21,12 @@ namespace Forum.Controllers
         [HttpGet]
         public IActionResult Creeclasse()
         {
+            var profId = HttpContext.Session.GetString("Prof_id");
+            if (string.IsNullOrEmpty(profId))
+            {
+                return RedirectToAction("Index", "Authentification"); 
+            }
+
             var Eleves = contextget.Eleves
             .Select(e => new SelectListItem
             {
@@ -44,6 +50,11 @@ namespace Forum.Controllers
         [HttpPost]
         public ActionResult Creeclasse(ClasseViewModel classeview, string ajout_eleve)
         {
+            var profId = HttpContext.Session.GetString("Prof_id");
+            if (string.IsNullOrEmpty(profId))
+            {
+                return RedirectToAction("Index", "Authentification"); 
+            }
             var Eleves = contextget.Eleves
            .Select(e => new SelectListItem
            {
@@ -53,9 +64,6 @@ namespace Forum.Controllers
            })
 
            .ToList();
-
-            //Récupération de l'id du professeur connecté souhaitant crée une classe
-            var profId = HttpContext.Session.GetString("Prof_id");
 
             if (ajout_eleve == "ajouter" && classeview.id_eleve.HasValue) //On vérifie si un élève à été séléctionné.
             {
@@ -74,18 +82,16 @@ namespace Forum.Controllers
                 }
                 classeview.Eleves = new SelectList(Eleves, "Value", "Text");
 
-
-
                 foreach (var eleveId in classeview.Eleveschoisis)
                 {
                     var newDetailsClasse = new Details_classe
                     {
                         //Id_classe = Details_classe.Id, 
-                        id_eleve = eleveId,        
-                        id_professeur = int.Parse(profId) 
+                        id_eleve = eleveId,
+                        id_professeur = int.Parse(profId)
                     };
 
-                    contextget.Details_classe.Add(newDetailsClasse); 
+                    contextget.Details_classe.Add(newDetailsClasse);
                 }
 
                 //contextget.SaveChanges();
@@ -96,5 +102,4 @@ namespace Forum.Controllers
             return View(classeview);
         }
     }
-    }
-
+}

@@ -1,5 +1,10 @@
 ﻿@model Forum.Models.ClasseViewModel
 @{
+    if (ViewBag.ProfId != null)
+    {
+        <p style="color: green">@ViewBag.ProfId</p>
+
+    }
     <form method="post">
 
         <label asp-for="Classe">Classe :</label>
