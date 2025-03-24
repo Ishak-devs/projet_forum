@@ -85,10 +85,12 @@ namespace Forum.Controllers
             }
             if (action == "creer" && !string.IsNullOrEmpty(classeview.Classe))
             {
+
                 if (contextget.Classes.Any(c => c.classe == classeview.Classe))
                 {
                     ModelState.AddModelError("Classe", "Une classe avec ce nom existe déjà");
                 }
+
                 else
                 {
                     var nouvelleClasse = new Classe
