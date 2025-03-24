@@ -64,42 +64,43 @@ namespace Forum.Controllers
            })
 
            .ToList();
+            if (classeview.Eleveschoisis == null)
+            {
+                classeview.Eleveschoisis = new List<int>();
+            }
 
             if (ajout_eleve == "ajouter" && classeview.id_eleve.HasValue) //On vérifie si un élève à été séléctionné.
             {
-                if (classeview.Eleveschoisis == null) //Vérification de l'état de Eleve choisis avant de créer une liste.
+                if (!classeview.Eleveschoisis.Contains(classeview.id_eleve.Value))
                 {
-                    classeview.Eleveschoisis = new List<int>(); //Création d'une liste d'élève ajouté au groupe de classe dans le modele.
+                    classeview.Eleveschoisis.Add(classeview.id_eleve.Value);
                     ViewBag.Message_eleve = "Elève ajouté !";
-
-
-                    if (!classeview.Eleveschoisis.Contains(classeview.id_eleve.Value)) //Vérification de l'existence de l'id dans la liste afin d'éviter les doublons.
-                    {
-                        classeview.Eleveschoisis.Add(classeview.id_eleve.Value); //Ajouter un élève à Eleveschoisis grace à la méthode add.
-
-                    }
-
                 }
+                else
+                {
+                    ViewBag.Message_eleve = "Cet élève est déjà dans la liste !";
+                }
+
+            }
                 classeview.Eleves = new SelectList(Eleves, "Value", "Text");
 
-                foreach (var eleveId in classeview.Eleveschoisis)
-                {
-                    var newDetailsClasse = new Details_classe
-                    {
-                        //Id_classe = Details_classe.Id, 
-                        id_eleve = eleveId,
-                        id_professeur = int.Parse(profId)
-                    };
+                //foreach (var eleveId in classeview.Eleveschoisis)
+                //{
+                //    var newDetailsClasse = new Details_classe
+                //    {
+                //        //Id_classe = Details_classe.Id, 
+                //        id_eleve = eleveId,
+                //        id_professeur = int.Parse(profId)
+                //    };
 
-                    contextget.Details_classe.Add(newDetailsClasse);
-                }
+                //    contextget.Details_classe.Add(newDetailsClasse);
+                //}
 
                 //contextget.SaveChanges();
 
                 return View(classeview);
 
             }
-            return View(classeview);
+            //return View(classeview);
         }
     }
-}
