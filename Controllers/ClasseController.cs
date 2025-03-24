@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Forum.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace Forum.Controllers
 {
@@ -48,7 +49,7 @@ namespace Forum.Controllers
         }
 
         [HttpPost]
-        public ActionResult Creeclasse(ClasseViewModel classeview, string ajout_eleve)
+        public ActionResult Creeclasse(ClasseViewModel classeview, string ajout_eleve, string action)
         {
             var profId = HttpContext.Session.GetString("Prof_id");
             if (string.IsNullOrEmpty(profId))
@@ -82,25 +83,42 @@ namespace Forum.Controllers
                 }
 
             }
-                classeview.Eleves = new SelectList(Eleves, "Value", "Text");
+            if (action == "creer" && !string.IsNullOrEmpty(classeview.Classe))
+            {
+                if (contextget.Classes.Any(c => c.classe == classeview.Classe))
+                {
+                    ModelState.AddModelError("Classe", "Une classe avec ce nom existe déjà");
+                }
+                else
+                {
+                    var nouvelleClasse = new Classe
+                    {
+                        classe = classeview.Classe
+                    };
 
-                //foreach (var eleveId in classeview.Eleveschoisis)
-                //{
-                //    var newDetailsClasse = new Details_classe
-                //    {
-                //        //Id_classe = Details_classe.Id, 
-                //        id_eleve = eleveId,
-                //        id_professeur = int.Parse(profId)
-                //    };
+                    contextget.Classes.Add(nouvelleClasse);
+                    contextget.SaveChanges();
 
-                //    contextget.Details_classe.Add(newDetailsClasse);
-                //}
+                    foreach (var eleveId in classeview.Eleveschoisis.Distinct())
+                    {
+                        var detailClasse = new Details_classe
+                        {
+                            Id_classe = nouvelleClasse.Id,
+                            id_professeur = int.Parse(profId),
+                            id_eleve = eleveId
+                        };
 
-                //contextget.SaveChanges();
+                        contextget.Details_classe.Add(detailClasse);
+                    }
+
+                    contextget.SaveChanges();
+                    TempData["SuccessMessage"] = "Classe créée avec succès !";
+                }
+            }
+            classeview.Eleves = new SelectList(Eleves, "Value", "Text");
 
                 return View(classeview);
 
             }
-            //return View(classeview);
         }
     }
