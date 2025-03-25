@@ -56,7 +56,13 @@ namespace Forum.Controllers
             {
                 return RedirectToAction("Index", "Authentification"); 
             }
+                 if (classeview.Eleveschoisis == null)
+            {
+                classeview.Eleveschoisis = new List<int>();
+            }
+
             var Eleves = contextget.Eleves
+
            .Select(e => new SelectListItem
            {
                Value = e.Id.ToString(),
@@ -117,6 +123,7 @@ namespace Forum.Controllers
                     TempData["SuccessMessage"] = "Classe créée avec succès !";
                 }
             }
+            TempData["Eleveschoisis"] = classeview.Eleveschoisis;
             classeview.Eleves = new SelectList(Eleves, "Value", "Text");
 
                 return View(classeview);
