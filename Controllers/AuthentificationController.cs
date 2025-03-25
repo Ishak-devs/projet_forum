@@ -60,10 +60,6 @@ namespace Forum.Controllers
                     }
                 }
 
-
-
-
-
                 if (modele.Role == "Professeur")
                 {
                     var Professeur = await contextget.Professeurs
