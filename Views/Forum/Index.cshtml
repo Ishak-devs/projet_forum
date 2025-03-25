@@ -1,17 +1,63 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-<head>
-    <link href="~/css/forum.css" />
-</head>
+﻿
+@*     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860 *@
+
+@* <head> *@
+@*     <link href="~/css/forum.css" /> *@
+@* </head> *@
+
+@* @{ *@
+@*     <h1>Forum</h1> *@
+@*     <div class="button-container"> *@
+@*         <button class="button_discussion">Démarrer une discussion</button> *@
+@*         <button class="button_noter_devoir">Noter un devoir</button> *@
+@*         <button class="button_ajout_devoir">Ajouter un devoir</button> *@
+@*         <button class="button_ajout_eleve">Ajouter un élève à la classe</button> *@
+@*         <button class="button_supprimer_eleve">Supprimer un élève de la classe</button> *@
+@*     </div> *@
+@* } *@
 
 @{
-    <h1>Forum</h1>
-    <div class="button-container">
-        <button class="button_discussion">Démarrer une discussion</button>
-        <button class="button_noter_devoir">Noter un devoir</button>
-        <button class="button_ajout_devoir">Ajouter un devoir</button>
-        <button class="button_ajout_eleve">Ajouter un élève à la classe</button>
-        <button class="button_supprimer_eleve">Supprimer un élève de la classe</button>
+}
+
+
+@{
+    ViewData["Title"] = "Forum de discussion";
+}
+
+<div class="chathub_content">
+    <h2>Forum de discussion</h2>
+    <div>
+        <input type="text" id="messageInput" placeholder="Votre message" />
+        <button id="sendButton">Envoyer</button>
     </div>
+    <ul id="messagesList"></ul>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script>
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/chatHub")
+            .build();
+
+        connection.start().catch(err => console.error(err));
+
+        // Envoyer un message
+        document.getElementById("sendButton").addEventListener("click", () => {
+            const message = document.getElementById("messageInput").value;
+            if (message) {
+                connection.invoke("SendMessage", message)
+                    .then(() => document.getElementById("messageInput").value = "")
+                    .catch(err => console.error(err));
+            }
+        });
+
+        // Recevoir un message
+        connection.on("ReceiveMessage", (user, message) => {
+            const li = document.createElement("li");
+            li.textContent = `${user}: ${message}`;
+            document.getElementById("messagesList").appendChild(li);
+        });
+    </script>
+}
 }

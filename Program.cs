@@ -18,6 +18,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSignalR();
 builder.Services.AddSingleton<PasswordHasher<Eleve>>();
 builder.Services.AddSingleton<PasswordHasher<Professeur>>();
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
 
 builder.Services.AddSession(options =>
 {
@@ -42,6 +44,7 @@ app.UseSession();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 

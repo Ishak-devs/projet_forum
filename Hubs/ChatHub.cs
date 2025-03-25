@@ -8,11 +8,5 @@ namespace Forum.Hubs
         {
             await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
-
-        public async Task JoinGroup(string groupName, string user)
-        {
-            await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
-            await Clients.Group(groupName).SendAsync("Notify", $"{user} a rejoint le groupe.");
-        }
     }
 }
