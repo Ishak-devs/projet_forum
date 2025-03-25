@@ -23,7 +23,7 @@ namespace Forum.Controllers
         }
 
         [HttpGet]
-        public IActionResult Authentification()
+        public IActionResult Index()
         {
 
             return View();
@@ -31,7 +31,7 @@ namespace Forum.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Authentification(LoginViewModel modele)
+        public async Task<IActionResult> Index(LoginViewModel modele)
         {
             if (ModelState.IsValid)
             {

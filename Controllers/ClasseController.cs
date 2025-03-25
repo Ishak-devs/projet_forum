@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Forum.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace Forum.Controllers
 {
@@ -21,6 +22,12 @@ namespace Forum.Controllers
         [HttpGet]
         public IActionResult Creeclasse()
         {
+            var profId = HttpContext.Session.GetString("Prof_id");
+            if (string.IsNullOrEmpty(profId))
+            {
+                return RedirectToAction("Index", "Authentification"); 
+            }
+
             var Eleves = contextget.Eleves
             .Select(e => new SelectListItem
             {
@@ -42,9 +49,20 @@ namespace Forum.Controllers
         }
 
         [HttpPost]
-        public ActionResult Creeclasse(ClasseViewModel classeview, string ajout_eleve)
+        public ActionResult Creeclasse(ClasseViewModel classeview, string ajout_eleve, string action)
         {
+            var profId = HttpContext.Session.GetString("Prof_id");
+            if (string.IsNullOrEmpty(profId))
+            {
+                return RedirectToAction("Index", "Authentification"); 
+            }
+                 if (classeview.Eleveschoisis == null)
+            {
+                classeview.Eleveschoisis = new List<int>();
+            }
+
             var Eleves = contextget.Eleves
+
            .Select(e => new SelectListItem
            {
                Value = e.Id.ToString(),
@@ -53,48 +71,63 @@ namespace Forum.Controllers
            })
 
            .ToList();
-
-            //Récupération de l'id du professeur connecté souhaitant crée une classe
-            var profId = HttpContext.Session.GetString("Prof_id");
+            if (classeview.Eleveschoisis == null)
+            {
+                classeview.Eleveschoisis = new List<int>();
+            }
 
             if (ajout_eleve == "ajouter" && classeview.id_eleve.HasValue) //On vérifie si un élève à été séléctionné.
             {
-                if (classeview.Eleveschoisis == null) //Vérification de l'état de Eleve choisis avant de créer une liste.
+                if (!classeview.Eleveschoisis.Contains(classeview.id_eleve.Value))
                 {
-                    classeview.Eleveschoisis = new List<int>(); //Création d'une liste d'élève ajouté au groupe de classe dans le modele.
+                    classeview.Eleveschoisis.Add(classeview.id_eleve.Value);
                     ViewBag.Message_eleve = "Elève ajouté !";
-
-
-                    if (!classeview.Eleveschoisis.Contains(classeview.id_eleve.Value)) //Vérification de l'existence de l'id dans la liste afin d'éviter les doublons.
-                    {
-                        classeview.Eleveschoisis.Add(classeview.id_eleve.Value); //Ajouter un élève à Eleveschoisis grace à la méthode add.
-
-                    }
-
                 }
-                classeview.Eleves = new SelectList(Eleves, "Value", "Text");
-
-
-
-                foreach (var eleveId in classeview.Eleveschoisis)
+                else
                 {
-                    var newDetailsClasse = new Details_classe
+                    ViewBag.Message_eleve = "Cet élève est déjà dans la liste !";
+                }
+
+            }
+            if (action == "creer" && !string.IsNullOrEmpty(classeview.Classe))
+            {
+
+                if (contextget.Classes.Any(c => c.classe == classeview.Classe))
+                {
+                    ModelState.AddModelError("Classe", "Une classe avec ce nom existe déjà");
+                }
+
+                else
+                {
+                    var nouvelleClasse = new Classe
                     {
-                        //Id_classe = Details_classe.Id, 
-                        id_eleve = eleveId,        
-                        id_professeur = int.Parse(profId) 
+                        classe = classeview.Classe
                     };
 
-                    contextget.Details_classe.Add(newDetailsClasse); 
-                }
+                    contextget.Classes.Add(nouvelleClasse);
+                    contextget.SaveChanges();
 
-                contextget.SaveChanges();
+                    foreach (var eleveId in classeview.Eleveschoisis.Distinct())
+                    {
+                        var detailClasse = new Details_classe
+                        {
+                            Id_classe = nouvelleClasse.Id,
+                            id_professeur = int.Parse(profId),
+                            id_eleve = eleveId
+                        };
+
+                        contextget.Details_classe.Add(detailClasse);
+                    }
+
+                    contextget.SaveChanges();
+                    TempData["SuccessMessage"] = "Classe créée avec succès !";
+                }
+            }
+            TempData["Eleveschoisis"] = classeview.Eleveschoisis;
+            classeview.Eleves = new SelectList(Eleves, "Value", "Text");
 
                 return View(classeview);
 
             }
-            return View(classeview);
         }
     }
-    }
-

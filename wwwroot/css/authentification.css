@@ -1,51 +1,51 @@
 ﻿/* Style général du body pour la page de connexion */
-.body_login {
+/*.body_login {
     font-family: 'Arial', sans-serif;
-    background-color: #f8f8f8; /* Fond gris clair */
-    margin: 0;
-    height: 100%; /* Permet de prendre toute la hauteur de la page */
-    display: flex;
-    justify-content: center; /* Centrer horizontalement */
-    align-items: center; /* Centrer verticalement */
-}
+    background-color: #f8f8f8;*/ /* Fond gris clair */
+    /*margin: 0;
+    height: 100%;*/ /* Permet de prendre toute la hauteur de la page */
+    /*display: flex;
+    justify-content: center;*/ /* Centrer horizontalement */
+    /*align-items: center;*/ /* Centrer verticalement */
+/*}*/
 
 /* Style du conteneur du formulaire */
-.div_login {
+/*.div_login {
     display: flex;
-    justify-content: center; /* Centrer horizontalement */
-    align-items: center; /* Centrer verticalement */
-    width: 100%;
-    max-width: 450px; /* Limite la largeur pour une meilleure lisibilité */
-}
+    justify-content: center;*/ /* Centrer horizontalement */
+    /*align-items: center;*/ /* Centrer verticalement */
+    /*width: 100%;
+    max-width: 450px;*/ /* Limite la largeur pour une meilleure lisibilité */
+/*}*/
 
 /* Style général du formulaire */
-.form_login {
-    background-color: #fff; /* Fond blanc pour le formulaire */
-    padding: 20px;
-    border-radius: 8px; /* Coins arrondis */
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Ombre légère pour l'effet de profondeur */
-    width: 100%;
-    box-sizing: border-box; /* Assure que le padding et les bordures ne sortent pas de la largeur définie */
-}
+/*.form_login {
+    background-color: #fff;*/ /* Fond blanc pour le formulaire */
+    /*padding: 20px;
+    border-radius: 8px;*/ /* Coins arrondis */
+    /*box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);*/ /* Ombre légère pour l'effet de profondeur */
+    /*width: 100%;
+    box-sizing: border-box;*/ /* Assure que le padding et les bordures ne sortent pas de la largeur définie */
+/*}*/
 
 /* Style du titre du formulaire */
-.h1_login {
+/*.h1_login {
     text-align: center;
     color: #333;
     font-size: 20px;
     margin-bottom: 15px;
-}
+}*/
 
 /* Style des labels */
-.label_login, .label_mdp_login {
+/*.label_login, .label_mdp_login {
     display: block;
     font-size: 14px;
     color: #555;
     margin-bottom: 5px;
-}
+}*/
 
 /* Style des champs de saisie (inputs) */
-.input_login, .input_mdp_login {
+/*.input_login, .input_mdp_login {
     width: 100%;
     padding: 8px;
     margin-bottom: 15px;
@@ -54,42 +54,42 @@
     font-size: 14px;
     color: #333;
     box-sizing: border-box;
-}
+}*/
 
 /* Style des messages de validation */
-.span_email, .span_mdp_login, .span_role_login {
+/*.span_email, .span_mdp_login, .span_role_login {
     font-size: 12px;
-    color: #d9534f; /* Rouge léger pour les messages d'erreur */
-}
+    color: #d9534f;*/ /* Rouge léger pour les messages d'erreur */
+/*}*/
 
 /* Style des boutons radio */
-.input_radio_login, .input_radio_prof_login {
-    margin-right: 8px; /* Espacement entre les boutons radio */
-}
+/*.input_radio_login, .input_radio_prof_login {
+    margin-right: 8px;*/ /* Espacement entre les boutons radio */
+/*}*/
 
 /* Style du bouton de connexion */
-.button_login {
+/*.button_login {
     width: 100%;
     padding: 10px;
-    background-color: #5bc0de; /* Bleu clair */
-    color: #fff;
+    background-color: #5bc0de;*/ /* Bleu clair */
+    /*color: #fff;
     border: none;
     border-radius: 5px;
     font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
+}*/
 
     /* Effet au survol du bouton */
-    .button_login:hover {
-        background-color: #31b0d5; /* Bleu plus foncé au survol */
-    }
+    /*.button_login:hover {
+        background-color: #31b0d5;*/ /* Bleu plus foncé au survol */
+    /*}*/
 
 /* Adaptation aux écrans plus petits */
-@media (max-width: 600px) {
+/*@media (max-width: 600px) {
     .form_login {
-        width: 90%; /* Plus large sur les petits écrans */
-    }
+        width: 90%;*/ /* Plus large sur les petits écrans */
+    /*}
 
     .h1_login {
         font-size: 18px;
@@ -98,4 +98,4 @@
     .input_login, .input_mdp_login, .button_login {
         font-size: 13px;
     }
-}
+}*/

@@ -1,5 +1,10 @@
 ﻿@model Forum.Models.ClasseViewModel
 @{
+    if (ViewBag.ProfId != null)
+    {
+        <p style="color: green">@ViewBag.ProfId</p>
+
+    }
     <form method="post">
 
         <label asp-for="Classe">Classe :</label>
@@ -10,18 +15,32 @@
             <option value="">Sélectionnez des élèves</option>
         </select>
 
-        <input type="hidden" asp-for="Eleveschoisis" value="@string.Join(",", Model.Eleveschoisis)" />
+        @if (Model.Eleveschoisis != null)
+        {
+            @for (int i = 0; i < Model.Eleveschoisis.Count; i++)
+            {
+                <input type="hidden" name="Eleveschoisis[@i]" value="@Model.Eleveschoisis[i]" />
+            }
+        }
+
         <button type="submit" name="ajout_eleve" value="ajouter">Ajouter</button>
 
-        <button type="submit" name="" value="">Crée une classe</button>
+        <button type="submit" name="action" value="creer">Créer la classe</button>
     </form>
     <br />
     <br />
 
 
-    @foreach (var eleve in Model.Eleveschoisis)
+    @if (Model.Eleveschoisis != null)
     {
-        <li>@eleve</li>
+        foreach (var eleveId in Model.Eleveschoisis.Distinct()) //Distinct pour etre sur de ne pâs avoir de doublon
+        {
+            var eleve = Model.Eleves?.FirstOrDefault(e => e.Value == eleveId.ToString())?.Text;
+            <li>
+                @eleve
+                <button type="submit" name="supprimerEleve" value="@eleveId">Supprimer cet élève</button>
+            </li>
+        }
     }
 
 }
