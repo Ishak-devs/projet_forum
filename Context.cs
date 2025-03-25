@@ -9,6 +9,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<Professeur> Professeurs { get; set; }
     public DbSet<Classe> Classes { get; set; }
     public DbSet<Details_classe> Details_classe { get; set; }
+    
+    public DbSet<ChatMessage> ChatMessages { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
