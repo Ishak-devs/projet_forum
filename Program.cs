@@ -20,6 +20,7 @@ builder.Services.AddSingleton<PasswordHasher<Eleve>>();
 builder.Services.AddSingleton<PasswordHasher<Professeur>>();
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 builder.Services.AddSession(options =>
 {
