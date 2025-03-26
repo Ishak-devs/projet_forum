@@ -1,62 +1,87 @@
-﻿
-@*     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860 *@
-
-@* <head> *@
-@*     <link href="~/css/forum.css" /> *@
-@* </head> *@
-
-@* @{ *@
-@*     <h1>Forum</h1> *@
-@*     <div class="button-container"> *@
-@*         <button class="button_discussion">Démarrer une discussion</button> *@
-@*         <button class="button_noter_devoir">Noter un devoir</button> *@
-@*         <button class="button_ajout_devoir">Ajouter un devoir</button> *@
-@*         <button class="button_ajout_eleve">Ajouter un élève à la classe</button> *@
-@*         <button class="button_supprimer_eleve">Supprimer un élève de la classe</button> *@
-@*     </div> *@
-@* } *@
-
-@{
-}
-
-
-@{
+﻿@{
     ViewData["Title"] = "Forum de discussion";
+    int classId = ViewBag.ClassId; // Récupération dynamique depuis le controller
 }
 
 <div class="chathub_content">
+    <input type="hidden" id="classId" value="@classId" /> <!-- Champ caché pour l'ID de classe -->
+
     <h2>Forum de discussion</h2>
-    <div>
-        <input type="text" id="messageInput" placeholder="Votre message" />
-        <button id="sendButton">Envoyer</button>
+    <div class="message-input-container">
+        <input type="text" id="messageInput" placeholder="Votre message" class="message-input" />
+        <button id="sendButton" class="send-button">Envoyer</button>
     </div>
-    <ul id="messagesList"></ul>
+    <ul id="messagesList" class="messages-list"></ul>
 </div>
 
 @section Scripts {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
     <script>
+        // Initialisation de la connexion
         const connection = new signalR.HubConnectionBuilder()
             .withUrl("/chatHub")
+            .configureLogging(signalR.LogLevel.Warning)
             .build();
 
-        connection.start().catch(err => console.error(err));
-
-        // Envoyer un message
-        document.getElementById("sendButton").addEventListener("click", () => {
-            const message = document.getElementById("messageInput").value;
-            if (message) {
-                connection.invoke("SendMessage", message)
-                    .then(() => document.getElementById("messageInput").value = "")
-                    .catch(err => console.error(err));
-            }
-        });
-
-        // Recevoir un message
+        // Réception des messages
         connection.on("ReceiveMessage", (user, message) => {
             const li = document.createElement("li");
-            li.textContent = `${user}: ${message}`;
+            li.innerHTML = `<strong>${user}:</strong> ${message}`;
             document.getElementById("messagesList").appendChild(li);
+            scrollToBottom();
         });
+
+        // Fonction pour faire défiler vers le bas
+        function scrollToBottom() {
+            const messagesList = document.getElementById("messagesList");
+            messagesList.scrollTop = messagesList.scrollHeight;
+        }
+
+        // Gestion des erreurs
+        connection.onclose(async () => {
+            await startConnection();
+        });
+
+        // Démarrer la connexion
+        async function startConnection() {
+            try {
+                await connection.start();
+                console.log("Connected to SignalR hub");
+
+                const classId = parseInt(document.getElementById("classId").value);
+                if (classId) {
+                    await connection.invoke("LoadMessages", classId);
+                }
+            } catch (err) {
+                console.error("Connection error:", err);
+                setTimeout(startConnection, 5000);
+            }
+        }
+
+        // Envoi de message
+        async function sendMessage() {
+            const messageInput = document.getElementById("messageInput");
+            const message = messageInput.value.trim();
+            const classId = parseInt(document.getElementById("classId").value);
+
+            if (message && classId) {
+                try {
+                    await connection.invoke("SendMessage", message, classId);
+                    messageInput.value = "";
+                    messageInput.focus();
+                } catch (err) {
+                    console.error("Error sending message:", err);
+                }
+            }
+        }
+
+        // Événements
+        document.getElementById("sendButton").addEventListener("click", sendMessage);
+        document.getElementById("messageInput").addEventListener("keypress", (e) => {
+            if (e.key === "Enter") sendMessage();
+        });
+
+        // Démarrer
+        startConnection();
     </script>
 }

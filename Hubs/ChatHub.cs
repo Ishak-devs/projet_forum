@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.SignalR;
-using Microsoft.AspNetCore.Http;
 using Forum.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,29 +11,64 @@ namespace Forum.Hubs
 
         public ChatHub(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
         {
-            contextget = context;
-            _httpContextAccessor = httpContextAccessor; 
+            contextget = context; //Recuperation du context
+            _httpContextAccessor = httpContextAccessor; //Récuperation de httpcontext
         }
 
-        public async Task SendMessage(string message)
+        public async Task SendMessage(string message, int classId) //Creation objet pour l'envoi des messages
         {
-            var httpContext = Context.GetHttpContext(); // Récupère le HttpContext
-            var eleveId = httpContext.Session.GetString("Eleve_id");
-            var profId = httpContext.Session.GetString("Prof_id");
+            var httpContext = Context.GetHttpContext(); // Stockage de httpcontext 
+            var eleveId = httpContext.Session.GetString("Eleve_id"); //Stockage de l'id eleve
+            var profId = httpContext.Session.GetString("Prof_id"); //Stockage de prof id
 
-            string nomUtilisateur = "Anonyme";
-            if (!string.IsNullOrEmpty(eleveId))
+            string nomUtilisateur = "Anonyme"; //Définition pour réutilisation
+            int senderId = 0;//Définition pour réutilisation
+
+
+
+            if (!string.IsNullOrEmpty(eleveId)) //Si id eleve connu
             {
-                var eleve = await contextget.Eleves.FindAsync(int.Parse(eleveId));
-                nomUtilisateur = eleve?.Nom ?? "Élève inconnu";
+                var eleve = await contextget.Eleves.FindAsync(int.Parse(eleveId)); //recuperation des info de l'eleve
+                nomUtilisateur = eleve?.Nom ?? "Élève inconnu"; //Si un nom est connu on l'affiche sinon inconnu
+                senderId = int.Parse(eleveId); //SenderId ici deviens eleveId
             }
             else if (!string.IsNullOrEmpty(profId))
             {
                 var professeur = await contextget.Professeurs.FindAsync(int.Parse(profId));
                 nomUtilisateur = professeur?.Nom ?? "Professeur inconnu";
+                senderId = int.Parse(profId);
             }
 
-            await Clients.All.SendAsync("ReceiveMessage", nomUtilisateur, message);
+            var chatMessage = new ChatMessage //Ajout dans la table de chat
+            {
+                Id_details_classe = classId,
+                SenderId = senderId,
+                Content = message,
+                Timestamp = DateTime.UtcNow
+            };
+
+            contextget.ChatMessages.Add(chatMessage); //Methode add pour ajouter
+            await contextget.SaveChangesAsync(); //Sauvegarde dans la base de données
+
+            await Clients.All.SendAsync("ReceiveMessage", nomUtilisateur, message); //Affichage des messages
+        }
+            public async Task LoadMessages(int classId) //chargement des messages
+        {
+            var messages = await contextget.ChatMessages
+                .Where(m => m.Id_details_classe == classId) //Where id de details classe correspond a l'id de la classe
+                .OrderBy(m => m.Timestamp) //Affichage des messages par dates recente
+                .Select(m => new {
+                    SenderName = contextget.Eleves.Any(e => e.Id == m.SenderId)
+                        ? contextget.Eleves.FirstOrDefault(e => e.Id == m.SenderId).Nom
+                        : contextget.Professeurs.FirstOrDefault(p => p.Id == m.SenderId).Nom,
+                    m.Content
+                })
+                .ToListAsync(); //Afficher sous forme de liste
+
+            foreach (var msg in messages) //Boucle pour les messages
+            {
+                await Clients.Caller.SendAsync("ReceiveMessage", msg.SenderName, msg.Content); //Affichage des messages
+            }
         }
     }
 }
