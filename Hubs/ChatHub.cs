@@ -25,17 +25,16 @@ namespace Forum.Hubs
             int senderId = 0;//Définition pour réutilisation
 
 
-
             if (!string.IsNullOrEmpty(eleveId)) //Si id eleve connu
             {
                 var eleve = await contextget.Eleves.FindAsync(int.Parse(eleveId)); //recuperation des info de l'eleve
-                nomUtilisateur = eleve?.Nom ?? "Élève inconnu"; //Si un nom est connu on l'affiche sinon inconnu
+                nomUtilisateur = eleve?.Prenom ?? "Élève inconnu"; //Si un nom est connu on l'affiche sinon inconnu
                 senderId = int.Parse(eleveId); //SenderId ici deviens eleveId
             }
             else if (!string.IsNullOrEmpty(profId))
             {
                 var professeur = await contextget.Professeurs.FindAsync(int.Parse(profId));
-                nomUtilisateur = professeur?.Nom ?? "Professeur inconnu";
+                nomUtilisateur = professeur?.Prenom ?? "Professeur inconnu";
                 senderId = int.Parse(profId);
             }
 
@@ -59,8 +58,8 @@ namespace Forum.Hubs
                 .OrderBy(m => m.Timestamp) //Affichage des messages par dates recente
                 .Select(m => new {
                     SenderName = contextget.Eleves.Any(e => e.Id == m.SenderId)
-                        ? contextget.Eleves.FirstOrDefault(e => e.Id == m.SenderId).Nom
-                        : contextget.Professeurs.FirstOrDefault(p => p.Id == m.SenderId).Nom,
+                        ? contextget.Eleves.FirstOrDefault(e => e.Id == m.SenderId).Prenom
+                        : contextget.Professeurs.FirstOrDefault(p => p.Id == m.SenderId).Prenom,
                     m.Content
                 })
                 .ToListAsync(); //Afficher sous forme de liste
