@@ -1,76 +1,41 @@
-﻿/* header.css */
-
-/*body.body_layout {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
+﻿/* ~/css/header.css */
+/*.headerforum {
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.headerforum {
-    background-color: #ffffff;
-    border-bottom: 1px solid #ddd;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.navbar {
-    padding: 0.5rem 1rem;
-}
-
-.navbar-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333;
-}
-
-.navbar-nav .nav-link {
-    font-size: 1rem;
-    color: #555;
-    padding: 0.5rem 1rem;
-}
-
-    .navbar-nav .nav-link:hover {
-        color: #007bff;
-        text-decoration: none;
+    .headerforum .container-fluid {
+        display: flex;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        height: 60px;
     }
 
-.navbar-toggler-icon {
-    color: #333;
-}
-
-.button_header {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
-
-    .button_header:hover {
-        background-color: #0056b3;
+    .headerforum .navbar-brand {
+        font-weight: 600;
+        color: #2c3e50;
+        font-size: 1.2rem;
+        margin-right: 40px;
     }
 
-.form-control {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 0.5rem;
-    font-size: 0.9rem;
-}*/
-
-/* Responsive adjustments */
-/*@media (max-width: 768px) {
-    .navbar-brand {
-        font-size: 1.25rem;
+    .headerforum .navbar-nav {
+        display: flex;
+        gap: 15px;
     }
 
-    .navbar-nav .nav-link {
-        font-size: 0.9rem;
+    .headerforum .nav-link {
+        color: #4a5568 !important;
+        font-size: 0.95rem;
+        padding: 8px 12px;
     }
 
-    .button_header {
-        font-size: 0.8rem;
-        padding: 0.4rem 0.8rem;
+    .headerforum .d-flex {
+        margin-left: auto;
     }
-}*/
+
+    .headerforum .navbar-toggler {
+        display: none;*/ /* Désactive le bouton hamburger */
+    /*}*/
