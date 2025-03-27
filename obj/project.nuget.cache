@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rioQjzGSxbY=",
+  "dgSpecHash": "DjrK24/ayz4=",
   "success": true,
-  "projectFilePath": "C:\\ishak\\Forum\\forum\\Forum.csproj",
+  "projectFilePath": "C:\\ishak\\Forum\\Forum\\Forum.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\i.kouici\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\i.kouici\\.nuget\\packages\\entityframework\\6.5.1\\entityframework.6.5.1.nupkg.sha512",

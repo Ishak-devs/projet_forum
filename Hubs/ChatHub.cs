@@ -66,7 +66,7 @@ namespace Forum.Hubs
 
             foreach (var msg in messages) //Boucle pour les messages
             {
-                await Clients.Caller.SendAsync("ReceiveMessage", msg.SenderName, msg.Content); //Affichage des messages
+                await Clients.Caller.SendAsync("ReceiveMessage", msg.SenderName, msg.Content); //Affichage 
             }
         }
     }
