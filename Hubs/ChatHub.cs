@@ -15,7 +15,7 @@ namespace Forum.Hubs
             _httpContextAccessor = httpContextAccessor; //Récuperation de httpcontext
         }
 
-        public async Task SendMessage(string message, int classId) //Creation objet pour l'envoi des messages
+        public async Task SendMessage(string message, int classId) //Création objet pour l'envoi des messages
         {
             var httpContext = Context.GetHttpContext(); // Stockage de httpcontext 
             var eleveId = httpContext.Session.GetString("Eleve_id"); //Stockage de l'id eleve
