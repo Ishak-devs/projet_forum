@@ -1,8 +1,4 @@
 ﻿@model Forum.Models.SignupViewModel
-<head>
-    <link rel="stylesheet" href="~/css/signup.css" asp-append-version="true" />
-</head>
-<body class="corp_inscription">
     @*
 *@
     @{
@@ -45,8 +41,8 @@
             <span class="span_mdp_signup" style="color: red">@Html.ValidationMessageFor(e => e.Password)</span>
 
 
-            <input type="radio" class="inputradio" name="Role" value="Elève" asp-for="Role" onchange="verif_role()" /> Elève
-            <input type="radio" class="inputradioprof" name="Role" value="Professeur" asp-for="Role" onchange="verif_role()" /> Professeur
+            <label for="eleve" asp-for="Role">Élève</label><input type="radio" id="eleve" class="inputradio" name="Role" value="Elève" asp-for="Role" onchange="verif_role()" />
+            <label for="prof" asp-for="Role">Prof</label><input type="radio" id="prof" class="inputradioprof" name="Role" value="Professeur" asp-for="Role" onchange="verif_role()" />
             <span class="role" style="color: red">@Html.ValidationMessageFor(r => r.Role)</span>
 
 
@@ -71,5 +67,4 @@
    
 
     <script src="~/js/signup.js"></script>
-
-</body>
+    
