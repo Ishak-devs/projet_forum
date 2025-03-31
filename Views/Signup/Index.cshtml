@@ -1,70 +1,87 @@
 ﻿@model Forum.Models.SignupViewModel
-    @*
+@*
 *@
-    @{
-        if (ViewBag.Messagesuccess != null)
-        {
-            <p style="color: green">@ViewBag.Messagesuccess</p>
-
-        }
-        @if (ViewBag.MessageError != null)
-        {
-            <div class="alert alert-danger">
-                @ViewBag.MessageError
-            </div>
-        }
-
-        @if (TempData["SuccessMessage"] != null)
-        {
-            <div class="alert alert-success">
-                @TempData["SuccessMessage"]
-            </div>
-        }
-
+@{
+    if (ViewBag.Messagesuccess != null)
+    {
+        <p class="text-success">@ViewBag.Messagesuccess</p>
     }
-     
-    <div class="formulaire_signup">
-        <form class="forminscription" method="post">
+    @if (ViewBag.MessageError != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.MessageError
+        </div>
+    }
 
-            <h1 class="inscriptionh1">S'inscrire</h1>
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+}
 
-            <label class="labelnom" asp-for="Nom">Nom :</label><input class="inputnom" type="text" asp-for="Nom" />
-            <span class="span_nom_signup" style="color: red">@Html.ValidationMessageFor(e => e.Nom)</span>
+<div class="container mt-4">
+    <form class="card p-4 shadow" method="post">
 
-            <label class="labelprenom" asp-for="Prenom">Prénom :</label><input class="inputprenom" type="text" asp-for="Prenom" />
-            <span class="span_prenom_signup" style="color: red">@Html.ValidationMessageFor(e => e.Prenom)</span>
+        <h1 class="text-center mb-4">S'inscrire</h1>
 
-            <label class="labelemail" asp-for="Email">Email :</label><input class="inputemail" type="text" asp-for="Email" />
-            <span class="span_email_signup" style="color: red">@Html.ValidationMessageFor(e => e.Email)</span>
+        <div class="mb-3">
+            <label class="form-label" asp-for="Nom">Nom :</label>
+            <input class="form-control" type="text" asp-for="Nom" />
+            <span class="text-danger">@Html.ValidationMessageFor(e => e.Nom)</span>
+        </div>
 
-            <label class="labelpassword" asp-for="Password">Mot de passe :</label><input class="inputpassword" type="text" asp-for="Password" />
-            <span class="span_mdp_signup" style="color: red">@Html.ValidationMessageFor(e => e.Password)</span>
+        <div class="mb-3">
+            <label class="form-label" asp-for="Prenom">Prénom :</label>
+            <input class="form-control" type="text" asp-for="Prenom" />
+            <span class="text-danger">@Html.ValidationMessageFor(e => e.Prenom)</span>
+        </div>
 
+        <div class="mb-3">
+            <label class="form-label" asp-for="Email">Email :</label>
+            <input class="form-control" type="text" asp-for="Email" />
+            <span class="text-danger">@Html.ValidationMessageFor(e => e.Email)</span>
+        </div>
 
-            <label for="eleve" asp-for="Role">Élève</label><input type="radio" id="eleve" class="inputradio" name="Role" value="Elève" asp-for="Role" onchange="verif_role()" />
-            <label for="prof" asp-for="Role">Prof</label><input type="radio" id="prof" class="inputradioprof" name="Role" value="Professeur" asp-for="Role" onchange="verif_role()" />
-            <span class="role" style="color: red">@Html.ValidationMessageFor(r => r.Role)</span>
+        <div class="mb-3">
+            <label class="form-label" asp-for="Password">Mot de passe :</label>
+            <input class="form-control" type="password" asp-for="Password" />
+            <span class="text-danger">@Html.ValidationMessageFor(e => e.Password)</span>
+        </div>
 
+        <div class="mb-3">
+            <label class="form-label">Rôle :</label>
+            <div class="form-check">
+                <input type="radio" id="eleve" class="form-check-input" name="Role" value="Elève" asp-for="Role" onchange="verif_role()" />
+                <label for="eleve" class="form-check-label" asp-for="Role">Élève</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" id="prof" class="form-check-input" name="Role" value="Professeur" asp-for="Role" onchange="verif_role()" />
+                <label for="prof" class="form-check-label" asp-for="Role">Prof</label>
+            </div>
+            <span class="text-danger">@Html.ValidationMessageFor(r => r.Role)</span>
+        </div>
 
-            <select class="inputmatiere" asp-for="Matiere" id="Matiere_saisie" style="display: none;" onchange="verif_autre_matiere()">
-                <option value="">Selectionnez votre matière</option>
+        <div class="mb-3">
+            <label class="form-label" for="Matiere_saisie">Matière :</label>
+            <select class="form-select" asp-for="Matiere" id="Matiere_saisie" style="display: none;" onchange="verif_autre_matiere()">
+                <option value="">Sélectionnez votre matière</option>
                 <option value="Français">Français</option>
                 <option value="Anglais">Anglais</option>
                 <option value="Maths">Maths</option>
-                <option value="Histore">Histore</option>
+                <option value="Histoire">Histoire</option>
                 <option value="Autre" id="Autre_matiere">Autre</option>
             </select>
+        </div>
 
+        <div id="Autre_matiere_input" class="mb-3" style="display: none;">
+            <label class="form-label">Autre matière :</label>
+            <input class="form-control" type="text" placeholder="Entrez la matière" />
+        </div>
 
-            <div id="Autre_matiere_input" style="display: none;">
-                <label class="labelmatiere">Autre matière :</label>
-                <input class="inputmatiere" type="text" placeholder="Entrez la matière" />
-            </div>
+        <button class="btn btn-primary w-100" type="submit">S'inscrire</button>
+    </form>
+</div>
 
-            <button class="button_inscription" type="submit">S'inscrire</button>
-        </form>
-    </div>
-   
-
-    <script src="~/js/signup.js"></script>
-    
+<script src="~/js/signup.js"></script>
