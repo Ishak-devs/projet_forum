@@ -22,21 +22,38 @@
         </div>
     }
 
-    <div class="div_login">
-        <form class="form_login" method="post">
-            <label class="label_login" asp-for="Email">Email :</label>
-            <input class="input_login" type="text" asp-for="Email" />
-            <span class="span_email" style="color: red">@Html.ValidationMessageFor(e => e.Email)</span>
+    <div class="container mt-4">
+        <form class="card p-4 shadow" method="post">
 
-            <label class="label_mdp_login" asp-for="Password">Mot de passe :</label>
-            <input class="input_mdp_login" type="text" asp-for="Password" />
-            <span class="span_mdp_login" style="color: red">@Html.ValidationMessageFor(e => e.Password)</span>
+            <h1 class="text-center mb-4">Se connecter</h1>
 
-            <input class="input_radio_login" type="radio" name="Role" value="Elève" asp-for="Role" /> Elève
-            <input class="input_radio_prof_login" type="radio" name="Role" value="Professeur" asp-for="Role" /> Professeur
-            <span class="span_role_login" style="color: red">@Html.ValidationMessageFor(r => r.Role)</span>
+            <div class="mb-3">
+                <label class="form-label" asp-for="Email">Email :</label>
+                <input class="form-control" type="text" asp-for="Email"/>
+                <span class="text-danger">@Html.ValidationMessageFor(e => e.Email)</span>
+            </div>
 
-            <button class="button_login" type="submit">Se connecter</button>
+            <div class="mb-3">
+                <label class="form-label" asp-for="Password">Mot de passe :</label>
+                <input class="form-control"type="text" asp-for="Password"/>
+                <span class="text-danger">@Html.ValidationMessageFor(e => e.Password)</span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Rôle :</label>
+                <div class="form-check">
+                    <input type="radio" id="eleve" class="form-check-input" name="Role" value="Elève" asp-for="Role"/>
+                    <label for="eleve" class="form-check-label" asp-for="Role">Élève</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" id="prof" class="form-check-input" name="Role" value="Professeur" asp-for="Role"/>
+                    <label for="prof" class="form-check-label" asp-for="Role">Prof</label>
+
+                </div>
+                <span class="text-danger">@Html.ValidationMessageFor(r => r.Role)</span>
+            </div>
+                
+                <button class="btn btn-primary w-100" type="submit">Se connecter</button>
 
         </form>
     </div>
