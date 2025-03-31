@@ -26,9 +26,8 @@ namespace Forum.Models
 
         [Required(ErrorMessage ="Choisissez votre rôle")]
         public string Role { get; set; }
-
-        [Required(ErrorMessage = "Matière obligatoire")]
-        public string Matiere { get; set; }
+        
+        public string? Matiere { get; set; }
 
     }
 }

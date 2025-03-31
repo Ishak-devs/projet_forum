@@ -32,10 +32,8 @@ namespace Forum.Controllers
         [HttpPost] //Méthode post pour gerer l inscription
         public ActionResult Index(SignupViewModel modele)
         {
-
-            bool isInvalid = !ModelState.IsValid;
-
-            if (isInvalid)
+            
+            if (ModelState.IsValid)
             {
 
 
