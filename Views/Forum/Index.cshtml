@@ -1,152 +1,17 @@
 ﻿@{
     ViewData["Title"] = "Forum de discussion";
     int classId = ViewBag.ClassId; // Récupération dynamique depuis le controller
-   
 }
-<head>
-    <style>
-        :root {
-            --primary-color: #4361ee;
-            --secondary-color: #3f37c9;
-            --background-color: #f8f9fa;
-            --card-color: #ffffff;
-            --text-color: #2b2d42;
-            --text-light: #8d99ae;
-            --success-color: #4cc9f0;
-            --border-radius: 8px;
-            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
 
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-        }
+<div class="container mt-4">
+    <input class="form-control" type="hidden" id="classId" value="@classId" /> <!-- Champ caché pour l'ID de classe -->
 
-        .chathub_content {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: var(--card-color);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            padding: 2rem;
-            height: 80vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .titre_forum {
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-            font-size: 1.8rem;
-        }
-
-        .message-input-container {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 1.5rem;
-            position: sticky;
-            bottom: 0;
-            background: var(--card-color);
-            padding-top: 1rem;
-        }
-
-        .message-input {
-            flex: 1;
-            padding: 12px 15px;
-            border: 1px solid #e0e0e0;
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-            transition: border 0.3s ease;
-        }
-
-            .message-input:focus {
-                outline: none;
-                border-color: var(--primary-color);
-                box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
-            }
-
-        .send-button {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: var(--border-radius);
-            padding: 0 1.5rem;
-            cursor: pointer;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
-        }
-
-            .send-button:hover {
-                background-color: var(--secondary-color);
-            }
-
-        .messages-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            overflow-y: auto;
-            flex: 1;
-            scroll-behavior: smooth;
-        }
-
-            .messages-list li {
-                padding: 12px 15px;
-                margin-bottom: 8px;
-                background-color: #f1f3ff;
-                border-radius: var(--border-radius);
-                animation: fadeIn 0.3s ease-out;
-            }
-
-                .messages-list li strong {
-                    color: var(--primary-color);
-                    font-weight: 600;
-                }
-
-
-        /* Scrollbar personnalisée */
-        .messages-list::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .messages-list::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-
-        .messages-list::-webkit-scrollbar-thumb {
-            background: var(--primary-color);
-            border-radius: 10px;
-        }
-
- 
-
-        .message-input-container {
-            flex-direction: column;
-        }
-
-        .send-button {
-            padding: 12px;
-        }
-
-        }
-    </style>
-</head>
-
-<div class="chathub_content">
-    <input class="inputforum" type="hidden" id="classId" value="@classId" /> <!-- Champ caché pour l'ID de classe -->
-
-    <h2 class="titre_forum">Forum de discussion</h2>
-    <div class="message-input-container">
-        <input type="text" id="messageInput" placeholder="Votre message" class="message-input" />
-        <button id="sendButton" class="send-button">Envoyer</button>
+    <h2 class="text-center mb-4">Forum de discussion</h2>
+    <div class="input-group mb-3">
+        <input type="text" id="messageInput" class="form-control" placeholder="Votre message" />
+        <button id="sendButton" class="btn btn-primary">Envoyer</button>
     </div>
-    <ul id="messagesList" class="messages-list"></ul>
+    <ul id="messagesList" class="list-group"></ul>
 </div>
 
 @section Scripts {
@@ -161,6 +26,7 @@
         // Réception des messages
         connection.on("ReceiveMessage", (user, message) => {
             const li = document.createElement("li");
+            li.className = "list-group-item";
             li.innerHTML = `<strong>${user}:</strong> ${message}`;
             document.getElementById("messagesList").appendChild(li);
             scrollToBottom();
