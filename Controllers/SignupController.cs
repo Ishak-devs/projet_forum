@@ -34,9 +34,8 @@ namespace Forum.Controllers
         {
 
             bool isInvalid = !ModelState.IsValid;
-            bool Matiere_vide = modele.Role == "Elève" && string.IsNullOrEmpty(modele.Matiere);
 
-            if (isInvalid || Matiere_vide)
+            if (isInvalid)
             {
 
 
@@ -90,7 +89,6 @@ namespace Forum.Controllers
                 }
             }
 
-            ModelState.Clear();
             return View(new SignupViewModel());
         }
     }
