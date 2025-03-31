@@ -27,8 +27,6 @@ namespace Forum.Models
         [Required(ErrorMessage ="Choisissez votre rôle")]
         public string Role { get; set; }
 
-        [Required(ErrorMessage = "Quelle matière enseignez-vous ?")]
-        [StringLength(30)]
         public string Matiere { get; set; }
 
     }

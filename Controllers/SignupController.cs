@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Forum.Models;
 using Microsoft.AspNetCore.Identity;
+using System.Data.Entity.Infrastructure;
 
 namespace Forum.Controllers
 {
@@ -31,46 +32,63 @@ namespace Forum.Controllers
         [HttpPost] //Méthode post pour gerer l inscription
         public ActionResult Index(SignupViewModel modele)
         {
-            if (!ModelState.IsValid) //Si le modele est invalide alors ...
-            {
-                ViewBag.MessageError = "Il y a des erreurs dans le formulaire."; //Message d'erreur
-                return View(modele); //Retourner un modele vide
-            }
 
-            if (modele.Role == "Elève") 
+            bool isInvalid = !ModelState.IsValid;
+            bool Matiere_vide = modele.Role == "Eleve" && string.IsNullOrEmpty(modele.Matiere);
+
+            if (isInvalid || Matiere_vide)
             {
-                var newEleve = new Eleve //Nouvelle eleve a ajouté
+
+
+                if (modele.Role == "Elève")
                 {
-                    Nom = modele.Nom,
-                    Prenom = modele.Prenom,
-                    Email = modele.Email,
-                    Password = passwordHasher.HashPassword(null, modele.Password) //On hash le mdp
-                };
-                contextget.Add(newEleve); //Ajout a la db
-                contextget.SaveChanges(); //Update database
-                ViewBag.Messagesuccess = "Inscription de l'élève réussie !";
-            }
+                    var newEleve = new Eleve //Nouvelle eleve a ajouté
+                    {
+                        Nom = modele.Nom,
+                        Prenom = modele.Prenom,
+                        Email = modele.Email,
+                        Password = passwordHasher.HashPassword(null, modele.Password) //On hash le mdp
+                    };
+                    contextget.Add(newEleve);
+                    try
+                    {
+                        contextget.SaveChanges();
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        ModelState.AddModelError("", "Erreur d'enregistrement : " + ex.Message);
+                        return View(modele);
+                    }
+                    //contextget.SaveChanges(); //Update database
+                    ViewBag.Messagesuccess = "Inscription de l'élève réussie !";
+                }
 
 
-            else if (modele.Role == "Professeur")
-            {
-                var newProfesseur = new Professeur
+                else if (modele.Role == "Professeur")
                 {
-                    Nom = modele.Nom,
-                    Prenom = modele.Prenom,
-                    Email = modele.Email,
-                    Password = profsseurHasher.HashPassword(null, modele.Password),
-                    Matiere = modele.Matiere
-                };
-                contextget.Add(newProfesseur);
-                contextget.SaveChanges();
-                ViewBag.Messagesuccess = "Inscription du professeur réussie !";
+                    var newProfesseur = new Professeur
+                    {
+                        Nom = modele.Nom,
+                        Prenom = modele.Prenom,
+                        Email = modele.Email,
+                        Password = profsseurHasher.HashPassword(null, modele.Password),
+                        Matiere = modele.Matiere
+                    };
+
+                    contextget.Add(newProfesseur);
+                    try
+                    {
+                        contextget.SaveChanges();
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        ModelState.AddModelError("", "Erreur d'enregistrement : " + ex.Message);
+                        return View(modele);
+                    }
+                    //contextget.SaveChanges();
+                    //ViewBag.Messagesuccess = "Inscription du professeur réussie !";
+                }
             }
-            //else
-            //{
-            //    ViewBag.MessageError = "Rôle invalide.";
-            //    return View(modele);
-            //}
 
             ModelState.Clear();
             return View(new SignupViewModel());

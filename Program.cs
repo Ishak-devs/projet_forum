@@ -47,7 +47,7 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseDeveloperExceptionPage();
 
 app.MapHub<ChatHub>("/chatHub");
 
@@ -56,6 +56,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-//app.Run();
+app.Run();
 
-app.Run("http://0.0.0.0:5000");
+//app.Run("http://0.0.0.0:5000");

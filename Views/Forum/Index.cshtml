@@ -1,12 +1,16 @@
 ﻿@{
     ViewData["Title"] = "Forum de discussion";
     int classId = ViewBag.ClassId; // Récupération dynamique depuis le controller
+   
 }
+<head>
+    <link href="~/css/forum.css" />
+</head>
 
 <div class="chathub_content">
-    <input type="hidden" id="classId" value="@classId" /> <!-- Champ caché pour l'ID de classe -->
+    <input class="inputforum" type="hidden" id="classId" value="@classId" /> <!-- Champ caché pour l'ID de classe -->
 
-    <h2>Forum de discussion</h2>
+    <h2 class="titre_forum">Forum de discussion</h2>
     <div class="message-input-container">
         <input type="text" id="messageInput" placeholder="Votre message" class="message-input" />
         <button id="sendButton" class="send-button">Envoyer</button>
@@ -59,26 +63,26 @@
         }
 
         // Envoi de message
-        async function sendMessage() {
-            const messageInput = document.getElementById("messageInput");
-            const message = messageInput.value.trim();
-            const classId = parseInt(document.getElementById("classId").value);
+        async function sendMessage() { //fontion envoie de message
+            const messageInput = document.getElementById("messageInput"); //On recupere l'input
+            const message = messageInput.value.trim(); //On recupere le message
+            const classId = parseInt(document.getElementById("classId").value); //On recupere la valeur de l'id de la classe concerné par le forum
 
-            if (message && classId) {
+            if (message && classId) { //Si message et classid existe
                 try {
-                    await connection.invoke("SendMessage", message, classId);
-                    messageInput.value = "";
+                    await connection.invoke("SendMessage", message, classId); 
+                    messageInput.value = ""; //On affiche le message
                     messageInput.focus();
-                } catch (err) {
-                    console.error("Error sending message:", err);
+                } catch (err) { //On capture les erreurs
+                    console.error("Error sending message:", err); //Afficher dans la console le message d'erreur
                 }
             }
         }
 
         // Événements
-        document.getElementById("sendButton").addEventListener("click", sendMessage);
-        document.getElementById("messageInput").addEventListener("keypress", (e) => {
-            if (e.key === "Enter") sendMessage();
+        document.getElementById("sendButton").addEventListener("click", sendMessage); //Ajouter un ecouteur d'evenement pour le boutton d'envoi du message
+        document.getElementById("messageInput").addEventListener("keypress", (e) => { 
+            if (e.key === "Enter") sendMessage(); //Appeler sendmessage quand un message est envoyé
         });
 
         // Démarrer
