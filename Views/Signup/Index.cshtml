@@ -1,11 +1,13 @@
 ﻿@model Forum.Models.SignupViewModel
-@*
-*@
+
 @{
     if (ViewBag.Messagesuccess != null)
     {
-        <p class="text-success">@ViewBag.Messagesuccess</p>
+        <div class="alert alert-success">
+            @ViewBag.Messagesuccess
+        </div>
     }
+    
     @if (ViewBag.MessageError != null)
     {
         <div class="alert alert-danger">

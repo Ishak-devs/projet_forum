@@ -1,26 +1,25 @@
 ﻿@model Forum.Models.LoginViewModel
-<head>
-    <link rel="stylesheet" href="~/css/authentification.css" asp-append-version="true" />
-</head>
-@*
 
-*@
-<body class="body_login">
-
-</body>
 @{
     if (ViewBag.Messagesuccess != null)
     {
-        <p style="color: green">@ViewBag.Messagesuccess</p>
+        <div class="alert alert-success">
+            @ViewBag.Messagesuccess
+        </div>
     }
 
     if (ViewBag.MessageError != null)
     {
-        <p style="color: red">@ViewBag.MessageError</p>
+        <div class="alert alert-danger">
+            @ViewBag.MessageError
+        </div>
     }
+    
     if (ViewBag.Message_error_email != null)
     {
-        <p style="color: red">@ViewBag.Message_error_email</p>
+        <div class="alert alert-danger">
+            @ViewBag.Message_error_email
+        </div>
     }
 
     <div class="div_login">
