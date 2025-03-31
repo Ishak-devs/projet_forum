@@ -63,9 +63,9 @@
             <span class="text-danger">@Html.ValidationMessageFor(r => r.Role)</span>
         </div>
 
-        <div class="mb-3">
+        <div id="Matiere" class="mb-3" style="display: none;">
             <label class="form-label" for="Matiere_saisie">Matière :</label>
-            <select class="form-select" asp-for="Matiere" id="Matiere_saisie" style="display: none;" onchange="verif_autre_matiere()">
+            <select class="form-select" asp-for="Matiere" id="Matiere_saisie" onchange="verif_autre_matiere()">
                 <option value="">Sélectionnez votre matière</option>
                 <option value="Français">Français</option>
                 <option value="Anglais">Anglais</option>
