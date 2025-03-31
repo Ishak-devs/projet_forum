@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "OSsn6liQyLEVnP6ReDaciUPgqdQGm5b1pzPXlX1HyUk=",
+  "Hash": "Xyf7orwT15S4kbj/L+Ia2mXMyoPSv1sFh7zhiZ/Mc8M=",
   "Source": "Forum",
   "BasePath": "_content/Forum",
   "Mode": "Default",
@@ -80,12 +80,12 @@
       "OriginalItemSpec": "wwwroot\\css\\authentification.css"
     },
     {
-      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\forum.css",
+      "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\forum2.css",
       "SourceId": "Forum",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\ishak\\Forum\\Forum\\wwwroot\\",
       "BasePath": "_content/Forum",
-      "RelativePath": "css/forum#[.{fingerprint}]?.css",
+      "RelativePath": "css/forum2#[.{fingerprint}]?.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -94,11 +94,11 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "wg2ytnj5ng",
-      "Integrity": "AKpwn2BPqxcpFKy0D/rxUtMLVo+Jjo4UJjThB8WuAUE=",
+      "Fingerprint": "luedqwuz83",
+      "Integrity": "bQZzy4mL5sUrBYK+JV9hY6rZSSdsjaUPsClQv3MEXYw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\forum.css"
+      "OriginalItemSpec": "wwwroot\\css\\forum2.css"
     },
     {
       "Identity": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\header.css",
@@ -1529,8 +1529,8 @@
       ]
     },
     {
-      "Route": "css/forum.css",
-      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\forum.css",
+      "Route": "css/forum2.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\forum2.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1539,7 +1539,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4264"
+          "Value": "2459"
         },
         {
           "Name": "Content-Type",
@@ -1547,11 +1547,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"AKpwn2BPqxcpFKy0D/rxUtMLVo+Jjo4UJjThB8WuAUE=\""
+          "Value": "\"bQZzy4mL5sUrBYK+JV9hY6rZSSdsjaUPsClQv3MEXYw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 31 Mar 2025 08:19:54 GMT"
+          "Value": "Mon, 31 Mar 2025 09:05:59 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1561,13 +1561,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-AKpwn2BPqxcpFKy0D/rxUtMLVo+Jjo4UJjThB8WuAUE="
+          "Value": "sha256-bQZzy4mL5sUrBYK+JV9hY6rZSSdsjaUPsClQv3MEXYw="
         }
       ]
     },
     {
-      "Route": "css/forum.wg2ytnj5ng.css",
-      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\forum.css",
+      "Route": "css/forum2.luedqwuz83.css",
+      "AssetFile": "C:\\ishak\\Forum\\Forum\\wwwroot\\css\\forum2.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1576,7 +1576,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4264"
+          "Value": "2459"
         },
         {
           "Name": "Content-Type",
@@ -1584,11 +1584,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"AKpwn2BPqxcpFKy0D/rxUtMLVo+Jjo4UJjThB8WuAUE=\""
+          "Value": "\"bQZzy4mL5sUrBYK+JV9hY6rZSSdsjaUPsClQv3MEXYw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 31 Mar 2025 08:19:54 GMT"
+          "Value": "Mon, 31 Mar 2025 09:05:59 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1598,15 +1598,15 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "wg2ytnj5ng"
+          "Value": "luedqwuz83"
         },
         {
           "Name": "label",
-          "Value": "css/forum.css"
+          "Value": "css/forum2.css"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-AKpwn2BPqxcpFKy0D/rxUtMLVo+Jjo4UJjThB8WuAUE="
+          "Value": "sha256-bQZzy4mL5sUrBYK+JV9hY6rZSSdsjaUPsClQv3MEXYw="
         }
       ]
     },

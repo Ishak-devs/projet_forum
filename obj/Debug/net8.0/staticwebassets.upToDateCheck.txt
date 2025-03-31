@@ -1,5 +1,5 @@
 wwwroot\css\authentification.css
-wwwroot\css\forum.css
+wwwroot\css\forum2.css
 wwwroot\css\header.css
 wwwroot\css\home.css
 wwwroot\css\signup.css
