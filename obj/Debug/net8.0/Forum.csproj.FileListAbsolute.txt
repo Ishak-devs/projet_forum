@@ -316,4 +316,3 @@ C:\ishak\Forum\Forum\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.
 C:\ishak\Forum\Forum\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
 C:\ishak\Forum\Forum\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\ishak\Forum\Forum\bin\Debug\net8.0\System.Net.WebSockets.WebSocketProtocol.dll
-C:\ishak\Forum\Forum\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
