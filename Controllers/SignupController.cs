@@ -89,6 +89,7 @@ namespace Forum.Controllers
                 }
             }
 
+            // :)
             return View(new SignupViewModel());
         }
     }
