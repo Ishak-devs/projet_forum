@@ -34,7 +34,7 @@ namespace Forum.Controllers
         {
 
             bool isInvalid = !ModelState.IsValid;
-            bool Matiere_vide = modele.Role == "Eleve" && string.IsNullOrEmpty(modele.Matiere);
+            bool Matiere_vide = modele.Role == "Elève" && string.IsNullOrEmpty(modele.Matiere);
 
             if (isInvalid || Matiere_vide)
             {
