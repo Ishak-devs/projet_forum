@@ -25,6 +25,15 @@ namespace Forum.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            if (HttpContext.Session.GetString("Eleve_id") != null)
+            {
+
+                return RedirectToAction("Eleve", "Dashboard");
+            }
+            if (HttpContext.Session.GetString("Prof_id") != null)
+            {
+                return RedirectToAction("Professeur", "Dashboard");
+            }
             return View();
         }
 
