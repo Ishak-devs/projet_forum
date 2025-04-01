@@ -6,5 +6,8 @@
     if (ViewBag.SessionEleve_Id != null)
     {
         <p style="color: orange">ID ELEVE : @ViewBag.SessionEleve_Id</p>
+        <form asp-controller="Authentification" asp-action="Logout" method="post">
+            <button type="submit" class="btn btn-danger">Déconnexion</button>
+        </form>
     }
 }

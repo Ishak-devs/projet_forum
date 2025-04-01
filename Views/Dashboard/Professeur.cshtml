@@ -6,5 +6,8 @@
     if (ViewBag.SessionProf_id != null)
     {
         <p style="color: orange">ID PROF @ViewBag.SessionProf_id </p>
+        <form asp-controller="Authentification" asp-action="Logout" method="post">
+            <button type="submit" class="btn btn-danger">Déconnexion</button>
+        </form>
     }
 }

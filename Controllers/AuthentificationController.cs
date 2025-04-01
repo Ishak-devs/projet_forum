@@ -21,6 +21,12 @@ namespace Forum.Controllers
             elevePasswordHasher = new PasswordHasher<Eleve>();
             professeurPasswordHasher = new PasswordHasher<Professeur>();
         }
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+
+            return RedirectToAction("Index", "Home");
+        }
 
         [HttpGet]
         public IActionResult Index()
@@ -40,6 +46,7 @@ namespace Forum.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(LoginViewModel modele)
         {
+
             if (ModelState.IsValid)
             {
                 if (modele.Role == "Elève")
@@ -95,7 +102,6 @@ namespace Forum.Controllers
                     }
                 }
             }
-
 
 
                 return View(modele);
