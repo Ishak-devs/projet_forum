@@ -59,14 +59,15 @@ namespace Forum.Controllers
                     try
                     {
                         contextget.SaveChanges();
+                        HttpContext.Session.SetString("Eleve_id", newEleve.Id.ToString());
+                        return RedirectToAction("Eleve", "Dashboard");
                     }
                     catch (DbUpdateException ex)
                     {
                         ModelState.AddModelError("", "Erreur d'enregistrement : " + ex.Message);
                         return View(modele);
                     }
-                    //contextget.SaveChanges(); //Update database
-                    ViewBag.Messagesuccess = "Inscription de l'élève réussie !";
+                    
                 }
 
 
@@ -85,18 +86,16 @@ namespace Forum.Controllers
                     try
                     {
                         contextget.SaveChanges();
+                        HttpContext.Session.SetString("Prof_id", newProfesseur.Id.ToString());
+                        return RedirectToAction("Professeur", "Dashboard");
                     }
                     catch (DbUpdateException ex)
                     {
                         ModelState.AddModelError("", "Erreur d'enregistrement : " + ex.Message);
                         return View(modele);
                     }
-                    //contextget.SaveChanges();
-                    //ViewBag.Messagesuccess = "Inscription du professeur réussie !";
                 }
             }
-
-            // :)
             return View(new SignupViewModel());
         }
     }

@@ -1,13 +1,17 @@
-﻿@* @model Forum.Models.LoginViewModel *@
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-    if (ViewBag.SessionEleve_Id != null)
+﻿@{
+    if (ViewBag.SessionEleve_id != null)
     {
-        <p style="color: orange">ID ELEVE : @ViewBag.SessionEleve_Id</p>
+        <div class="eleve-info">
+            <p><strong>@ViewBag.EleveNom</strong>
+            <p><strong>@ViewBag.ElevePrenom</strong>
+        </div>
+
         <form asp-controller="Authentification" asp-action="Logout" method="post">
             <button type="submit" class="btn btn-danger">Déconnexion</button>
         </form>
+    }
+    else
+    {
+        <p>Aucun élève connecté.</p>
     }
 }
