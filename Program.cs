@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Forum.Models;
-using Microsoft.AspNetCore.Identity; //Import de dbcontext !
-using Microsoft.AspNetCore.SignalR;
+using Microsoft.AspNetCore.Identity; 
 using Forum.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,7 +25,9 @@ builder.Services.AddSession(options =>
 {
     //options.IdleTimeout = TimeSpan.FromMinutes(30); 
     options.Cookie.HttpOnly = true; 
-    options.Cookie.IsEssential = true; 
+    options.Cookie.IsEssential = true;
+    options.IdleTimeout = TimeSpan.FromHours(1);
+    options.Cookie.MaxAge = TimeSpan.FromHours(1);
 });
 
 var app = builder.Build();
