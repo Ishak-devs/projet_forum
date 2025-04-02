@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    @RenderSection("Styles", required: false)
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - EduLink </title>
@@ -42,9 +44,22 @@
                                 <a class="nav-link text-dark" asp-controller="Authentification" asp-action="Index">Connexion</a>
                             </li>
                         }
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Forum" asp-action="Index">Forum</a>
-                        </li>
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Forum" asp-action="Index">Forum</a>
+                            </li>
+                            <li class="nav-item">
+                                @if (HttpContextAccessor.HttpContext?.Session.GetString("Eleve_id") != null)
+                                {
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Eleve">Page personnel</a>
+                                }
+                                else if (HttpContextAccessor.HttpContext?.Session.GetString("Prof_id") != null)
+                                {
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Professeur">Page personnel</a>
+                                }
+                            </li>
+                        }
                     </ul>
                         <form class="d-flex" action="" method="get">
         <input class="form-control me-2" type="search" placeholder="Recherche..." />

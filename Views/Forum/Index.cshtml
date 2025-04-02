@@ -1,49 +1,299 @@
-﻿@{
+﻿@* @{ *@
+@*     ViewData["Title"] = "Forum de discussion"; *@
+@*     int classId = ViewBag.ClassId; // Récupération dynamique depuis le controller *@
+@* } *@
+
+@* <div class="container mt-4"> *@
+@*     <input class="form-control" type="hidden" id="classId" value="@classId" /> <!-- Champ caché pour l'ID de classe --> *@
+
+@*     <h2 class="text-center mb-4">Forum de discussion</h2> *@
+@*     <div class="input-group mb-3"> *@
+@*         <input type="text" id="messageInput" class="form-control" placeholder="Votre message" /> *@
+@*         <button id="sendButton" class="btn btn-primary">Envoyer</button> *@
+@*     </div> *@
+@*     <ul id="messagesList" class="list-group"></ul> *@
+@* </div> *@
+
+@* @section Scripts { *@
+@*     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script> *@
+@*     <script> *@
+@*         // Initialisation de la connexion *@
+@*         const connection = new signalR.HubConnectionBuilder() *@
+@*             .withUrl("/chatHub") *@
+@*             .configureLogging(signalR.LogLevel.Warning) *@
+@*             .build(); *@
+
+@*         // Réception des messages *@
+@*         connection.on("ReceiveMessage", (user, message) => { *@
+@*             const li = document.createElement("li"); *@
+@*             li.className = "list-group-item"; *@
+@*             li.innerHTML = `<strong>${user}:</strong> ${message}`; *@
+@*             document.getElementById("messagesList").appendChild(li); *@
+@*             scrollToBottom(); *@
+@*         }); *@
+
+@*         // Fonction pour faire défiler vers le bas *@
+@*         function scrollToBottom() { *@
+@*             const messagesList = document.getElementById("messagesList"); *@
+@*             messagesList.scrollTop = messagesList.scrollHeight; *@
+@*         } *@
+
+@*         // Gestion des erreurs *@
+@*         connection.onclose(async () => { *@
+@*             await startConnection(); *@
+@*         }); *@
+
+@*         // Démarrer la connexion *@
+@*         async function startConnection() { *@
+@*             try { *@
+@*                 await connection.start(); *@
+@*                 console.log("Connected to SignalR hub"); *@
+
+@*                 const classId = parseInt(document.getElementById("classId").value); *@
+@*                 if (classId) { *@
+@*                     await connection.invoke("LoadMessages", classId); *@
+@*                 } *@
+@*             } catch (err) { *@
+@*                 console.error("Connection error:", err); *@
+@*                 setTimeout(startConnection, 5000); *@
+@*             } *@
+@*         } *@
+
+@*         // Envoi de message *@
+@*         async function sendMessage() { //fontion envoie de message *@
+@*             const messageInput = document.getElementById("messageInput"); //On recupere l'input *@
+@*             const message = messageInput.value.trim(); //On recupere le message *@
+@*             const classId = parseInt(document.getElementById("classId").value); //On recupere la valeur de l'id de la classe concerné par le forum *@
+
+@*             if (message && classId) { //Si message et classid existe *@
+@*                 try { *@
+@*                     await connection.invoke("SendMessage", message, classId);  *@
+@*                     messageInput.value = ""; //On affiche le message *@
+@*                     messageInput.focus(); *@
+@*                 } catch (err) { //On capture les erreurs *@
+@*                     console.error("Error sending message:", err); //Afficher dans la console le message d'erreur *@
+@*                 } *@
+@*             } *@
+@*         } *@
+
+@*         // Événements *@
+@*         document.getElementById("sendButton").addEventListener("click", sendMessage); //Ajouter un ecouteur d'evenement pour le boutton d'envoi du message *@
+@*         document.getElementById("messageInput").addEventListener("keypress", (e) => {  *@
+@*             if (e.key === "Enter") sendMessage(); //Appeler sendmessage quand un message est envoyé *@
+@*         }); *@
+
+@*         // Démarrer *@
+@*         startConnection(); *@
+@*     </script> *@
+@* } *@
+@{
     ViewData["Title"] = "Forum de discussion";
-    int classId = ViewBag.ClassId; // Récupération dynamique depuis le controller
+    int classId = ViewBag.ClassId;
 }
 
-<div class="container mt-4">
-    <input class="form-control" type="hidden" id="classId" value="@classId" /> <!-- Champ caché pour l'ID de classe -->
+<div class="forum-container">
+    <input type="hidden" id="classId" value="@classId" />
 
-    <h2 class="text-center mb-4">Forum de discussion</h2>
-    <div class="input-group mb-3">
-        <input type="text" id="messageInput" class="form-control" placeholder="Votre message" />
-        <button id="sendButton" class="btn btn-primary">Envoyer</button>
+    <h2 class="forum-title">Forum de discussion</h2>
+
+    <div class="message-container" id="messagesList">
+        <!-- Les messages apparaîtront ici -->
     </div>
-    <ul id="messagesList" class="list-group"></ul>
+
+    <div class="message-input-container">
+        <input type="text" id="messageInput" class="message-input" placeholder="Écrivez votre message..." />
+        <button id="sendButton" class="send-button">
+            <i class="fas fa-paper-plane"></i>
+        </button>
+    </div>
 </div>
+
+@section Styles {
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --background-color: #f8f9fa;
+            --message-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            background-color: var(--background-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .forum-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .forum-title {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .message-container {
+            height: 500px;
+            overflow-y: auto;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-bottom: 20px;
+            background-color: var(--background-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message {
+            max-width: 70%;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 18px;
+            line-height: 1.4;
+            position: relative;
+            word-wrap: break-word;
+        }
+
+        .received {
+            align-self: flex-start;
+            background-color: var(--message-bg);
+            border: 1px solid var(--border-color);
+            margin-right: auto;
+        }
+
+        .sent {
+            align-self: flex-end;
+            background-color: var(--primary-color);
+            color: white;
+            margin-left: auto;
+        }
+
+        .message-input-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .message-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            font-size: 16px;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        .message-input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .send-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .send-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .message-info {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+
+        /* Style pour le défilement */
+        .message-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .message-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .message-container::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .message-container::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+    </style>
+}
 
 @section Scripts {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/fr.min.js"></script>
     <script>
-        // Initialisation de la connexion
+        // Configuration de moment.js en français
+        moment.locale('fr');
+
         const connection = new signalR.HubConnectionBuilder()
             .withUrl("/chatHub")
             .configureLogging(signalR.LogLevel.Warning)
             .build();
 
-        // Réception des messages
-        connection.on("ReceiveMessage", (user, message) => {
-            const li = document.createElement("li");
-            li.className = "list-group-item";
-            li.innerHTML = `<strong>${user}:</strong> ${message}`;
-            document.getElementById("messagesList").appendChild(li);
+        connection.on("ReceiveMessage", (user, message, timestamp, isCurrentUser) => {
+            const messageElement = createMessageElement(user, message, timestamp, isCurrentUser);
+            document.getElementById("messagesList").appendChild(messageElement);
             scrollToBottom();
         });
 
-        // Fonction pour faire défiler vers le bas
+        connection.on("LoadMessages", (messages) => {
+            const messagesList = document.getElementById("messagesList");
+            messagesList.innerHTML = '';
+
+            messages.forEach(msg => {
+                const isCurrentUser = msg.isCurrentUser; // À adapter selon votre logique d'authentification
+                const messageElement = createMessageElement(msg.user, msg.message, msg.timestamp, isCurrentUser);
+                messagesList.appendChild(messageElement);
+            });
+
+            scrollToBottom();
+        });
+
+        function createMessageElement(user, message, timestamp, isCurrentUser) {
+            const messageDiv = document.createElement("div");
+            messageDiv.className = `message ${isCurrentUser ? 'sent' : 'received'}`;
+
+            const messageContent = document.createElement("div");
+            messageContent.textContent = message;
+
+            const messageInfo = document.createElement("div");
+            messageInfo.className = "message-info";
+            messageInfo.textContent = `${isCurrentUser ? 'Vous' : user} • ${moment(timestamp).format('LLL')}`;
+
+            messageDiv.appendChild(messageContent);
+            messageDiv.appendChild(messageInfo);
+
+            return messageDiv;
+        }
+
         function scrollToBottom() {
             const messagesList = document.getElementById("messagesList");
             messagesList.scrollTop = messagesList.scrollHeight;
         }
 
-        // Gestion des erreurs
-        connection.onclose(async () => {
-            await startConnection();
-        });
-
-        // Démarrer la connexion
         async function startConnection() {
             try {
                 await connection.start();
@@ -59,30 +309,27 @@
             }
         }
 
-        // Envoi de message
-        async function sendMessage() { //fontion envoie de message
-            const messageInput = document.getElementById("messageInput"); //On recupere l'input
-            const message = messageInput.value.trim(); //On recupere le message
-            const classId = parseInt(document.getElementById("classId").value); //On recupere la valeur de l'id de la classe concerné par le forum
+        async function sendMessage() {
+            const messageInput = document.getElementById("messageInput");
+            const message = messageInput.value.trim();
+            const classId = parseInt(document.getElementById("classId").value);
 
-            if (message && classId) { //Si message et classid existe
+            if (message && classId) {
                 try {
-                    await connection.invoke("SendMessage", message, classId); 
-                    messageInput.value = ""; //On affiche le message
+                    await connection.invoke("SendMessage", message, classId);
+                    messageInput.value = "";
                     messageInput.focus();
-                } catch (err) { //On capture les erreurs
-                    console.error("Error sending message:", err); //Afficher dans la console le message d'erreur
+                } catch (err) {
+                    console.error("Error sending message:", err);
                 }
             }
         }
 
-        // Événements
-        document.getElementById("sendButton").addEventListener("click", sendMessage); //Ajouter un ecouteur d'evenement pour le boutton d'envoi du message
-        document.getElementById("messageInput").addEventListener("keypress", (e) => { 
-            if (e.key === "Enter") sendMessage(); //Appeler sendmessage quand un message est envoyé
+        document.getElementById("sendButton").addEventListener("click", sendMessage);
+        document.getElementById("messageInput").addEventListener("keypress", (e) => {
+            if (e.key === "Enter") sendMessage();
         });
 
-        // Démarrer
         startConnection();
     </script>
 }
