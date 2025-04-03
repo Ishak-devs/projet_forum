@@ -74,10 +74,18 @@
                             </li>
                         }
                     </ul>
-                        <form class="d-flex" action="" method="get">
-        <input class="form-control me-2" type="search" placeholder="Recherche..." />
-        <button class="button_header" type="submit">Rechercher</button>
-    </form>
+                    
+                    <form class="d-flex" action="" method="get">
+                        <div class="input-group">
+                            <div class="form-outline" data-mdb-input-init>
+                                <input type="search" id="form1" class="form-control" />
+                                <label class="form-label" for="form1">Search</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary" data-mdb-ripple-init>
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </nav>
