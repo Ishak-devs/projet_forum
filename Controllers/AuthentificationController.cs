@@ -57,6 +57,7 @@ namespace Forum.Controllers
                     if (Eleve == null)
                     {
                         ViewBag.Message_error_email = "L'email saisi n'est pas reconnu" ;
+                        return View(modele);
                     }
 
                         //Si les données sont ok
@@ -82,6 +83,7 @@ namespace Forum.Controllers
                     if (Professeur == null)
                     {
                         ViewBag.Message_error_email = "L'email saisi n'est pas reconnu";
+                        return View(modele);
                     }
 
 
