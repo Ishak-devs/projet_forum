@@ -39,20 +39,23 @@ namespace Forum.Controllers
             var eleveId = HttpContext.Session.GetString("Eleve_id"); //Stockage id
             if (!string.IsNullOrEmpty(eleveId) && int.TryParse(eleveId, out int eleveIdInt)) //Si eleve connecté et id est bien un int
             {
-                var classeDetails = await contextget.Details_classe
+                var classes = await contextget.Details_classe
 
-                    .FirstOrDefaultAsync(dc => dc.id_eleve == eleveIdInt); //stockage de l'id de la classe
+                    .Where(dc => dc.id_eleve == eleveIdInt) //stockage de l'id de la classe
+                    .Include(dc => dc.Classe) // Charge les détails de la classe
+                    .ToListAsync();
 
-                if (classeDetails != null) //Si l'id de la classe est pas null
+                if (classes.Any()) //Si l'id de la classe est pas null
                 {
-                    ViewBag.ClassId = classeDetails.Id_classe; //Stockage de l'id de la classe dans un viewbag
+                    ViewBag.Classes = classes; //Stockage de l'id de la classe dans un viewbag
                     ViewBag.UserRole = "Eleve"; //Stockage du role
                     return View(); //Retourne la vue
                 }
                 else
                 {
-                    ViewBag.ClassId = null; // L'élève n'a pas de classe, mais il peut quand même accéder au forum
+                    ViewBag.Classes =  null; // L'élève n'a pas de classe, mais il peut quand même accéder au forum
                     ViewBag.UserRole = "Eleve";
+                    return View();
                 }
             }
 
@@ -63,12 +66,19 @@ namespace Forum.Controllers
                 if (!string.IsNullOrEmpty(profId) && int.TryParse(profId, out int profIdInt))
                 {
 
-                    var classeDetails = await contextget.Details_classe
-                        .FirstOrDefaultAsync(dc => dc.id_professeur == profIdInt);
+                    var classes = await contextget.Details_classe
+                        .Where(dc => dc.id_professeur == profIdInt)
+                        .ToListAsync();
 
-                    if (classeDetails != null)
+                    if (classes.Any())
                     {
-                        ViewBag.ClassId = classeDetails.Id_classe;
+                        ViewBag.Classes = classes;
+                        ViewBag.UserRole = "Professeur";
+                        return View();
+                    }
+                    else
+                    {
+                        ViewBag.Classes =  null; // Le Professeur n'a pas de classe, mais il peut quand même accéder au forum
                         ViewBag.UserRole = "Professeur";
                         return View();
                     }
