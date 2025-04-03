@@ -40,6 +40,7 @@ namespace Forum.Controllers
             if (!string.IsNullOrEmpty(eleveId) && int.TryParse(eleveId, out int eleveIdInt)) //Si eleve connecté et id est bien un int
             {
                 var classeDetails = await contextget.Details_classe
+
                     .FirstOrDefaultAsync(dc => dc.id_eleve == eleveIdInt); //stockage de l'id de la classe
 
                 if (classeDetails != null) //Si l'id de la classe est pas null
@@ -48,27 +49,31 @@ namespace Forum.Controllers
                     ViewBag.UserRole = "Eleve"; //Stockage du role
                     return View(); //Retourne la vue
                 }
-
-                return RedirectToAction("Index", "Authentification"); //Si l'eleve n est pas connecté on le renvoie a la page d'authentification
+                else
+                {
+                    ViewBag.ClassId = null; // L'élève n'a pas de classe, mais il peut quand même accéder au forum
+                    ViewBag.UserRole = "Eleve";
+                }
             }
 
-            var profId = HttpContext.Session.GetString("Prof_id");
-            if (!string.IsNullOrEmpty(profId) && int.TryParse(profId, out int profIdInt))
+            else
             {
 
-                var classeDetails = await contextget.Details_classe
-                    .FirstOrDefaultAsync(dc => dc.id_professeur == profIdInt);
-
-                if (classeDetails != null)
+                var profId = HttpContext.Session.GetString("Prof_id");
+                if (!string.IsNullOrEmpty(profId) && int.TryParse(profId, out int profIdInt))
                 {
-                    ViewBag.ClassId = classeDetails.Id_classe;
-                    ViewBag.UserRole = "Professeur";
-                    return View();
+
+                    var classeDetails = await contextget.Details_classe
+                        .FirstOrDefaultAsync(dc => dc.id_professeur == profIdInt);
+
+                    if (classeDetails != null)
+                    {
+                        ViewBag.ClassId = classeDetails.Id_classe;
+                        ViewBag.UserRole = "Professeur";
+                        return View();
+                    }
                 }
-
-                return RedirectToAction("Index", "Authentification");
             }
-
             return RedirectToAction("Index", "Authentification");
         }
     }
