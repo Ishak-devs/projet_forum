@@ -111,7 +111,7 @@ namespace Forum.Controllers
                     {
                         var detailClasse = new Details_classe
                         {
-                            Id_classe = nouvelleClasse.Id,
+                            Id_classe = nouvelleClasse.Id_classe,
                             id_professeur = int.Parse(profId),
                             id_eleve = eleveId
                         };

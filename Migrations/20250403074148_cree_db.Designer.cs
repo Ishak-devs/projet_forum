@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250331075451_m10")]
-    partial class m10
+    [Migration("20250403074148_cree_db")]
+    partial class cree_db
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,7 +37,7 @@ namespace Forum.Migrations
                         .HasMaxLength(2000)
                         .HasColumnType("varchar(2000)");
 
-                    b.Property<int>("Id_details_classe")
+                    b.Property<int>("Id_classe")
                         .HasColumnType("int");
 
                     b.Property<int>("SenderId")
@@ -48,24 +48,24 @@ namespace Forum.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id_details_classe");
+                    b.HasIndex("Id_classe");
 
                     b.ToTable("ChatMessages");
                 });
 
             modelBuilder.Entity("Forum.Models.Classe", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("Id_classe")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_classe"));
 
                     b.Property<string>("classe")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id_classe");
 
                     b.ToTable("Classes");
                 });
@@ -171,13 +171,13 @@ namespace Forum.Migrations
 
             modelBuilder.Entity("Forum.Models.ChatMessage", b =>
                 {
-                    b.HasOne("Forum.Models.Details_classe", "DetailsClasse")
+                    b.HasOne("Forum.Models.Classe", "Classe")
                         .WithMany()
-                        .HasForeignKey("Id_details_classe")
+                        .HasForeignKey("Id_classe")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("DetailsClasse");
+                    b.Navigation("Classe");
                 });
 
             modelBuilder.Entity("Forum.Models.Details_classe", b =>

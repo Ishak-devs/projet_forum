@@ -9,9 +9,9 @@ namespace Forum.Models
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey(nameof(DetailsClasse))]
-        public int Id_details_classe { get; set; }
-        public virtual Details_classe DetailsClasse { get; set; }
+        [ForeignKey(nameof(Classe))]
+        public int Id_classe { get; set; }
+        public virtual Classe Classe { get; set; }
         public int SenderId { get; set; }
 
         [Required, StringLength(2000)]

@@ -40,7 +40,7 @@ namespace Forum.Hubs
 
             var chatMessage = new ChatMessage //Ajout dans la table de chat
             {
-                Id_details_classe = classId,
+                Id_classe = classId,
                 SenderId = senderId,
                 Content = message,
                 Timestamp = DateTime.UtcNow
@@ -54,7 +54,7 @@ namespace Forum.Hubs
             public async Task LoadMessages(int classId) //chargement des messages
         {
             var messages = await contextget.ChatMessages
-                .Where(m => m.Id_details_classe == classId) //Where id de details classe correspond a l'id de la classe
+                .Where(m => m.Id_classe == classId) //Where id de details classe correspond a l'id de la classe
                 .OrderBy(m => m.Timestamp) //Affichage des messages par dates recente
                 .Select(m => new {
                     SenderName = contextget.Eleves.Any(e => e.Id == m.SenderId)

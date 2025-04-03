@@ -6,7 +6,7 @@ namespace Forum.Models
     public class Classe
     {
         [Key]
-        public int Id { get; set; }
+        public int Id_classe { get; set; }
         public string classe { get; set; }
 
     }

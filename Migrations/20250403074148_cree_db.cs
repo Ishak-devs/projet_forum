@@ -19,14 +19,14 @@ namespace Forum.Migrations
                 name: "Classes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id_classe = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     classe = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Classes", x => x.Id);
+                    table.PrimaryKey("PK_Classes", x => x.Id_classe);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -75,6 +75,30 @@ namespace Forum.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "ChatMessages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Id_classe = table.Column<int>(type: "int", nullable: false),
+                    SenderId = table.Column<int>(type: "int", nullable: false),
+                    Content = table.Column<string>(type: "varchar(2000)", maxLength: 2000, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Timestamp = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ChatMessages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ChatMessages_Classes_Id_classe",
+                        column: x => x.Id_classe,
+                        principalTable: "Classes",
+                        principalColumn: "Id_classe",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "Details_classe",
                 columns: table => new
                 {
@@ -91,7 +115,7 @@ namespace Forum.Migrations
                         name: "FK_Details_classe_Classes_Id_classe",
                         column: x => x.Id_classe,
                         principalTable: "Classes",
-                        principalColumn: "Id",
+                        principalColumn: "Id_classe",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Details_classe_Eleves_id_eleve",
@@ -108,34 +132,10 @@ namespace Forum.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
-                name: "ChatMessages",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Id_details_classe = table.Column<int>(type: "int", nullable: false),
-                    SenderId = table.Column<int>(type: "int", nullable: false),
-                    Content = table.Column<string>(type: "varchar(2000)", maxLength: 2000, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Timestamp = table.Column<DateTime>(type: "datetime(6)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ChatMessages", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ChatMessages_Details_classe_Id_details_classe",
-                        column: x => x.Id_details_classe,
-                        principalTable: "Details_classe",
-                        principalColumn: "Id_details_classe",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
             migrationBuilder.CreateIndex(
-                name: "IX_ChatMessages_Id_details_classe",
+                name: "IX_ChatMessages_Id_classe",
                 table: "ChatMessages",
-                column: "Id_details_classe");
+                column: "Id_classe");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Details_classe_Id_classe",
