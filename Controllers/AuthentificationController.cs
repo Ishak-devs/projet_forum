@@ -56,12 +56,12 @@ namespace Forum.Controllers
 
                     if (Eleve == null)
                     {
-                        ViewBag.Message_error_email = "L'email saisi n'est pas reconnu" ;
+                        ViewBag.Message_error_email = "L'email saisi n'est pas reconnu";
                         return View(modele);
                     }
 
-                        //Si les données sont ok
-                        if (Eleve != null && elevePasswordHasher.VerifyHashedPassword(null, Eleve.Password, modele.Password) == PasswordVerificationResult.Success)
+                    //Si les données sont ok
+                    if (Eleve != null && elevePasswordHasher.VerifyHashedPassword(null, Eleve.Password, modele.Password) == PasswordVerificationResult.Success)
                     {
                         HttpContext.Session.SetString("Eleve_id", Eleve.Id.ToString());
 
@@ -96,7 +96,6 @@ namespace Forum.Controllers
                         return RedirectToAction("Professeur", "Dashboard");
 
                     }
-
                     
                     else
                     {

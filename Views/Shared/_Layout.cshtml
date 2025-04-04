@@ -75,13 +75,37 @@
                         }
                     </ul>
                     
-                    <form class="d-flex" action="" method="get">
+                    @* <form class="d-flex" action="" method="get"> *@
+                    @*     <div class="input-group"> *@
+                    @*         <div class="form-outline" data-mdb-input-init> *@
+                    @*             <input type="search" id="form1" class="form-control" /> *@
+                    @*             <label class="form-label" for="form1">Search</label> *@
+                    @*         </div> *@
+                    @*         <button type="submit" class="btn btn-primary" data-mdb-ripple-init> *@
+                    @*             <i class="fas fa-search"></i> *@
+                    @*         </button> *@
+                    @*     </div> *@
+                    @* </form> *@
+                    @* <form class="d-flex" action="/Users/Index" method="get"> *@
+                    @*     <div class="input-group"> *@
+                    @*         <div class="form-outline"> *@
+                    @*             <input type="search" id="form1" name="searchString" class="form-control" placeholder="Rechercher un utilisateur" /> *@
+                    @*             <label class="form-label" for="form1">Search</label> *@
+                    @*         </div> *@
+                    @*         <button type="submit" class="btn btn-primary"> *@
+                    @*             <i class="fas fa-search"></i> *@
+                    @*         </button> *@
+                    @*     </div> *@
+                    @* </form> *@
+                    <form class="d-flex" asp-controller="Users" asp-action="Index" method="get">
                         <div class="input-group">
-                            <div class="form-outline" data-mdb-input-init>
-                                <input type="search" id="form1" class="form-control" />
-                                <label class="form-label" for="form1">Search</label>
+                            <div class="form-outline">
+                                <input type="search" id="searchInput" name="searchString"
+                                       class="form-control" placeholder="Rechercher un utilisateur"
+                                       value="@Context.Request.Query["searchString"]" />
+                                <label class="form-label" for="searchInput">Rechercher</label>
                             </div>
-                            <button type="submit" class="btn btn-primary" data-mdb-ripple-init>
+                            <button type="submit" class="btn btn-primary">
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
