@@ -75,6 +75,7 @@ namespace Forum.Controllers
                 }
             }
             return RedirectToAction("Index", "Authentification");
+
         }
     }
 }

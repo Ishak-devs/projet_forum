@@ -3,9 +3,9 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Forum.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Identity;
-using System;
+using Microsoft.AspNetCore.Mvc.Rendering; //Pour utiliser selectlist
+//using Microsoft.AspNetCore.Identity;
+//using System;
 
 namespace Forum.Controllers
 {

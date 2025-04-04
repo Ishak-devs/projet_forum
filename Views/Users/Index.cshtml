@@ -1,0 +1,38 @@
+﻿@model Forum.Models.UserSearchViewModel
+
+<h2>Résultats de recherche</h2>
+
+@if (!string.IsNullOrEmpty(ViewBag.SearchString))
+{
+    <p>Résultats pour: <strong>@ViewBag.SearchString</strong></p>
+}
+
+<h3>Élèves</h3>
+@if (Model.Eleves.Any())
+{
+    <ul>
+        @foreach (var eleve in Model.Eleves)
+        {
+            <li>@eleve.Nom @eleve.Prenom</li>
+        }
+    </ul>
+}
+else
+{
+    <p>Aucun élève trouvé</p>
+}
+
+<h3>Professeurs</h3>
+@if (Model.Professeurs.Any())
+{
+    <ul>
+        @foreach (var prof in Model.Professeurs)
+        {
+            <li>@prof.Nom @prof.Prenom</li>
+        }
+    </ul>
+}
+else
+{
+    <p>Aucun professeur trouvé</p>
+}
