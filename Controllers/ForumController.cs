@@ -68,6 +68,7 @@ namespace Forum.Controllers
 
                     var classes = await contextget.Details_classe
                         .Where(dc => dc.id_professeur == profIdInt)
+                        .Include(dc => dc.Classe) // Charge les détails de la classe
                         .ToListAsync();
 
                     if (classes.Any())
