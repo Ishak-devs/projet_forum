@@ -20,7 +20,6 @@ public class UsersController : Controller
             SearchString = searchString //Recuperation de la saisie 
         };
 
-
         var elevesQuery = _context.Eleves.AsQueryable(); //Convertion en un objet
         if (!string.IsNullOrEmpty(searchString)) //Si la saisie n'est pas vide
         {
