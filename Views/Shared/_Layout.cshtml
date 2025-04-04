@@ -99,13 +99,13 @@
                     @* </form> *@
                     <form class="d-flex" asp-controller="Users" asp-action="Index" method="get">
                         <div class="input-group">
-                            <div class="form-outline">
+                            <div class="form-outline" data-mdb-input-init>
                                 <input type="search" id="searchInput" name="searchString"
-                                       class="form-control" placeholder="Rechercher un utilisateur"
+                                       class="form-control"
                                        value="@Context.Request.Query["searchString"]" />
-                                <label class="form-label" for="searchInput">Rechercher</label>
+                                <label class="form-label" for="searchInput">Rechercher un utilisateur</label>
                             </div>
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary" data-mdb-input-init>
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
