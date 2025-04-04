@@ -17,16 +17,16 @@ public class UsersController : Controller
 
         var viewModel = new UserSearchViewModel
         {
-            SearchString = searchString
+            SearchString = searchString //Recuperation de la saisie 
         };
 
 
-        var elevesQuery = _context.Eleves.AsQueryable();
-        if (!string.IsNullOrEmpty(searchString))
+        var elevesQuery = _context.Eleves.AsQueryable(); //Convertion en un objet
+        if (!string.IsNullOrEmpty(searchString)) //Si la saisie n'est pas vide
         {
-            elevesQuery = elevesQuery.Where(e => e.Nom.Contains(searchString) || e.Prenom.Contains(searchString));
+            elevesQuery = elevesQuery.Where(e => e.Nom.Contains(searchString) || e.Prenom.Contains(searchString)); //Recuperation du nom et du prenom
         }
-        viewModel.Eleves = await elevesQuery.ToListAsync();
+        viewModel.Eleves = await elevesQuery.ToListAsync(); //Requete asynchone
 
         var profsQuery = _context.Professeurs.AsQueryable();
         if (!string.IsNullOrEmpty(searchString))
