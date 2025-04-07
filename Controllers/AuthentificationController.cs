@@ -46,58 +46,46 @@ namespace Forum.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(LoginViewModel modele)
         {
-
             if (ModelState.IsValid)
             {
-                    var Eleve = await contextget.Eleves
-                    .FirstOrDefaultAsync(e => e.Email == modele.Email);
+                // Vérifier si l'utilisateur est un élève
+                var Eleve = await contextget.Eleves.FirstOrDefaultAsync(e => e.Email == modele.Email);
 
-                    if (Eleve == null)
-                    {
-                        ViewBag.Message_error_email = "L'email saisi n'est pas reconnu";
-                        return View(modele);
-                    }
+                // Vérifier si l'utilisateur est un professeur
+                var Professeur = await contextget.Professeurs.FirstOrDefaultAsync(p => p.Email == modele.Email);
 
-                    //Si les données sont ok
-                    if (Eleve != null && elevePasswordHasher.VerifyHashedPassword(null, Eleve.Password, modele.Password) == PasswordVerificationResult.Success)
-                    {
-                        HttpContext.Session.SetString("Eleve_id", Eleve.Id.ToString());
-
-                        ModelState.Clear();
-                        return RedirectToAction("Eleve", "Dashboard");
-                    }
-
-                    else
-                    {
-                        ViewBag.MessageError = "Vérifiez votre mot de passe.";
-                    }
-                }
-                    var Professeur = await contextget.Professeurs
-                    .FirstOrDefaultAsync(p => p.Email == modele.Email);
-
-                    if (Professeur == null)
-                    {
-                        ViewBag.Message_error_email = "L'email saisi n'est pas reconnu";
-                        return View(modele);
-                    }
-
-
-                    //Si les données sont ok
-                    if (Professeur != null && professeurPasswordHasher.VerifyHashedPassword(null, Professeur.Password, modele.Password) == PasswordVerificationResult.Success)
-                    {
-                        HttpContext.Session.SetString("Prof_id", Professeur.Id.ToString());
-                        Console.WriteLine("Prof_id dans la session: " + HttpContext.Session.GetString("Prof_id"));
-                        ModelState.Clear();
-                        return RedirectToAction("Professeur", "Dashboard");
-
-                    }
-                    
-                    else
-                    {
-                        ViewBag.MessageError = "Vérifiez votre mot de passe.";
-                    }
+                // Si aucun utilisateur n'est trouvé
+                if (Eleve == null && Professeur == null)
+                {
+                    ViewBag.Message_error_email = "L'email saisi n'est pas reconnu";
                     return View(modele);
                 }
+
+                // Vérification du mot de passe pour un élève
+                if (Eleve != null && elevePasswordHasher.VerifyHashedPassword(null, Eleve.Password, modele.Password) == PasswordVerificationResult.Success)
+                {
+                    HttpContext.Session.SetString("Eleve_id", Eleve.Id.ToString());
+                    ModelState.Clear();
+                    return RedirectToAction("Eleve", "Dashboard");
+                }
+
+                // Vérification du mot de passe pour un professeur
+                if (Professeur != null && professeurPasswordHasher.VerifyHashedPassword(null, Professeur.Password, modele.Password) == PasswordVerificationResult.Success)
+                {
+                    HttpContext.Session.SetString("Prof_id", Professeur.Id.ToString());
+                    Console.WriteLine("Prof_id dans la session: " + HttpContext.Session.GetString("Prof_id"));
+                    ModelState.Clear();
+                    return RedirectToAction("Professeur", "Dashboard");
+                }
+
+                // Si le mot de passe est incorrect
+                ViewBag.MessageError = "Vérifiez votre mot de passe.";
             }
+
+            return View(modele);
         }
+
+    }
+}
+        
 
