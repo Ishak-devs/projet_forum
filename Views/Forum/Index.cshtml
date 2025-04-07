@@ -1,103 +1,15 @@
-﻿@* @{ *@
-@*     ViewData["Title"] = "Forum de discussion"; *@
-@*     int classId = ViewBag.ClassId; // Récupération dynamique depuis le controller *@
-@* } *@
-
-@* <div class="container mt-4"> *@
-@*     <input class="form-control" type="hidden" id="classId" value="@classId" /> <!-- Champ caché pour l'ID de classe --> *@
-
-@*     <h2 class="text-center mb-4">Forum de discussion</h2> *@
-@*     <div class="input-group mb-3"> *@
-@*         <input type="text" id="messageInput" class="form-control" placeholder="Votre message" /> *@
-@*         <button id="sendButton" class="btn btn-primary">Envoyer</button> *@
-@*     </div> *@
-@*     <ul id="messagesList" class="list-group"></ul> *@
-@* </div> *@
-
-@* @section Scripts { *@
-@*     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script> *@
-@*     <script> *@
-@*         // Initialisation de la connexion *@
-@*         const connection = new signalR.HubConnectionBuilder() *@
-@*             .withUrl("/chatHub") *@
-@*             .configureLogging(signalR.LogLevel.Warning) *@
-@*             .build(); *@
-
-@*         // Réception des messages *@
-@*         connection.on("ReceiveMessage", (user, message) => { *@
-@*             const li = document.createElement("li"); *@
-@*             li.className = "list-group-item"; *@
-@*             li.innerHTML = `<strong>${user}:</strong> ${message}`; *@
-@*             document.getElementById("messagesList").appendChild(li); *@
-@*             scrollToBottom(); *@
-@*         }); *@
-
-@*         // Fonction pour faire défiler vers le bas *@
-@*         function scrollToBottom() { *@
-@*             const messagesList = document.getElementById("messagesList"); *@
-@*             messagesList.scrollTop = messagesList.scrollHeight; *@
-@*         } *@
-
-@*         // Gestion des erreurs *@
-@*         connection.onclose(async () => { *@
-@*             await startConnection(); *@
-@*         }); *@
-
-@*         // Démarrer la connexion *@
-@*         async function startConnection() { *@
-@*             try { *@
-@*                 await connection.start(); *@
-@*                 console.log("Connected to SignalR hub"); *@
-
-@*                 const classId = parseInt(document.getElementById("classId").value); *@
-@*                 if (classId) { *@
-@*                     await connection.invoke("LoadMessages", classId); *@
-@*                 } *@
-@*             } catch (err) { *@
-@*                 console.error("Connection error:", err); *@
-@*                 setTimeout(startConnection, 5000); *@
-@*             } *@
-@*         } *@
-
-@*         // Envoi de message *@
-@*         async function sendMessage() { //fontion envoie de message *@
-@*             const messageInput = document.getElementById("messageInput"); //On recupere l'input *@
-@*             const message = messageInput.value.trim(); //On recupere le message *@
-@*             const classId = parseInt(document.getElementById("classId").value); //On recupere la valeur de l'id de la classe concerné par le forum *@
-
-@*             if (message && classId) { //Si message et classid existe *@
-@*                 try { *@
-@*                     await connection.invoke("SendMessage", message, classId);  *@
-@*                     messageInput.value = ""; //On affiche le message *@
-@*                     messageInput.focus(); *@
-@*                 } catch (err) { //On capture les erreurs *@
-@*                     console.error("Error sending message:", err); //Afficher dans la console le message d'erreur *@
-@*                 } *@
-@*             } *@
-@*         } *@
-
-@*         // Événements *@
-@*         document.getElementById("sendButton").addEventListener("click", sendMessage); //Ajouter un ecouteur d'evenement pour le boutton d'envoi du message *@
-@*         document.getElementById("messageInput").addEventListener("keypress", (e) => {  *@
-@*             if (e.key === "Enter") sendMessage(); //Appeler sendmessage quand un message est envoyé *@
-@*         }); *@
-
-@*         // Démarrer *@
-@*         startConnection(); *@
-@*     </script> *@
-@* } *@
-@{
+﻿@{
     ViewData["Title"] = "Forum de discussion";
     List<Details_classe>? classes = ViewBag.Classes;
 }
 
-<div class="forum-container">
+<div class="container mt-4"> <!-- Container Bootstrap pour centrer et espacer -->
 
-    <h2 class="forum-title">Forum de discussion</h2>
+    <h2 class="forum-title text-center mb-4">Forum de discussion</h2> <!-- Titre centré avec marge en bas -->
 
-    <div>
-        <label for="classSelect">Choisissez une classe :</label>
-        <select value="" id="classSelect" name="classId" class="form-control" onchange="setClassId()">
+    <div class="mb-3"> <!-- Marge en bas pour espacer du reste -->
+        <label for="classSelect" class="form-label">Choisissez une classe :</label> <!-- Label Bootstrap -->
+        <select value="" id="classSelect" name="classId" class="form-select" onchange="setClassId()"> <!-- Select Bootstrap -->
             <option value="">-- Sélectionnez une classe --</option>
             @if (classes != null && classes.Any())
             {
@@ -108,149 +20,21 @@
             }
         </select>
     </div>
-    
-    <div class="message-container" id="messagesList">
+
+    <!-- Zone d'affichage des messages avec style Bootstrap -->
+    <div class="message-container border rounded p-3 mb-3 bg-light" id="messagesList" style="height: 400px; overflow-y: auto;">
         <!-- Les messages apparaîtront ici -->
+        <p class="text-muted">Aucun message pour le moment.</p> <!-- Message par défaut si vide -->
     </div>
 
-    <div class="message-input-container">
-        <input type="text" id="messageInput" class="message-input" placeholder="Écrivez votre message..." />
-        <button id="sendButton" class="send-button">
+    <!-- Zone de saisie de message avec style Bootstrap Input Group -->
+    <div class="input-group mb-3"> <!-- Input Group pour aligner input et bouton -->
+        <input type="text" id="messageInput" class="form-control" placeholder="Écrivez votre message..." aria-label="Écrivez votre message" aria-describedby="sendButton"/> <!-- Input Bootstrap -->
+        <button id="sendButton" class="btn btn-primary" type="button"> <!-- Bouton Bootstrap -->
             <i class="fas fa-paper-plane"></i>
         </button>
     </div>
 </div>
-
-@section Styles {
-    <style>
-        :root {
-            --primary-color: #3498db;
-            --secondary-color: #2980b9;
-            --background-color: #f8f9fa;
-            --message-bg: #ffffff;
-            --text-color: #333333;
-            --border-color: #e0e0e0;
-        }
-
-        body {
-            background-color: var(--background-color);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .forum-container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .forum-title {
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .message-container {
-            height: 500px;
-            overflow-y: auto;
-            padding: 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            margin-bottom: 20px;
-            background-color: var(--background-color);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .message {
-            max-width: 70%;
-            padding: 10px 15px;
-            margin-bottom: 10px;
-            border-radius: 18px;
-            line-height: 1.4;
-            position: relative;
-            word-wrap: break-word;
-        }
-
-        .received {
-            align-self: flex-start;
-            background-color: var(--message-bg);
-            border: 1px solid var(--border-color);
-            margin-right: auto;
-        }
-
-        .sent {
-            align-self: flex-end;
-            background-color: var(--primary-color);
-            color: white;
-            margin-left: auto;
-        }
-
-        .message-input-container {
-            display: flex;
-            gap: 10px;
-        }
-
-        .message-input {
-            flex: 1;
-            padding: 12px 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            font-size: 16px;
-            outline: none;
-            transition: border 0.3s;
-        }
-
-        .message-input:focus {
-            border-color: var(--primary-color);
-        }
-
-        .send-button {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .send-button:hover {
-            background-color: var(--secondary-color);
-        }
-
-        .message-info {
-            font-size: 12px;
-            opacity: 0.8;
-            margin-top: 4px;
-        }
-
-        /* Style pour le défilement */
-        .message-container::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .message-container::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        .message-container::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
-            border-radius: 4px;
-        }
-
-        .message-container::-webkit-scrollbar-thumb:hover {
-            background: #a8a8a8;
-        }
-    </style>
-}
 
 @section Scripts {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
@@ -265,44 +49,95 @@
             .configureLogging(signalR.LogLevel.Warning)
             .build();
 
+        const messagesList = document.getElementById("messagesList"); // Get reference once
+        const messageInput = document.getElementById("messageInput");
+        const classSelect = document.getElementById("classSelect");
+        const sendButton = document.getElementById("sendButton");
+
         connection.on("ReceiveMessage", (user, message, timestamp, isCurrentUser) => {
+            // Vérifier si le message appartient à la classe actuellement sélectionnée
+            // Note: Cette logique suppose que le hub n'envoie que les messages pertinents
+            // ou que vous avez un moyen de filtrer ici si nécessaire.
+            const currentClassId = parseInt(classSelect.value);
+            // Vous devrez peut-être ajouter l'ID de classe au message reçu pour filtrer ici
+            // if (receivedMessageClassId === currentClassId) { ... }
+
             const messageElement = createMessageElement(user, message, timestamp, isCurrentUser);
-            document.getElementById("messagesList").appendChild(messageElement);
+            messagesList.appendChild(messageElement);
             scrollToBottom();
         });
 
         connection.on("LoadMessages", (messages) => {
-            const messagesList = document.getElementById("messagesList");
-            messagesList.innerHTML = '';
+            messagesList.innerHTML = ''; // Clear existing messages
+
+            if (!messages || messages.length === 0) {
+                // Optionnel : Afficher un message si aucune conversation n'est chargée
+                messagesList.innerHTML = '<p class="text-center text-muted p-3">Sélectionnez une classe pour voir les messages ou soyez le premier à en envoyer un.</p>';
+                return;
+            }
 
             messages.forEach(msg => {
-                const isCurrentUser = msg.isCurrentUser; // À adapter selon votre logique d'authentification
+                // Assurez-vous que votre objet 'msg' contient bien 'isCurrentUser'
+                // Ceci doit être défini côté serveur lors de la récupération/envoi des messages
+                const isCurrentUser = msg.isCurrentUser;
                 const messageElement = createMessageElement(msg.user, msg.message, msg.timestamp, isCurrentUser);
                 messagesList.appendChild(messageElement);
             });
 
             scrollToBottom();
         });
-
+        
         function createMessageElement(user, message, timestamp, isCurrentUser) {
-            const messageDiv = document.createElement("div");
-            messageDiv.className = `message ${isCurrentUser ? 'sent' : 'received'}`;
+            // 1. Conteneur externe pour l'alignement (utilise Flexbox)
+            const messageWrapper = document.createElement("div");
+            messageWrapper.classList.add("d-flex", "mb-3"); // `d-flex` pour activer flex, `mb-3` pour l'espacement vertical
 
+            if (isCurrentUser) {
+                messageWrapper.classList.add("justify-content-end"); // Aligne à droite pour l'utilisateur actuel
+            } else {
+                messageWrapper.classList.add("justify-content-start"); // Aligne à gauche pour les autres
+            }
+
+            // 2. La "bulle" de message interne
+            const messageBubble = document.createElement("div");
+            messageBubble.classList.add("p-2", "rounded", "shadow-sm"); // Padding, coins arrondis, petite ombre
+            messageBubble.style.maxWidth = '75%'; // Empêche la bulle d'être trop large
+
+            if (isCurrentUser) {
+                messageBubble.classList.add("bg-primary", "text-white"); // Fond bleu, texte blanc
+            } else {
+                messageBubble.classList.add("bg-white", "text-dark"); // Fond blanc, texte noir (contraste avec bg-light du conteneur)
+                // Alternative: messageBubble.classList.add("bg-secondary", "text-white");
+            }
+
+            // 3. Contenu du message
             const messageContent = document.createElement("div");
             messageContent.textContent = message;
+            // Vous pouvez ajouter des classes ici si nécessaire, par ex. pour la taille de police
 
+            // 4. Informations (Utilisateur et Heure)
             const messageInfo = document.createElement("div");
-            messageInfo.className = "message-info";
-            messageInfo.textContent = `${isCurrentUser ? 'Vous' : user} • ${moment(timestamp).format('LLL')}`;
+            messageInfo.classList.add("small", "mt-1"); // Petite taille de texte, marge au-dessus
+            if (isCurrentUser) {
+                messageInfo.classList.add("text-white-50"); // Texte légèrement atténué sur fond bleu
+                messageInfo.textContent = `Vous • ${moment(timestamp).format('LT')}`; // Format plus court pour l'heure
+            } else {
+                messageInfo.classList.add("text-muted"); // Texte gris standard
+                messageInfo.textContent = `${user} • ${moment(timestamp).format('LLL')}`; // Format date + heure
+            }
+            // Optionnel: aligner le texte info à droite dans la bulle
+            // messageInfo.classList.add("text-end");
 
-            messageDiv.appendChild(messageContent);
-            messageDiv.appendChild(messageInfo);
 
-            return messageDiv;
+            // 5. Assemblage des éléments
+            messageBubble.appendChild(messageContent);
+            messageBubble.appendChild(messageInfo);
+            messageWrapper.appendChild(messageBubble);
+
+            return messageWrapper;
         }
 
         function scrollToBottom() {
-            const messagesList = document.getElementById("messagesList");
             messagesList.scrollTop = messagesList.scrollHeight;
         }
 
@@ -310,47 +145,101 @@
             try {
                 await connection.start();
                 console.log("Connected to SignalR hub");
-
+                // Charger les messages pour la classe sélectionnée (si une est déjà sélectionnée au chargement)
+                // Ou appeler setClassId() qui le fera.
                 await setClassId();
-                
+
             } catch (err) {
                 console.error("Connection error:", err);
+                // Afficher un message d'erreur à l'utilisateur dans la zone de message ?
+                messagesList.innerHTML = '<p class="text-center text-danger p-3">Impossible de se connecter au chat. Réessai dans 5 secondes...</p>';
                 setTimeout(startConnection, 5000);
             }
         }
-        
+
         async function setClassId() {
-            // Delete messages
-            const messagesList = document.getElementById("messagesList");
-            messagesList.innerHTML = '';
-            
-            const classId = parseInt(document.getElementById("classSelect").value);
-            if (classId) {
-                await connection.invoke("LoadMessages", classId);
+            // Vider la liste des messages actuels
+            messagesList.innerHTML = '<p class="text-center text-muted p-3">Chargement des messages...</p>'; // Message pendant le chargement
+
+            const classId = parseInt(classSelect.value);
+
+            // Désactiver l'input et le bouton si aucune classe n'est sélectionnée
+            const disableInput = !classId;
+            messageInput.disabled = disableInput;
+            sendButton.disabled = disableInput;
+            messageInput.placeholder = disableInput ? "Sélectionnez une classe pour discuter" : "Écrivez votre message...";
+
+
+            if (classId && connection.state === signalR.HubConnectionState.Connected) {
+                try {
+                    await connection.invoke("LoadMessages", classId);
+                } catch (err) {
+                    console.error("Error loading messages:", err);
+                    messagesList.innerHTML = '<p class="text-center text-danger p-3">Erreur lors du chargement des messages.</p>';
+                }
+            } else if (!classId) {
+                messagesList.innerHTML = '<p class="text-center text-muted p-3">Sélectionnez une classe pour commencer à discuter.</p>';
+            } else {
+                // Gérer le cas où la connexion n'est pas encore établie (devrait être géré par startConnection)
+                console.warn("Attempted to load messages but connection not ready.");
+                messagesList.innerHTML = '<p class="text-center text-warning p-3">Connexion au chat en cours...</p>';
             }
         }
 
         async function sendMessage() {
-            const messageInput = document.getElementById("messageInput");
             const message = messageInput.value.trim();
-            const classId = parseInt(document.getElementById("classSelect").value);
+            const classId = parseInt(classSelect.value);
 
-            if (message && classId) {
+            // Vérifier si connecté, s'il y a un message et une classe sélectionnée
+            if (message && classId && connection.state === signalR.HubConnectionState.Connected) {
+                // Désactiver temporairement pour éviter double envoi
+                messageInput.disabled = true;
+                sendButton.disabled = true;
+
                 try {
                     await connection.invoke("SendMessage", message, classId);
-                    messageInput.value = "";
-                    messageInput.focus();
+                    messageInput.value = ""; // Vider l'input après envoi réussi
                 } catch (err) {
                     console.error("Error sending message:", err);
+                    // Informer l'utilisateur ? (par exemple, avec une alerte ou un message temporaire)
+                    alert("Erreur lors de l'envoi du message.");
+                } finally {
+                    // Réactiver toujours l'input et le bouton
+                    messageInput.disabled = false;
+                    sendButton.disabled = false;
+                    messageInput.focus(); // Remettre le focus sur l'input
                 }
+            } else if (!classId) {
+                // Rappeler à l'utilisateur de sélectionner une classe
+                // Peut-être faire "trembler" le sélecteur de classe ?
+                classSelect.focus();
+                alert("Veuillez sélectionner une classe avant d'envoyer un message.");
+            } else if (!message) {
+                messageInput.focus(); // Remettre le focus s'il n'y a pas de message
             }
         }
 
-        document.getElementById("sendButton").addEventListener("click", sendMessage);
-        document.getElementById("messageInput").addEventListener("keypress", (e) => {
-            if (e.key === "Enter") sendMessage();
+        // --- Event Listeners ---
+        sendButton.addEventListener("click", sendMessage);
+        messageInput.addEventListener("keypress", (e) => {
+            // Envoyer avec Entrée, sauf si Shift+Entrée est pressé (pour nouvelle ligne - non implémenté ici)
+            if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault(); // Empêche le comportement par défaut (qui pourrait être une soumission de formulaire)
+                sendMessage();
+            }
         });
+        // Recharger les messages quand la classe change
+        classSelect.addEventListener("change", setClassId);
+
+
+        // --- Initialisation ---
+        // Désactiver l'input au début jusqu'à ce qu'une classe soit sélectionnée
+        messageInput.disabled = true;
+        sendButton.disabled = true;
+        messageInput.placeholder = "Sélectionnez une classe pour discuter";
+        messagesList.innerHTML = '<p class="text-center text-muted p-3">Connexion en cours...</p>'; // Message initial
 
         startConnection();
+
     </script>
 }
