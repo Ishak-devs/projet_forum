@@ -30,13 +30,13 @@
 
             <div class="mb-3">
                 <label class="form-label" asp-for="Email">Email :</label>
-                <input class="form-control" type="text" asp-for="Email"/>
+                <input class="form-control" type="email" asp-for="Email"/>
                 <span class="text-danger">@Html.ValidationMessageFor(e => e.Email)</span>
             </div>
 
             <div class="mb-3">
                 <label class="form-label" asp-for="Password">Mot de passe :</label>
-                <input class="form-control"type="text" asp-for="Password"/>
+                <input class="form-control" type="password" asp-for="Password"/>
                 <span class="text-danger">@Html.ValidationMessageFor(e => e.Password)</span>
             </div>
                 <button class="btn btn-primary w-100" type="submit">Se connecter</button>
