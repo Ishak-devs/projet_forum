@@ -60,13 +60,14 @@ namespace Forum.Hubs
                     SenderName = contextget.Eleves.Any(e => e.Id == m.SenderId)
                         ? contextget.Eleves.FirstOrDefault(e => e.Id == m.SenderId).Prenom
                         : contextget.Professeurs.FirstOrDefault(p => p.Id == m.SenderId).Prenom,
-                    m.Content
+                    m.Content,
+                    m.Timestamp
                 })
                 .ToListAsync(); //Afficher sous forme de liste
 
             foreach (var msg in messages) //Boucle pour les messages
             {
-                await Clients.Caller.SendAsync("ReceiveMessage", msg.SenderName, msg.Content); //Affichage 
+                await Clients.Caller.SendAsync("ReceiveMessage", msg.SenderName, msg.Content, msg.Timestamp); //Affichage 
             }
         }
     }
