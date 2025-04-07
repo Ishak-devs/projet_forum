@@ -49,8 +49,6 @@ namespace Forum.Controllers
 
             if (ModelState.IsValid)
             {
-                if (modele.Role == "Elève")
-                {
                     var Eleve = await contextget.Eleves
                     .FirstOrDefaultAsync(e => e.Email == modele.Email);
 
@@ -74,9 +72,6 @@ namespace Forum.Controllers
                         ViewBag.MessageError = "Vérifiez votre mot de passe.";
                     }
                 }
-
-                if (modele.Role == "Professeur")
-                {
                     var Professeur = await contextget.Professeurs
                     .FirstOrDefaultAsync(p => p.Email == modele.Email);
 
@@ -101,11 +96,8 @@ namespace Forum.Controllers
                     {
                         ViewBag.MessageError = "Vérifiez votre mot de passe.";
                     }
+                    return View(modele);
                 }
             }
-
-
-                return View(modele);
         }
-    }
-}
+

@@ -39,21 +39,6 @@
                 <input class="form-control"type="text" asp-for="Password"/>
                 <span class="text-danger">@Html.ValidationMessageFor(e => e.Password)</span>
             </div>
-
-            <div class="mb-3">
-                <label class="form-label">Rôle :</label>
-                <div class="form-check">
-                    <input type="radio" id="eleve" class="form-check-input" name="Role" value="Elève" asp-for="Role"/>
-                    <label for="eleve" class="form-check-label" asp-for="Role">Élève</label>
-                </div>
-                <div class="form-check">
-                    <input type="radio" id="prof" class="form-check-input" name="Role" value="Professeur" asp-for="Role"/>
-                    <label for="prof" class="form-check-label" asp-for="Role">Prof</label>
-
-                </div>
-                <span class="text-danger">@Html.ValidationMessageFor(r => r.Role)</span>
-            </div>
-                
                 <button class="btn btn-primary w-100" type="submit">Se connecter</button>
 
         </form>

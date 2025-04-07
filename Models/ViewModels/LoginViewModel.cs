@@ -16,8 +16,6 @@ namespace Forum.Models
         [StringLength(100)]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Choisissez votre rôle")]
-        public string Role { get; set; }
-
+    
     }
 }
