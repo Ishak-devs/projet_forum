@@ -1,19 +1,78 @@
 ﻿@model Forum.Models.UserSearchViewModel
 
-@if (Model.Eleves.Any() || Model.Professeurs.Any())
-{
-    <ul>
-        @foreach (var eleve in Model.Eleves)
-        {
-            <li>@eleve.Nom @eleve.Prenom</li>
-            <button>Ajouter</button>
-        }
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Résultats de la recherche</h2>
 
-        @foreach (var prof in Model.Professeurs)
-        {
-            <li>@prof.Nom @prof.Prenom</li>
-            <button>Ajouter</button>
-        }
-    </ul>
-}
- 
+    @if (Model.Eleves.Any() || Model.Professeurs.Any())
+    {
+        <div class="row justify-content-center">
+            <!-- Section Élèves -->
+            @if (Model.Eleves.Any())
+            {
+                <div class="col-lg-6 mb-4">
+                    <div class="card border-primary">
+                        <div class="card-header bg-primary text-white">
+                            <h3 class="h5 mb-0"><i class="fas fa-user-graduate me-2"></i>Élèves trouvés</h3>
+                        </div>
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush">
+                                @foreach (var eleve in Model.Eleves)
+                                {
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="fw-bold">@eleve.Nom @eleve.Prenom</span>
+                                            <span class="badge bg-primary bg-opacity-10 text-primary ms-2">Élève</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-user-plus me-1"></i>Ajouter
+                                        </button>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <!-- Section Professeurs -->
+            @if (Model.Professeurs.Any())
+            {
+                <div class="col-lg-6 mb-4">
+                    <div class="card border-success">
+                        <div class="card-header bg-success text-white">
+                            <h3 class="h5 mb-0"><i class="fas fa-chalkboard-teacher me-2"></i>Professeurs trouvés</h3>
+                        </div>
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush">
+                                @foreach (var prof in Model.Professeurs)
+                                {
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="fw-bold">@prof.Nom @prof.Prenom</span>
+                                            <span class="badge bg-success bg-opacity-10 text-success ms-2">Professeur</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-success">
+                                            <i class="fas fa-user-plus me-1"></i>Ajouter
+                                        </button>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center">
+            <i class="fas fa-search me-2"></i>Aucun utilisateur trouvé pour votre recherche.
+        </div>
+    }
+
+    <div class="d-grid gap-2 col-md-4 mx-auto mt-4">
+        <button class="btn btn-outline-secondary" onclick="history.back()">
+            <i class="fas fa-arrow-left me-2"></i>Retour à la recherche
+        </button>
+    </div>
+</div>
