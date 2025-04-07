@@ -1,5 +1,4 @@
-﻿//using System.Data.Entity; //Pour utilisation de to list asynchrone
-using Forum.Models;
+﻿using Forum.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,57 +13,65 @@ public class UsersController : Controller
 
     public async Task<IActionResult> Index(string searchString)
     {
-
         var viewModel = new UserSearchViewModel
         {
-            SearchString = searchString //Recuperation de la saisie 
+            SearchString = searchString // Récupération de la saisie
         };
 
-        // Convertit un string de plusieurs mots en liste de mots
-        var keywords = searchString.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        // Vérifier si la chaîne de recherche n'est pas vide ou nulle
+        if (!string.IsNullOrWhiteSpace(searchString))
+        {
+            // Convertit un string de plusieurs mots en liste de mots
+            var keywords = searchString.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-        
-        // Élèves
-        
-        var elevesQuery = _context.Eleves.AsQueryable();
-        
-        // Si 1 mot
-        if (keywords.Length == 1)
-        {
-            elevesQuery = elevesQuery.Where(e => e.Nom.ToLower().Equals(searchString) || e.Prenom.ToLower().Equals(searchString));
-        }
+            // Élèves
+            var elevesQuery = _context.Eleves.AsQueryable();
 
-        // Si 2 mots, on imagine que l'utilisateur donne le nom et prénom de la personne qu'il cherche
-        if (keywords.Length == 2)
-        {
-            elevesQuery = elevesQuery.Where(e =>
-                (e.Nom.ToLower().Equals(keywords[0]) && e.Prenom.ToLower().Equals(keywords[1])) ||
-                (e.Nom.ToLower().Equals(keywords[1]) && e.Prenom.ToLower().Equals(keywords[0]))
-            );
-        }
-        
-        viewModel.Eleves = await elevesQuery.ToListAsync();
-        
-        
-        // Professeurs
-        var profsQuery = _context.Professeurs.AsQueryable();
-        
-        // Si 1 mot
-        if (keywords.Length == 1)
-        {
-            profsQuery = profsQuery.Where(p => p.Nom.ToLower().Equals(searchString) || p.Prenom.ToLower().Equals(searchString));
-        }
+            if (keywords.Length == 1)
+            {
+                // Si 1 mot, recherche par nom ou prénom
+                elevesQuery = elevesQuery.Where(e =>
+                    e.Nom.ToLower().Equals(keywords[0].ToLower()) ||
+                    e.Prenom.ToLower().Equals(keywords[0].ToLower()));
+            }
+            else if (keywords.Length == 2)
+            {
+                // Si 2 mots, recherche par combinaison nom/prénom
+                elevesQuery = elevesQuery.Where(e =>
+                    (e.Nom.ToLower().Equals(keywords[0].ToLower()) && e.Prenom.ToLower().Equals(keywords[1].ToLower())) ||
+                    (e.Nom.ToLower().Equals(keywords[1].ToLower()) && e.Prenom.ToLower().Equals(keywords[0].ToLower()))
+                );
+            }
 
-        // Si 2 mots, on imagine que l'utilisateur donne le nom et prénom de la personne qu'il cherche
-        if (keywords.Length == 2)
-        {
-            profsQuery = profsQuery.Where(p =>
-                (p.Nom.ToLower().Equals(keywords[0]) && p.Prenom.ToLower().Equals(keywords[1])) ||
-                (p.Nom.ToLower().Equals(keywords[1]) && p.Prenom.ToLower().Equals(keywords[0]))
-            );
+            viewModel.Eleves = await elevesQuery.ToListAsync();
+
+            // Professeurs
+            var profsQuery = _context.Professeurs.AsQueryable();
+
+            if (keywords.Length == 1)
+            {
+                // Si 1 mot, recherche par nom ou prénom
+                profsQuery = profsQuery.Where(p =>
+                    p.Nom.ToLower().Equals(keywords[0].ToLower()) ||
+                    p.Prenom.ToLower().Equals(keywords[0].ToLower()));
+            }
+            else if (keywords.Length == 2)
+            {
+                // Si 2 mots, recherche par combinaison nom/prénom
+                profsQuery = profsQuery.Where(p =>
+                    (p.Nom.ToLower().Equals(keywords[0].ToLower()) && p.Prenom.ToLower().Equals(keywords[1].ToLower())) ||
+                    (p.Nom.ToLower().Equals(keywords[1].ToLower()) && p.Prenom.ToLower().Equals(keywords[0].ToLower()))
+                );
+            }
+
+            viewModel.Professeurs = await profsQuery.ToListAsync();
         }
-        
-        viewModel.Professeurs = await profsQuery.ToListAsync();
+        else
+        {
+            // Si la chaîne de recherche est vide ou nulle, renvoyer des listes vides
+            viewModel.Eleves = new List<Eleve>();
+            viewModel.Professeurs = new List<Professeur>();
+        }
 
         return View(viewModel);
     }
