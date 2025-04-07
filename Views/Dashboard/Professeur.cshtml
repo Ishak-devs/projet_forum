@@ -1,17 +1,68 @@
 ﻿@{
     if (ViewBag.SessionProf_id != null)
     {
-        <div class="prof-info">
-            <strong>@ViewBag.ProfNom</strong>
-            <strong>@ViewBag.ProfPrenom</strong>
-        </div>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card border-success shadow">
+                        <div class="card-header bg-success text-white">
+                            <h3 class="card-title mb-0">
+                                <i class="fas fa-chalkboard-teacher me-2"></i>Profil du Professeur
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="bg-success bg-opacity-10 text-success rounded-circle p-3 me-3">
+                                    <i class="fas fa-user-tie fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h4 class="mb-1">@ViewBag.ProfPrenom @ViewBag.ProfNom</h4>
+                                    <span class="badge bg-success">Professeur</span>
+                                </div>
+                            </div>
 
-        <form asp-controller="Authentification" asp-action="Logout" method="post">
-            <button type="submit" class="btn btn-danger">Déconnexion</button>
-        </form>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="card border-success">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-muted">Informations</h5>
+                                            <p class="card-text">
+                                                <i class="fas fa-id-card me-2 text-success"></i>
+                                                ID: @ViewBag.SessionProf_id
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card border-success">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-muted">Actions</h5>
+                                            <form asp-controller="Authentification" asp-action="Logout" method="post">
+                                                <button type="submit" class="btn btn-danger w-100">
+                                                    <i class="fas fa-sign-out-alt me-2"></i>Déconnexion
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     }
     else
     {
-        <p>Aucun professeur connecté.</p>
+        <div class="container mt-5">
+            <div class="alert alert-warning text-center">
+                <i class="fas fa-exclamation-triangle me-2"></i>Aucun professeur connecté.
+            </div>
+            <div class="text-center">
+                <a asp-controller="Authentification" asp-action="Login" class="btn btn-success">
+                    <i class="fas fa-sign-in-alt me-2"></i>Connexion Professeur
+                </a>
+            </div>
+        </div>
     }
 }
