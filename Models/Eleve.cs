@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Forum.Models
@@ -19,6 +20,6 @@ namespace Forum.Models
 
         [StringLength(100)]
         public string Password { get; set; }
-
+        
     }
 }
