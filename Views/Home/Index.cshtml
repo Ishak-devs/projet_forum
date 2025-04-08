@@ -1,6 +1,11 @@
 ﻿@{
     ViewData["Title"] = "Forum Éducatif";
+    if (TempData["Prof_not_connect"] != null)
+    {
+        <p class="text-danger">@TempData["Prof_not_connect"]</p>
+    }
 }
+
 
 <body class="bg-light">
 

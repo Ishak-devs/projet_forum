@@ -25,8 +25,10 @@ namespace Forum.Controllers
             var profId = HttpContext.Session.GetString("Prof_id");
             if (string.IsNullOrEmpty(profId))
             {
-                return RedirectToAction("Index", "Authentification"); 
+                TempData["Message"] = "Vous devez vous connecter pour accéder à cette page.";
+                return RedirectToAction("Index", "Authentification");
             }
+
 
             var Eleves = contextget.Eleves
             .Select(e => new SelectListItem
@@ -121,13 +123,15 @@ namespace Forum.Controllers
 
                     contextget.SaveChanges();
                     TempData["SuccessMessage"] = "Classe créée avec succès !";
+                    classeview.Eleveschoisis.Clear();
+                    ViewBag.Message_eleve = null; // Réinitialiser le message d'élève
                 }
             }
+
             TempData["Eleveschoisis"] = classeview.Eleveschoisis;
             classeview.Eleves = new SelectList(Eleves, "Value", "Text");
 
-                return View(classeview);
-
-            }
+            return View(classeview);
         }
     }
+}

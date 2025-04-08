@@ -4,6 +4,10 @@
     {
         <p class="text-success">@ViewBag.ProfId</p>
     }
+    if (TempData["SuccessMessage"] != null)
+    {
+        <p class="text-success">@TempData["SuccessMessage"] </p>
+    }
 }
 
 <div class="container mt-5">
