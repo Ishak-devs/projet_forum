@@ -4,7 +4,10 @@ using Microsoft.AspNetCore.Identity;
 using Forum.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
-
+//builder.WebHost.ConfigureKestrel(serverOptions =>
+//{
+//    serverOptions.ListenAnyIP(5000); // Port HTTP
+//});
 // Configuration de la base de données MySQL
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(
@@ -39,7 +42,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseSession();

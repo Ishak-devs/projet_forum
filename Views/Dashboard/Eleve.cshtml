@@ -27,7 +27,7 @@
                                 </div>
                             </div>
 
-                            <!-- Modal de sélection d'avatar -->
+                            <!-- Interface sélection d'avatar -->
                             <div class="modal fade" id="avatarModal" tabindex="-1" aria-labelledby="avatarModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -100,13 +100,13 @@
         <!-- Script pour gérer la sélection d'avatar -->
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                let selectedAvatar = '';
+                let selectedAvatar = ''; //Variable selection avatar
 
                 // Sélection d'une image dans la modal
                 document.querySelectorAll('.avatar-option').forEach(img => {
                     img.addEventListener('click', function() {
                         // Retirer la classe active de toutes les images
-                        document.querySelectorAll('.avatar-option').forEach(i => {
+                        document.querySelectorAll('.avatar-option').forEach(i => { //On selectionne toutes les images
                             i.classList.remove('border-primary');
                             i.classList.add('border-light');
                         });

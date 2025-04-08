@@ -1,26 +1,4 @@
-﻿//using Microsoft.AspNetCore.Mvc;
-
-//namespace Forum.Controllers
-//{
-//    public class ForumController : Controller
-//    {
-//        private readonly ApplicationDbContext contextget;
-
-//        public ForumController(ApplicationDbContext context)
-//        {
-//            contextget = context;
-//        }
-//        public IActionResult Index()
-//        {
-
-//            ViewBag.ClassId = 1;
-//            return View();
-//        }
-//    }
-//}
-
-
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Forum.Controllers

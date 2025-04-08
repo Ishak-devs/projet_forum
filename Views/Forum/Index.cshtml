@@ -3,13 +3,13 @@
     List<Details_classe>? classes = ViewBag.Classes;
 }
 
-<div class="container mt-4"> <!-- Container Bootstrap pour centrer et espacer -->
+<div class="container mt-4"> 
 
-    <h2 class="forum-title text-center mb-4">Forum de discussion</h2> <!-- Titre centré avec marge en bas -->
+    <h2 class="forum-title text-center mb-4">Forum de discussion</h2>
 
     <div class="mb-3"> <!-- Marge en bas pour espacer du reste -->
-        <label for="classSelect" class="form-label">Choisissez une classe :</label> <!-- Label Bootstrap -->
-        <select value="" id="classSelect" name="classId" class="form-select" onchange="setClassId()"> <!-- Select Bootstrap -->
+        <label for="classSelect" class="form-label">Choisissez une classe :</label>
+        <select value="" id="classSelect" name="classId" class="form-select" onchange="setClassId()">
             <option value="">-- Sélectionnez une classe --</option>
             @if (classes != null && classes.Any())
             {
@@ -27,10 +27,9 @@
         <p class="text-muted">Aucun message pour le moment.</p> <!-- Message par défaut si vide -->
     </div>
 
-    <!-- Zone de saisie de message avec style Bootstrap Input Group -->
     <div class="input-group mb-3"> <!-- Input Group pour aligner input et bouton -->
         <input type="text" id="messageInput" class="form-control" placeholder="Écrivez votre message..." aria-label="Écrivez votre message" aria-describedby="sendButton"/> <!-- Input Bootstrap -->
-        <button id="sendButton" class="btn btn-primary" type="button"> <!-- Bouton Bootstrap -->
+        <button id="sendButton" class="btn btn-primary" type="button"> 
             <i class="fas fa-paper-plane"></i>
         </button>
     </div>
@@ -44,6 +43,21 @@
         // Configuration de moment.js en français
         moment.locale('fr');
 
+                const bannedWords =  [
+           "idiot", "stupide", "connard",
+            "conne", "merde", "salope", "pute", "crétin", "va te faire foutre",
+            "espèce de", "enfoiré", "salopard", "fils de pute", "bâtard", "chier",
+            "trou du cul", "pédé","pute", "tdc", "con", "conne", "cretin", 
+            "raciste", "homophobe", "xénophobe", "putain", "bordel", "enculé", "fdp", "ntr", "blc", "couille", "couilles", "encule", "negre", "pede", "pd", "batard", "nike ta mere"
+        ];
+        
+
+                        function containsBannedWords(message) {
+            const lowerCaseMessage = message.toLowerCase();
+            return bannedWords.some(word => lowerCaseMessage.includes(word.toLowerCase()));
+        }
+
+
         const connection = new signalR.HubConnectionBuilder()
             .withUrl("/chatHub")
             .configureLogging(signalR.LogLevel.Warning)
@@ -55,12 +69,7 @@
         const sendButton = document.getElementById("sendButton");
 
         connection.on("ReceiveMessage", (user, message, timestamp, isCurrentUser) => {
-            // Vérifier si le message appartient à la classe actuellement sélectionnée
-            // Note: Cette logique suppose que le hub n'envoie que les messages pertinents
-            // ou que vous avez un moyen de filtrer ici si nécessaire.
             const currentClassId = parseInt(classSelect.value);
-            // Vous devrez peut-être ajouter l'ID de classe au message reçu pour filtrer ici
-            // if (receivedMessageClassId === currentClassId) { ... }
 
             const messageElement = createMessageElement(user, message, timestamp, isCurrentUser);
             messagesList.appendChild(messageElement);
@@ -190,6 +199,12 @@
             const message = messageInput.value.trim();
             const classId = parseInt(classSelect.value);
 
+                if (containsBannedWords(message)) {
+            alert("Ce message contient des mots inappropriés et ne peut pas être envoyé.");
+            messageInput.value = ""; // Vider l'input
+            return; // Bloquer l'envoi du message
+        }
+
             // Vérifier si connecté, s'il y a un message et une classe sélectionnée
             if (message && classId && connection.state === signalR.HubConnectionState.Connected) {
                 // Désactiver temporairement pour éviter double envoi
@@ -222,7 +237,6 @@
         // --- Event Listeners ---
         sendButton.addEventListener("click", sendMessage);
         messageInput.addEventListener("keypress", (e) => {
-            // Envoyer avec Entrée, sauf si Shift+Entrée est pressé (pour nouvelle ligne - non implémenté ici)
             if (e.key === "Enter" && !e.shiftKey) {
                 e.preventDefault(); // Empêche le comportement par défaut (qui pourrait être une soumission de formulaire)
                 sendMessage();
