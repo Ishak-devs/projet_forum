@@ -12,12 +12,56 @@
                         </div>
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-4">
-                                <div class="bg-success bg-opacity-10 text-success rounded-circle p-3 me-3">
-                                    <i class="fas fa-user-tie fa-2x"></i>
+                                <!-- Photo de profil avec sélection prédéfinie -->
+                                <div class="position-relative me-3">
+                                    <img id="profileImage" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="rounded-circle" width="80" height="80" alt="Photo de profil" style="object-fit: cover;">
+
+                                    <!-- Bouton pour ouvrir la modal de sélection -->
+                                    <button type="button" class="btn btn-sm btn-success rounded-circle p-0 position-absolute" style="width: 30px; height: 30px; line-height: 30px; bottom: -10px; right: -10px;" data-bs-toggle="modal" data-bs-target="#avatarModal">
+                                        <i class="fas fa-camera"></i>
+                                    </button>
                                 </div>
                                 <div>
                                     <h4 class="mb-1">@ViewBag.ProfPrenom @ViewBag.ProfNom</h4>
                                     <span class="badge bg-success">Professeur</span>
+                                </div>
+                            </div>
+
+                            <!-- Modal de sélection d'avatar -->
+                            <div class="modal fade" id="avatarModal" tabindex="-1" aria-labelledby="avatarModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-success text-white">
+                                            <h5 class="modal-title" id="avatarModalLabel">Choisissez votre avatar</h5>
+                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row text-center">
+                                                <div class="col-4 mb-3">
+                                                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+                                                </div>
+                                                <div class="col-4 mb-3">
+                                                    <img src="https://cdn-icons-png.flaticon.com/512/921/921071.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/921/921071.png">
+                                                </div>
+                                                <div class="col-4 mb-3">
+                                                    <img src="https://cdn-icons-png.flaticon.com/512/4333/4333609.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/4333/4333609.png">
+                                                </div>
+                                                <div class="col-4 mb-3">
+                                                    <img src="https://cdn-icons-png.flaticon.com/512/236/236832.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/236/236832.png">
+                                                </div>
+                                                <div class="col-4 mb-3">
+                                                    <img src="https://cdn-icons-png.flaticon.com/512/3011/3011270.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/3011/3011270.png">
+                                                </div>
+                                                <div class="col-4 mb-3">
+                                                    <img src="https://cdn-icons-png.flaticon.com/512/266/266033.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/266/266033.png">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                            <button type="button" class="btn btn-success" id="saveAvatarBtn">Enregistrer</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -28,7 +72,6 @@
                                             <h5 class="card-title text-muted">Informations</h5>
                                             <p class="card-text">
                                                 <i class="fas fa-id-card me-2 text-success"></i>
-                                             
                                             </p>
                                         </div>
                                     </div>
@@ -51,6 +94,50 @@
                 </div>
             </div>
         </div>
+
+        <!-- Script pour gérer la sélection d'avatar -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                let selectedAvatar = '';
+
+                // Charger l'avatar sauvegardé dans localStorage si existant
+                const savedAvatar = localStorage.getItem('profSelectedAvatar');
+                if (savedAvatar) {
+                    document.getElementById('profileImage').src = savedAvatar;
+                }
+
+                // Sélection d'une image dans la modal
+                document.querySelectorAll('.avatar-option').forEach(img => {
+                    img.addEventListener('click', function() {
+                        // Retirer la classe active de toutes les images
+                        document.querySelectorAll('.avatar-option').forEach(i => {
+                            i.classList.remove('border-success');
+                            i.classList.add('border-light');
+                        });
+
+                        // Ajouter la classe active à l'image sélectionnée
+                        this.classList.remove('border-light');
+                        this.classList.add('border-success');
+
+                        selectedAvatar = this.getAttribute('data-img');
+                    });
+                });
+
+                // Enregistrement de l'avatar sélectionné
+                document.getElementById('saveAvatarBtn').addEventListener('click', function() {
+                    if (selectedAvatar) {
+                        document.getElementById('profileImage').src = selectedAvatar;
+                        localStorage.setItem('profSelectedAvatar', selectedAvatar);
+
+                        // Fermer la modal
+                        var modal = bootstrap.Modal.getInstance(document.getElementById('avatarModal'));
+                        modal.hide();
+                    } else {
+                        alert('Veuillez sélectionner un avatar');
+                    }
+                });
+            });
+        </script>
     }
     else
     {
