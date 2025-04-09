@@ -51,7 +51,7 @@ namespace Forum.Controllers
         }
 
         [HttpPost]
-        public ActionResult Creeclasse(ClasseViewModel classeview, string ajout_eleve, string action)
+        public ActionResult Creeclasse(ClasseViewModel classeview, string ajout_eleve, string action, string supprimer)
         {
             var profId = HttpContext.Session.GetString("Prof_id");
             if (string.IsNullOrEmpty(profId))
@@ -91,6 +91,17 @@ namespace Forum.Controllers
                 }
 
             }
+
+            if (!string.IsNullOrEmpty(supprimer))
+            {
+                if (int.TryParse(supprimer, out int eleveIdASupprimer))
+                {
+                    classeview.Eleveschoisis.Remove(eleveIdASupprimer);
+                    ViewBag.Message_eleve = "Élève supprimé avec succès !";
+                }
+            }
+
+
             if (action == "creer" && !string.IsNullOrEmpty(classeview.Classe))
             {
 

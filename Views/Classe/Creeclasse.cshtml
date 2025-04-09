@@ -38,19 +38,22 @@
             <button type="submit" name="ajout_eleve" value="ajouter" class="btn btn-secondary">Ajouter</button>
             <button type="submit" name="action" value="creer" class="btn btn-primary">Créer la classe</button>
         </div>
-    </form>
 
-    @if (Model.Eleveschoisis != null)
-    {
-        <ul class="list-group mt-4">
-            @foreach (var eleveId in Model.Eleveschoisis.Distinct())
-            {
-                var eleve = Model.Eleves?.FirstOrDefault(e => e.Value == eleveId.ToString())?.Text;
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    @eleve
-                    <button type="submit" name="supprimerEleve" value="@eleveId" class="btn btn-danger btn-sm">Supprimer</button>
-                </li>
-            }
-        </ul>
-    }
+        @if (Model.Eleveschoisis != null && Model.Eleveschoisis.Count > 0)
+        {
+            <div class="mt-4">
+                <h5>Élèves sélectionnés :</h5>
+                <ul class="list-group">
+                    @foreach (var eleveId in Model.Eleveschoisis.Distinct())
+                    {
+                        var eleve = Model.Eleves?.FirstOrDefault(e => e.Value == eleveId.ToString())?.Text;
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            @eleve
+                            <button type="submit" name="supprimer" value="@eleveId" class="btn btn-danger btn-sm">Supprimer</button>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+    </form>
 </div>
