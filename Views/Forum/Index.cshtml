@@ -225,8 +225,6 @@
                     messageInput.focus(); // Remettre le focus sur l'input
                 }
             } else if (!classId) {
-                // Rappeler à l'utilisateur de sélectionner une classe
-                // Peut-être faire "trembler" le sélecteur de classe ?
                 classSelect.focus();
                 alert("Veuillez sélectionner une classe avant d'envoyer un message.");
             } else if (!message) {
@@ -254,6 +252,5 @@
         messagesList.innerHTML = '<p class="text-center text-muted p-3">Connexion en cours...</p>'; // Message initial
 
         startConnection();
-
     </script>
 }
