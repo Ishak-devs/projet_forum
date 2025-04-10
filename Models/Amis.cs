@@ -7,8 +7,8 @@ namespace Forum.Models
     {
         [Key]
         public int Id { get; set; }
-
         public int Id_user { get; set; }
         public int AmisId { get; set; }
+        public bool Accepted { get; set; }
     }
 }

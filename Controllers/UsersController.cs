@@ -109,12 +109,13 @@ public class UsersController : Controller
             {
                 Id_user = currentUserId,
                 AmisId = userId,
+                Accepted = false,
             };
 
             _context.Amis.Add(newFriend);
             await _context.SaveChangesAsync();
 
-            TempData["SuccessMessage"] = "Utilisateur ajouté avec succès à vos amis";
+            TempData["SuccessMessage"] = "Demande d'amis envoyé";
             return RedirectToAction("Index", new { searchString = "" });
         }
         catch (Exception ex)
