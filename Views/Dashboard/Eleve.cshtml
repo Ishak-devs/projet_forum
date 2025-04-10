@@ -14,10 +14,8 @@
                         </div>
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-4">
-                                <!-- Photo de profil avec sélection prédéfinie -->
                                 <div class="position-relative me-3">
                                     <img id="profileImage" src="https://via.placeholder.com/80" class="rounded-circle" width="80" height="80" alt="Photo de profil" style="object-fit: cover;">
-                                    <!-- Bouton pour ouvrir la modal de sélection -->
                                     <button type="button" class="btn btn-sm btn-primary rounded-circle p-0 position-absolute" style="width: 30px; height: 30px; line-height: 30px; bottom: -10px; right: -10px;" data-bs-toggle="modal" data-bs-target="#avatarModal">
                                         <i class="fas fa-camera"></i>
                                     </button>
@@ -28,7 +26,7 @@
                                 </div>
                             </div>
 
-                            <!-- Interface sélection d'avatar -->
+                            <!-- Modal de sélection d'avatar -->
                             <div class="modal fade" id="avatarModal" tabindex="-1" aria-labelledby="avatarModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -38,7 +36,6 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="row text-center">
-                                                <!-- Images prédéfinies -->
                                                 <div class="col-4 mb-3">
                                                     <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
                                                 </div>
@@ -98,65 +95,118 @@
             </div>
         </div>
 
-        @if (Model != null && Model.Any())
-        {
-            <div class="mt-4">
-                <h5 class="text-primary">Liste des amis</h5>
-                <ul class="list-group">
-                    @foreach (var ami in Model)
-                    {
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            @if (ami.Accepted)
+        <!-- Section des demandes d'amis en attente -->
+        <div class="container mt-4">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card shadow">
+                        <div class="card-header bg-warning text-dark">
+                            <h5 class="mb-0">
+                                <i class="fas fa-user-clock me-2"></i>Demandes d'amis en attente
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            @if (ViewBag.Amis != null && ViewBag.Amis.Count > 0)
                             {
-                                <span>
-                                    <i class="fas fa-user-friends me-2 text-success"></i>
-                                    @ami.Prenom @ami.Nom
-                                </span>
-                                <span class="badge bg-success">Ami</span>
+                                var demandesEnAttente = ((IEnumerable<dynamic>)ViewBag.Amis).Where(a => a.Accepted == false).ToList();
+
+                                @if (demandesEnAttente.Count > 0)
+                                {
+                                    <ul class="list-group">
+                                        @foreach (var ami in demandesEnAttente)
+                                        {
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <i class="fas fa-user me-2"></i>
+                                                    @ami.Prenom @ami.Nom
+                                                </div>
+                                                <div>
+                                                    <button class="btn btn-sm btn-success me-2" onclick="accepterDemande(@ami.AmiId)">
+                                                        <i class="fas fa-check"></i> Accepter
+                                                    </button>
+                                                    <button class="btn btn-sm btn-danger" onclick="refuserDemande(@ami.AmiId)">
+                                                        <i class="fas fa-times"></i> Refuser
+                                                    </button>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <p class="text-muted">Aucune demande d'ami en attente.</p>
+                                }
                             }
                             else
                             {
-                                <span>
-                                    <i class="fas fa-user-clock me-2 text-warning"></i>
-                                    Demande en attente (@ami.Prenom @ami.Nom)
-                                </span>
-                                <span class="badge bg-warning text-dark">En attente</span>
+                                <p class="text-muted">Aucune demande d'ami en attente.</p>
                             }
-                        </li>
-                    }
-                </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+
+        <!-- Section des amis acceptés -->
+        @if (ViewBag.Amis != null && ViewBag.Amis.Count > 0)
+        {
+            var amisAcceptes = ((IEnumerable<dynamic>)ViewBag.Amis).Where(a => a.Accepted == true).ToList();
+
+            @if (amisAcceptes.Count > 0)
+            {
+                <div class="container mt-4">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8 col-lg-6">
+                            <div class="card shadow">
+                                <div class="card-header bg-success text-white">
+                                    <h5 class="mb-0">
+                                        <i class="fas fa-user-friends me-2"></i>Mes amis
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-group">
+                                        @foreach (var ami in amisAcceptes)
+                                        {
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <i class="fas fa-user me-2"></i>
+                                                    @ami.Prenom @ami.Nom
+                                                </div>
+                                                <span class="badge bg-success">Ami</span>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
         }
 
-        <!-- Script pour gérer la sélection d'avatar -->
+        <!-- Scripts -->
         <script>
+            // Gestion des avatars
             document.addEventListener('DOMContentLoaded', function() {
-                let selectedAvatar = ''; // Variable selection avatar
+                let selectedAvatar = '';
 
-                // Sélection d'une image dans la modal
                 document.querySelectorAll('.avatar-option').forEach(img => {
                     img.addEventListener('click', function() {
-                        // Retirer la classe active de toutes les images
                         document.querySelectorAll('.avatar-option').forEach(i => {
                             i.classList.remove('border-primary');
                             i.classList.add('border-light');
                         });
 
-                        // Ajouter la classe active à l'image sélectionnée
                         this.classList.remove('border-light');
                         this.classList.add('border-primary');
-
                         selectedAvatar = this.getAttribute('data-img');
                     });
                 });
 
-                // Enregistrement de l'avatar sélectionné
-               document.getElementById('saveAvatarBtn').addEventListener('click', function() {
+                document.getElementById('saveAvatarBtn').addEventListener('click', function() {
                     if (selectedAvatar) {
                         document.getElementById('profileImage').src = selectedAvatar;
                         localStorage.setItem('profSelectedAvatar', selectedAvatar);
-
-                        // Fermer la modal
                         var modal = bootstrap.Modal.getInstance(document.getElementById('avatarModal'));
                         modal.hide();
                     } else {
@@ -164,6 +214,39 @@
                     }
                 });
             });
+
+            // Gestion des demandes d'amis
+            function accepterDemande(amiId) {
+                fetch(`/Amis/AccepterDemande?amiId=${amiId}`, {
+                    method: 'POST',
+                    headers: {
+                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        alert('Erreur lors de l\'acceptation de la demande');
+                    }
+                });
+            }
+
+            function refuserDemande(amiId) {
+                fetch(`/Amis/RefuserDemande?amiId=${amiId}`, {
+                    method: 'POST',
+                    headers: {
+                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        alert('Erreur lors du refus de la demande');
+                    }
+                });
+            }
         </script>
     }
     else
