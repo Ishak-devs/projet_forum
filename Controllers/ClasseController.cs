@@ -51,6 +51,12 @@ namespace Forum.Controllers
         }
 
         [HttpPost]
+        public ActionResult Cree_groupe_prive(ClasseViewModel classeview)
+        {
+return View();
+
+}
+
         public ActionResult Creeclasse(ClasseViewModel classeview, string ajout_eleve, string action, string supprimer)
         {
             var profId = HttpContext.Session.GetString("Prof_id");

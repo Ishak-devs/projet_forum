@@ -11,6 +11,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Details_classe> Details_classe { get; set; }
     
     public DbSet<ChatMessage> ChatMessages { get; set; }
+    public DbSet<Amis> Amis { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -1,0 +1,27 @@
+﻿@model Forum.Models.AmisViewModel
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@{
+    // Vous devrez passer cette liste depuis votre contrôleur
+    var amisList = ViewBag.AmisList as IEnumerable<SelectListItem> ?? new List<SelectListItem>();
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Créer un groupe privé</h2>
+
+    <form method="post" class="border p-4 rounded shadow-sm">
+        <!-- Sélection des amis -->
+        <div class="form-group mb-3">
+            <label asp-for="AmisId" class="form-label">Sélectionnez des amis :</label>
+            <select asp-for="AmisId" asp-items="amisList" class="form-select">
+                <option value="">Sélectionnez des amis</option>
+            </select>
+        </div>
+
+        <!-- Boutons d'action -->
+        <div class="d-flex justify-content-between">
+            <button type="submit" name="handler" value="ajouter" class="btn btn-secondary">Ajouter</button>
+            <button type="submit" name="handler" value="creer" class="btn btn-primary">Créer le groupe</button>
+        </div>
+    </form>
+</div>
