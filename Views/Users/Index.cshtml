@@ -1,7 +1,33 @@
 ﻿@model Forum.Models.UserSearchViewModel
+@{
+    ViewData["Title"] = "Résultats de recherche";
+}
 
 <div class="container mt-5">
     <h2 class="mb-4 text-center">Résultats de la recherche</h2>
+
+    <!-- Messages d'alerte -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            @TempData["Message"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
 
     @if (Model.Eleves.Any() || Model.Professeurs.Any())
     {
@@ -23,9 +49,14 @@
                                             <span class="fw-bold">@eleve.Nom @eleve.Prenom</span>
                                             <span class="badge bg-primary bg-opacity-10 text-primary ms-2">Élève</span>
                                         </div>
-                                        <button class="btn btn-sm btn-outline-primary">
-                                            <i class="fas fa-user-plus me-1"></i>Ajouter
-                                        </button>
+                                        <form asp-controller="Users" asp-action="AddFriend" method="post">
+                                            <input type="hidden" name="userId" value="@eleve.Id" />
+                                            <input type="hidden" name="userType" value="Eleve" />
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-user-plus me-1"></i>Ajouter
+                                            </button>
+                                        </form>
                                     </li>
                                 }
                             </ul>
@@ -51,9 +82,14 @@
                                             <span class="fw-bold">@prof.Nom @prof.Prenom</span>
                                             <span class="badge bg-success bg-opacity-10 text-success ms-2">Professeur</span>
                                         </div>
-                                        <button class="btn btn-sm btn-outline-success">
-                                            <i class="fas fa-user-plus me-1"></i>Ajouter
-                                        </button>
+                                        <form asp-controller="Users" asp-action="AddFriend" method="post">
+                                            <input type="hidden" name="userId" value="@prof.Id" />
+                                            <input type="hidden" name="userType" value="Professeur" />
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="btn btn-sm btn-outline-success">
+                                                <i class="fas fa-user-plus me-1"></i>Ajouter
+                                            </button>
+                                        </form>
                                     </li>
                                 }
                             </ul>
@@ -71,8 +107,8 @@
     }
 
     <div class="d-grid gap-2 col-md-4 mx-auto mt-4">
-        <button class="btn btn-outline-secondary" onclick="history.back()">
-            <i class="fas fa-arrow-left me-2"></i>Retour à la recherche
-        </button>
+        <a href="@Url.Action("Index", "Home")" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-2"></i>Retour à l'accueil
+        </a>
     </div>
 </div>

@@ -1,4 +1,6 @@
-﻿using Forum.Models;
+﻿using System.Security.Claims;
+using Forum.Migrations;
+using Forum.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -74,5 +76,51 @@ public class UsersController : Controller
         }
 
         return View(viewModel);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> AddFriend(int userId, string userType)
+    {
+        try
+        {
+            // Récupérer l'ID depuis la session
+            var eleveId = HttpContext.Session.GetString("Eleve_id");
+            var profId = HttpContext.Session.GetString("Prof_id");
+
+            if (string.IsNullOrEmpty(eleveId) && string.IsNullOrEmpty(profId))
+            {
+                return RedirectToAction("Index", "Authentification");
+            }
+
+            int currentUserId = !string.IsNullOrEmpty(eleveId) ? int.Parse(eleveId) : int.Parse(profId);
+
+            // Vérifier si la relation existe déjà
+            var existingFriend = await _context.Amis
+                .FirstOrDefaultAsync(a => a.Id_user == currentUserId && a.AmisId == userId);
+
+            if (existingFriend != null)
+            {
+                TempData["Message"] = "Cet utilisateur est déjà dans votre liste d'amis";
+                return RedirectToAction("Index", new { searchString = "" });
+            }
+
+            // Créer la nouvelle relation
+            var newFriend = new Amis
+            {
+                Id_user = currentUserId,
+                AmisId = userId,
+            };
+
+            _context.Amis.Add(newFriend);
+            await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "Utilisateur ajouté avec succès à vos amis";
+            return RedirectToAction("Index", new { searchString = "" });
+        }
+        catch (Exception ex)
+        {
+            TempData["ErrorMessage"] = $"Erreur lors de l'ajout : {ex.Message}";
+            return RedirectToAction("Index", new { searchString = "" });
+        }
     }
 }
