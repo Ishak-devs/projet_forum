@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Forum.Models;
+using LinqToDB;
 
 namespace Forum.Controllers
 {
@@ -25,11 +26,25 @@ namespace Forum.Controllers
 
                 if (eleve != null)
                 {
-                    ViewBag.SessionEleve_id = HttpContext.Session.GetString("Eleve_id");
+                    ViewBag.SessionEleve_id = eleveId;
                     ViewBag.EleveNom = eleve.Nom;
                     ViewBag.ElevePrenom = eleve.Prenom;
+
+                    // 🔄 On récupère tous les amis liés à l’élève
+                    var amis = contextget.Amis
+        .Where(a => a.Id_user == id)
+        .Select(a => new AmisViewModel
+        {
+            AmiId = a.AmisId,
+            Accepted = a.Accepted,
+            Nom = contextget.Eleves.FirstOrDefault(e => e.Id == a.AmisId).Nom,
+            Prenom = contextget.Eleves.FirstOrDefault(e => e.Id == a.AmisId).Prenom
+        })
+        .ToList();
+                    ViewBag.Amis = amis;
                 }
             }
+
             return View();
         }
 
@@ -47,8 +62,21 @@ namespace Forum.Controllers
                 if (professeur != null)
                 {
                     ViewBag.SessionProf_id = profId;
-                    ViewBag.ProfNom = professeur.Nom; 
+                    ViewBag.ProfNom = professeur.Nom;
                     ViewBag.ProfPrenom = professeur.Prenom;
+
+                    var amis = contextget.Amis
+     .Where(a => a.Id_user == id)
+     .Select(a => new AmisViewModel
+     {
+         AmiId = a.AmisId,
+         Accepted = a.Accepted,
+         Nom = contextget.Eleves.FirstOrDefault(e => e.Id == a.AmisId).Nom,
+         Prenom = contextget.Eleves.FirstOrDefault(e => e.Id == a.AmisId).Prenom
+     })
+     .ToList();
+
+                    ViewBag.Amis = amis;
                 }
             }
 

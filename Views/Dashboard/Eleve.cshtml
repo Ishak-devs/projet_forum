@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<Forum.Models.AmisViewModel>
+
+@{
     if (ViewBag.SessionEleve_id != null)
     {
         <div class="container mt-5">
@@ -15,7 +17,6 @@
                                 <!-- Photo de profil avec sélection prédéfinie -->
                                 <div class="position-relative me-3">
                                     <img id="profileImage" src="https://via.placeholder.com/80" class="rounded-circle" width="80" height="80" alt="Photo de profil" style="object-fit: cover;">
-
                                     <!-- Bouton pour ouvrir la modal de sélection -->
                                     <button type="button" class="btn btn-sm btn-primary rounded-circle p-0 position-absolute" style="width: 30px; height: 30px; line-height: 30px; bottom: -10px; right: -10px;" data-bs-toggle="modal" data-bs-target="#avatarModal">
                                         <i class="fas fa-camera"></i>
@@ -97,16 +98,46 @@
             </div>
         </div>
 
+        @if (Model != null && Model.Any())
+        {
+            <div class="mt-4">
+                <h5 class="text-primary">Liste des amis</h5>
+                <ul class="list-group">
+                    @foreach (var ami in Model)
+                    {
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            @if (ami.Accepted)
+                            {
+                                <span>
+                                    <i class="fas fa-user-friends me-2 text-success"></i>
+                                    @ami.Prenom @ami.Nom
+                                </span>
+                                <span class="badge bg-success">Ami</span>
+                            }
+                            else
+                            {
+                                <span>
+                                    <i class="fas fa-user-clock me-2 text-warning"></i>
+                                    Demande en attente (@ami.Prenom @ami.Nom)
+                                </span>
+                                <span class="badge bg-warning text-dark">En attente</span>
+                            }
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+
         <!-- Script pour gérer la sélection d'avatar -->
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                let selectedAvatar = ''; //Variable selection avatar
+                let selectedAvatar = ''; // Variable selection avatar
 
                 // Sélection d'une image dans la modal
                 document.querySelectorAll('.avatar-option').forEach(img => {
                     img.addEventListener('click', function() {
                         // Retirer la classe active de toutes les images
-                        document.querySelectorAll('.avatar-option').forEach(i => { //On selectionne toutes les images
+                        document.querySelectorAll('.avatar-option').forEach(i => {
                             i.classList.remove('border-primary');
                             i.classList.add('border-light');
                         });

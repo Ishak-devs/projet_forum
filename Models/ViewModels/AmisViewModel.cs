@@ -1,14 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.AspNetCore.Mvc.Rendering;
-
-namespace Forum.Models
+﻿namespace Forum.Models
 {
     public class AmisViewModel
     {
-        public int Id_user { get; set; }
-        public int AmisId { get; set; }
-
-        public List<int> Amischoisis { get; set; } //Element de stockage temporaire avant d'ajouter les élèves au groupe de classe.
+        public int AmiId { get; set; } 
+        public bool Accepted { get; set; }
+        public string Nom { get; set; }
+        public string Prenom { get; set; }
     }
 }
