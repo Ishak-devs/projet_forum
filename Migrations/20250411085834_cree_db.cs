@@ -99,6 +99,34 @@ namespace Forum.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Amis",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    EleveDemandeurId = table.Column<int>(type: "int", nullable: false),
+                    EleveAmiId = table.Column<int>(type: "int", nullable: false),
+                    Accepted = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Amis", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Amis_Eleves_EleveAmiId",
+                        column: x => x.EleveAmiId,
+                        principalTable: "Eleves",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Amis_Eleves_EleveDemandeurId",
+                        column: x => x.EleveDemandeurId,
+                        principalTable: "Eleves",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "Details_classe",
                 columns: table => new
                 {
@@ -133,6 +161,16 @@ namespace Forum.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Amis_EleveAmiId",
+                table: "Amis",
+                column: "EleveAmiId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Amis_EleveDemandeurId",
+                table: "Amis",
+                column: "EleveDemandeurId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ChatMessages_Id_classe",
                 table: "ChatMessages",
                 column: "Id_classe");
@@ -156,6 +194,9 @@ namespace Forum.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Amis");
+
             migrationBuilder.DropTable(
                 name: "ChatMessages");
 

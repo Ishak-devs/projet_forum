@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250404083118_ajout_viewmodel")]
-    partial class ajout_viewmodel
+    [Migration("20250411085834_cree_db")]
+    partial class cree_db
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,32 @@ namespace Forum.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
+
+            modelBuilder.Entity("Amis", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Accepted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("EleveAmiId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EleveDemandeurId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EleveAmiId");
+
+                    b.HasIndex("EleveDemandeurId");
+
+                    b.ToTable("Amis");
+                });
 
             modelBuilder.Entity("Forum.Models.ChatMessage", b =>
                 {
@@ -167,6 +193,25 @@ namespace Forum.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Professeurs");
+                });
+
+            modelBuilder.Entity("Amis", b =>
+                {
+                    b.HasOne("Forum.Models.Eleve", "EleveAmi")
+                        .WithMany()
+                        .HasForeignKey("EleveAmiId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Forum.Models.Eleve", "EleveDemandeur")
+                        .WithMany()
+                        .HasForeignKey("EleveDemandeurId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EleveAmi");
+
+                    b.Navigation("EleveDemandeur");
                 });
 
             modelBuilder.Entity("Forum.Models.ChatMessage", b =>
