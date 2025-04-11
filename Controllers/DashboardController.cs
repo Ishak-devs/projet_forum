@@ -30,15 +30,14 @@ namespace Forum.Controllers
                     ViewBag.EleveNom = eleve.Nom;
                     ViewBag.ElevePrenom = eleve.Prenom;
 
-                    // 🔄 On récupère tous les amis liés à l’élève
                     var amis = contextget.Amis
-        .Where(a => a.Id_user == id)
+        .Where(a => a.EleveDemandeurId == id)
         .Select(a => new AmisViewModel
         {
-            AmiId = a.AmisId,
+            AmiId = a.EleveAmiId,
             Accepted = a.Accepted,
-            Nom = contextget.Eleves.FirstOrDefault(e => e.Id == a.AmisId).Nom,
-            Prenom = contextget.Eleves.FirstOrDefault(e => e.Id == a.AmisId).Prenom
+            Nom = contextget.Eleves.FirstOrDefault(e => e.Id == a.EleveDemandeurId).Nom,
+            Prenom = contextget.Eleves.FirstOrDefault(e => e.Id == a.EleveDemandeurId).Prenom
         })
         .ToList();
                     ViewBag.Amis = amis;
@@ -64,23 +63,10 @@ namespace Forum.Controllers
                     ViewBag.SessionProf_id = profId;
                     ViewBag.ProfNom = professeur.Nom;
                     ViewBag.ProfPrenom = professeur.Prenom;
-
-                    var amis = contextget.Amis
-     .Where(a => a.Id_user == id)
-     .Select(a => new AmisViewModel
-     {
-         AmiId = a.AmisId,
-         Accepted = a.Accepted,
-         Nom = contextget.Eleves.FirstOrDefault(e => e.Id == a.AmisId).Nom,
-         Prenom = contextget.Eleves.FirstOrDefault(e => e.Id == a.AmisId).Prenom
-     })
-     .ToList();
-
-                    ViewBag.Amis = amis;
                 }
             }
 
             return View();
         }
     }
-}
+    }

@@ -21,7 +21,7 @@ namespace Forum.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
-            modelBuilder.Entity("Forum.Models.Amis", b =>
+            modelBuilder.Entity("Amis", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,13 +32,17 @@ namespace Forum.Migrations
                     b.Property<bool>("Accepted")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int>("AmisId")
+                    b.Property<int>("EleveAmiId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id_user")
+                    b.Property<int>("EleveDemandeurId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EleveAmiId");
+
+                    b.HasIndex("EleveDemandeurId");
 
                     b.ToTable("Amis");
                 });
@@ -186,6 +190,25 @@ namespace Forum.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Professeurs");
+                });
+
+            modelBuilder.Entity("Amis", b =>
+                {
+                    b.HasOne("Forum.Models.Eleve", "EleveAmi")
+                        .WithMany()
+                        .HasForeignKey("EleveAmiId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Forum.Models.Eleve", "EleveDemandeur")
+                        .WithMany()
+                        .HasForeignKey("EleveDemandeurId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EleveAmi");
+
+                    b.Navigation("EleveDemandeur");
                 });
 
             modelBuilder.Entity("Forum.Models.ChatMessage", b =>

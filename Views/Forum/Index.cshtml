@@ -86,8 +86,6 @@
             }
 
             messages.forEach(msg => {
-                // Assurez-vous que votre objet 'msg' contient bien 'isCurrentUser'
-                // Ceci doit être défini côté serveur lors de la récupération/envoi des messages
                 const isCurrentUser = msg.isCurrentUser;
                 const messageElement = createMessageElement(msg.user, msg.message, msg.timestamp, isCurrentUser);
                 messagesList.appendChild(messageElement);
@@ -134,10 +132,6 @@
                 messageInfo.classList.add("text-muted"); // Texte gris standard
                 messageInfo.textContent = `${user} • ${moment(timestamp).format('LLL')}`; // Format date + heure
             }
-            // Optionnel: aligner le texte info à droite dans la bulle
-            // messageInfo.classList.add("text-end");
-
-
             // 5. Assemblage des éléments
             messageBubble.appendChild(messageContent);
             messageBubble.appendChild(messageInfo);
@@ -231,7 +225,7 @@
                 messageInput.focus(); // Remettre le focus s'il n'y a pas de message
             }
         }
-
+        
         // --- Event Listeners ---
         sendButton.addEventListener("click", sendMessage);
         messageInput.addEventListener("keypress", (e) => {
@@ -240,12 +234,9 @@
                 sendMessage();
             }
         });
-        // Recharger les messages quand la classe change
+
         classSelect.addEventListener("change", setClassId);
 
-
-        // --- Initialisation ---
-        // Désactiver l'input au début jusqu'à ce qu'une classe soit sélectionnée
         messageInput.disabled = true;
         sendButton.disabled = true;
         messageInput.placeholder = "Sélectionnez une classe pour discuter";

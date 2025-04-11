@@ -92,11 +92,11 @@ public class UsersController : Controller
                 return RedirectToAction("Index", "Authentification");
             }
 
-            int currentUserId = !string.IsNullOrEmpty(eleveId) ? int.Parse(eleveId) : int.Parse(profId);
+            int currentUserId = !string.IsNullOrEmpty(eleveId) ? int.Parse(eleveId) : int.Parse(eleveId);
 
             // Vérifier si la relation existe déjà
             var existingFriend = await _context.Amis
-                .FirstOrDefaultAsync(a => a.Id_user == currentUserId && a.AmisId == userId);
+                .FirstOrDefaultAsync(a => a.EleveDemandeurId == currentUserId && a.EleveAmiId == userId);
 
             if (existingFriend != null)
             {
@@ -107,8 +107,8 @@ public class UsersController : Controller
             // Créer la nouvelle relation
             var newFriend = new Amis
             {
-                Id_user = currentUserId,
-                AmisId = userId,
+                EleveDemandeurId = currentUserId,
+                EleveAmiId = userId,
                 Accepted = false,
             };
 

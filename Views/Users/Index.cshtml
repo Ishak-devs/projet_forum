@@ -1,6 +1,7 @@
 ﻿@model Forum.Models.UserSearchViewModel
 @{
     ViewData["Title"] = "Résultats de recherche";
+    var currentUserId = Context.Session.GetString("Eleve_id");
 }
 
 <div class="container mt-5">
@@ -49,14 +50,20 @@
                                             <span class="fw-bold">@eleve.Nom @eleve.Prenom</span>
                                             <span class="badge bg-primary bg-opacity-10 text-primary ms-2">Élève</span>
                                         </div>
-                                        <form asp-controller="Users" asp-action="AddFriend" method="post">
-                                            <input type="hidden" name="userId" value="@eleve.Id" />
-                                            <input type="hidden" name="userType" value="Eleve" />
-                                            @Html.AntiForgeryToken()
-                                            <button type="submit" class="btn btn-sm btn-outline-primary">
-                                                <i class="fas fa-user-plus me-1"></i>Ajouter
-                                            </button>
-                                        </form>
+                                        @if (currentUserId != eleve.Id.ToString())
+                                        {
+                                            <form asp-controller="Users" asp-action="AddFriend" method="post">
+                                                <input type="hidden" name="userId" value="@eleve.Id" />
+                                                @Html.AntiForgeryToken()
+                                                <button type="submit" class="btn btn-sm btn-outline-primary">
+                                                    <i class="fas fa-user-plus me-1"></i>Ajouter
+                                                </button>
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-secondary">Vous</span>
+                                        }
                                     </li>
                                 }
                             </ul>
@@ -82,14 +89,7 @@
                                             <span class="fw-bold">@prof.Nom @prof.Prenom</span>
                                             <span class="badge bg-success bg-opacity-10 text-success ms-2">Professeur</span>
                                         </div>
-                                        <form asp-controller="Users" asp-action="AddFriend" method="post">
-                                            <input type="hidden" name="userId" value="@prof.Id" />
-                                            <input type="hidden" name="userType" value="Professeur" />
-                                            @Html.AntiForgeryToken()
-                                            <button type="submit" class="btn btn-sm btn-outline-success">
-                                                <i class="fas fa-user-plus me-1"></i>Ajouter
-                                            </button>
-                                        </form>
+                                        <span class="text-muted">Non disponible</span>
                                     </li>
                                 }
                             </ul>
