@@ -3,37 +3,61 @@
     List<Details_classe>? classes = ViewBag.Classes;
 }
 
-<div class="container mt-4"> 
+<div class="container mt-4">
+    <div class="row">
+        <!-- Menu latéral -->
+        <div class="col-md-3 mb-4">
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action active">
+                    Menu étudiant
+                </a>
+                <a href="/Devoirs/Rendre" class="list-group-item list-group-item-action">
+                    Rendre un devoir
+                </a>
+                <a href="/Notes/Index" class="list-group-item list-group-item-action">
+                    Voir mes notes
+                </a>
+                <a href="/Documents" class="list-group-item list-group-item-action">
+                    Ressources de cours
+                </a>
+                <a href="/Profil" class="list-group-item list-group-item-action">
+                    Mon profil
+                </a>
+            </div>
+        </div>
 
-    <h2 class="forum-title text-center mb-4">Forum de discussion</h2>
+        <!-- Contenu principal -->
+        <div class="col-md-9">
+            <h2 class="forum-title text-center mb-4">Forum de discussion</h2>
 
-    <div class="mb-3"> <!-- Marge en bas pour espacer du reste -->
-        <label for="classSelect" class="form-label">Choisissez une classe :</label>
-        <select value="" id="classSelect" name="classId" class="form-select" onchange="setClassId()">
-            <option value="">-- Sélectionnez une classe --</option>
-            @if (classes != null && classes.Any())
-            {
-                foreach (var classe in classes)
-                {
-                    <option value="@classe.Id_classe">@classe.Classe.classe</option>
-                }
-            }
-        </select>
-    </div>
+            <div class="mb-3">
+                <label for="classSelect" class="form-label">Choisissez une classe :</label>
+                <select value="" id="classSelect" name="classId" class="form-select" onchange="setClassId()">
+                    <option value="">-- Sélectionnez une classe --</option>
+                    @if (classes != null && classes.Any())
+                    {
+                        foreach (var classe in classes)
+                        {
+                            <option value="@classe.Id_classe">@classe.Classe.classe</option>
+                        }
+                    }
+                </select>
+            </div>
 
-    <!-- Zone d'affichage des messages avec style Bootstrap -->
-    <div class="message-container border rounded p-3 mb-3 bg-light" id="messagesList" style="height: 400px; overflow-y: auto;">
-        <!-- Les messages apparaîtront ici -->
-        <p class="text-muted">Aucun message pour le moment.</p> <!-- Message par défaut si vide -->
-    </div>
+            <div class="message-container border rounded p-3 mb-3 bg-light" id="messagesList" style="height: 400px; overflow-y: auto;">
+                <p class="text-muted">Aucun message pour le moment.</p>
+            </div>
 
-    <div class="input-group mb-3"> <!-- Input Group pour aligner input et bouton -->
-        <input type="text" id="messageInput" class="form-control" placeholder="Écrivez votre message..." aria-label="Écrivez votre message" aria-describedby="sendButton"/> <!-- Input Bootstrap -->
-        <button id="sendButton" class="btn btn-primary" type="button"> 
-            <i class="fas fa-paper-plane"></i>
-        </button>
+            <div class="input-group mb-3">
+                <input type="text" id="messageInput" class="form-control" placeholder="Écrivez votre message..." aria-label="Écrivez votre message" aria-describedby="sendButton" />
+                <button id="sendButton" class="btn btn-primary" type="button">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
     </div>
 </div>
+
 
 @section Scripts {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
@@ -47,10 +71,10 @@
            "idiot", "stupide", "connard",
             "conne", "merde", "salope", "pute", "crétin", "va te faire foutre",
             "espèce de", "enfoiré", "salopard", "fils de pute", "bâtard", "chier",
-            "trou du cul", "pédé","pute", "tdc", "con", "conne", "cretin", 
+            "trou du cul", "pédé","pute", "tdc", "con", "conne", "cretin",
             "raciste", "homophobe", "xénophobe", "putain", "bordel", "enculé", "fdp", "ntr", "blc", "couille", "couilles", "encule", "negre", "pede", "pd", "batard", "nike ta mere"
         ];
-        
+
 
                         function containsBannedWords(message) {
             const lowerCaseMessage = message.toLowerCase();
@@ -93,7 +117,7 @@
 
             scrollToBottom();
         });
-        
+
         function createMessageElement(user, message, timestamp, isCurrentUser) {
             // 1. Conteneur externe pour l'alignement (utilise Flexbox)
             const messageWrapper = document.createElement("div");
@@ -225,7 +249,7 @@
                 messageInput.focus(); // Remettre le focus s'il n'y a pas de message
             }
         }
-        
+
         // --- Event Listeners ---
         sendButton.addEventListener("click", sendMessage);
         messageInput.addEventListener("keypress", (e) => {
