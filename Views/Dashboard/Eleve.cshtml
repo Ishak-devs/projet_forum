@@ -120,16 +120,27 @@
                                                     <i class="fas fa-user me-2"></i>
                                                     @ami.Prenom_demandeur @ami.Nom_demandeur
                                                 </div>
-                                                <div>
-                                                    <button class="btn btn-sm btn-success me-2">
-                                                        <i class="fas fa-check"></i> Accepter
-                                                    </button>
-                                                    <button class="btn btn-sm btn-danger">
-                                                        <i class="fas fa-times"></i> Refuser
-                                                    </button>
+                                                <div class="d-flex">
+                                                    <form asp-action="ModifierStatutAmi" asp-controller="Users" method="post" class="me-2">
+                                                        <input type="hidden" name="idAmi" value="@ami.AmiId" />
+
+                                                        <input type="hidden" name="accepter" value="true" />
+                                                        <button type="submit" class="btn btn-sm btn-success">
+                                                            <i class="fas fa-check"></i> Accepter
+                                                        </button>
+                                                    </form>
+                                                    <form asp-action="ModifierStatutAmi" asp-controller="Users" method="post">
+                                                        <input type="hidden" name="idAmi" value="@ami.AmiId" />
+
+                                                        <input type="hidden" name="accepter" value="false" />
+                                                        <button type="submit" class="btn btn-sm btn-danger">
+                                                            <i class="fas fa-times"></i> Refuser
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </li>
                                         }
+
                                     </ul>
                                 }
                                 else
@@ -148,41 +159,41 @@
         </div>
 
         <!-- Section des amis acceptés -->
-        @if (ViewBag.Amis != null && ViewBag.Amis.Count > 0)
-        {
-            var amisAcceptes = ((IEnumerable<dynamic>)ViewBag.Amis).Where(a => a.Accepted == true).ToList();
+        // @if (ViewBag.Amis != null && ViewBag.Amis.Count > 0)
+        // {
+        //     var amisAcceptes = ((IEnumerable<dynamic>)ViewBag.Amis).Where(a => a.Accepted == true).ToList();
 
-            @if (amisAcceptes.Count > 0)
-            {
-                <div class="container mt-4">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8 col-lg-6">
-                            <div class="card shadow">
-                                <div class="card-header bg-success text-white">
-                                    <h5 class="mb-0">
-                                        <i class="fas fa-user-friends me-2"></i>Mes amis
-                                    </h5>
-                                </div>
-                                <div class="card-body">
-                                    <ul class="list-group">
-                                        @foreach (var ami in amisAcceptes)
-                                        {
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>
-                                                    <i class="fas fa-user me-2"></i>
-                                                    @ami.Prenom @ami.Nom
-                                                </div>
-                                                <span class="badge bg-success">Ami</span>
-                                            </li>
-                                        }
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-        }
+        //     @if (amisAcceptes.Count > 0)
+        //     {
+        //         <div class="container mt-4">
+        //             <div class="row justify-content-center">
+        //                 <div class="col-md-8 col-lg-6">
+        //                     <div class="card shadow">
+        //                         <div class="card-header bg-success text-white">
+        //                             <h5 class="mb-0">
+        //                                 <i class="fas fa-user-friends me-2"></i>Mes amis
+        //                             </h5>
+        //                         </div>
+        //                         <div class="card-body">
+        //                             <ul class="list-group">
+        //                                 @foreach (var ami in amisAcceptes)
+        //                                 {
+        //                                     <li class="list-group-item d-flex justify-content-between align-items-center">
+        //                                         <div>
+        //                                             <i class="fas fa-user me-2"></i>
+        //                                             @ami.Prenom_demandeur @ami.Nom_demandeur
+        //                                         </div>
+        //                                         <span class="badge bg-success">Ami</span>
+        //                                     </li>
+        //                                 }
+        //                             </ul>
+        //                         </div>
+        //                     </div>
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     }
+        // }
 
         <!-- Scripts -->
         <script>

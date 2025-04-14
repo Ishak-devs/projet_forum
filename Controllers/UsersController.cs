@@ -78,6 +78,31 @@ public class UsersController : Controller
     }
 
     [HttpPost]
+    [HttpPost]
+    public async Task<IActionResult> ModifierStatutAmi(int idAmi, bool accepter)
+    {
+        var lienAmitie = await _context.Amis.FirstOrDefaultAsync(a => a.Id == idAmi);
+        if (lienAmitie == null)
+        {
+            TempData["ErrorMessage"] = "Relation non trouvée.";
+            return RedirectToAction("Index");
+        }
+
+        if (accepter)
+        {
+            lienAmitie.Accepted = true;
+        }
+        else
+        {
+            _context.Amis.Remove(lienAmitie);
+        }
+
+        await _context.SaveChangesAsync();
+
+        TempData["SuccessMessage"] = accepter ? "Demande acceptée." : "Demande refusée.";
+        return RedirectToAction("Index");
+    }
+
     public async Task<IActionResult> AddFriend(int userId, string userType)
     {
         try
