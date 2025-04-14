@@ -104,7 +104,7 @@ public class UsersController : Controller
                 return RedirectToAction("Index", new { searchString = "" });
             }
 
-            // Créer la nouvelle relation
+            // Crée la nouvelle relation 
             var newFriend = new Amis
             {
                 EleveDemandeurId = currentUserId,

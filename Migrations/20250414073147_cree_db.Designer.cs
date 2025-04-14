@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250411085834_cree_db")]
+    [Migration("20250414073147_cree_db")]
     partial class cree_db
     {
         /// <inheritdoc />
