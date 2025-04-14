@@ -6,6 +6,9 @@ namespace Forum.Hubs
 {
     public class ChatHub : Hub
     {
+
+
+
         private readonly ApplicationDbContext contextget;
         private readonly IHttpContextAccessor _httpContextAccessor;
 

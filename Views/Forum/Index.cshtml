@@ -148,8 +148,6 @@
             try {
                 await connection.start();
                 console.log("Connected to SignalR hub");
-                // Charger les messages pour la classe sélectionnée (si une est déjà sélectionnée au chargement)
-                // Ou appeler setClassId() qui le fera.
                 await setClassId();
 
             } catch (err) {
