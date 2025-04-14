@@ -31,21 +31,27 @@ namespace Forum.Controllers
                     ViewBag.ElevePrenom = eleve.Prenom;
 
                     var amis = contextget.Amis
+
         .Where(a => a.EleveDemandeurId == id)
         .Select(a => new AmisViewModel
         {
             AmiId = a.EleveAmiId,
             Accepted = a.Accepted,
-            Nom = contextget.Eleves.FirstOrDefault(e => e.Id == a.EleveDemandeurId).Nom,
-            Prenom = contextget.Eleves.FirstOrDefault(e => e.Id == a.EleveDemandeurId).Prenom
+            Nom_demandeur = contextget.Eleves.FirstOrDefault(e => e.Id == a.EleveAmiId).Nom,
+            Prenom_demandeur = contextget.Eleves.FirstOrDefault(e => e.Id == a.EleveAmiId).Prenom,
+
         })
         .ToList();
                     ViewBag.Amis = amis;
                 }
+
+
+
             }
 
             return View();
         }
+
 
         public IActionResult Professeur()
         {
@@ -69,4 +75,4 @@ namespace Forum.Controllers
             return View();
         }
     }
-    }
+}

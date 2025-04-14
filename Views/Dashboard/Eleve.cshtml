@@ -102,7 +102,7 @@
                     <div class="card shadow">
                         <div class="card-header bg-warning text-dark">
                             <h5 class="mb-0">
-                                <i class="fas fa-user-clock me-2"></i>Demandes d'amis en attente
+                                <i class="fas fa-user-clock me-2"></i>Demandes d'amis reçu
                             </h5>
                         </div>
                         <div class="card-body">
@@ -118,7 +118,7 @@
                                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                                 <div>
                                                     <i class="fas fa-user me-2"></i>
-                                                    @ami.Prenom @ami.Nom
+                                                    @ami.Prenom_demandeur @ami.Nom_demandeur
                                                 </div>
                                                 <div>
                                                     <button class="btn btn-sm btn-success me-2" onclick="accepterDemande(@ami.AmiId)">
@@ -134,12 +134,12 @@
                                 }
                                 else
                                 {
-                                    <p class="text-muted">Aucune demande d'ami en attente.</p>
+                                    <p class="text-muted">Aucune demande d'ami reçu.</p>
                                 }
                             }
                             else
                             {
-                                <p class="text-muted">Aucune demande d'ami en attente.</p>
+                                <p class="text-muted">Aucune demande d'ami reçu.</p>
                             }
                         </div>
                     </div>
