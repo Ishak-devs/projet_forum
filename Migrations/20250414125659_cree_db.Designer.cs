@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250414073147_cree_db")]
+    [Migration("20250414125659_cree_db")]
     partial class cree_db
     {
         /// <inheritdoc />
@@ -48,6 +48,39 @@ namespace Forum.Migrations
                     b.HasIndex("EleveDemandeurId");
 
                     b.ToTable("Amis");
+                });
+
+            modelBuilder.Entity("Forum.Models.Admin", b =>
+                {
+                    b.Property<int>("Id_admin")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_admin"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Nom")
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("varchar(70)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Prenom")
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("varchar(70)");
+
+                    b.HasKey("Id_admin");
+
+                    b.ToTable("Admin");
                 });
 
             modelBuilder.Entity("Forum.Models.ChatMessage", b =>

@@ -12,6 +12,7 @@ public class ApplicationDbContext : DbContext
     
     public DbSet<ChatMessage> ChatMessages { get; set; }
     public DbSet<Amis> Amis { get; set; }
+    public DbSet<Admin> Admin { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

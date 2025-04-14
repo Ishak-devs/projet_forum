@@ -1,5 +1,4 @@
 ﻿using System.Security.Claims;
-using Forum.Migrations;
 using Forum.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
