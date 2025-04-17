@@ -16,7 +16,7 @@ namespace Forum.Models
 
         [Required, StringLength(2000)]
         public string Content { get; set; }
-
+        //Date time
         public DateTime Timestamp { get; set; } = DateTime.UtcNow;
     }
 }
