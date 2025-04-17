@@ -37,7 +37,7 @@ public class UsersController : Controller
             }
             else if (keywords.Length == 2)
             {
-                // Si 2 mots, recherche par combinaison nom/prénom
+                
                 elevesQuery = elevesQuery.Where(e =>
                     (e.Nom.ToLower().Equals(keywords[0].ToLower()) && e.Prenom.ToLower().Equals(keywords[1].ToLower())) ||
                     (e.Nom.ToLower().Equals(keywords[1].ToLower()) && e.Prenom.ToLower().Equals(keywords[0].ToLower()))
