@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "D:\\Projet\\projet_forum\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|d:\\projet\\projet_forum\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|solutionrelative:views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|d:\\projet\\projet_forum\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|solutionrelative:controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|d:\\projet\\projet_forum\\models\\chatmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|solutionrelative:models\\chatmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|d:\\projet\\projet_forum\\views\\dashboard\\eleve.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|solutionrelative:views\\dashboard\\eleve.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|d:\\projet\\projet_forum\\models\\viewmodels\\amisviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|solutionrelative:models\\viewmodels\\amisviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|d:\\projet\\projet_forum\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|solutionrelative:controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,15 +30,41 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Error.cshtml",
+              "DocumentMoniker": "D:\\Projet\\projet_forum\\Views\\Shared\\Error.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\Error.cshtml",
+              "ToolTip": "D:\\Projet\\projet_forum\\Views\\Shared\\Error.cshtml",
+              "RelativeToolTip": "Views\\Shared\\Error.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAABrAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-17T09:21:10.585Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ChatMessage.cs",
+              "DocumentMoniker": "D:\\Projet\\projet_forum\\Models\\ChatMessage.cs",
+              "RelativeDocumentMoniker": "Models\\ChatMessage.cs",
+              "ToolTip": "D:\\Projet\\projet_forum\\Models\\ChatMessage.cs",
+              "RelativeToolTip": "Models\\ChatMessage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T08:25:46.435Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Eleve.cshtml",
               "DocumentMoniker": "D:\\Projet\\projet_forum\\Views\\Dashboard\\Eleve.cshtml",
               "RelativeDocumentMoniker": "Views\\Dashboard\\Eleve.cshtml",
@@ -43,7 +77,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "AmisViewModel.cs",
               "DocumentMoniker": "D:\\Projet\\projet_forum\\Models\\ViewModels\\AmisViewModel.cs",
               "RelativeDocumentMoniker": "Models\\ViewModels\\AmisViewModel.cs",
@@ -55,15 +89,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "UsersController.cs",
               "DocumentMoniker": "D:\\Projet\\projet_forum\\Controllers\\UsersController.cs",
               "RelativeDocumentMoniker": "Controllers\\UsersController.cs",
               "ToolTip": "D:\\Projet\\projet_forum\\Controllers\\UsersController.cs",
               "RelativeToolTip": "Controllers\\UsersController.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAcwEIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAAAcwB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T14:05:37.712Z"
+              "WhenOpened": "2025-04-14T14:05:37.712Z",
+              "EditorCaption": ""
             }
           ]
         }
