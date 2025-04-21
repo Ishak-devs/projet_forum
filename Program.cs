@@ -32,10 +32,11 @@ builder.Services.AddSession(options =>
     options.IdleTimeout = TimeSpan.FromHours(1);
     options.Cookie.MaxAge = TimeSpan.FromHours(1);
 });
+//
 
 var app = builder.Build();
 
-// Configurer le pipeline de traitement des requêtes
+// Configurer le pipeline de traitement des requêtes .
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
