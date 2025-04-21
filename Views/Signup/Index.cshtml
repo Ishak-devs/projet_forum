@@ -53,30 +53,7 @@
             <span class="text-danger">@Html.ValidationMessageFor(e => e.Password)</span>
         </div>
 
-        <div class="mb-3">
-            <label class="form-label">Rôle :</label>
-            <div class="form-check">
-                <input type="radio" id="eleve" class="form-check-input" name="Role" value="Elève" asp-for="Role" onchange="verif_role()" />
-                <label for="eleve" class="form-check-label" asp-for="Role">Élève</label>
-            </div>
-            <div class="form-check">
-                <input type="radio" id="prof" class="form-check-input" name="Role" value="Professeur" asp-for="Role" onchange="verif_role()" />
-                <label for="prof" class="form-check-label" asp-for="Role">Prof</label>
-            </div>
-            <span class="text-danger">@Html.ValidationMessageFor(r => r.Role)</span>
-        </div>
 
-        <div id="Matiere" class="mb-3" style="display: none;">
-            <label class="form-label" for="Matiere_saisie">Matière :</label>
-            <select class="form-select" asp-for="Matiere" id="Matiere_saisie" onchange="verif_autre_matiere()">
-                <option value="">Sélectionnez votre matière</option>
-                <option value="Français">Français</option>
-                <option value="Anglais">Anglais</option>
-                <option value="Maths">Maths</option>
-                <option value="Histoire">Histoire</option>
-                <option value="Autre" id="Autre_matiere">Autre</option>
-            </select>
-        </div>
 
         <div id="Autre_matiere_input" class="mb-3" style="display: none;">
             <label class="form-label">Autre matière :</label>
@@ -87,4 +64,4 @@
     </form>
 </div>
 
-<script src="~/js/signup.js"></script>
+
