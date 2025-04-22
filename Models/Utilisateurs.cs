@@ -1,13 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Forum.Models
 {
-    public class Utilisateurs 
+    public class Utilisateurs
     {
         [Key]
-        public int Id_utilisateur { get; set; } 
+        public int Id_utilisateur { get; set; }
+
+        public int Id_promo { get; set; }
+
+        [ForeignKey("Id_promo")]
+        public virtual Promos Promos { get; set; }
 
         [StringLength(70)]
         public string Nom { get; set; }
@@ -23,6 +27,5 @@ namespace Forum.Models
 
         [StringLength(15)]
         public string Role { get; set; }
-
     }
 }

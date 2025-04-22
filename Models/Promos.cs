@@ -9,7 +9,6 @@ namespace Forum.Models
 
         [StringLength(100)]
         public string Nom_promo { get; set; }
-        public int Id_user { get; set; }
 
     }
 }

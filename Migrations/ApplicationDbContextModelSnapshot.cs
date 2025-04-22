@@ -32,92 +32,7 @@ namespace Forum.Migrations
                     b.Property<int>("code_postal")
                         .HasColumnType("int");
 
-                    b.Property<string>("nom_etablissement");
-
-                    b.Property<int>("EleveDemandeurId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EleveAmiId");
-
-                    b.HasIndex("EleveDemandeurId");
-
-                    b.ToTable("Amis");
-                });
-
-            modelBuilder.Entity("Forum.Models.Admin", b =>
-                {
-                    b.Property<int>("Id_admin")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_admin"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("Nom")
-                        .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("varchar(70)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<string>("Prenom")
-                        .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("varchar(70)");
-
-                    b.HasKey("Id_admin");
-
-                    b.ToTable("Admin");
-                });
-
-            modelBuilder.Entity("Forum.Models.ChatMessage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasMaxLength(2000)
-                        .HasColumnType("varchar(2000)");
-
-                    b.Property<int>("Id_classe")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SenderId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Timestamp")
-                        .HasColumnType("datetime(6)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id_classe");
-
-                    b.ToTable("ChatMessages");
-                });
-
-            modelBuilder.Entity("Forum.Models.Classe", b =>
-                {
-                    b.Property<int>("Id_classe")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_classe"));
-
-                    b.Property<string>("classe")
-
+                    b.Property<string>("nom_etablissement")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -171,11 +86,16 @@ namespace Forum.Migrations
                     b.Property<DateTime>("Date_message")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("Id_utilisateur")
+                        .HasColumnType("int");
+
                     b.Property<string>("Message")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id_message");
+
+                    b.HasIndex("Id_utilisateur");
 
                     b.ToTable("Messages");
                 });
@@ -231,6 +151,9 @@ namespace Forum.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
+                    b.Property<int>("Id_promo")
+                        .HasColumnType("int");
+
                     b.Property<string>("Motdepasse")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -253,7 +176,31 @@ namespace Forum.Migrations
 
                     b.HasKey("Id_utilisateur");
 
+                    b.HasIndex("Id_promo");
+
                     b.ToTable("Utilisateurs");
+                });
+
+            modelBuilder.Entity("Forum.Models.Messages", b =>
+                {
+                    b.HasOne("Forum.Models.Utilisateurs", "Utilisateurs")
+                        .WithMany()
+                        .HasForeignKey("Id_utilisateur")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Utilisateurs");
+                });
+
+            modelBuilder.Entity("Forum.Models.Utilisateurs", b =>
+                {
+                    b.HasOne("Forum.Models.Promos", "Promos")
+                        .WithMany()
+                        .HasForeignKey("Id_promo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Promos");
                 });
 #pragma warning restore 612, 618
         }

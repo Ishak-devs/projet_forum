@@ -54,22 +54,6 @@ namespace Forum.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Messages",
-                columns: table => new
-                {
-                    Id_message = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Message = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Date_message = table.Column<DateTime>(type: "datetime(6)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Messages", x => x.Id_message);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "Modules",
                 columns: table => new
                 {
@@ -106,6 +90,7 @@ namespace Forum.Migrations
                 {
                     Id_utilisateur = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Id_promo = table.Column<int>(type: "int", nullable: false),
                     Nom = table.Column<string>(type: "varchar(70)", maxLength: 70, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Prenom = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
@@ -120,8 +105,47 @@ namespace Forum.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Utilisateurs", x => x.Id_utilisateur);
+                    table.ForeignKey(
+                        name: "FK_Utilisateurs_Promos_Id_promo",
+                        column: x => x.Id_promo,
+                        principalTable: "Promos",
+                        principalColumn: "Id_promo",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Messages",
+                columns: table => new
+                {
+                    Id_message = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Id_utilisateur = table.Column<int>(type: "int", nullable: false),
+                    Message = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Date_message = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Messages", x => x.Id_message);
+                    table.ForeignKey(
+                        name: "FK_Messages_Utilisateurs_Id_utilisateur",
+                        column: x => x.Id_utilisateur,
+                        principalTable: "Utilisateurs",
+                        principalColumn: "Id_utilisateur",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Messages_Id_utilisateur",
+                table: "Messages",
+                column: "Id_utilisateur");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Utilisateurs_Id_promo",
+                table: "Utilisateurs",
+                column: "Id_promo");
         }
 
         /// <inheritdoc />
@@ -140,10 +164,10 @@ namespace Forum.Migrations
                 name: "Modules");
 
             migrationBuilder.DropTable(
-                name: "Promos");
+                name: "Utilisateurs");
 
             migrationBuilder.DropTable(
-                name: "Utilisateurs");
+                name: "Promos");
         }
     }
 }

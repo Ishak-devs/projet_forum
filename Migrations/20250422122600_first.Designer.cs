@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250422073934_first")]
+    [Migration("20250422122600_first")]
     partial class first
     {
         /// <inheritdoc />
@@ -89,11 +89,16 @@ namespace Forum.Migrations
                     b.Property<DateTime>("Date_message")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("Id_utilisateur")
+                        .HasColumnType("int");
+
                     b.Property<string>("Message")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id_message");
+
+                    b.HasIndex("Id_utilisateur");
 
                     b.ToTable("Messages");
                 });
@@ -149,6 +154,9 @@ namespace Forum.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
+                    b.Property<int>("Id_promo")
+                        .HasColumnType("int");
+
                     b.Property<string>("Motdepasse")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -171,7 +179,31 @@ namespace Forum.Migrations
 
                     b.HasKey("Id_utilisateur");
 
+                    b.HasIndex("Id_promo");
+
                     b.ToTable("Utilisateurs");
+                });
+
+            modelBuilder.Entity("Forum.Models.Messages", b =>
+                {
+                    b.HasOne("Forum.Models.Utilisateurs", "Utilisateurs")
+                        .WithMany()
+                        .HasForeignKey("Id_utilisateur")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Utilisateurs");
+                });
+
+            modelBuilder.Entity("Forum.Models.Utilisateurs", b =>
+                {
+                    b.HasOne("Forum.Models.Promos", "Promos")
+                        .WithMany()
+                        .HasForeignKey("Id_promo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Promos");
                 });
 #pragma warning restore 612, 618
         }
