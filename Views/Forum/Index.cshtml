@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Forum de discussion";
-    List<Modules>? classes = ViewBag.Classes;
+    List<Promos>? classes = ViewBag.Classes;
 }
 
 <div class="container mt-4">
@@ -38,7 +38,7 @@
                     {
                         foreach (var classe in classes)
                         {
-                            <option value="@classe.Id_classe">@classe.Classe.classe</option>
+                            <option value="@classe.Id_promo">@classe.Nom_promo</option>
                         }
                     }
                 </select>

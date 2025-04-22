@@ -3,6 +3,7 @@ using Forum.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Forum.Controllers
 {
@@ -65,20 +66,6 @@ namespace Forum.Controllers
                 })
                 .ToList();
 
-            // Gestion de l'ajout d'élève
-            if (ajout_eleve == "ajouter" && classeview.Eleves.HasValue)
-            {
-                if (!classeview.Eleveschoisis.Contains(classeview.Id_user.Value))
-                {
-                    classeview.Eleveschoisis.Add(classeview.Nom_classe.Value);
-                    ViewBag.Message_eleve = "Elève ajouté !";
-                }
-                else
-                {
-                    ViewBag.Message_eleve = "Cet élève est déjà dans la liste !";
-                }
-            }
-
             // Gestion de la suppression d'élève
             if (!string.IsNullOrEmpty(supprimer) && int.TryParse(supprimer, out int eleveIdASupprimer))
             {
@@ -89,12 +76,6 @@ namespace Forum.Controllers
             // Création de la classe
             if (action == "creer")
             {
-                if (string.IsNullOrEmpty(classeview))
-                {
-                    ModelState.AddModelError("ClasseNom", "Le nom de la classe est requis");
-                }
-                else
-                {
                     // Création de la classe
                     var nouvelleClasse = new Promos
                     {
@@ -119,11 +100,8 @@ namespace Forum.Controllers
                     TempData["SuccessMessage"] = "Classe créée avec succès !";
                     return RedirectToAction("Creeclasse");
                 }
-            }
+            return View();
+        }
 
-            // Recharger le modèle pour la vue
-            classeview.Eleves = new SelectList(eleves, "Value", "Text");
-            return View(classeview);
         }
     }
-}

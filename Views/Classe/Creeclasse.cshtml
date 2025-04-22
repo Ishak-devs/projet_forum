@@ -14,14 +14,14 @@
     <h2 class="mb-4">Créer une classe de discussion</h2>
     <form method="post" class="border p-4 rounded shadow-sm">
         <div class="form-group mb-3">
-            <label asp-for="Classe" class="form-label">Classe :</label>
-            <input type="text" asp-for="Classe" class="form-control" placeholder="Nom de la classe" />
-            <span class="text-danger">@Html.ValidationMessageFor(c => c.Classe)</span>
+            <label asp-for="Nom_classe" class="form-label">Classe :</label>
+            <input type="text" asp-for="Nom_classe" class="form-control" placeholder="Nom de la classe" />
+            <span class="text-danger">@Html.ValidationMessageFor(c => c.Nom_classe)</span>
         </div>
 
         <div class="form-group mb-3">
-            <label asp-for="id_eleve" class="form-label">Sélectionnez des élèves :</label>
-            <select asp-for="id_eleve" asp-items="Model.Eleves" class="form-select">
+            <label asp-for="Eleves" class="form-label">Sélectionnez des élèves :</label>
+            <select asp-for="Eleves" asp-items="Model.Eleves" class="form-select">
                 <option value="">Sélectionnez des élèves</option>
             </select>
         </div>
