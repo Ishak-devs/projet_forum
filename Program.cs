@@ -18,8 +18,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Ajouter les services au conteneur
 builder.Services.AddControllersWithViews();
 builder.Services.AddSignalR();
-builder.Services.AddSingleton<PasswordHasher<Eleve>>();
-builder.Services.AddSingleton<PasswordHasher<Professeur>>();
+builder.Services.AddSingleton<PasswordHasher<Utilisateurs>>();
+builder.Services.AddSingleton<PasswordHasher<Promos>>();
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -53,7 +53,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseDeveloperExceptionPage();
 
-app.MapHub<ChatHub>("/chatHub");
+//app.MapHub<ChatHub>("/chatHub");
 
 
 app.MapControllerRoute(

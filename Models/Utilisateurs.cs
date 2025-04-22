@@ -1,11 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Forum.Models
 {
-    public class Professeur
+    public class Utilisateurs 
     {
         [Key]
-        public int Id { get; set; }
+        public int Id_utilisateur { get; set; } 
 
         [StringLength(70)]
         public string Nom { get; set; }
@@ -13,14 +15,14 @@ namespace Forum.Models
         [StringLength(50)]
         public string Prenom { get; set; }
 
-        [StringLength(30)]
-        public string Matiere { get; set; }
-
         [StringLength(100)]
         public string Email { get; set; }
 
         [StringLength(100)]
-        public string Password { get; set; }
+        public string Motdepasse { get; set; }
+
+        [StringLength(15)]
+        public string Role { get; set; }
 
     }
 }

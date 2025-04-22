@@ -5,13 +5,14 @@ public class ApplicationDbContext : DbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-    public DbSet<Eleve> Eleves { get; set; }
-    public DbSet<Professeur> Professeurs { get; set; }
-    public DbSet<Classe> Classes { get; set; }
-    public DbSet<Details_classe> Details_classe { get; set; }
+    public DbSet<Utilisateurs> Utilisateurs { get; set; }
+    public DbSet<Promos> Promos { get; set; }
+    public DbSet<Etablissements> Etablissements { get; set; }
+    public DbSet<Modules> Modules { get; set; }
     
-    public DbSet<ChatMessage> ChatMessages { get; set; }
-    public DbSet<Amis> Amis { get; set; }
+    public DbSet<Messages> Messages { get; set; }
+    public DbSet<Evaluations> Evaluations { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

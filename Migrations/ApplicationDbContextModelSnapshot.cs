@@ -21,115 +21,132 @@ namespace Forum.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
-            modelBuilder.Entity("Amis", b =>
+            modelBuilder.Entity("Forum.Models.Etablissements", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("Id_etablissement")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_etablissement"));
 
-                    b.Property<bool>("Accepted")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<int>("EleveAmiId")
+                    b.Property<int>("code_postal")
                         .HasColumnType("int");
 
-                    b.Property<int>("EleveDemandeurId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EleveAmiId");
-
-                    b.HasIndex("EleveDemandeurId");
-
-                    b.ToTable("Amis");
-                });
-
-            modelBuilder.Entity("Forum.Models.ChatMessage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasMaxLength(2000)
-                        .HasColumnType("varchar(2000)");
-
-                    b.Property<int>("Id_classe")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SenderId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Timestamp")
-                        .HasColumnType("datetime(6)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id_classe");
-
-                    b.ToTable("ChatMessages");
-                });
-
-            modelBuilder.Entity("Forum.Models.Classe", b =>
-                {
-                    b.Property<int>("Id_classe")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_classe"));
-
-                    b.Property<string>("classe")
+                    b.Property<string>("nom_etablissement")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("Id_classe");
+                    b.Property<string>("nom_rue")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
-                    b.ToTable("Classes");
+                    b.Property<int>("numero_rue")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ville")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id_etablissement");
+
+                    b.ToTable("Etablissements");
                 });
 
-            modelBuilder.Entity("Forum.Models.Details_classe", b =>
+            modelBuilder.Entity("Forum.Models.Evaluations", b =>
                 {
-                    b.Property<int>("Id_details_classe")
+                    b.Property<int>("Id_evaluation")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_details_classe"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_evaluation"));
 
-                    b.Property<int>("Id_classe")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("Date_evaluation")
+                        .HasColumnType("datetime(6)");
 
-                    b.Property<int>("id_eleve")
-                        .HasColumnType("int");
+                    b.Property<decimal?>("Note_evaluation")
+                        .HasColumnType("decimal(65,30)");
 
-                    b.Property<int>("id_professeur")
-                        .HasColumnType("int");
+                    b.Property<string>("Theme_evaluation")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
-                    b.HasKey("Id_details_classe");
+                    b.HasKey("Id_evaluation");
 
-                    b.HasIndex("Id_classe");
-
-                    b.HasIndex("id_eleve");
-
-                    b.HasIndex("id_professeur");
-
-                    b.ToTable("Details_classe");
+                    b.ToTable("Evaluations");
                 });
 
-            modelBuilder.Entity("Forum.Models.Eleve", b =>
+            modelBuilder.Entity("Forum.Models.Messages", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("Id_message")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_message"));
+
+                    b.Property<DateTime>("Date_message")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id_message");
+
+                    b.ToTable("Messages");
+                });
+
+            modelBuilder.Entity("Forum.Models.Modules", b =>
+                {
+                    b.Property<int>("Id_module")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_module"));
+
+                    b.Property<DateTime>("Date_module")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("theme_module")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id_module");
+
+                    b.ToTable("Modules");
+                });
+
+            modelBuilder.Entity("Forum.Models.Promos", b =>
+                {
+                    b.Property<int>("Id_promo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_promo"));
+
+                    b.Property<string>("Nom_promo")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("Id_promo");
+
+                    b.ToTable("Promos");
+                });
+
+            modelBuilder.Entity("Forum.Models.Utilisateurs", b =>
+                {
+                    b.Property<int>("Id_utilisateur")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_utilisateur"));
 
                     b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Motdepasse")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
@@ -139,114 +156,19 @@ namespace Forum.Migrations
                         .HasMaxLength(70)
                         .HasColumnType("varchar(70)");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
                     b.Property<string>("Prenom")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("Eleves");
-                });
-
-            modelBuilder.Entity("Forum.Models.Professeur", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Email")
+                    b.Property<string>("Role")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
-                    b.Property<string>("Matiere")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("varchar(30)");
+                    b.HasKey("Id_utilisateur");
 
-                    b.Property<string>("Nom")
-                        .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("varchar(70)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("Prenom")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Professeurs");
-                });
-
-            modelBuilder.Entity("Amis", b =>
-                {
-                    b.HasOne("Forum.Models.Eleve", "EleveAmi")
-                        .WithMany()
-                        .HasForeignKey("EleveAmiId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Forum.Models.Eleve", "EleveDemandeur")
-                        .WithMany()
-                        .HasForeignKey("EleveDemandeurId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("EleveAmi");
-
-                    b.Navigation("EleveDemandeur");
-                });
-
-            modelBuilder.Entity("Forum.Models.ChatMessage", b =>
-                {
-                    b.HasOne("Forum.Models.Classe", "Classe")
-                        .WithMany()
-                        .HasForeignKey("Id_classe")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Classe");
-                });
-
-            modelBuilder.Entity("Forum.Models.Details_classe", b =>
-                {
-                    b.HasOne("Forum.Models.Classe", "Classe")
-                        .WithMany()
-                        .HasForeignKey("Id_classe")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Forum.Models.Eleve", "Eleve")
-                        .WithMany()
-                        .HasForeignKey("id_eleve")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Forum.Models.Professeur", "Professeur")
-                        .WithMany()
-                        .HasForeignKey("id_professeur")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Classe");
-
-                    b.Navigation("Eleve");
-
-                    b.Navigation("Professeur");
+                    b.ToTable("Utilisateurs");
                 });
 #pragma warning restore 612, 618
         }
