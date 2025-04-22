@@ -56,9 +56,10 @@ namespace Forum.Controllers
                     contextget.SaveChanges();
                     HttpContext.Session.SetString("user_id", newUtilisateur.Id_utilisateur.ToString());
 
+
                     // Redirection après succès
                     TempData["SuccessMessage"] = "Inscription réussie !";
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Etablissement", "Signup");
                 }
                 catch (DbUpdateException ex)
                 {
