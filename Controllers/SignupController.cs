@@ -27,8 +27,7 @@ namespace Forum.Controllers
             return View();
         }
 
-
-        [HttpPost] //Méthode post pour gerer l inscription
+        [HttpPost] 
         public ActionResult Index(Utilisateurs modele)
         {
             if (ModelState.IsValid)
