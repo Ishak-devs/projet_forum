@@ -32,7 +32,93 @@ namespace Forum.Migrations
                     b.Property<int>("code_postal")
                         .HasColumnType("int");
 
+<<<<<<< HEAD
                     b.Property<string>("nom_etablissement")
+=======
+                    b.Property<int>("EleveDemandeurId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EleveAmiId");
+
+                    b.HasIndex("EleveDemandeurId");
+
+                    b.ToTable("Amis");
+                });
+
+            modelBuilder.Entity("Forum.Models.Admin", b =>
+                {
+                    b.Property<int>("Id_admin")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_admin"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Nom")
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("varchar(70)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Prenom")
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("varchar(70)");
+
+                    b.HasKey("Id_admin");
+
+                    b.ToTable("Admin");
+                });
+
+            modelBuilder.Entity("Forum.Models.ChatMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("varchar(2000)");
+
+                    b.Property<int>("Id_classe")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SenderId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Id_classe");
+
+                    b.ToTable("ChatMessages");
+                });
+
+            modelBuilder.Entity("Forum.Models.Classe", b =>
+                {
+                    b.Property<int>("Id_classe")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_classe"));
+
+                    b.Property<string>("classe")
+>>>>>>> c126fb882254968bc4df4d839dcc8cde70282782
                         .IsRequired()
                         .HasColumnType("longtext");
 

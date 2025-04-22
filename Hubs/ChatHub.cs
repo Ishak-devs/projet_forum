@@ -2,12 +2,24 @@
 //using Forum.Models;
 //using Microsoft.EntityFrameworkCore;
 
+<<<<<<< HEAD
 //namespace Forum.Hubs
 //{
 //    public class ChatHub : Hub
 //    {
 //        private readonly ApplicationDbContext contextget;
 //        private readonly IHttpContextAccessor _httpContextAccessor;
+=======
+namespace Forum.Hubs
+{
+    public class ChatHub : Hub
+    {
+
+
+
+        private readonly ApplicationDbContext contextget;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+>>>>>>> c126fb882254968bc4df4d839dcc8cde70282782
 
 //        public ChatHub(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
 //        {

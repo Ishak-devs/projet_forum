@@ -29,11 +29,32 @@ namespace Forum.Controllers
                     ViewBag.SessionEleve_id = eleveId;
                     ViewBag.EleveNom = eleve.Nom;
                     ViewBag.ElevePrenom = eleve.Prenom;
+<<<<<<< HEAD
+=======
+
+                    var amis = contextget.Amis
+
+        .Where(a => a.EleveDemandeurId == id)
+        .Select(a => new AmisViewModel
+        {
+            AmiId = a.EleveAmiId,
+            Accepted = a.Accepted,
+            Nom_demandeur = contextget.Eleves.FirstOrDefault(e => e.Id == a.EleveAmiId).Nom,
+            Prenom_demandeur = contextget.Eleves.FirstOrDefault(e => e.Id == a.EleveAmiId).Prenom,
+
+        })
+        .ToList();
+                    ViewBag.Amis = amis;
+>>>>>>> c126fb882254968bc4df4d839dcc8cde70282782
                 }
+
+
+
             }
 
             return View();
         }
+
 
         public IActionResult Professeur()
         {
@@ -57,4 +78,4 @@ namespace Forum.Controllers
             return View();
         }
     }
-    }
+}
