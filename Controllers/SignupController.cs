@@ -53,13 +53,13 @@ namespace Forum.Controllers
                         Nom = modele.Nom,
                         Prenom = modele.Prenom,
                         Email = modele.Email,
-                        Password = passwordHasher.HashPassword(null, modele.Password) //On hash le mdp
+                        Motdepasse = passwordHasher.HashPassword(null, modele.Password) //On hash le mdp
                     };
                     contextget.Add(newEleve);
                     try
                     {
                         contextget.SaveChanges();
-                        HttpContext.Session.SetString("Eleve_id", newEleve.Id.ToString());
+                        HttpContext.Session.SetString("Eleve_id", newEleve.Id_utilisateur.ToString());
                         return RedirectToAction("Eleve", "Dashboard");
                     }
                     catch (DbUpdateException ex)
@@ -68,32 +68,6 @@ namespace Forum.Controllers
                         return View(modele);
                     }
                     
-                }
-
-
-                else if (modele.Role == "Professeur")
-                {
-                    var newProfesseur = new Promos
-                    {
-                        Nom = modele.Nom,
-                        Prenom = modele.Prenom,
-                        Email = modele.Email,
-                        Password = profsseurHasher.HashPassword(null, modele.Password),
-                        Matiere = modele.Matiere
-                    };
-
-                    contextget.Add(newProfesseur);
-                    try
-                    {
-                        contextget.SaveChanges();
-                        HttpContext.Session.SetString("Prof_id", newProfesseur.Id.ToString());
-                        return RedirectToAction("Professeur", "Dashboard");
-                    }
-                    catch (DbUpdateException ex)
-                    {
-                        ModelState.AddModelError("", "Erreur d'enregistrement : " + ex.Message);
-                        return View(modele);
-                    }
                 }
             }
             return View(new SignupViewModel());

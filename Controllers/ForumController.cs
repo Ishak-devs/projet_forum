@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
+using System.Threading.Tasks;
 
 namespace Forum.Controllers
 {
@@ -14,57 +16,38 @@ namespace Forum.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var eleveId = HttpContext.Session.GetString("Eleve_id"); //Stockage id
-            if (!string.IsNullOrEmpty(eleveId) && int.TryParse(eleveId, out int eleveIdInt)) //Si eleve connecté et id est bien un int
-            {
-                var classes = await contextget.Details_classe
+            var userId = HttpContext.Session.GetString("Id_user");
 
-                    .Where(dc => dc.id_eleve == eleveIdInt) //stockage de l'id de la classe
-                    .Include(dc => dc.Classe) // Charge les détails de la classe
+            if (!string.IsNullOrEmpty(userId) && int.TryParse(userId, out int userIdInt))
+            {
+                var eleveClasses = await contextget.Promos
+                    .Where(dc => dc.Id_promo == userIdInt)
                     .ToListAsync();
 
-                if (classes.Any()) //Si l'id de la classe est pas null
+                if (eleveClasses.Any())
                 {
-                    ViewBag.Classes = classes; //Stockage de l'id de la classe dans un viewbag
-                    ViewBag.UserRole = "Eleve"; //Stockage du role
-                    return View(); //Retourne la vue
-                }
-                else
-                {
-                    ViewBag.Classes =  null; // L'élève n'a pas de classe, mais il peut quand même accéder au forum
+                    ViewBag.Classes = eleveClasses;
                     ViewBag.UserRole = "Eleve";
                     return View();
                 }
-            }
 
-            else
-            {
+                var profClasses = await contextget.Utilisateurs
+                    .Where(u => u.Id_utilisateur == userIdInt && u.Role == "Professeur")
+                    .ToListAsync();
 
-                var profId = HttpContext.Session.GetString("Prof_id");
-                if (!string.IsNullOrEmpty(profId) && int.TryParse(profId, out int profIdInt))
+                if (profClasses.Any())
                 {
-
-                    var classes = await contextget.Details_classe
-                        .Where(dc => dc.id_professeur == profIdInt)
-                        .Include(dc => dc.Classe) // Charge les détails de la classe
-                        .ToListAsync();
-
-                    if (classes.Any())
-                    {
-                        ViewBag.Classes = classes;
-                        ViewBag.UserRole = "Professeur";
-                        return View();
-                    }
-                    else
-                    {
-                        ViewBag.Classes =  null; // Le Professeur n'a pas de classe, mais il peut quand même accéder au forum
-                        ViewBag.UserRole = "Professeur";
-                        return View();
-                    }
+                    ViewBag.Classes = profClasses;
+                    ViewBag.UserRole = "Professeur";
+                    return View();
                 }
-            }
-            return RedirectToAction("Index", "Authentification");
 
+                ViewBag.Classes = null;
+                ViewBag.UserRole = "Utilisateur";
+                return View();
+            }
+
+            return RedirectToAction("Index", "Authentification");
         }
     }
 }

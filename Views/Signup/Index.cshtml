@@ -1,90 +1,69 @@
-﻿@model Forum.Models.SignupViewModel
+﻿@model Forum.Models.Etablissements
 
 @{
     ViewData["Title"] = "Inscription";
-    if (ViewBag.Messagesuccess != null)
-    {
-        <div class="alert alert-success">
-            @ViewBag.Messagesuccess
-        </div>
-    }
-    
-    @if (ViewBag.MessageError != null)
-    {
-        <div class="alert alert-danger">
-            @ViewBag.MessageError
-        </div>
-    }
+}
 
-    @if (TempData["SuccessMessage"] != null)
-    {
-        <div class="alert alert-success">
-            @TempData["SuccessMessage"]
-        </div>
-    }
+@if (ViewBag.Messagesuccess != null)
+{
+    <div class="alert alert-success">
+        @ViewBag.Messagesuccess
+    </div>
+}
+
+@if (ViewBag.MessageError != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.MessageError
+    </div>
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
 }
 
 <div class="container mt-4">
     <form class="card p-4 shadow" method="post">
 
-        <h1 class="text-center mb-4">S'inscrire</h1>
+        <h1 class="text-center mb-4">Inscrire mon établissement</h1>
 
         <div class="mb-3">
-            <label class="form-label" asp-for="Nom">Nom :</label>
-            <input class="form-control" type="text" asp-for="Nom" />
-            <span class="text-danger">@Html.ValidationMessageFor(e => e.Nom)</span>
+            <label class="form-label" asp-for="nom_etablissement">Nom de l’établissement :</label>
+            <input class="form-control" type="text" asp-for="nom_etablissement" />
+            <span class="text-danger">@Html.ValidationMessageFor(e => e.nom_etablissement)</span>
         </div>
 
-        <div class="mb-3">
-            <label class="form-label" asp-for="Prenom">Prénom :</label>
-            <input class="form-control" type="text" asp-for="Prenom" />
-            <span class="text-danger">@Html.ValidationMessageFor(e => e.Prenom)</span>
-        </div>
+        <hr />
+
+        <h4 class="mb-3">Adresse de l’établissement</h4>
 
         <div class="mb-3">
-            <label class="form-label" asp-for="Email">Email :</label>
-            <input class="form-control" type="email" asp-for="Email" />
-            <span class="text-danger">@Html.ValidationMessageFor(e => e.Email)</span>
+            <label class="form-label" asp-for="numero_rue">Numéro de rue :</label>
+            <input class="form-control" type="number" asp-for="numero_rue" />
+            <span class="text-danger">@Html.ValidationMessageFor(e => e.numero_rue)</span>
         </div>
 
         <div class="mb-3">
-            <label class="form-label" asp-for="Password">Mot de passe :</label>
-            <input class="form-control" type="password" asp-for="Password" />
-            <span class="text-danger">@Html.ValidationMessageFor(e => e.Password)</span>
+            <label class="form-label" asp-for="nom_rue">Nom de la rue :</label>
+            <input class="form-control" type="text" asp-for="nom_rue" />
+            <span class="text-danger">@Html.ValidationMessageFor(e => e.nom_rue)</span>
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Rôle :</label>
-            <div class="form-check">
-                <input type="radio" id="eleve" class="form-check-input" name="Role" value="Elève" asp-for="Role" onchange="verif_role()" />
-                <label for="eleve" class="form-check-label" asp-for="Role">Élève</label>
-            </div>
-            <div class="form-check">
-                <input type="radio" id="prof" class="form-check-input" name="Role" value="Professeur" asp-for="Role" onchange="verif_role()" />
-                <label for="prof" class="form-check-label" asp-for="Role">Prof</label>
-            </div>
-            <span class="text-danger">@Html.ValidationMessageFor(r => r.Role)</span>
+            <label class="form-label" asp-for="code_postal">Code postal :</label>
+            <input class="form-control" type="number" asp-for="code_postal" />
+            <span class="text-danger">@Html.ValidationMessageFor(e => e.code_postal)</span>
         </div>
 
-        <div id="Matiere" class="mb-3" style="display: none;">
-            <label class="form-label" for="Matiere_saisie">Matière :</label>
-            <select class="form-select" asp-for="Matiere" id="Matiere_saisie" onchange="verif_autre_matiere()">
-                <option value="">Sélectionnez votre matière</option>
-                <option value="Français">Français</option>
-                <option value="Anglais">Anglais</option>
-                <option value="Maths">Maths</option>
-                <option value="Histoire">Histoire</option>
-                <option value="Autre" id="Autre_matiere">Autre</option>
-            </select>
-        </div>
-
-        <div id="Autre_matiere_input" class="mb-3" style="display: none;">
-            <label class="form-label">Autre matière :</label>
-            <input class="form-control" type="text" placeholder="Entrez la matière" />
+        <div class="mb-3">
+            <label class="form-label" asp-for="ville">Ville :</label>
+            <input class="form-control" type="text" asp-for="ville" />
+            <span class="text-danger">@Html.ValidationMessageFor(e => e.ville)</span>
         </div>
 
         <button class="btn btn-primary w-100" type="submit">S'inscrire</button>
     </form>
 </div>
-
-<script src="~/js/signup.js"></script>

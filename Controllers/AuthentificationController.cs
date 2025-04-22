@@ -4,43 +4,31 @@ using Forum.Models;
 using System.Linq;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
-namespace Forum.Controllers
+using Microsoft.AspNetCore.Http;
 
+namespace Forum.Controllers
 {
     public class AuthentificationController : Controller
     {
-       
-
-        private readonly ApplicationDbContext contextget; //creation to contextget
-        private readonly PasswordHasher<Utilisateurs> elevePasswordHasher;
-        private readonly PasswordHasher<Promos> professeurPasswordHasher;
+        private readonly ApplicationDbContext contextget;
+        private readonly PasswordHasher<Utilisateurs> PasswordHasher;
 
         public AuthentificationController(ApplicationDbContext context)
         {
-            contextget = context; 
-            elevePasswordHasher = new PasswordHasher<Utilisateurs>();
-            professeurPasswordHasher = new PasswordHasher<Promos>();
+            contextget = context;
+            PasswordHasher = new PasswordHasher<Utilisateurs>();
         }
+
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-
             return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            if (HttpContext.Session.GetString("Eleve_id") != null) 
-            {
-
-                return RedirectToAction("Eleve", "Dashboard");
-            }
-            if (HttpContext.Session.GetString("Prof_id") != null)
-            {
-                return RedirectToAction("Professeur", "Dashboard");
-            }
-                return View();
+            return View();
         }
 
         [HttpPost]
@@ -48,44 +36,28 @@ namespace Forum.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Vérifier si l'utilisateur est un élève
-                var Eleve = await contextget.Eleves.FirstOrDefaultAsync(e => e.Email == modele.Email);
+                var utilisateur = await contextget.Utilisateurs
+                    .FirstOrDefaultAsync(u => u.Email == modele.Email);
 
-                // Vérifier si l'utilisateur est un professeur
-                var Professeur = await contextget.Professeurs.FirstOrDefaultAsync(p => p.Email == modele.Email);
-
-                // Si aucun utilisateur n'est trouvé
-                if (Eleve == null && Professeur == null)
+                if (utilisateur != null)
                 {
-                    ViewBag.Message_error_email = "L'email saisi n'est pas reconnu";
-                    return View(modele);
+                    var result = PasswordHasher.VerifyHashedPassword(
+                        utilisateur,
+                        utilisateur.Motdepasse,
+                        modele.Password);
+
+                    if (result == PasswordVerificationResult.Success)
+                    {
+                        HttpContext.Session.SetString("UserId", utilisateur.Id_utilisateur.ToString());
+                        ModelState.Clear();
+                        return RedirectToAction("Admin", "Dashboard");
+                    }
                 }
 
-                // Vérification du mot de passe pour un élève
-                if (Eleve != null && elevePasswordHasher.VerifyHashedPassword(null, Eleve.Password, modele.Password) == PasswordVerificationResult.Success)
-                {
-                    HttpContext.Session.SetString("Eleve_id", Eleve.Id.ToString());
-                    ModelState.Clear();
-                    return RedirectToAction("Eleve", "Dashboard");
-                }
-
-                // Vérification du mot de passe pour un professeur
-                if (Professeur != null && professeurPasswordHasher.VerifyHashedPassword(null, Professeur.Password, modele.Password) == PasswordVerificationResult.Success)
-                {
-                    HttpContext.Session.SetString("Prof_id", Professeur.Id.ToString());
-                    Console.WriteLine("Prof_id dans la session: " + HttpContext.Session.GetString("Prof_id"));
-                    ModelState.Clear();
-                    return RedirectToAction("Professeur", "Dashboard");
-                }
-
-                // Si le mot de passe est incorrect
-                ViewBag.MessageError = "Vérifiez votre mot de passe.";
+                ViewBag.MessageError = "Email ou mot de passe incorrect.";
             }
 
             return View(modele);
         }
-
     }
 }
-        
-

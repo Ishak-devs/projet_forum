@@ -21,26 +21,14 @@ namespace Forum.Controllers
             {
                 int id = int.Parse(eleveId);
 
-                var eleve = contextget.Eleves
-                    .FirstOrDefault(p => p.Id == id);
+                var eleve = contextget.Utilisateurs
+                    .FirstOrDefault(p => p.Id_utilisateur == id);
 
                 if (eleve != null)
                 {
                     ViewBag.SessionEleve_id = eleveId;
                     ViewBag.EleveNom = eleve.Nom;
                     ViewBag.ElevePrenom = eleve.Prenom;
-
-                    var amis = contextget.Amis
-        .Where(a => a.EleveDemandeurId == id)
-        .Select(a => new AmisViewModel
-        {
-            AmiId = a.EleveAmiId,
-            Accepted = a.Accepted,
-            Nom = contextget.Eleves.FirstOrDefault(e => e.Id == a.EleveDemandeurId).Nom,
-            Prenom = contextget.Eleves.FirstOrDefault(e => e.Id == a.EleveDemandeurId).Prenom
-        })
-        .ToList();
-                    ViewBag.Amis = amis;
                 }
             }
 
@@ -55,8 +43,8 @@ namespace Forum.Controllers
             {
                 int id = int.Parse(profId);
 
-                var professeur = contextget.Professeurs
-                    .FirstOrDefault(p => p.Id == id);
+                var professeur = contextget.Utilisateurs
+                    .FirstOrDefault(p => p.Id_utilisateur == id);
 
                 if (professeur != null)
                 {

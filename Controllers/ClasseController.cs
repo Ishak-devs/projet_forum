@@ -1,49 +1,42 @@
-﻿
-
-
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Forum.Models;
-using Microsoft.AspNetCore.Mvc.Rendering; //Pour utiliser selectlist
-//using Microsoft.AspNetCore.Identity;
-//using System;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Forum.Controllers
 {
     public class ClasseController : Controller
     {
-        private readonly ApplicationDbContext contextget;
+        private readonly ApplicationDbContext _context;
 
         public ClasseController(ApplicationDbContext context)
         {
-            contextget = context;
+            _context = context;
         }
-
 
         [HttpGet]
         public IActionResult Creeclasse()
         {
-            var profId = HttpContext.Session.GetString("Prof_id");
-            if (string.IsNullOrEmpty(profId))
+            var userId = HttpContext.Session.GetString("Id_user");
+            if (string.IsNullOrEmpty(userId))
             {
                 TempData["Message"] = "Vous devez vous connecter pour accéder à cette page.";
                 return RedirectToAction("Index", "Authentification");
             }
 
-
-            var Eleves = contextget.Eleves
-            .Select(e => new SelectListItem
-            {
-                Value = e.Id.ToString(),
-                Text = e.Nom + "  " + e.Prenom
-
-            })
-
-            .ToList();  //Méthode tolist pour convertir un tableau en liste
-
+            var eleves = _context.Utilisateurs
+                .Where(u => u.Role == "Eleve")
+                .Select(e => new SelectListItem
+                {
+                    Value = e.Id_utilisateur.ToString(),
+                    Text = $"{e.Nom} {e.Prenom}"
+                })
+                .ToList();
 
             var model = new ClasseViewModel
             {
-                Eleves = new SelectList(Eleves, "Value", "Text"),
+                Eleves = new SelectList(eleves, "Value", "Text"),
                 Eleveschoisis = new List<int>()
             };
 
@@ -51,103 +44,85 @@ namespace Forum.Controllers
         }
 
         [HttpPost]
-        public ActionResult Cree_groupe_prive(ClasseViewModel classeview)
+        public IActionResult Creeclasse(ClasseViewModel classeview, string ajout_eleve, string action, string supprimer)
         {
-return View();
-
-}
-
-        public ActionResult Creeclasse(ClasseViewModel classeview, string ajout_eleve, string action, string supprimer)
-        {
-            var profId = HttpContext.Session.GetString("Prof_id");
-            if (string.IsNullOrEmpty(profId))
+            var userId = HttpContext.Session.GetString("Id_user");
+            if (string.IsNullOrEmpty(userId))
             {
-                return RedirectToAction("Index", "Authentification"); 
-            }
-                 if (classeview.Eleveschoisis == null)
-            {
-                classeview.Eleveschoisis = new List<int>();
+                return RedirectToAction("Index", "Authentification");
             }
 
-            var Eleves = contextget.Eleves
+            // Initialisation si null
+            classeview.Eleveschoisis ??= new List<int>();
 
-           .Select(e => new SelectListItem
-           {
-               Value = e.Id.ToString(),
-               Text = e.Nom + "  " + e.Prenom
-
-           })
-
-           .ToList();
-            if (classeview.Eleveschoisis == null)
-            {
-                classeview.Eleveschoisis = new List<int>();
-            }
-
-            if (ajout_eleve == "ajouter" && classeview.id_eleve.HasValue) //On vérifie si un élève à été séléctionné.
-            {
-                if (!classeview.Eleveschoisis.Contains(classeview.id_eleve.Value))
+            // Recharger la liste des élèves pour la vue
+            var eleves = _context.Utilisateurs
+                .Where(u => u.Role == "Eleve")
+                .Select(e => new SelectListItem
                 {
-                    classeview.Eleveschoisis.Add(classeview.id_eleve.Value);
+                    Value = e.Id_utilisateur.ToString(),
+                    Text = $"{e.Nom} {e.Prenom}"
+                })
+                .ToList();
+
+            // Gestion de l'ajout d'élève
+            if (ajout_eleve == "ajouter" && classeview.Eleves.HasValue)
+            {
+                if (!classeview.Eleveschoisis.Contains(classeview.Id_user.Value))
+                {
+                    classeview.Eleveschoisis.Add(classeview.Nom_classe.Value);
                     ViewBag.Message_eleve = "Elève ajouté !";
                 }
                 else
                 {
                     ViewBag.Message_eleve = "Cet élève est déjà dans la liste !";
                 }
-
             }
 
-            if (!string.IsNullOrEmpty(supprimer))
+            // Gestion de la suppression d'élève
+            if (!string.IsNullOrEmpty(supprimer) && int.TryParse(supprimer, out int eleveIdASupprimer))
             {
-                if (int.TryParse(supprimer, out int eleveIdASupprimer))
-                {
-                    classeview.Eleveschoisis.Remove(eleveIdASupprimer);
-                    ViewBag.Message_eleve = "Élève supprimé avec succès !";
-                }
+                classeview.Eleveschoisis.Remove(eleveIdASupprimer);
+                ViewBag.Message_eleve = "Élève supprimé avec succès !";
             }
 
-
-            if (action == "creer" && !string.IsNullOrEmpty(classeview.Classe))
+            // Création de la classe
+            if (action == "creer")
             {
-
-                if (contextget.Classes.Any(c => c.classe == classeview.Classe))
+                if (string.IsNullOrEmpty(classeview))
                 {
-                    ModelState.AddModelError("Classe", "Une classe avec ce nom existe déjà");
+                    ModelState.AddModelError("ClasseNom", "Le nom de la classe est requis");
                 }
-
                 else
                 {
-                    var nouvelleClasse = new Etablissements
+                    // Création de la classe
+                    var nouvelleClasse = new Promos
                     {
-                        classe = classeview.Classe
+                        Nom_promo = classeview.Nom_classe,
+                        Id_user = int.Parse(userId)
                     };
 
-                    contextget.Classes.Add(nouvelleClasse);
-                    contextget.SaveChanges();
+                    _context.Promos.Add(nouvelleClasse);
+                    _context.SaveChanges();
 
+                    // Ajout des élèves à la classe
                     foreach (var eleveId in classeview.Eleveschoisis.Distinct())
                     {
-                        var detailClasse = new Modules
+                        var user = _context.Utilisateurs.Find(eleveId);
+                        if (user != null)
                         {
-                            Id_classe = nouvelleClasse.Id_classe,
-                            id_professeur = int.Parse(profId),
-                            id_eleve = eleveId
-                        };
-
-                        contextget.Details_classe.Add(detailClasse);
+                           
+                        }
                     }
 
-                    contextget.SaveChanges();
+                    _context.SaveChanges();
                     TempData["SuccessMessage"] = "Classe créée avec succès !";
-                    classeview.Eleveschoisis.Clear();
-                    ViewBag.Message_eleve = null; // Réinitialiser le message d'élève
+                    return RedirectToAction("Creeclasse");
                 }
             }
 
-            TempData["Eleveschoisis"] = classeview.Eleveschoisis;
-            classeview.Eleves = new SelectList(Eleves, "Value", "Text");
-
+            // Recharger le modèle pour la vue
+            classeview.Eleves = new SelectList(eleves, "Value", "Text");
             return View(classeview);
         }
     }
