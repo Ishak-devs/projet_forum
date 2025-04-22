@@ -12,65 +12,98 @@ namespace Forum.Controllers
         private readonly ApplicationDbContext contextget;
 
         private readonly PasswordHasher<Utilisateurs> passwordHasher;
-        private readonly PasswordHasher<Promos> profsseurHasher;
 
-        public SignupController(ApplicationDbContext context, PasswordHasher<Utilisateurs> passwordHasher, PasswordHasher<Promos> profsseurHasher)
+        public SignupController(ApplicationDbContext context, PasswordHasher<Utilisateurs> passwordHasher)
         {
             contextget = context;
             this.passwordHasher = passwordHasher;
-            this.profsseurHasher = profsseurHasher;
         }
 
 
         [HttpGet]
         public IActionResult Index()
         {
-            if (HttpContext.Session.GetString("Eleve_id") != null)
-            {
-
-                return RedirectToAction("Eleve", "Dashboard");
-            }
-            if (HttpContext.Session.GetString("Prof_id") != null)
-            {
-                return RedirectToAction("Professeur", "Dashboard");
-            }
+            
             return View();
         }
 
 
         [HttpPost] //Méthode post pour gerer l inscription
-        public ActionResult Index(SignupViewModel modele)
+        public ActionResult Index(Utilisateurs modele)
         {
-            
             if (ModelState.IsValid)
             {
-
-
-                if (modele.Role == "Elève")
+                // Vérifie si l'email existe déjà
+                if (contextget.Utilisateurs.Any(u => u.Email == modele.Email))
                 {
-                    var newEleve = new Utilisateurs //Nouvelle eleve a ajouté
-                    {
-                        Nom = modele.Nom,
-                        Prenom = modele.Prenom,
-                        Email = modele.Email,
-                        Motdepasse = passwordHasher.HashPassword(null, modele.Password) //On hash le mdp
-                    };
-                    contextget.Add(newEleve);
-                    try
-                    {
-                        contextget.SaveChanges();
-                        HttpContext.Session.SetString("Eleve_id", newEleve.Id_utilisateur.ToString());
-                        return RedirectToAction("Eleve", "Dashboard");
-                    }
-                    catch (DbUpdateException ex)
-                    {
-                        ModelState.AddModelError("", "Erreur d'enregistrement : " + ex.Message);
-                        return View(modele);
-                    }
-                    
+                    ModelState.AddModelError("Email", "Cet email est déjà utilisé");
+                    return View(modele);
+                }
+
+                var newUtilisateur = new Utilisateurs
+                {
+                    Nom = modele.Nom,
+                    Prenom = modele.Prenom,
+                    Email = modele.Email,
+                    Motdepasse = passwordHasher.HashPassword(null, modele.Motdepasse),
+                    Role = "admin"
+                };
+
+                contextget.Add(newUtilisateur);
+
+                try
+                {
+                    contextget.SaveChanges();
+                    HttpContext.Session.SetString("user_id", newUtilisateur.Id_utilisateur.ToString());
+
+                    // Redirection après succès
+                    TempData["SuccessMessage"] = "Inscription réussie !";
+                    return RedirectToAction("Index", "Home");
+                }
+                catch (DbUpdateException ex)
+                {
+                    ModelState.AddModelError("", "Erreur d'enregistrement : " + ex.Message);
+                    return View(modele);
                 }
             }
-            return View(new SignupViewModel());
+            return View(modele);
+        }
+
+        [HttpGet]
+        public IActionResult Etablissement()
+        {
+            return View();
+        }
+
+        [HttpPost] //Méthode post pour gerer l inscription
+        public ActionResult Etablissement (Etablissements modele)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var newEtablissement = new Etablissements
+                {
+                    numero_rue = modele.numero_rue,
+                    nom_rue = modele.nom_rue,
+                    code_postal = modele.code_postal,
+                    ville = modele.ville,
+                    nom_etablissement = modele.nom_etablissement,
+                };
+                contextget.Add(newEtablissement);
+                try
+                {
+                    contextget.SaveChanges();
+                    HttpContext.Session.SetString("user_id", newEtablissement.Id_etablissement.ToString());
+                    return RedirectToAction("Etablissement", "Signup");
+                }
+                catch (DbUpdateException ex)
+                {
+                    ModelState.AddModelError("", "Erreur d'enregistrement : " + ex.Message);
+                    return View(modele);
+                }
+
+            }
+            return View();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model Forum.Models.Etablissements
+﻿@model Forum.Models.Utilisateurs
 
 @{
     ViewData["Title"] = "Inscription";
@@ -28,42 +28,33 @@
 <div class="container mt-4">
     <form class="card p-4 shadow" method="post">
 
-        <h1 class="text-center mb-4">Inscrire mon établissement</h1>
+        <h1 class="text-center mb-4">Inscription enadministrateur</h1>
 
         <div class="mb-3">
-            <label class="form-label" asp-for="nom_etablissement">Nom de l’établissement :</label>
-            <input class="form-control" type="text" asp-for="nom_etablissement" />
-            <span class="text-danger">@Html.ValidationMessageFor(e => e.nom_etablissement)</span>
-        </div>
-
-        <hr />
-
-        <h4 class="mb-3">Adresse de l’établissement</h4>
-
-        <div class="mb-3">
-            <label class="form-label" asp-for="numero_rue">Numéro de rue :</label>
-            <input class="form-control" type="number" asp-for="numero_rue" />
-            <span class="text-danger">@Html.ValidationMessageFor(e => e.numero_rue)</span>
+            <label class="form-label" asp-for="Nom">Nom:</label>
+            <input class="form-control" type="text" asp-for="Nom" />
+            <span class="text-danger">@Html.ValidationMessageFor(e => e.Nom)</span>
         </div>
 
         <div class="mb-3">
-            <label class="form-label" asp-for="nom_rue">Nom de la rue :</label>
-            <input class="form-control" type="text" asp-for="nom_rue" />
-            <span class="text-danger">@Html.ValidationMessageFor(e => e.nom_rue)</span>
+            <label class="form-label" asp-for="Prenom">Prénom:</label>
+            <input class="form-control" type="text" asp-for="Prenom" />
+            <span class="text-danger">@Html.ValidationMessageFor(e => e.Prenom)</span>
         </div>
 
         <div class="mb-3">
-            <label class="form-label" asp-for="code_postal">Code postal :</label>
-            <input class="form-control" type="number" asp-for="code_postal" />
-            <span class="text-danger">@Html.ValidationMessageFor(e => e.code_postal)</span>
+            <label class="form-label" asp-for="Email">Email :</label>
+            <input class="form-control" type="text" asp-for="Email" />
+            <span class="text-danger">@Html.ValidationMessageFor(e => e.Email)</span>
         </div>
 
         <div class="mb-3">
-            <label class="form-label" asp-for="ville">Ville :</label>
-            <input class="form-control" type="text" asp-for="ville" />
-            <span class="text-danger">@Html.ValidationMessageFor(e => e.ville)</span>
+            <label class="form-label" asp-for="Motdepasse">Mot de passe :</label>
+            <input class="form-control" type="password" asp-for="Motdepasse" />
+            <span class="text-danger">@Html.ValidationMessageFor(e => e.Motdepasse)</span>
         </div>
-
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input type="hidden" asp-for="Role" value="admin" />
         <button class="btn btn-primary w-100" type="submit">S'inscrire</button>
     </form>
 </div>
