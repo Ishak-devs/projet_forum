@@ -151,7 +151,7 @@ namespace Forum.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
-                    b.Property<int>("Id_promo")
+                    b.Property<int?>("Id_promo")
                         .HasColumnType("int");
 
                     b.Property<string>("Motdepasse")
@@ -196,9 +196,7 @@ namespace Forum.Migrations
                 {
                     b.HasOne("Forum.Models.Promos", "Promos")
                         .WithMany()
-                        .HasForeignKey("Id_promo")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Id_promo");
 
                     b.Navigation("Promos");
                 });

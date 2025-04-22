@@ -8,10 +8,10 @@ namespace Forum.Models
         [Key]
         public int Id_utilisateur { get; set; }
 
-        public int Id_promo { get; set; }
+        public int? Id_promo { get; set; }
 
         [ForeignKey("Id_promo")]
-        public virtual Promos Promos { get; set; }
+        public virtual Promos? Promos { get; set; }
 
         [StringLength(70)]
         public string Nom { get; set; }

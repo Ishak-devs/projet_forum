@@ -46,7 +46,8 @@ namespace Forum.Controllers
                     Prenom = modele.Prenom,
                     Email = modele.Email,
                     Motdepasse = passwordHasher.HashPassword(null, modele.Motdepasse),
-                    Role = "admin"
+                    Role = "admin",
+                    Id_promo = modele.Id_promo
                 };
 
                 contextget.Add(newUtilisateur);
@@ -76,7 +77,7 @@ namespace Forum.Controllers
             return View();
         }
 
-        [HttpPost] //Méthode post pour gerer l inscription
+        [HttpPost] 
         public ActionResult Etablissement (Etablissements modele)
         {
 
