@@ -1,42 +1,127 @@
 ﻿@{
-    ViewData["Title"] = "Etablissement Etape 2";
+    Layout = null; // Remove if you want to use your existing layout
 }
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"]</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Preparing Your School Space</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Academic Loader Styles */
+        .academic-loader-container {
+            min-height: 100vh;
+            background-color: #f8f9fa;
+        }
+
+        .academic-loader {
+            position: relative;
+            width: 150px;
+            height: 100px;
+            margin: 0 auto;
+        }
+
+        .loader-book {
+            position: absolute;
+            width: 30px;
+            height: 40px;
+            background: #3498db;
+            border-radius: 3px;
+            transform-origin: bottom left;
+            animation: bookAnimation 2s infinite ease-in-out;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+
+            .loader-book:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 5px;
+                right: 5px;
+                height: 15px;
+                background: #2980b9;
+                border-radius: 3px 3px 0 0;
+            }
+
+            .loader-book:after {
+                content: '';
+                position: absolute;
+                bottom: 5px;
+                left: 5px;
+                right: 5px;
+                height: 2px;
+                background: #1a5276;
+            }
+
+        .loader-book-1 {
+            left: 0;
+            animation-delay: 0s;
+        }
+
+        .loader-book-2 {
+            left: 30px;
+            animation-delay: 0.2s;
+        }
+
+        .loader-book-3 {
+            left: 60px;
+            animation-delay: 0.4s;
+        }
+
+        .loader-book-4 {
+            left: 90px;
+            animation-delay: 0.6s;
+        }
+
+        @@keyframes bookAnimation {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            25% {
+                transform: translateY(-10px) rotate(5deg);
+            }
+
+            50% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            75% {
+                transform: translateY(-5px) rotate(-3deg);
+            }
+        }
+
+        .academic-title {
+            font-family: 'Times New Roman', serif;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .academic-subtitle {
+            font-family: 'Calibri', sans-serif;
+            color: #7f8c8d;
+        }
+    </style>
 </head>
 <body>
-    <div class="container my-5">
-        <h2>Etape 2 de l'inscription</h2>
-
-        <!-- Loader Bootstrap -->
-        <div id="loader" class="d-flex justify-content-center align-items-center" style="height: 200px;">
-            <div class="spinner-border" role="status">
-                <span class="visually-hidden">Chargement...</span>
-            </div>
+    <div class="academic-loader-container d-flex flex-column justify-content-center align-items-center">
+        <div class="academic-loader text-center mb-4">
+            <div class="loader-book loader-book-1"></div>
+            <div class="loader-book loader-book-2"></div>
+            <div class="loader-book loader-book-3"></div>
+            <div class="loader-book loader-book-4"></div>
         </div>
-
-        <!-- Contenu de la page (peut être caché au début) -->
-        <div id="content" class="d-none">
-            <h3>Bienvenue dans l'étape 2</h3>
-            <p>Complétez les informations suivantes...</p>
-            <!-- Ajoutez ici votre formulaire ou tout autre contenu -->
-        </div>
+        <h2 class="academic-title mb-3">Let's prepare your school space</h2>
+        <p class="academic-subtitle">Organizing the perfect learning environment...</p>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Simuler le chargement et masquer le loader après un délai (par exemple 3 secondes)
         setTimeout(function() {
-            document.getElementById("loader").classList.add("d-none"); // Masquer le loader
-            document.getElementById("content").classList.remove("d-none"); // Afficher le contenu
-        }, 3000); // 3000 ms = 3 secondes
+        }, 3000);
     </script>
 </body>
 </html>
