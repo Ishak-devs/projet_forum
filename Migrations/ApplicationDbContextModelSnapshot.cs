@@ -32,9 +32,8 @@ namespace Forum.Migrations
                     b.Property<int>("code_postal")
                         .HasColumnType("int");
 
-<<<<<<< HEAD
-                    b.Property<string>("nom_etablissement")
-=======
+                    b.Property<string>("nom_etablissement");
+
                     b.Property<int>("EleveDemandeurId")
                         .HasColumnType("int");
 
@@ -118,7 +117,7 @@ namespace Forum.Migrations
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_classe"));
 
                     b.Property<string>("classe")
->>>>>>> c126fb882254968bc4df4d839dcc8cde70282782
+
                         .IsRequired()
                         .HasColumnType("longtext");
 
