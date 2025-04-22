@@ -23,7 +23,7 @@ namespace Forum.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            
+
             return View();
         }
 
@@ -77,8 +77,8 @@ namespace Forum.Controllers
             return View();
         }
 
-        [HttpPost] 
-        public ActionResult Etablissement (Etablissements modele)
+        [HttpPost]
+        public ActionResult Etablissement(Etablissements modele)
         {
 
             if (ModelState.IsValid)
@@ -96,7 +96,7 @@ namespace Forum.Controllers
                 {
                     contextget.SaveChanges();
                     HttpContext.Session.SetString("user_id", newEtablissement.Id_etablissement.ToString());
-                    return RedirectToAction("Etablissement", "Signup");
+                    return RedirectToAction("Etablissement_etape_2", "Signup");
                 }
                 catch (DbUpdateException ex)
                 {
@@ -105,6 +105,11 @@ namespace Forum.Controllers
                 }
 
             }
+            return View();
+        }
+
+        public ActionResult Etablissement_etape_2()
+        {
             return View();
         }
     }

@@ -1,60 +1,44 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-    @model Forum.Models.Etablissements
+﻿@model Forum.Models.Etablissements
 
+@{
     ViewData["Title"] = "Inscription";
-    }
-
-@if (ViewBag.Messagesuccess != null)
-{
-    <div class="alert alert-success">
-        @ViewBag.Messagesuccess
-    </div>
-}
-
-@if (ViewBag.MessageError != null)
-{
-    <div class="alert alert-danger">
-        @ViewBag.MessageError
-    </div>
-}
-
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success">
-        @TempData["SuccessMessage"]
-    </div>
-}
-
-@{
     Layout = "_Layout";
 }
 
 <h2>Inscription de l'Etablissement</h2>
 
-<form id="etablissementForm" method="post" onsubmit="showLoader();">
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-@(TempData["MessageType"] ?? "success")">
+        @TempData["Message"]
+    </div>
+}
 
+<form id="etablissementForm" method="post">
     <div class="form-group">
-        <label for="nom_etablissement">Nom de l'établissement</label>
-        <input type="text" class="form-control" id="nom_etablissement" name="nom_etablissement" required />
+        <label asp-for="nom_etablissement"></label>
+        <input asp-for="nom_etablissement" class="form-control" required />
+        <span asp-validation-for="nom_etablissement" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label for="numero_rue">Numéro de rue</label>
-        <input type="text" class="form-control" id="numero_rue" name="numero_rue" required />
+        <label asp-for="numero_rue"></label>
+        <input asp-for="numero_rue" class="form-control" required />
+        <span asp-validation-for="numero_rue" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label for="nom_rue">Nom de rue</label>
-        <input type="text" class="form-control" id="nom_rue" name="nom_rue" required />
+        <label asp-for="nom_rue"></label>
+        <input asp-for="nom_rue" class="form-control" required />
+        <span asp-validation-for="nom_rue" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label for="code_postal">Code Postal</label>
-        <input type="text" class="form-control" id="code_postal" name="code_postal" required />
+        <label asp-for="code_postal"></label>
+        <input asp-for="code_postal" class="form-control" required />
+        <span asp-validation-for="code_postal" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label for="ville">Ville</label>
-        <input type="text" class="form-control" id="ville" name="ville" required />
+        <label asp-for="ville"></label>
+        <input asp-for="ville" class="form-control" required />
+        <span asp-validation-for="ville" class="text-danger"></span>
     </div>
 
     <div id="loader" class="text-center" style="display:none;">
@@ -67,24 +51,4 @@
     <button type="submit" class="btn btn-primary">Soumettre</button>
 </form>
 
-<div id="successMessage" style="display:none;">
-    <p class="alert alert-success">Votre établissement a été inscrit avec succès !</p>
-</div>
 
-
-<script type="text/javascript">
-    function showLoader() {
-
-        document.getElementById("loader").style.display = "block";
-        document.getElementById("etablissementForm").style.display = "none";
-    }
-
-    function showSuccessMessage() {
-        document.getElementById("loader").style.display = "none";
-        document.getElementById("successMessage").style.display = "block";
-    }
-
-    setTimeout(function() {
-        document.getElementById("successMessage").style.display = "none";
-    }, 5000);
-</script>
