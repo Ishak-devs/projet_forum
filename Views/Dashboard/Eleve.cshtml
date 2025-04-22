@@ -1,0 +1,265 @@
+﻿@model List<Forum.Models.AmisViewModel>
+
+@{
+    if (ViewBag.SessionEleve_id != null)
+    {
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card shadow">
+                        <div class="card-header bg-primary text-white">
+                            <h3 class="card-title mb-0">
+                                <i class="fas fa-user-circle me-2"></i>Profil
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="position-relative me-3">
+                                    <img id="profileImage" src="https://via.placeholder.com/80" class="rounded-circle" width="80" height="80" alt="Photo de profil" style="object-fit: cover;">
+                                    <button type="button" class="btn btn-sm btn-primary rounded-circle p-0 position-absolute" style="width: 30px; height: 30px; line-height: 30px; bottom: -10px; right: -10px;" data-bs-toggle="modal" data-bs-target="#avatarModal">
+                                        <i class="fas fa-camera"></i>
+                                    </button>
+                                </div>
+                                <div>
+                                    <h4 class="mb-1">@ViewBag.ElevePrenom @ViewBag.EleveNom</h4>
+                                    <span class="badge bg-primary">Élève</span>
+                                </div>
+                            </div>
+
+                            <!-- Modal de sélection d'avatar -->
+                            <div class="modal fade" id="avatarModal" tabindex="-1" aria-labelledby="avatarModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="avatarModalLabel">Choisissez votre avatar</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row text-center">
+                                                <div class="col-4 mb-3">
+                                                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+                                                </div>
+                                                <div class="col-4 mb-3">
+                                                    <img src="https://cdn-icons-png.flaticon.com/512/3667/3667325.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/3667/3667325.png">
+                                                </div>
+                                                <div class="col-4 mb-3">
+                                                    <img src="https://cdn-icons-png.flaticon.com/512/921/921071.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/921/921071.png">
+                                                </div>
+                                                <div class="col-4 mb-3">
+                                                    <img src="https://cdn-icons-png.flaticon.com/512/706/706830.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/706/706830.png">
+                                                </div>
+                                                <div class="col-4 mb-3">
+                                                    <img src="https://cdn-icons-png.flaticon.com/512/4202/4202839.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/4202/4202839.png">
+                                                </div>
+                                                <div class="col-4 mb-3">
+                                                    <img src="https://cdn-icons-png.flaticon.com/512/4333/4333609.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/4333/4333609.png">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                            <button type="button" class="btn btn-primary" id="saveAvatarBtn">Enregistrer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-muted">Informations</h5>
+                                            <p class="card-text">
+                                                <i class="fas fa-id-card me-2 text-primary"></i>
+                                                <!-- Autres informations -->
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-muted">Actions</h5>
+                                            <form asp-controller="Authentification" asp-action="Logout" method="post">
+                                                <button type="submit" class="btn btn-danger w-100">
+                                                    <i class="fas fa-sign-out-alt me-2"></i>Déconnexion
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section des demandes d'amis en attente -->
+        <div class="container mt-4">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card shadow">
+                        <div class="card-header bg-warning text-dark">
+                            <h5 class="mb-0">
+                                <i class="fas fa-user-clock me-2"></i>Demandes d'amis en attente
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            @if (ViewBag.Amis != null && ViewBag.Amis.Count > 0)
+                            {
+                                var demandesEnAttente = ((IEnumerable<dynamic>)ViewBag.Amis).Where(a => a.Accepted == false).ToList();
+
+                                @if (demandesEnAttente.Count > 0)
+                                {
+                                    <ul class="list-group">
+                                        @foreach (var ami in demandesEnAttente)
+                                        {
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <i class="fas fa-user me-2"></i>
+                                                    @ami.Prenom @ami.Nom
+                                                </div>
+                                                <div>
+                                                    <button class="btn btn-sm btn-success me-2" onclick="accepterDemande(@ami.AmiId)">
+                                                        <i class="fas fa-check"></i> Accepter
+                                                    </button>
+                                                    <button class="btn btn-sm btn-danger" onclick="refuserDemande(@ami.AmiId)">
+                                                        <i class="fas fa-times"></i> Refuser
+                                                    </button>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <p class="text-muted">Aucune demande d'ami en attente.</p>
+                                }
+                            }
+                            else
+                            {
+                                <p class="text-muted">Aucune demande d'ami en attente.</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section des amis acceptés -->
+        @if (ViewBag.Amis != null && ViewBag.Amis.Count > 0)
+        {
+            var amisAcceptes = ((IEnumerable<dynamic>)ViewBag.Amis).Where(a => a.Accepted == true).ToList();
+
+            @if (amisAcceptes.Count > 0)
+            {
+                <div class="container mt-4">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8 col-lg-6">
+                            <div class="card shadow">
+                                <div class="card-header bg-success text-white">
+                                    <h5 class="mb-0">
+                                        <i class="fas fa-user-friends me-2"></i>Mes amis
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-group">
+                                        @foreach (var ami in amisAcceptes)
+                                        {
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <i class="fas fa-user me-2"></i>
+                                                    @ami.Prenom @ami.Nom
+                                                </div>
+                                                <span class="badge bg-success">Ami</span>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+        <!-- Scripts -->
+        <script>
+            // Gestion des avatars
+            document.addEventListener('DOMContentLoaded', function() {
+                let selectedAvatar = '';
+
+                document.querySelectorAll('.avatar-option').forEach(img => {
+                    img.addEventListener('click', function() {
+                        document.querySelectorAll('.avatar-option').forEach(i => {
+                            i.classList.remove('border-primary');
+                            i.classList.add('border-light');
+                        });
+
+                        this.classList.remove('border-light');
+                        this.classList.add('border-primary');
+                        selectedAvatar = this.getAttribute('data-img');
+                    });
+                });
+
+                document.getElementById('saveAvatarBtn').addEventListener('click', function() {
+                    if (selectedAvatar) {
+                        document.getElementById('profileImage').src = selectedAvatar;
+                        localStorage.setItem('profSelectedAvatar', selectedAvatar);
+                        var modal = bootstrap.Modal.getInstance(document.getElementById('avatarModal'));
+                        modal.hide();
+                    } else {
+                        alert('Veuillez sélectionner un avatar');
+                    }
+                });
+            });
+
+            // Gestion des demandes d'amis
+            function accepterDemande(amiId) {
+                fetch(`/Amis/AccepterDemande?amiId=${amiId}`, {
+                    method: 'POST',
+                    headers: {
+                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        alert('Erreur lors de l\'acceptation de la demande');
+                    }
+                });
+            }
+
+            function refuserDemande(amiId) {
+                fetch(`/Amis/RefuserDemande?amiId=${amiId}`, {
+                    method: 'POST',
+                    headers: {
+                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        alert('Erreur lors du refus de la demande');
+                    }
+                });
+            }
+        </script>
+    }
+    else
+    {
+        <div class="container mt-5">
+            <div class="alert alert-warning text-center">
+                <i class="fas fa-exclamation-triangle me-2"></i>Aucun élève connecté.
+            </div>
+            <div class="text-center">
+                <a asp-controller="Authentification" asp-action="Login" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt me-2"></i>Se connecter
+                </a>
+            </div>
+        </div>
+    }
+}

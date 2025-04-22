@@ -1,0 +1,55 @@
+﻿@model Forum.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Connexion";
+    if (ViewBag.Messagesuccess != null)
+    {
+        <div class="alert alert-success">
+            @ViewBag.Messagesuccess
+        </div>
+    }
+    
+    if (TempData["Prof_not_connect"] != null)
+    {
+        <p class="text-danger">@TempData["Prof_not_connect"]</p>
+    }
+
+
+
+    if (ViewBag.MessageError != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.MessageError
+        </div>
+    }
+    
+    if (ViewBag.Message_error_email != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.Message_error_email
+        </div>
+    }
+
+    <div class="container mt-4">
+        <form class="card p-4 shadow" method="post">
+
+            <h1 class="text-center mb-4">Se connecter</h1>
+
+            <div class="mb-3">
+                <label class="form-label" asp-for="Email">Email :</label>
+                <input class="form-control" type="email" asp-for="Email"/>
+                <span class="text-danger">@Html.ValidationMessageFor(e => e.Email)</span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" asp-for="Password">Mot de passe :</label>
+                <input class="form-control" type="password" asp-for="Password"/>
+                <span class="text-danger">@Html.ValidationMessageFor(e => e.Password)</span>
+            </div>
+                <button class="btn btn-primary w-100" type="submit">Se connecter</button>
+
+        </form>
+    </div>
+
+    
+}
