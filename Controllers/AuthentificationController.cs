@@ -48,7 +48,7 @@ namespace Forum.Controllers
 
                     if (result == PasswordVerificationResult.Success)
                     {
-                        HttpContext.Session.SetString("UserId", utilisateur.Id_utilisateur.ToString());
+                        //HttpContext.Session.SetString("UserId", utilisateur.Id_utilisateur.ToString());
                         ModelState.Clear();
                         return RedirectToAction("Admin", "Dashboard");
                     }
