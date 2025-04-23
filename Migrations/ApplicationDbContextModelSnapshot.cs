@@ -86,6 +86,9 @@ namespace Forum.Migrations
                     b.Property<DateTime>("Date_message")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("Id_promo")
+                        .HasColumnType("int");
+
                     b.Property<int>("Id_utilisateur")
                         .HasColumnType("int");
 
@@ -94,6 +97,8 @@ namespace Forum.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id_message");
+
+                    b.HasIndex("Id_promo");
 
                     b.HasIndex("Id_utilisateur");
 
@@ -183,11 +188,19 @@ namespace Forum.Migrations
 
             modelBuilder.Entity("Forum.Models.Messages", b =>
                 {
+                    b.HasOne("Forum.Models.Promos", "Promos")
+                        .WithMany()
+                        .HasForeignKey("Id_promo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Forum.Models.Utilisateurs", "Utilisateurs")
                         .WithMany()
                         .HasForeignKey("Id_utilisateur")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Promos");
 
                     b.Navigation("Utilisateurs");
                 });

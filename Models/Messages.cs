@@ -12,8 +12,11 @@ namespace Forum.Models
 
         [ForeignKey("Utilisateurs")]
         public int Id_utilisateur { get; set; }
-
         public virtual Utilisateurs Utilisateurs { get; set; }
+
+        [ForeignKey("Promos")]
+        public int Id_promo { get; set; }
+        public virtual Promos Promos { get; set; }
         public string Message { get; set; }
 
         public DateTime Date_message { get; set; } = DateTime.UtcNow;
