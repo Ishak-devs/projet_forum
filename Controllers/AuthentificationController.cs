@@ -48,9 +48,16 @@ namespace Forum.Controllers
 
                     if (result == PasswordVerificationResult.Success)
                     {
-                        //HttpContext.Session.SetString("UserId", utilisateur.Id_utilisateur.ToString());
+                        HttpContext.Session.SetString("UserRole", utilisateur.Role);
+
                         ModelState.Clear();
-                        return RedirectToAction("Admin", "Dashboard");
+
+                        if (utilisateur.Role == "Admin")
+                            return RedirectToAction("Admin", "Dashboard");
+                        else if (utilisateur.Role == "Professeur")
+                            return RedirectToAction("Professeur", "Dashboard");
+                        else
+                            return RedirectToAction("Eleve", "Dashboard");
                     }
                 }
 

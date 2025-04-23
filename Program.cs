@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Forum.Models;
 using Microsoft.AspNetCore.Identity; 
-using Forum.Hubs;
+//using Forum.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 //builder.WebHost.ConfigureKestrel(serverOptions =>

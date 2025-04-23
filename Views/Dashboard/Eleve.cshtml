@@ -1,253 +1,221 @@
 ﻿@{
-    if (ViewBag.SessionEleve_id != null)
-    {
-        <div class="container mt-5">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6">
-                    <div class="card shadow">
-                        <div class="card-header bg-primary text-white">
-                            <h3 class="card-title mb-0">
-                                <i class="fas fa-user-circle me-2"></i>Profil
-                            </h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-4">
-                                <div class="position-relative me-3">
-                                    <img id="profileImage" src="https://via.placeholder.com/80" class="rounded-circle" width="80" height="80" alt="Photo de profil" style="object-fit: cover;">
-                                    <button type="button" class="btn btn-sm btn-primary rounded-circle p-0 position-absolute" style="width: 30px; height: 30px; line-height: 30px; bottom: -10px; right: -10px;" data-bs-toggle="modal" data-bs-target="#avatarModal">
-                                        <i class="fas fa-camera"></i>
-                                    </button>
-                                </div>
-                                <div>
-                                    <h4 class="mb-1">@ViewBag.ElevePrenom @ViewBag.EleveNom</h4>
-                                    <span class="badge bg-primary">Élève</span>
-                                </div>
-                            </div>
+    ViewData["Title"] = "Espace Élève";
+}
 
-                            <!-- Modal de sélection d'avatar -->
-                            <div class="modal fade" id="avatarModal" tabindex="-1" aria-labelledby="avatarModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="avatarModalLabel">Choisissez votre avatar</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row text-center">
-                                                <div class="col-4 mb-3">
-                                                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
-                                                </div>
-                                                <div class="col-4 mb-3">
-                                                    <img src="https://cdn-icons-png.flaticon.com/512/3667/3667325.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/3667/3667325.png">
-                                                </div>
-                                                <div class="col-4 mb-3">
-                                                    <img src="https://cdn-icons-png.flaticon.com/512/921/921071.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/921/921071.png">
-                                                </div>
-                                                <div class="col-4 mb-3">
-                                                    <img src="https://cdn-icons-png.flaticon.com/512/706/706830.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/706/706830.png">
-                                                </div>
-                                                <div class="col-4 mb-3">
-                                                    <img src="https://cdn-icons-png.flaticon.com/512/4202/4202839.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/4202/4202839.png">
-                                                </div>
-                                                <div class="col-4 mb-3">
-                                                    <img src="https://cdn-icons-png.flaticon.com/512/4333/4333609.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/4333/4333609.png">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                            <button type="button" class="btn btn-primary" id="saveAvatarBtn">Enregistrer</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<div class="container-fluid py-4">
+    <!-- En-tête personnalisé -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="display-5 fw-bold text-primary">
+                        <i class="fas fa-user-graduate me-2"></i>Mon Espace Personnel
+                    </h1>
+                    <p class="lead mb-0">Bienvenue, <strong>@User.Identity.Name</strong> (Classe: <span class="badge bg-primary">Terminale A</span>)</p>
+                </div>
+                <div>
+                    <span class="badge rounded-pill bg-success fs-6">
+                        <i class="fas fa-star me-1"></i> Moyenne Générale: <strong>14.2/20</strong>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <div class="card mb-3">
-                                        <div class="card-body">
-                                            <h5 class="card-title text-muted">Informations</h5>
-                                            <p class="card-text">
-                                                <i class="fas fa-id-card me-2 text-primary"></i>
-                                                <!-- Autres informations -->
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title text-muted">Actions</h5>
-                                            <form asp-controller="Authentification" asp-action="Logout" method="post">
-                                                <button type="submit" class="btn btn-danger w-100">
-                                                    <i class="fas fa-sign-out-alt me-2"></i>Déconnexion
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+   
+    <div class="row g-4 mb-4">
+       
+        <div class="col-md-4">
+            <div class="card border-info shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-chart-line fa-3x text-info mb-3"></i>
+                    <h5 class="card-title">Mes Notes</h5>
+                    <p class="card-text">Consultez vos résultats par matière.</p>
+                    <a href="@Url.Action("MesNotes", "Eleve")" class="btn btn-info stretched-link text-white">
+                        <i class="fas fa-book-open me-1"></i> Accéder
+                    </a>
                 </div>
             </div>
         </div>
 
 
-        <!-- Section des demandes en attente -->
-        <div class="container mt-4">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6">
-                    <div class="card shadow">
-                        <div class="card-header bg-warning text-dark">
-                            <h5 class="mb-0">
-                                <i class="fas fa-user-clock me-2"></i>Demandes d'amis reçues
-                            </h5>
-                        </div>
-                        <div class="card-body">
-                            @if (ViewBag.Amis != null && ViewBag.Amis.Count > 0)
-                            {
-                                var demandesEnAttente = ((IEnumerable<dynamic>)ViewBag.Amis).Where(a => a.Accepted == false).ToList();
-
-                                @if (demandesEnAttente.Count > 0)
-                                {
-                                    <ul class="list-group">
-                                        @foreach (var ami in demandesEnAttente)
-                                        {
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>
-                                                    <i class="fas fa-user me-2"></i>
-                                                    @ami.Prenom_demandeur @ami.Nom_demandeur
-                                                </div>
-                                                <div class="d-flex">
-                                                    <form asp-action="ModifierStatutAmi" asp-controller="Users" method="post" class="me-2">
-                                                        <input type="hidden" name="idAmi" value="@ami.AmiId" />
-
-                                                        <input type="hidden" name="accepter" value="true" />
-                                                        <button type="submit" class="btn btn-sm btn-success">
-                                                            <i class="fas fa-check"></i> Accepter
-                                                        </button>
-                                                    </form>
-                                                    <form asp-action="ModifierStatutAmi" asp-controller="Users" method="post">
-                                                        <input type="hidden" name="idAmi" value="@ami.AmiId" />
-
-                                                        <input type="hidden" name="accepter" value="false" />
-                                                        <button type="submit" class="btn btn-sm btn-danger">
-                                                            <i class="fas fa-times"></i> Refuser
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </li>
-                                        }
-
-                                    </ul>
-                                }
-                                else
-                                {
-                                    <p class="text-muted">Aucune demande d'ami reçue.</p>
-                                }
-                            }
-                            else
-                            {
-                                <p class="text-muted">Aucune demande d'ami reçue.</p>
-                            }
-                        </div>
-                    </div>
+        <div class="col-md-4">
+            <div class="card border-primary shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-calendar-alt fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Mon Emploi du Temps</h5>
+                    <p class="card-text">Visualisez votre planning hebdomadaire.</p>
+                    <a href="@Url.Action("MonEDT", "Eleve")" class="btn btn-primary stretched-link">
+                        <i class="fas fa-clock me-1"></i> Voir
+                    </a>
                 </div>
             </div>
         </div>
 
-        <!-- Section des amis acceptés -->
-        // @if (ViewBag.Amis != null && ViewBag.Amis.Count > 0)
-        // {
-        //     var amisAcceptes = ((IEnumerable<dynamic>)ViewBag.Amis).Where(a => a.Accepted == true).ToList();
+        <div class="col-md-4">
+            <div class="card border-warning shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-tasks fa-3x text-warning mb-3"></i>
+                    <h5 class="card-title">Mes Devoirs</h5>
+                    <p class="card-text">Liste des travaux à rendre.</p>
+                    <a href="@Url.Action("MesDevoirs", "Eleve")" class="btn btn-warning stretched-link text-white">
+                        <i class="fas fa-clipboard-list me-1"></i> Voir la liste
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        //     @if (amisAcceptes.Count > 0)
-        //     {
-        //         <div class="container mt-4">
-        //             <div class="row justify-content-center">
-        //                 <div class="col-md-8 col-lg-6">
-        //                     <div class="card shadow">
-        //                         <div class="card-header bg-success text-white">
-        //                             <h5 class="mb-0">
-        //                                 <i class="fas fa-user-friends me-2"></i>Mes amis
-        //                             </h5>
-        //                         </div>
-        //                         <div class="card-body">
-        //                             <ul class="list-group">
-        //                                 @foreach (var ami in amisAcceptes)
-        //                                 {
-        //                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-        //                                         <div>
-        //                                             <i class="fas fa-user me-2"></i>
-        //                                             @ami.Prenom_demandeur @ami.Nom_demandeur
-        //                                         </div>
-        //                                         <span class="badge bg-success">Ami</span>
-        //                                     </li>
-        //                                 }
-        //                             </ul>
-        //                         </div>
-        //                     </div>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     }
-        // }
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card shadow h-100">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-bar me-2"></i>Évolution des Notes
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="notesChart" width="100%" height="250"></canvas>
+                    <script>
 
-        <!-- Scripts -->
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                let selectedAvatar = '';
-
-                // Charger l'avatar sauvegardé dans localStorage si existant
-                const savedAvatar = localStorage.getItem('EleveSelectedAvatar');
-                if (savedAvatar) {
-                    document.getElementById('profileImage').src = savedAvatar;
-                }
-
-                // Sélection d'une image dans la modal
-                document.querySelectorAll('.avatar-option').forEach(img => {
-                    img.addEventListener('click', function() {
-                        // Retirer la classe active de toutes les images
-                        document.querySelectorAll('.avatar-option').forEach(i => {
-                            i.classList.remove('border-success');
-                            i.classList.add('border-light');
+                        const ctx = document.getElementById('notesChart').getContext('2d');
+                        new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai'],
+                                datasets: [{
+                                    label: 'Moyenne en Mathématiques',
+                                    data: [12, 13.5, 14, 15, 14.5],
+                                    borderColor: 'rgba(75, 192, 192, 1)',
+                                    backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                                    fill: true
+                                }]
+                            },
+                            options: {
+                                scales: { y: { beginAtZero: false, min: 10, max: 20 } }
+                            }
                         });
-
-                        this.classList.remove('border-light');
-                        this.classList.add('border-success');
-
-                        selectedAvatar = this.getAttribute('data-img');
-                    });
-                });
-
-                // Enregistrement de l'avatar sélectionné
-                document.getElementById('saveAvatarBtn').addEventListener('click', function() {
-                    if (selectedAvatar) {
-                        document.getElementById('profileImage').src = selectedAvatar;
-                        localStorage.setItem('EleveSelectedAvatar', selectedAvatar);
-
-                        // Fermer la modal
-                        var modal = bootstrap.Modal.getInstance(document.getElementById('avatarModal'));
-                        modal.hide();
-                    } else {
-                        alert('Veuillez sélectionner un avatar');
-                    }
-                });
-            });
-        </script>
-    }
-    else
-    {
-        <div class="container mt-5">
-            <div class="alert alert-warning text-center">
-                <i class="fas fa-exclamation-triangle me-2"></i>Aucun élève connecté.
-            </div>
-            <div class="text-center">
-                <a asp-controller="Authentification" asp-action="Login" class="btn btn-primary">
-                    <i class="fas fa-sign-in-alt me-2"></i>Se connecter
-                </a>
+                    </script>
+                </div>
             </div>
         </div>
-    }
+
+        <div class="col-md-6">
+            <div class="card shadow h-100">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-list-ul me-2"></i>Dernières Notes
+                    </h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Matière</th>
+                                    <th>Note</th>
+                                    <th>Commentaire</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mathématiques</td>
+                                    <td><span class="badge bg-success">15/20</span></td>
+                                    <td>Très bon travail !</td>
+                                    <td>10/05/2024</td>
+                                </tr>
+                                <tr>
+                                    <td>Physique</td>
+                                    <td><span class="badge bg-warning text-dark">12.5/20</span></td>
+                                    <td>Peut mieux faire</td>
+                                    <td>05/05/2024</td>
+                                </tr>
+                                <tr>
+                                    <td>Histoire</td>
+                                    <td><span class="badge bg-success">16/20</span></td>
+                                    <td>Excellent</td>
+                                    <td>02/05/2024</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-calendar-day me-2"></i>Aujourd'hui
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <strong>8h30 - 10h00</strong><br>
+                                    <span class="text-muted">Mathématiques (Salle B12)</span>
+                                </div>
+                                <span class="badge bg-primary">En cours</span>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <strong>10h15 - 11h45</strong><br>
+                                    <span class="text-muted">Physique-Chimie (Labo 3)</span>
+                                </div>
+                                <button class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-book me-1"></i> Préparer
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-exclamation-circle me-2"></i>Devoirs à Rendre
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        <i class="fas fa-edit me-2"></i>
+                        <strong>Dissertation de Français</strong><br>
+                        Pour le <u>15/05/2024</u> - <a href="#" class="alert-link">Détails</a>
+                    </div>
+                    <div class="alert alert-light">
+                        <i class="fas fa-flask me-2"></i>
+                        <strong>Rapport de TP Physique</strong><br>
+                        Pour le <u>18/05/2024</u> - <a href="#" class="alert-link">Consignes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px)';
+                card.style.transition = 'all 0.3s ease';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'none';
+            });
+        });
+    </script>
 }

@@ -1,155 +1,182 @@
 ﻿@{
-    if (ViewBag.SessionProf_id != null)
-    {
-        <div class="container mt-5">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6">
-                    <div class="card border-success shadow">
-                        <div class="card-header bg-success text-white">
-                            <h3 class="card-title mb-0">
-                                <i class="fas fa-chalkboard-teacher me-2"></i>Profil
-                            </h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-4">
-                                <!-- Photo de profil avec sélection prédéfinie -->
-                                <div class="position-relative me-3">
-                                    <img id="profileImage" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="rounded-circle" width="80" height="80" alt="Photo de profil" style="object-fit: cover;">
+    ViewData["Title"] = "Espace Professeur";
+}
 
-                                    <!-- Bouton pour ouvrir la modal de sélection -->
-                                    <button type="button" class="btn btn-sm btn-success rounded-circle p-0 position-absolute" style="width: 30px; height: 30px; line-height: 30px; bottom: -10px; right: -10px;" data-bs-toggle="modal" data-bs-target="#avatarModal">
-                                        <i class="fas fa-camera"></i>
-                                    </button>
-                                </div>
-                                <div>
-                                    <h4 class="mb-1">@ViewBag.ProfPrenom @ViewBag.ProfNom</h4>
-                                    <span class="badge bg-success">Professeur</span>
-                                </div>
-                            </div>
+<div class="container-fluid py-4">
 
-                            <!-- Modal de sélection d'avatar -->
-                            <div class="modal fade" id="avatarModal" tabindex="-1" aria-labelledby="avatarModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-success text-white">
-                                            <h5 class="modal-title" id="avatarModalLabel">Choisissez votre avatar</h5>
-                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row text-center">
-                                                <div class="col-4 mb-3">
-                                                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
-                                                </div>
-                                                <div class="col-4 mb-3">
-                                                    <img src="https://cdn-icons-png.flaticon.com/512/921/921071.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/921/921071.png">
-                                                </div>
-                                                <div class="col-4 mb-3">
-                                                    <img src="https://cdn-icons-png.flaticon.com/512/4333/4333609.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/4333/4333609.png">
-                                                </div>
-                                                <div class="col-4 mb-3">
-                                                    <img src="https://cdn-icons-png.flaticon.com/512/236/236832.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/236/236832.png">
-                                                </div>
-                                                <div class="col-4 mb-3">
-                                                    <img src="https://cdn-icons-png.flaticon.com/512/3011/3011270.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/3011/3011270.png">
-                                                </div>
-                                                <div class="col-4 mb-3">
-                                                    <img src="https://cdn-icons-png.flaticon.com/512/266/266033.png" class="img-thumbnail rounded-circle avatar-option" width="80" height="80" data-img="https://cdn-icons-png.flaticon.com/512/266/266033.png">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                            <button type="button" class="btn btn-success" id="saveAvatarBtn">Enregistrer</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="display-5 fw-bold text-dark">
+                <i class="fas fa-chalkboard-teacher me-2"></i>Espace Professeur
+            </h1>
+            <p class="lead">Bienvenue, <strong>@User.Identity.Name</strong>.</p>
+        </div>
+    </div>
 
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <div class="card border-success">
-                                        <div class="card-body">
-                                            <h5 class="card-title text-muted">Informations</h5>
-                                            <p class="card-text">
-                                                <i class="fas fa-id-card me-2 text-success"></i>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card border-success">
-                                        <div class="card-body">
-                                            <h5 class="card-title text-muted">Actions</h5>
-                                            <form asp-controller="Authentification" asp-action="Logout" method="post">
-                                                <button type="submit" class="btn btn-danger w-100">
-                                                    <i class="fas fa-sign-out-alt me-2"></i>Déconnexion
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+    <div class="row g-4 mb-4">
+
+        <div class="col-md-4">
+            <div class="card border-primary shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-users-class fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Mes Classes</h5>
+                    <p class="card-text">Accédez à la liste de vos classes et élèves.</p>
+                    <a href="@Url.Action("MesClasses", "Professeur")" class="btn btn-primary stretched-link">
+                        <i class="fas fa-list-ul me-1"></i> Voir mes classes
+                    </a>
                 </div>
             </div>
         </div>
 
-        <!-- Script pour gérer la sélection d'avatar -->
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                let selectedAvatar = '';
 
-                // Charger l'avatar sauvegardé dans localStorage si existant
-                const savedAvatar = localStorage.getItem('EleveSelectedAvatar');
-                if (savedAvatar) {
-                    document.getElementById('profileImage').src = savedAvatar;
-                }
-
-                // Sélection d'une image dans la modal
-                document.querySelectorAll('.avatar-option').forEach(img => {
-                    img.addEventListener('click', function() {
-                        // Retirer la classe active de toutes les images
-                        document.querySelectorAll('.avatar-option').forEach(i => {
-                            i.classList.remove('border-success');
-                            i.classList.add('border-light');
-                        });
-
-                        // Ajouter la classe active à l'image sélectionnée
-                        this.classList.remove('border-light');
-                        this.classList.add('border-success');
-
-                        selectedAvatar = this.getAttribute('data-img');
-                    });
-                });
-
-                // Enregistrement de l'avatar sélectionné
-                document.getElementById('saveAvatarBtn').addEventListener('click', function() {
-                    if (selectedAvatar) {
-                        document.getElementById('profileImage').src = selectedAvatar;
-                        localStorage.setItem('profSelectedAvatar', selectedAvatar);
-
-                        // Fermer la modal
-                        var modal = bootstrap.Modal.getInstance(document.getElementById('avatarModal'));
-                        modal.hide();
-                    } else {
-                        alert('Veuillez sélectionner un avatar');
-                    }
-                });
-            });
-        </script>
-    }
-    else
-    {
-        <div class="container mt-5">
-            <div class="alert alert-warning text-center">
-                <i class="fas fa-exclamation-triangle me-2"></i>Aucun professeur connecté.
-            </div>
-            <div class="text-center">
-                <a asp-controller="Authentification" asp-action="Login" class="btn btn-success">
-                    <i class="fas fa-sign-in-alt me-2"></i>Connexion Professeur
-                </a>
+        <div class="col-md-4">
+            <div class="card border-warning shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-edit fa-3x text-warning mb-3"></i>
+                    <h5 class="card-title">Saisir les Notes</h5>
+                    <p class="card-text">Renseignez les notes des élèves.</p>
+                    <a href="@Url.Action("SaisirNotes", "Professeur")" class="btn btn-warning stretched-link text-white">
+                        <i class="fas fa-pen-fancy me-1"></i> Commencer
+                    </a>
+                </div>
             </div>
         </div>
-    }
+
+        <div class="col-md-4">
+            <div class="card border-success shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-calendar-alt fa-3x text-success mb-3"></i>
+                    <h5 class="card-title">Emploi du Temps</h5>
+                    <p class="card-text">Consultez votre planning hebdomadaire.</p>
+                    <a href="@Url.Action("EmploiDuTemps", "Professeur")" class="btn btn-success stretched-link">
+                        <i class="fas fa-clock me-1"></i> Voir l'EDT
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="fas fa-user-graduate me-2"></i>Élèves de la classe <span class="badge bg-light text-dark">Terminale A</span>
+                        </h5>
+                        <a href="#" class="btn btn-sm btn-outline-light">
+                            <i class="fas fa-file-export me-1"></i> Exporter (.csv)
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Prénom</th>
+                                    <th>Moyenne</th>
+                                    <th>Dernière note</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               
+                                <tr>
+                                    <td>Dupont</td>
+                                    <td>Jean</td>
+                                    <td>14.5</td>
+                                    <td>15 <span class="badge bg-success">+1.5</span></td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-eye"></i> Profil
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Martin</td>
+                                    <td>Sophie</td>
+                                    <td>12.0</td>
+                                    <td>11 <span class="badge bg-danger">-1.0</span></td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-eye"></i> Profil
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-bell me-2"></i>Prochains Cours (Aujourd'hui)
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>9h00 - 10h30</strong><br>
+                                <span class="text-muted">Terminale A - Mathématiques</span>
+                            </div>
+                            <a href="#" class="btn btn-sm btn-outline-info">
+                                <i class="fas fa-clipboard-check"></i> Fiche de cours
+                            </a>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>14h00 - 15h30</strong><br>
+                                <span class="text-muted">Première B - Physique</span>
+                            </div>
+                            <a href="#" class="btn btn-sm btn-outline-info">
+                                <i class="fas fa-clipboard-check"></i> Fiche de cours
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-exclamation-triangle me-2"></i>Alertes
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        <i class="fas fa-user-clock me-2"></i>
+                        <strong>3 élèves</strong> en retard ce matin (Terminale A).
+                    </div>
+                    <div class="alert alert-light">
+                        <i class="fas fa-user-slash me-2"></i>
+                        <strong>1 absence</strong> non justifiée (Martin Sophie).
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script>
+        $(document).ready(function() {
+            $('[data-bs-toggle="tooltip"]').tooltip();
+        });
+    </script>
 }
