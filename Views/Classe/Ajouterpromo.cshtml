@@ -1,0 +1,108 @@
+﻿@model Forum.Models.ClasseViewModel
+
+@{
+    if (ViewBag.ProfId != null)
+    {
+        <p class="text-success">@ViewBag.ProfId</p>
+    }
+    if (TempData["SuccessMessage"] != null)
+    {
+        <p class="text-success">@TempData["SuccessMessage"]</p>
+    }
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Créer une classe de discussion</h2>
+    <form method="post" class="border p-4 rounded shadow-sm bg-light">
+        <!-- Sélection de la classe -->
+        <div class="mb-3">
+            <label asp-for="Nom_classe" class="form-label">Classe :</label>
+            <select asp-for="Nom_classe" class="form-select">
+                <optgroup label="Voie Générale">
+                    <option>Seconde Générale</option>
+                    <option>Première Générale - Spéc. Maths/Physique</option>
+                    <option>Première Générale - Spéc. SES/HGGSP</option>
+                    <option>Terminale Générale - Spéc. Maths/NSI</option>
+                    <option>Terminale Générale - Spéc. SVT/Physique</option>
+                </optgroup>
+                <optgroup label="Voie Technologique">
+                    <option>Seconde Technologique</option>
+                    <option>Première STI2D</option>
+                    <option>Première STMG</option>
+                    <option>Première ST2S</option>
+                    <option>Terminale STI2D</option>
+                    <option>Terminale STMG</option>
+                    <option>Terminale ST2S</option>
+                </optgroup>
+                <optgroup label="Voie Professionnelle">
+                    <option>Seconde Bac Pro Commerce</option>
+                    <option>Seconde Bac Pro Mélec</option>
+                    <option>Première Bac Pro ASSP</option>
+                    <option>Première Bac Pro GA</option>
+                    <option>Terminale Bac Pro SN</option>
+                    <option>Terminale Bac Pro Maintenance</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <!-- Recherche d'élève -->
+        <div class="mb-3">
+            <label for="rechercheEleve" class="form-label">Rechercher un élève :</label>
+            <input type="text" id="rechercheEleve" class="form-control" placeholder="Nom ou prénom...">
+        </div>
+
+        <!-- Liste déroulante des élèves -->
+        <div class="mb-3">
+            <label asp-for="Eleves" class="form-label">Sélectionnez des élèves :</label>
+            <select asp-for="Eleves" asp-items="Model.Eleves" class="form-select" size="6" id="listeEleves">
+                <option value="">Sélectionnez un élève</option>
+            </select>
+        </div>
+
+        @if (Model.Eleveschoisis != null)
+        {
+            @for (int i = 0; i < Model.Eleveschoisis.Count; i++)
+            {
+                <input type="hidden" name="Eleveschoisis[@i]" value="@Model.Eleveschoisis[i]" />
+            }
+        }
+
+        <!-- Boutons -->
+        <div class="d-flex justify-content-between mt-4">
+            <button type="submit" name="action" value="creer" class="btn btn-primary">Créer la classe</button>
+        </div>
+
+        <!-- Liste des élèves sélectionnés -->
+        @if (Model.Eleveschoisis != null && Model.Eleveschoisis.Count > 0)
+        {
+            <div class="mt-4">
+                <h5>Élèves sélectionnés :</h5>
+                <ul class="list-group">
+                    @foreach (var eleveId in Model.Eleveschoisis.Distinct())
+                    {
+                        var eleve = Model.Eleves?.FirstOrDefault(e => e.Value == eleveId.ToString())?.Text;
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            @eleve
+                            <button type="submit" name="supprimer" value="@eleveId" class="btn btn-danger btn-sm">Supprimer</button>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+    </form>
+</div>
+
+<script>
+    document.getElementById("rechercheEleve").addEventListener("input", function () {
+        const filter = this.value.toLowerCase();
+        const options = document.querySelectorAll("#listeEleves option");
+
+        options.forEach(option => {
+            if (option.text.toLowerCase().includes(filter) || option.value === "") {
+                option.style.display = "";
+            } else {
+                option.style.display = "none";
+            }
+        });
+    });
+</script>
