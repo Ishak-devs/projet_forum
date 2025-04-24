@@ -46,7 +46,7 @@ namespace Forum.Controllers
                     Prenom = modele.Prenom,
                     Email = modele.Email,
                     Motdepasse = passwordHasher.HashPassword(null, modele.Motdepasse),
-                    Role = "admin",
+                    Role = "Admin",
                     Id_promo = modele.Id_promo
                 };
 
@@ -55,7 +55,7 @@ namespace Forum.Controllers
                 try
                 {
                     contextget.SaveChanges();
-                    HttpContext.Session.SetString("user_id", newUtilisateur.Id_utilisateur.ToString());
+                    HttpContext.Session.SetString("UserId", newUtilisateur.Id_utilisateur.ToString());
 
 
                     // Redirection après succès
@@ -95,7 +95,7 @@ namespace Forum.Controllers
                 try
                 {
                     contextget.SaveChanges();
-                    HttpContext.Session.SetString("user_id", newEtablissement.Id_etablissement.ToString());
+                    HttpContext.Session.SetString("UserId", newEtablissement.Id_etablissement.ToString());
                     return RedirectToAction("Etablissement_etape_2", "Signup");
                 }
                 catch (DbUpdateException ex)

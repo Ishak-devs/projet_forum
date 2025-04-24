@@ -49,6 +49,7 @@ namespace Forum.Controllers
                     if (result == PasswordVerificationResult.Success)
                     {
                         HttpContext.Session.SetString("UserRole", utilisateur.Role);
+                        HttpContext.Session.SetInt32("UserId", utilisateur.Id_utilisateur);
 
                         ModelState.Clear();
 
