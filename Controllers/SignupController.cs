@@ -80,37 +80,39 @@ namespace Forum.Controllers
         [HttpPost]
         public ActionResult Etablissement(Etablissements modele)
         {
+            string utilisateurId = HttpContext.Session.GetString("UserId");
 
-            if (ModelState.IsValid)
+            if (string.IsNullOrEmpty(utilisateurId))
             {
-                var newEtablissement = new Etablissements
-                {
-                    numero_rue = modele.numero_rue,
-                    nom_rue = modele.nom_rue,
-                    code_postal = modele.code_postal,
-                    ville = modele.ville,
-                    nom_etablissement = modele.nom_etablissement,
-                };
-                contextget.Add(newEtablissement);
-                try
-                {
-                    contextget.SaveChanges();
-                    HttpContext.Session.SetString("UserId", newEtablissement.Id_etablissement.ToString());
-                    return RedirectToAction("Etablissement_etape_2", "Signup");
-                }
-                catch (DbUpdateException ex)
-                {
-                    ModelState.AddModelError("", "Erreur d'enregistrement : " + ex.Message);
-                    return View(modele);
-                }
-
+                ModelState.AddModelError("", "Utilisateur non connecté.");
+                return View(modele);
             }
-            return View();
+
+            var newEtablissement = new Etablissements
+            {
+                numero_rue = modele.numero_rue,
+                nom_rue = modele.nom_rue,
+                code_postal = modele.code_postal,
+                ville = modele.ville,
+                nom_etablissement = modele.nom_etablissement,
+                Id_utilisateur = int.Parse(utilisateurId) 
+            };
+
+            contextget.Add(newEtablissement);
+
+            try
+            {
+                contextget.SaveChanges();
+                return RedirectToAction("Admin", "Dashboard");
+            }
+            catch (DbUpdateException ex)
+            {
+                ModelState.AddModelError("", "Erreur d'enregistrement : " + ex.Message);
+                return View(modele);
+            }
         }
 
-        public ActionResult Etablissement_etape_2()
-        {
-            return View();
-        }
+
+
     }
 }

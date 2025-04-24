@@ -29,6 +29,9 @@ namespace Forum.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_etablissement"));
 
+                    b.Property<int>("Id_utilisateur")
+                        .HasColumnType("int");
+
                     b.Property<int>("code_postal")
                         .HasColumnType("int");
 
@@ -48,6 +51,8 @@ namespace Forum.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id_etablissement");
+
+                    b.HasIndex("Id_utilisateur");
 
                     b.ToTable("Etablissements");
                 });
@@ -189,6 +194,17 @@ namespace Forum.Migrations
                     b.HasIndex("Id_promo");
 
                     b.ToTable("Utilisateurs");
+                });
+
+            modelBuilder.Entity("Forum.Models.Etablissements", b =>
+                {
+                    b.HasOne("Forum.Models.Utilisateurs", "Utilisateurs")
+                        .WithMany()
+                        .HasForeignKey("Id_utilisateur")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Utilisateurs");
                 });
 
             modelBuilder.Entity("Forum.Models.Messages", b =>
