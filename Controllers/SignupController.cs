@@ -133,7 +133,7 @@ namespace Forum.Controllers
         [HttpPost]
         public ActionResult Etablissement(Etablissements modele)
         {
-            // Récupération de l'ID avec GetInt32 au lieu de GetString
+
             var userId = HttpContext.Session.GetInt32("UserId");
 
             if (userId == null)
@@ -157,7 +157,6 @@ namespace Forum.Controllers
             {
                 contextget.SaveChanges();
 
-                // Plus besoin de Parse puisque userId est déjà un int?
                 var utilisateur = contextget.Utilisateurs.Find(userId);
                 if (utilisateur != null)
                 {

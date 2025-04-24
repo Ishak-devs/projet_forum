@@ -11,6 +11,7 @@
     <h2 class="mb-4">Créer une classe de discussion</h2>
     <form method="post" class="border p-4 rounded shadow-sm bg-light">
 
+        <!-- Classe selection dropdown -->
         <div class="mb-3">
             <label asp-for="Nom_promo" class="form-label">Classe :</label>
             <select asp-for="Nom_promo" class="form-select">
@@ -40,5 +41,262 @@
                 </optgroup>
             </select>
         </div>
-</form>
+
+        <!-- Elèves Section -->
+        <div class="mb-4 border p-3 rounded">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <button type="button" class="btn btn-sm btn-outline-primary me-2" id="searchBySectionEleve">
+                        <i class="bi bi-search"></i> Rechercher par section
+                    </button>
+                    <button type="button" class="btn btn-sm btn-primary" id="showEleves">
+                        <i class="bi bi-plus"></i> Rechercher tous les élèves
+                    </button>
+                </div>
+            </div>
+
+            <div id="elevesListContainer" class="d-none">
+                @if (ViewBag.Etudiant != null && ViewBag.Etudiant.Count > 0)
+                {
+                    <div class="list-group mb-3">
+                        @foreach (var eleves in ViewBag.Etudiant)
+                        {
+                            <button type="button" class="list-group-item list-group-item-action selectable-item"
+                                    data-id="@eleves.Id_utilisateur" data-type="eleve">
+                                <span class="d-flex justify-content-between align-items-center">
+                                    <span>@eleves.Prenom @eleves.Nom</span>
+                                    <span class="badge bg-success rounded-pill d-none">✓</span>
+                                </span>
+                            </button>
+                        }
+                    </div>
+                    <input type="hidden" id="selectedEleves" name="selectedEleves" value="" />
+                }
+                else
+                {
+                    <div class="alert alert-warning">Aucun élève trouvé.</div>
+                }
+            </div>
+
+            <div id="selectedElevesContainer" class="selected-items-container"></div>
+        </div>
+
+        <!-- Professeurs Section -->
+        <div class="mb-4 border p-3 rounded">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <button type="button" class="btn btn-sm btn-outline-primary me-2" id="searchBySectionProf">
+                        <i class="bi bi-search"></i> Rechercher par section
+                    </button>
+                    <button type="button" class="btn btn-sm btn-primary" id="showProfs">
+                        <i class="bi bi-plus"></i> Recherchez tous les professeur
+                    </button>
+                </div>
+            </div>
+
+            <div id="profsListContainer" class="d-none">
+                @if (ViewBag.Professeurs != null && ViewBag.Professeurs.Count > 0)
+                {
+                    <div class="list-group mb-3">
+                        @foreach (var professeur in ViewBag.Professeurs)
+                        {
+                            <button type="button" class="list-group-item list-group-item-action selectable-item"
+                                    data-id="@professeur.Id_utilisateur" data-type="professeur">
+                                <span class="d-flex justify-content-between align-items-center">
+                                    <span>@professeur.Prenom @professeur.Nom</span>
+                                    <span class="badge bg-success rounded-pill d-none">✓</span>
+                                </span>
+                            </button>
+                        }
+                    </div>
+                    <input type="hidden" id="selectedProfs" name="selectedProfs" value="" />
+                }
+                else
+                {
+                    <div class="alert alert-warning">Aucun professeur trouvé.</div>
+                }
+            </div>
+
+            <div id="selectedProfsContainer" class="selected-items-container"></div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary mt-3">Créer la classe</button>
+    </form>
 </div>
+
+<!-- Modal pour la recherche par section -->
+<div class="modal fade" id="searchBySectionModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Rechercher par section</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <select class="form-select mb-3" id="sectionSelect">
+                    <option value="">Toutes les sections</option>
+                    <option value="generale">Voie Générale</option>
+                    <option value="techno">Voie Technologique</option>
+                    <option value="pro">Voie Professionnelle</option>
+                </select>
+                <button type="button" class="btn btn-primary w-100" id="applySectionFilter">
+                    Appliquer le filtre
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .selected-items-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .selected-item-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.35rem 0.75rem;
+            background-color: #e9ecef;
+            border-radius: 50rem;
+        }
+
+            .selected-item-badge button {
+                background: none;
+                border: none;
+                color: #6c757d;
+                margin-left: 0.5rem;
+                cursor: pointer;
+            }
+    </style>
+}
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gestion des boutons d'affichage
+            document.getElementById('showEleves').addEventListener('click', function() {
+                document.getElementById('elevesListContainer').classList.toggle('d-none');
+            });
+
+            document.getElementById('showProfs').addEventListener('click', function() {
+                document.getElementById('profsListContainer').classList.toggle('d-none');
+            });
+
+            // Gestion de la sélection des éléments
+            const selectableItems = document.querySelectorAll('.selectable-item');
+            let currentFilterType = '';
+
+            selectableItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    this.classList.toggle('bg-light');
+                    const badge = this.querySelector('.badge');
+                    badge.classList.toggle('d-none');
+
+                    updateSelectedIds();
+                    updateSelectedItemsDisplay();
+                });
+            });
+
+            // Gestion de la recherche par section
+            document.getElementById('searchBySectionEleve').addEventListener('click', function() {
+                currentFilterType = 'eleve';
+                var modal = new bootstrap.Modal(document.getElementById('searchBySectionModal'));
+                modal.show();
+            });
+
+            document.getElementById('searchBySectionProf').addEventListener('click', function() {
+                currentFilterType = 'professeur';
+                var modal = new bootstrap.Modal(document.getElementById('searchBySectionModal'));
+                modal.show();
+            });
+
+            document.getElementById('applySectionFilter').addEventListener('click', function() {
+                const section = document.getElementById('sectionSelect').value;
+                // Ici vous devriez faire une requête AJAX pour filtrer les élèves/profs par section
+                // Pour l'exemple, on va juste afficher un message
+                alert(`Filtre appliqué pour la section: ${section} (${currentFilterType})`);
+
+                // Fermer le modal
+                var modal = bootstrap.Modal.getInstance(document.getElementById('searchBySectionModal'));
+                modal.hide();
+            });
+
+            function updateSelectedIds() {
+                const selectedEleves = [];
+                const selectedProfs = [];
+
+                document.querySelectorAll('.selectable-item.bg-light[data-type="eleve"]').forEach(el => {
+                    selectedEleves.push(el.getAttribute('data-id'));
+                });
+
+                document.querySelectorAll('.selectable-item.bg-light[data-type="professeur"]').forEach(el => {
+                    selectedProfs.push(el.getAttribute('data-id'));
+                });
+
+                document.getElementById('selectedEleves').value = selectedEleves.join(',');
+                document.getElementById('selectedProfs').value = selectedProfs.join(',');
+            }
+
+            function updateSelectedItemsDisplay() {
+                // Mise à jour des élèves sélectionnés
+                const selectedElevesContainer = document.getElementById('selectedElevesContainer');
+                selectedElevesContainer.innerHTML = '';
+
+                document.querySelectorAll('.selectable-item.bg-light[data-type="eleve"]').forEach(el => {
+                    const name = el.querySelector('span span').textContent;
+                    const id = el.getAttribute('data-id');
+
+                    const badge = document.createElement('div');
+                    badge.className = 'selected-item-badge';
+                    badge.innerHTML = `
+                        ${name}
+                        <button type="button" class="remove-item" data-id="${id}" data-type="eleve">
+                            <i class="bi bi-x"></i>
+                        </button>
+                    `;
+                    selectedElevesContainer.appendChild(badge);
+                });
+
+                // Mise à jour des professeurs sélectionnés
+                const selectedProfsContainer = document.getElementById('selectedProfsContainer');
+                selectedProfsContainer.innerHTML = '';
+
+                document.querySelectorAll('.selectable-item.bg-light[data-type="professeur"]').forEach(el => {
+                    const name = el.querySelector('span span').textContent;
+                    const id = el.getAttribute('data-id');
+
+                    const badge = document.createElement('div');
+                    badge.className = 'selected-item-badge';
+                    badge.innerHTML = `
+                        ${name}
+                        <button type="button" class="remove-item" data-id="${id}" data-type="professeur">
+                            <i class="bi bi-x"></i>
+                        </button>
+                    `;
+                    selectedProfsContainer.appendChild(badge);
+                });
+
+                // Gestion des boutons de suppression
+                document.querySelectorAll('.remove-item').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = this.getAttribute('data-id');
+                        const type = this.getAttribute('data-type');
+
+                        // Retirer la sélection visuelle
+                        document.querySelector(`.selectable-item.bg-light[data-id="${id}"][data-type="${type}"]`).classList.remove('bg-light');
+                        document.querySelector(`.selectable-item[data-id="${id}"][data-type="${type}"] .badge`).classList.add('d-none');
+
+                        // Mettre à jour les affichages
+                        updateSelectedIds();
+                        updateSelectedItemsDisplay();
+                    });
+                });
+            }
+        });
+    </script>
+}

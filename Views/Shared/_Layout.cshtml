@@ -61,13 +61,13 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Forum" asp-action="Index">Forum</a>
                             </li>
-                            <li class="nav-item">
-                                @if (HttpContextAccessor.HttpContext?.Session.GetString("UserId") != null)
-                                {
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Eleve">Page personnel</a>
-                                }
+                            @* <li class="nav-item"> *@
+                            @*     @if (HttpContextAccessor.HttpContext?.Session.GetString("UserId") != null) *@
+                            @*     { *@
+                            @*         <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Index">Page personnel</a> *@
+                            @*     } *@
                                
-                            </li>
+                            @* </li> *@
                         }
                     </ul>
                     
