@@ -1,0 +1,51 @@
+﻿@model Forum.Models.Utilisateurs
+
+@{
+    ViewData["Title"] = "Inscription Élève";
+    Layout = "_Layout";
+}
+
+<h2>Inscription d’un Élève</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Nom">Nom</label>
+        <input asp-for="Nom" class="form-control" required />
+        <span asp-validation-for="Nom" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Prenom">Prénom</label>
+        <input asp-for="Prenom" class="form-control" required />
+        <span asp-validation-for="Prenom" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" class="form-control" type="email" required />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Motdepasse">Mot de passe</label>
+        <input asp-for="Motdepasse" class="form-control" type="password" required />
+        <span asp-validation-for="Motdepasse" class="text-danger"></span>
+    </div>
+
+    <input type="hidden" asp-for="Role" value="Étudiant" />
+
+    <button type="submit" class="btn btn-primary">Valider l'inscription</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

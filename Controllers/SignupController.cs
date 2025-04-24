@@ -28,7 +28,7 @@ namespace Forum.Controllers
         }
 
 
-        [HttpPost] //Méthode post pour gerer l inscription
+        [HttpPost] 
         public ActionResult Index(Utilisateurs modele)
         {
             if (ModelState.IsValid)
@@ -47,7 +47,7 @@ namespace Forum.Controllers
                     Email = modele.Email,
                     Motdepasse = passwordHasher.HashPassword(null, modele.Motdepasse),
                     Role = "Admin",
-                    Id_promo = modele.Id_promo
+                    Id_etablissement = modele.Id_etablissement,
                 };
 
                 contextget.Add(newUtilisateur);
@@ -80,6 +80,47 @@ namespace Forum.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult Inscrire_Eleve()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Inscrire_Eleve(Utilisateurs modele)
+        {
+            if (ModelState.IsValid)
+            {
+                if (contextget.Utilisateurs.Any(u => u.Email == modele.Email))
+                {
+                    ModelState.AddModelError("Email", "Cet email est déjà utilisé");
+                    return View(modele);
+                }
+
+                var nouvelEleve = new Utilisateurs
+                {
+                    Nom = modele.Nom,
+                    Prenom = modele.Prenom,
+                    Email = modele.Email,
+                    Motdepasse = passwordHasher.HashPassword(null, modele.Motdepasse),
+                    Role = "Étudiant",
+                };
+
+                contextget.Add(nouvelEleve);
+                try
+                {
+                    contextget.SaveChanges();
+                    TempData["SuccessMessage"] = "Élève inscrit avec succès à l'établissement !";
+                    return RedirectToAction("Inscrire_Eleve");
+                }
+                catch (DbUpdateException ex)
+                {
+                    ModelState.AddModelError("", "Erreur d'enregistrement : " + ex.Message);
+                }
+            }
+
+            return View(modele);
+        }
+
 
         [HttpPost]
         public ActionResult Etablissement(Etablissements modele)
@@ -92,6 +133,7 @@ namespace Forum.Controllers
                 return View(modele);
             }
 
+            // Créer le nouvel établissement
             var newEtablissement = new Etablissements
             {
                 numero_rue = modele.numero_rue,
@@ -99,7 +141,6 @@ namespace Forum.Controllers
                 code_postal = modele.code_postal,
                 ville = modele.ville,
                 nom_etablissement = modele.nom_etablissement,
-                Id_utilisateur = int.Parse(utilisateurId) 
             };
 
             contextget.Add(newEtablissement);
@@ -107,6 +148,13 @@ namespace Forum.Controllers
             try
             {
                 contextget.SaveChanges();
+                var utilisateur = contextget.Utilisateurs.Find(int.Parse(utilisateurId));
+                if (utilisateur != null)
+                {
+                    utilisateur.Id_etablissement = newEtablissement.Id_etablissement;
+                    contextget.SaveChanges();
+                }
+
                 return RedirectToAction("Etablissement_etape2");
             }
             catch (DbUpdateException ex)

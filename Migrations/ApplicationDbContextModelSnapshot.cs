@@ -29,9 +29,6 @@ namespace Forum.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_etablissement"));
 
-                    b.Property<int>("Id_utilisateur")
-                        .HasColumnType("int");
-
                     b.Property<int>("code_postal")
                         .HasColumnType("int");
 
@@ -51,8 +48,6 @@ namespace Forum.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id_etablissement");
-
-                    b.HasIndex("Id_utilisateur");
 
                     b.ToTable("Etablissements");
                 });
@@ -166,6 +161,9 @@ namespace Forum.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
+                    b.Property<int?>("Id_etablissement")
+                        .HasColumnType("int");
+
                     b.Property<int?>("Id_promo")
                         .HasColumnType("int");
 
@@ -191,20 +189,11 @@ namespace Forum.Migrations
 
                     b.HasKey("Id_utilisateur");
 
+                    b.HasIndex("Id_etablissement");
+
                     b.HasIndex("Id_promo");
 
                     b.ToTable("Utilisateurs");
-                });
-
-            modelBuilder.Entity("Forum.Models.Etablissements", b =>
-                {
-                    b.HasOne("Forum.Models.Utilisateurs", "Utilisateurs")
-                        .WithMany()
-                        .HasForeignKey("Id_utilisateur")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Utilisateurs");
                 });
 
             modelBuilder.Entity("Forum.Models.Messages", b =>
@@ -239,9 +228,15 @@ namespace Forum.Migrations
 
             modelBuilder.Entity("Forum.Models.Utilisateurs", b =>
                 {
+                    b.HasOne("Forum.Models.Etablissements", "Etablissements")
+                        .WithMany()
+                        .HasForeignKey("Id_etablissement");
+
                     b.HasOne("Forum.Models.Promos", "Promos")
                         .WithMany()
                         .HasForeignKey("Id_promo");
+
+                    b.Navigation("Etablissements");
 
                     b.Navigation("Promos");
                 });

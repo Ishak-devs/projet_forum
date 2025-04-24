@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250422124142_3")]
-    partial class _3
+    [Migration("20250424130342_m13")]
+    partial class m13
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -89,6 +89,9 @@ namespace Forum.Migrations
                     b.Property<DateTime>("Date_message")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("Id_promo")
+                        .HasColumnType("int");
+
                     b.Property<int>("Id_utilisateur")
                         .HasColumnType("int");
 
@@ -97,6 +100,8 @@ namespace Forum.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id_message");
+
+                    b.HasIndex("Id_promo");
 
                     b.HasIndex("Id_utilisateur");
 
@@ -114,11 +119,16 @@ namespace Forum.Migrations
                     b.Property<DateTime>("Date_module")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("Id_promo")
+                        .HasColumnType("int");
+
                     b.Property<string>("theme_module")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id_module");
+
+                    b.HasIndex("Id_promo");
 
                     b.ToTable("Modules");
                 });
@@ -154,6 +164,9 @@ namespace Forum.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
+                    b.Property<int?>("Id_etablissement")
+                        .HasColumnType("int");
+
                     b.Property<int?>("Id_promo")
                         .HasColumnType("int");
 
@@ -179,6 +192,8 @@ namespace Forum.Migrations
 
                     b.HasKey("Id_utilisateur");
 
+                    b.HasIndex("Id_etablissement");
+
                     b.HasIndex("Id_promo");
 
                     b.ToTable("Utilisateurs");
@@ -186,20 +201,45 @@ namespace Forum.Migrations
 
             modelBuilder.Entity("Forum.Models.Messages", b =>
                 {
+                    b.HasOne("Forum.Models.Promos", "Promos")
+                        .WithMany()
+                        .HasForeignKey("Id_promo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Forum.Models.Utilisateurs", "Utilisateurs")
                         .WithMany()
                         .HasForeignKey("Id_utilisateur")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Promos");
+
                     b.Navigation("Utilisateurs");
+                });
+
+            modelBuilder.Entity("Forum.Models.Modules", b =>
+                {
+                    b.HasOne("Forum.Models.Promos", "Promos")
+                        .WithMany()
+                        .HasForeignKey("Id_promo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Promos");
                 });
 
             modelBuilder.Entity("Forum.Models.Utilisateurs", b =>
                 {
+                    b.HasOne("Forum.Models.Etablissements", "Etablissements")
+                        .WithMany()
+                        .HasForeignKey("Id_etablissement");
+
                     b.HasOne("Forum.Models.Promos", "Promos")
                         .WithMany()
                         .HasForeignKey("Id_promo");
+
+                    b.Navigation("Etablissements");
 
                     b.Navigation("Promos");
                 });

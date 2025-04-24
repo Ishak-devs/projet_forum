@@ -13,9 +13,5 @@ namespace Forum.Models
         public string ville { get; set; }
         public string nom_etablissement { get; set; }
 
-        [ForeignKey("Utilisateurs")]
-        public int Id_utilisateur { get; set; }
-        public virtual Utilisateurs Utilisateurs { get; set; }
-
     }
 }

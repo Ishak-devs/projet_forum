@@ -27,5 +27,11 @@ namespace Forum.Models
 
         [StringLength(15)]
         public string Role { get; set; }
+
+        [ForeignKey("Etablissements")]
+        public int? Id_etablissement { get; set; }
+
+        public virtual Etablissements? Etablissements { get; set; }  
+
     }
 }

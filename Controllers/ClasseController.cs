@@ -20,13 +20,6 @@ namespace Forum.Controllers
         public IActionResult AjouterPromo()
         {
             var userId = HttpContext.Session.GetString("UserId");
-
-            if (string.IsNullOrEmpty(userId))
-            {
-                TempData["Message"] = "Vous devez être connecté pour accéder à cette page.";
-                return RedirectToAction("Index", "Signup"); 
-            }
-
             return View();
         }
 
