@@ -36,7 +36,14 @@ namespace Forum.Controllers
         public IActionResult Admin()
         {
             return View();
+
+
         }
+             public IActionResult Schoolspace()
+        {
+            return View();
+        }
+
         public IActionResult Professeur()
         {
             var profId = HttpContext.Session.GetString("Prof_id");

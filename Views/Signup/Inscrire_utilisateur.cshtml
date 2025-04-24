@@ -1,16 +1,31 @@
 ﻿@model Forum.Models.Utilisateurs
 
 @{
-    ViewData["Title"] = "Inscription Élève";
+    ViewData["Title"] = "Inscription utilisateur";
     Layout = "_Layout";
 }
 
-<h2>Inscription d’un Élève</h2>
+<h2>Inscription d’un utilisateur</h2>
 
 @if (TempData["SuccessMessage"] != null)
 {
     <div class="alert alert-success">
         @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (!ViewData.ModelState.IsValid && ViewData.ModelState.Values.Any(v => v.Errors.Count > 0))
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var modelState in ViewData.ModelState.Values)
+            {
+                foreach (var error in modelState.Errors)
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            }
+        </ul>
     </div>
 }
 
@@ -39,13 +54,18 @@
         <span asp-validation-for="Motdepasse" class="text-danger"></span>
     </div>
 
-    <input type="hidden" asp-for="Role" value="Étudiant" />
+    <div class="form-group">
+        <label for="Role">Rôle</label>
+        <select asp-for="Role" class="form-control">
+            <option value="Etudiant">Etudiant</option>
+            <option value="Professeur">Professeur</option>
+        </select>
+        <span asp-validation-for="Role" class="text-danger"></span>
+    </div>
 
     <button type="submit" class="btn btn-primary">Valider l'inscription</button>
 </form>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }
