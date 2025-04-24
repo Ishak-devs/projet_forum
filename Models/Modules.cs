@@ -12,5 +12,9 @@ namespace Forum.Models
         public string theme_module { get; set; }
       
         public DateTime Date_module { get; set; }
+
+        [ForeignKey("Promos")]
+        public int Id_promo { get; set; }
+        public virtual Promos Promos { get; set; }
     }
 }

@@ -116,11 +116,16 @@ namespace Forum.Migrations
                     b.Property<DateTime>("Date_module")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("Id_promo")
+                        .HasColumnType("int");
+
                     b.Property<string>("theme_module")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id_module");
+
+                    b.HasIndex("Id_promo");
 
                     b.ToTable("Modules");
                 });
@@ -203,6 +208,17 @@ namespace Forum.Migrations
                     b.Navigation("Promos");
 
                     b.Navigation("Utilisateurs");
+                });
+
+            modelBuilder.Entity("Forum.Models.Modules", b =>
+                {
+                    b.HasOne("Forum.Models.Promos", "Promos")
+                        .WithMany()
+                        .HasForeignKey("Id_promo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Promos");
                 });
 
             modelBuilder.Entity("Forum.Models.Utilisateurs", b =>

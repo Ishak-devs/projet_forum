@@ -16,38 +16,13 @@ namespace Forum.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var userId = HttpContext.Session.GetString("Id_user");
+            int? userId = HttpContext.Session.GetInt32("UserId");
 
-            if (!string.IsNullOrEmpty(userId) && int.TryParse(userId, out int userIdInt))
+            if (userId == null)
             {
-                var eleveClasses = await contextget.Promos
-                    .Where(dc => dc.Id_promo == userIdInt)
-                    .ToListAsync();
-
-                if (eleveClasses.Any())
-                {
-                    ViewBag.Classes = eleveClasses;
-                    ViewBag.UserRole = "Eleve";
-                    return View();
-                }
-
-                var profClasses = await contextget.Utilisateurs
-                    .Where(u => u.Id_utilisateur == userIdInt && u.Role == "Professeur")
-                    .ToListAsync();
-
-                if (profClasses.Any())
-                {
-                    ViewBag.Classes = profClasses;
-                    ViewBag.UserRole = "Professeur";
-                    return View();
-                }
-
-                ViewBag.Classes = null;
-                ViewBag.UserRole = "Utilisateur";
-                return View();
+                return RedirectToAction("Index", "Authentification");
             }
-
-            return RedirectToAction("Index", "Authentification");
+            return View();
         }
     }
 }
