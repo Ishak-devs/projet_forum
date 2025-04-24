@@ -76,6 +76,10 @@ namespace Forum.Controllers
         {
             return View();
         }
+        public IActionResult Etablissement_etape2()
+        {
+            return View();
+        }
 
         [HttpPost]
         public ActionResult Etablissement(Etablissements modele)
@@ -103,7 +107,7 @@ namespace Forum.Controllers
             try
             {
                 contextget.SaveChanges();
-                return RedirectToAction("Admin", "Dashboard");
+                return RedirectToAction("Etablissement_etape2");
             }
             catch (DbUpdateException ex)
             {
@@ -111,8 +115,6 @@ namespace Forum.Controllers
                 return View(modele);
             }
         }
-
-
 
     }
 }
