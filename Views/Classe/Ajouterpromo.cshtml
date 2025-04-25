@@ -1,209 +1,177 @@
 ﻿@model Forum.Models.Promos
 
 @{
-    if (ViewBag.ProfId != null)
-    {
-        <p class="text-success">@ViewBag.ProfId</p>
-    }
+    ViewData["Title"] = "Créer une nouvelle promotion - Administration";
 }
 
-<div class="container mt-5">
-    <h2 class="mb-4">Créer une classe de discussion</h2>
-    <form method="post" class="border p-4 rounded shadow-sm bg-light">
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0"><i class="bi bi-people-fill me-2"></i>Créer une nouvelle promotion</h3>
+                </div>
 
-        <!-- Classe selection dropdown -->
-        <div class="mb-3">
-            <label asp-for="Nom_promo" class="form-label">Classe :</label>
-            <select asp-for="Nom_promo" class="form-select" id="classeSelect">
-                <optgroup label="Voie Générale">
-                    <option value="Seconde">Seconde Générale</option>
-                    <option value="Premiere">Première Générale - Spéc. Maths/Physique</option>
-                    <option value="Premiere">Première Générale - Spéc. SES/HGGSP</option>
-                    <option value="Terminale">Terminale Générale - Spéc. Maths/NSI</option>
-                    <option value="Terminale">Terminale Générale - Spéc. SVT/Physique</option>
-                </optgroup>
-                <optgroup label="Voie Technologique">
-                    <option value="Seconde">Seconde Technologique</option>
-                    <option value="Premiere">Première STI2D</option>
-                    <option value="Premiere">Première STMG</option>
-                    <option value="Premiere">Première ST2S</option>
-                    <option value="Terminale">Terminale STI2D</option>
-                    <option value="Terminale">Terminale STMG</option>
-                    <option value="Terminale">Terminale ST2S</option>
-                </optgroup>
-                <optgroup label="Voie Professionnelle">
-                    <option value="Seconde">Seconde Bac Pro Commerce</option>
-                    <option value="Seconde">Seconde Bac Pro Mélec</option>
-                    <option value="Premiere">Première Bac Pro ASSP</option>
-                    <option value="Premiere">Première Bac Pro GA</option>
-                    <option value="Terminale">Terminale Bac Pro SN</option>
-                    <option value="Terminale">Terminale Bac Pro Maintenance</option>
-                </optgroup>
-            </select>
-        </div>
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
+                        @TempData["ErrorMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
 
-        <!-- Elèves Section -->
-        <div class="mb-4 border p-3 rounded">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <div>
-                    <button type="button" class="btn btn-sm btn-outline-primary me-2" id="searchBySectionEleve">
-                        <i class="bi bi-search"></i> Ajouter un élève
-                    </button>
+                <div class="card-body">
+                    <form asp-action="AjouterPromo" method="post">
+                        <!-- Nom de la promotion -->
+                        <div class="mb-4">
+                            <label asp-for="Nom_promo" class="form-label fw-bold">Nom de la promotion</label>
+                            <input asp-for="Nom_promo" class="form-control form-control-lg" required placeholder="Ex: Terminale S 2023" />
+                            <span asp-validation-for="Nom_promo" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Section Élèves -->
+                        <div class="mb-4 border rounded">
+                            <div class="bg-light p-3 border-bottom">
+                                <h5 class="mb-0"><i class="bi bi-mortarboard-fill text-primary me-2"></i>Élèves</h5>
+                            </div>
+
+                            <div class="p-3">
+                                @if (ViewBag.Etudiant != null && ViewBag.Etudiant.Count > 0)
+                                {
+                                    <div class="table-responsive">
+                                        <table class="table table-hover align-middle">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th width="50px"></th>
+                                                    <th>Nom</th>
+                                                    <th>Prénom</th>
+                                                    <th>Niveau</th>
+                                                    <th>Voie</th>
+                                                    <th>Email</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var eleve in ViewBag.Etudiant)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <input type="checkbox" name="selectedEleves" value="@eleve.Id_utilisateur"
+                                                                   class="form-check-input fs-5" />
+                                                        </td>
+                                                        <td>@eleve.Nom</td>
+                                                        <td>@eleve.Prenom</td>
+                                                        <td>
+                                                            <span class="badge bg-info">@eleve.Section</span>
+                                                        </td>
+                                                     
+                                                        <td class="text-truncate" style="max-width: 200px;">@eleve.Email</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="selectAllEleves">
+                                            <label class="form-check-label" for="selectAllEleves">
+                                                Sélectionner tous les élèves
+                                            </label>
+                                        </div>
+                                        <span class="badge bg-primary">@ViewBag.Etudiant.Count élèves</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="alert alert-warning mb-0">
+                                        <i class="bi bi-exclamation-triangle-fill me-2"></i>Aucun élève trouvé dans cet établissement.
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Section Professeurs -->
+                        <div class="mb-4 border rounded">
+                            <div class="bg-light p-3 border-bottom">
+                                <h5 class="mb-0"><i class="bi bi-person-badge-fill text-primary me-2"></i>Professeurs</h5>
+                            </div>
+
+                            <div class="p-3">
+                                @if (ViewBag.Professeurs != null && ViewBag.Professeurs.Count > 0)
+                                {
+                                    <div class="table-responsive">
+                                        <table class="table table-hover align-middle">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th width="50px"></th>
+                                                    <th>Nom</th>
+                                                    <th>Prénom</th>
+                                                    <th>Matière</th>
+                                                    <th>Email</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var prof in ViewBag.Professeurs)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <input type="checkbox" name="selectedProfs" value="@prof.Id_utilisateur"
+                                                                   class="form-check-input fs-5" />
+                                                        </td>
+                                                        <td>@prof.Nom</td>
+                                                        <td>@prof.Prenom</td>
+                                                     
+                                                        <td class="text-truncate" style="max-width: 200px;">@prof.Email</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="selectAllProfs">
+                                            <label class="form-check-label" for="selectAllProfs">
+                                                Sélectionner tous les professeurs
+                                            </label>
+                                        </div>
+                                        <span class="badge bg-primary">@ViewBag.Professeurs.Count professeurs</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="alert alert-warning mb-0">
+                                        <i class="bi bi-exclamation-triangle-fill me-2"></i>Aucun professeur trouvé dans cet établissement.
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <a asp-action="Index" asp-controller="Dashboard" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left me-2"></i>Retour
+                            </a>
+                            <button type="submit" class="btn btn-primary px-4">
+                                <i class="bi bi-save me-2"></i>Créer la promotion
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
-
-            <div id="elevesListContainer" class="d-none">
-                @if (ViewBag.Etudiant != null && ViewBag.Etudiant.Count > 0)
-                {
-                    <div class="list-group mb-3" id="allElevesList">
-                        @foreach (var eleves in ViewBag.Etudiant)
-                        {
-                            <button type="button" class="list-group-item list-group-item-action selectable-item eleve-item"
-                                    data-id="@eleves.Id_utilisateur" data-type="eleve" data-section="@eleves.Section">
-                                <span class="d-flex justify-content-between align-items-center">
-                                    <span>@eleves.Prenom @eleves.Nom</span>
-                                    <span class="badge bg-success rounded-pill d-none">✓</span>
-                                </span>
-                            </button>
-                        }
-                    </div>
-                    <input type="hidden" id="selectedEleves" name="selectedEleves" value="" />
-                }
-                else
-                {
-                    <div class="alert alert-warning">Aucun élève trouvé.</div>
-                }
-            </div>
-
-            <div id="selectedElevesContainer" class="selected-items-container"></div>
         </div>
-
-        <!-- Professeurs Section -->
-        <div class="mb-4 border p-3 rounded">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <div>
-                    <button type="button" class="btn btn-sm btn-outline-primary me-2" id="searchBySectionProf">
-                        <i class="bi bi-search"></i> Ajouter un pro
-                    </button>
-                </div>
-            </div>
-
-            <div id="profsListContainer" class="d-none">
-                @if (ViewBag.Professeurs != null && ViewBag.Professeurs.Count > 0)
-                {
-                    <div class="list-group mb-3">
-                        @foreach (var professeur in ViewBag.Professeurs)
-                        {
-                            <button type="button" class="list-group-item list-group-item-action selectable-item"
-                                    data-id="@professeur.Id_utilisateur" data-type="professeur">
-                                <span class="d-flex justify-content-between align-items-center">
-                                    <span>@professeur.Prenom @professeur.Nom</span>
-                                    <span class="badge bg-success rounded-pill d-none">✓</span>
-                                </span>
-                            </button>
-                        }
-                    </div>
-                    <input type="hidden" id="selectedProfs" name="selectedProfs" value="" />
-                }
-                else
-                {
-                    <div class="alert alert-warning">Aucun professeur trouvé.</div>
-                }
-            </div>
-
-            <div id="selectedProfsContainer" class="selected-items-container"></div>
-        </div>
-
-        <button type="submit" class="btn btn-primary mt-3">Créer la classe</button>
-    </form>
+    </div>
 </div>
 
 @section Scripts {
     <script>
         $(document).ready(function() {
-            
-            function filterElevesBySection(section) {
-                $('.eleve-item').each(function() {
-                    const eleveSection = $(this).data('section');
-                    const isVisible = section === '' || eleveSection === section;
-                    $(this).toggle(isVisible);
-                });
-            }
-
-            $('#classeSelect').change(function() {
-                const selectedClass = $(this).val();
-                let section = '';
-
-                if (selectedClass.includes('Seconde')) {
-                    section = 'Seconde';
-                } else if (selectedClass.includes('Premiere') || selectedClass.includes('Première')) {
-                    section = 'Premiere';
-                } else if (selectedClass.includes('Terminale')) {
-                    section = 'Terminale';
-                }
-
-                filterElevesBySection(section);
+            $('#selectAllEleves').change(function() {
+                $('input[name="selectedEleves"]').prop('checked', this.checked);
             });
 
-
-            $('#searchBySectionEleve').click(function() {
-                $('#elevesListContainer').toggleClass('d-none');
-
-
-                $('#classeSelect').trigger('change');
+            $('#selectAllProfs').change(function() {
+                $('input[name="selectedProfs"]').prop('checked', this.checked);
             });
-
-            $(document).on('click', '.selectable-item', function() {
-                const id = $(this).data('id');
-                const type = $(this).data('type');
-                const name = $(this).find('span span').first().text();
-
-                if ($(this).hasClass('selected')) {
-
-                    $(this).removeClass('selected');
-                    $(this).find('.badge').addClass('d-none');
-                    $(`#selected${type === 'eleve' ? 'Eleves' : 'Profs'}Container .badge[data-id="${id}"]`).remove();
-                } else {
-
-                    $(this).addClass('selected');
-                    $(this).find('.badge').removeClass('d-none');
-                    const container = $(`#selected${type === 'eleve' ? 'Eleves' : 'Profs'}Container`);
-                    container.append(`
-                        <div class="selected-item-badge" data-id="${id}">
-                            ${name}
-                            <button type="button" class="btn-remove-item" data-id="${id}" data-type="${type}">
-                                <i class="bi bi-x"></i>
-                            </button>
-                        </div>
-                    `);
-                }
-
-                updateHiddenFields();
-            });
-
-            $(document).on('click', '.btn-remove-item', function() {
-                const id = $(this).data('id');
-                const type = $(this).data('type');
-
-                $(this).parent().remove();
-                $(`.selectable-item[data-id="${id}"]`).removeClass('selected').find('.badge').addClass('d-none');
-
-                updateHiddenFields();
-            });
-
-            function updateHiddenFields() {
-                const selectedEleves = [];
-                $('.selectable-item.eleve-item.selected').each(function() {
-                    selectedEleves.push($(this).data('id'));
-                });
-                $('#selectedEleves').val(selectedEleves.join(','));
-
-                const selectedProfs = [];
-                $('.selectable-item[data-type="professeur"].selected').each(function() {
-                    selectedProfs.push($(this).data('id'));
-                });
-                $('#selectedProfs').val(selectedProfs.join(','));
-            }
         });
     </script>
 }
