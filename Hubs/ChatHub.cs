@@ -41,21 +41,21 @@ namespace Forum.Hubs
                 .SendAsync("ReceiveMessage", user.Prenom, message, chatMessage.Date_message);
         }
 
-        public async Task LoadMessages(int promoId)
+        public Task LoadMessages(int promoId)
         {
-            var messages = await _context.Messages
+            var messages = _context.Messages
                 .Where(m => m.Id_promo == promoId)
                 .OrderBy(m => m.Date_message)
+                .ToList()
                 .Select(m => new
                 {
-                    SenderName = _context.Utilisateurs
-                        .FirstOrDefault(u => u.Id_utilisateur == m.Id_utilisateur).Prenom,
+                    SenderName = _context.Utilisateurs.FirstOrDefault(u => u.Id_utilisateur == m.Id_utilisateur)?.Prenom,
                     m.Message,
                     m.Date_message
                 })
-                .ToListAsync();
+                .ToList();
 
-            await Clients.Caller.SendAsync("MessagesLoaded", messages);
+            return Clients.Caller.SendAsync("MessagesLoaded", messages);
         }
 
         public async Task JoinPromoGroup(int promoId)

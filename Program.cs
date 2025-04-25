@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Forum.Models;
-using Microsoft.AspNetCore.Identity; 
-//using Forum.Hubs;
+using Microsoft.AspNetCore.Identity;
+using Forum.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 //builder.WebHost.ConfigureKestrel(serverOptions =>
@@ -54,7 +54,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseDeveloperExceptionPage();
 
-//app.MapHub<ChatHub>("/chatHub");
+app.MapHub<ChatHub>("/chatHub");
 
 
 app.MapControllerRoute(

@@ -22,7 +22,12 @@ namespace Forum.Controllers
             {
                 return RedirectToAction("Index", "Authentification");
             }
+
+            var classes = await contextget.Promos.ToListAsync();
+
+            ViewBag.Classes = classes;
+
             return View();
         }
     }
-}
+    }
