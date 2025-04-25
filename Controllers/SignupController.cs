@@ -26,11 +26,6 @@ namespace Forum.Controllers
 
             return View();
         }
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 0b455cd46d5e5158747c51ada75caf0818f9aa76
         [HttpPost] 
         public ActionResult Index(Utilisateurs modele)
         {
