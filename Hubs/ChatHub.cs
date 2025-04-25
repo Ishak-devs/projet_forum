@@ -1,5 +1,4 @@
-﻿
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using Forum.Models;
 using Microsoft.AspNetCore.SignalR;
 
@@ -7,69 +6,67 @@ namespace Forum.Hubs
 {
     public class ChatHub : Hub
     {
-        private readonly ApplicationDbContext contextget;
+        private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
-
 
         public ChatHub(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
         {
-            contextget = context; //Recuperation du context
-            _httpContextAccessor = httpContextAccessor; //Récuperation de httpcontext
+            _context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task SendMessage(string message, int classId) //Création objet pour l'envoi des messages
+        public async Task SendMessage(string message, int promoId)
         {
-            var httpContext = Context.GetHttpContext(); // Stockage de httpcontext 
-            var eleveId = httpContext.Session.GetString("Eleve_id"); //Stockage de l'id eleve
-            var profId = httpContext.Session.GetString("Prof_id"); //Stockage de prof id
+            var userId = _httpContextAccessor.HttpContext?.Session.GetString("UserId");
+            if (string.IsNullOrEmpty(userId)) return;
 
-            string nomUtilisateur = "Anonyme"; //Définition pour réutilisation
-            int senderId = 0;//Définition pour réutilisation
+            var user = await _context.Utilisateurs.FindAsync(int.Parse(userId));
+            if (user == null) return;
 
+            var promoExists = await _context.Promos.AnyAsync(p => p.Id_promo == promoId);
+            if (!promoExists) return;
 
-            if (!string.IsNullOrEmpty(eleveId)) //Si id eleve connu
+            var chatMessage = new Messages
             {
-                var eleve = await contextget.Utilisateurs.FindAsync(int.Parse(eleveId)); //recuperation des info de l'eleve
-                nomUtilisateur = eleve?.Prenom ?? "Élève inconnu"; //Si un nom est connu on l'affiche sinon inconnu
-                senderId = int.Parse(eleveId); //SenderId ici deviens eleveId
-            }
-            else if (!string.IsNullOrEmpty(profId))
-            {
-                var professeur = await contextget.Utilisateurs.FindAsync(int.Parse(profId));
-                nomUtilisateur = professeur?.Prenom ?? "Professeur inconnu";
-                senderId = int.Parse(profId);
-            }
-
-            var chatMessage = new Messages //Ajout dans la table de chat
-            {
-                Id_utilisateur = senderId,
-                Message = message
+                Id_utilisateur = user.Id_utilisateur,
+                Message = message,
+                Id_promo = promoId,
+                Date_message = DateTime.Now
             };
 
-            contextget.Messages.Add(chatMessage); //Methode add pour ajouter
-            await contextget.SaveChangesAsync(); //Sauvegarde dans la base de données
+            _context.Messages.Add(chatMessage);
+            await _context.SaveChangesAsync();
 
-            await Clients.All.SendAsync("ReceiveMessage", nomUtilisateur, message); //Affichage des messages
+            await Clients.Group(promoId.ToString())
+                .SendAsync("ReceiveMessage", user.Prenom, message, chatMessage.Date_message);
         }
-        public async Task LoadMessages(int promoid) //chargement des messages
+
+        public async Task LoadMessages(int promoId)
         {
-            var messages = await contextget.Messages
-                .Where(m => m.Id_promo == promoid) //Where id de details classe correspond a l'id de la classe
-                .OrderBy(m => m.Date_message) //Affichage des messages par dates recente
+            var messages = await _context.Messages
+                .Where(m => m.Id_promo == promoId)
+                .OrderBy(m => m.Date_message)
                 .Select(m => new
                 {
-                    SenderName = contextget.Utilisateurs.Any(e => e.Id_utilisateur == m.Id_utilisateur)
-                        ? contextget.Utilisateurs.FirstOrDefault(e => e.Id_utilisateur == m.Id_utilisateur).Prenom
-                        : contextget.Utilisateurs.FirstOrDefault(p => p.Id_utilisateur == m.Id_utilisateur).Prenom,
+                    SenderName = _context.Utilisateurs
+                        .FirstOrDefault(u => u.Id_utilisateur == m.Id_utilisateur).Prenom,
                     m.Message,
                     m.Date_message
                 })
-                .ToListAsync(); //Afficher sous forme de liste
+                .ToListAsync();
 
-            foreach (var msg in messages) 
-            {
-                await Clients.Caller.SendAsync("ReceiveMessage", msg.SenderName, msg.Message, msg.Date_message); //Affichage 
-            }
+            await Clients.Caller.SendAsync("MessagesLoaded", messages);
+        }
+
+        public async Task JoinPromoGroup(int promoId)
+        {
+            await Groups.AddToGroupAsync(Context.ConnectionId, promoId.ToString());
+            await LoadMessages(promoId); 
+        }
+
+        public async Task LeavePromoGroup(int promoId)
+        {
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, promoId.ToString());
         }
     }
 }
