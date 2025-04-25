@@ -187,6 +187,10 @@ namespace Forum.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("varchar(15)");
 
+                    b.Property<string>("Section")
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)");
+
                     b.HasKey("Id_utilisateur");
 
                     b.HasIndex("Id_etablissement");

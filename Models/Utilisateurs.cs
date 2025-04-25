@@ -31,7 +31,10 @@ namespace Forum.Models
         [ForeignKey("Etablissements")]
         public int? Id_etablissement { get; set; }
 
-        public virtual Etablissements? Etablissements { get; set; }  
+        public virtual Etablissements? Etablissements { get; set; }
+
+        [StringLength(30)]
+        public string? Section { get; set; }
 
     }
 }

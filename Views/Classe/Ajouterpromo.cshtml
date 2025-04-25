@@ -14,30 +14,30 @@
         <!-- Classe selection dropdown -->
         <div class="mb-3">
             <label asp-for="Nom_promo" class="form-label">Classe :</label>
-            <select asp-for="Nom_promo" class="form-select">
+            <select asp-for="Nom_promo" class="form-select" id="classeSelect">
                 <optgroup label="Voie Générale">
-                    <option>Seconde Générale</option>
-                    <option>Première Générale - Spéc. Maths/Physique</option>
-                    <option>Première Générale - Spéc. SES/HGGSP</option>
-                    <option>Terminale Générale - Spéc. Maths/NSI</option>
-                    <option>Terminale Générale - Spéc. SVT/Physique</option>
+                    <option value="Seconde">Seconde Générale</option>
+                    <option value="Premiere">Première Générale - Spéc. Maths/Physique</option>
+                    <option value="Premiere">Première Générale - Spéc. SES/HGGSP</option>
+                    <option value="Terminale">Terminale Générale - Spéc. Maths/NSI</option>
+                    <option value="Terminale">Terminale Générale - Spéc. SVT/Physique</option>
                 </optgroup>
                 <optgroup label="Voie Technologique">
-                    <option>Seconde Technologique</option>
-                    <option>Première STI2D</option>
-                    <option>Première STMG</option>
-                    <option>Première ST2S</option>
-                    <option>Terminale STI2D</option>
-                    <option>Terminale STMG</option>
-                    <option>Terminale ST2S</option>
+                    <option value="Seconde">Seconde Technologique</option>
+                    <option value="Premiere">Première STI2D</option>
+                    <option value="Premiere">Première STMG</option>
+                    <option value="Premiere">Première ST2S</option>
+                    <option value="Terminale">Terminale STI2D</option>
+                    <option value="Terminale">Terminale STMG</option>
+                    <option value="Terminale">Terminale ST2S</option>
                 </optgroup>
                 <optgroup label="Voie Professionnelle">
-                    <option>Seconde Bac Pro Commerce</option>
-                    <option>Seconde Bac Pro Mélec</option>
-                    <option>Première Bac Pro ASSP</option>
-                    <option>Première Bac Pro GA</option>
-                    <option>Terminale Bac Pro SN</option>
-                    <option>Terminale Bac Pro Maintenance</option>
+                    <option value="Seconde">Seconde Bac Pro Commerce</option>
+                    <option value="Seconde">Seconde Bac Pro Mélec</option>
+                    <option value="Premiere">Première Bac Pro ASSP</option>
+                    <option value="Premiere">Première Bac Pro GA</option>
+                    <option value="Terminale">Terminale Bac Pro SN</option>
+                    <option value="Terminale">Terminale Bac Pro Maintenance</option>
                 </optgroup>
             </select>
         </div>
@@ -47,10 +47,7 @@
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div>
                     <button type="button" class="btn btn-sm btn-outline-primary me-2" id="searchBySectionEleve">
-                        <i class="bi bi-search"></i> Rechercher par section
-                    </button>
-                    <button type="button" class="btn btn-sm btn-primary" id="showEleves">
-                        <i class="bi bi-plus"></i> Rechercher tous les élèves
+                        <i class="bi bi-search"></i> Ajouter un élève
                     </button>
                 </div>
             </div>
@@ -58,11 +55,11 @@
             <div id="elevesListContainer" class="d-none">
                 @if (ViewBag.Etudiant != null && ViewBag.Etudiant.Count > 0)
                 {
-                    <div class="list-group mb-3">
+                    <div class="list-group mb-3" id="allElevesList">
                         @foreach (var eleves in ViewBag.Etudiant)
                         {
-                            <button type="button" class="list-group-item list-group-item-action selectable-item"
-                                    data-id="@eleves.Id_utilisateur" data-type="eleve">
+                            <button type="button" class="list-group-item list-group-item-action selectable-item eleve-item"
+                                    data-id="@eleves.Id_utilisateur" data-type="eleve" data-section="@eleves.Section">
                                 <span class="d-flex justify-content-between align-items-center">
                                     <span>@eleves.Prenom @eleves.Nom</span>
                                     <span class="badge bg-success rounded-pill d-none">✓</span>
@@ -86,10 +83,7 @@
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div>
                     <button type="button" class="btn btn-sm btn-outline-primary me-2" id="searchBySectionProf">
-                        <i class="bi bi-search"></i> Rechercher par section
-                    </button>
-                    <button type="button" class="btn btn-sm btn-primary" id="showProfs">
-                        <i class="bi bi-plus"></i> Recherchez tous les professeur
+                        <i class="bi bi-search"></i> Ajouter un pro
                     </button>
                 </div>
             </div>
@@ -120,182 +114,95 @@
             <div id="selectedProfsContainer" class="selected-items-container"></div>
         </div>
 
-        <!-- Submit Button -->
         <button type="submit" class="btn btn-primary mt-3">Créer la classe</button>
     </form>
 </div>
 
-<!-- Modal pour la recherche par section -->
-<div class="modal fade" id="searchBySectionModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Rechercher par section</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <select class="form-select mb-3" id="sectionSelect">
-                    <option value="">Toutes les sections</option>
-                    <option value="generale">Voie Générale</option>
-                    <option value="techno">Voie Technologique</option>
-                    <option value="pro">Voie Professionnelle</option>
-                </select>
-                <button type="button" class="btn btn-primary w-100" id="applySectionFilter">
-                    Appliquer le filtre
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-@section Styles {
-    <style>
-        .selected-items-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .selected-item-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.35rem 0.75rem;
-            background-color: #e9ecef;
-            border-radius: 50rem;
-        }
-
-            .selected-item-badge button {
-                background: none;
-                border: none;
-                color: #6c757d;
-                margin-left: 0.5rem;
-                cursor: pointer;
-            }
-    </style>
-}
-
 @section Scripts {
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Gestion des boutons d'affichage
-            document.getElementById('showEleves').addEventListener('click', function() {
-                document.getElementById('elevesListContainer').classList.toggle('d-none');
-            });
-
-            document.getElementById('showProfs').addEventListener('click', function() {
-                document.getElementById('profsListContainer').classList.toggle('d-none');
-            });
-
-            // Gestion de la sélection des éléments
-            const selectableItems = document.querySelectorAll('.selectable-item');
-            let currentFilterType = '';
-
-            selectableItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    this.classList.toggle('bg-light');
-                    const badge = this.querySelector('.badge');
-                    badge.classList.toggle('d-none');
-
-                    updateSelectedIds();
-                    updateSelectedItemsDisplay();
+        $(document).ready(function() {
+            
+            function filterElevesBySection(section) {
+                $('.eleve-item').each(function() {
+                    const eleveSection = $(this).data('section');
+                    const isVisible = section === '' || eleveSection === section;
+                    $(this).toggle(isVisible);
                 });
-            });
-
-            // Gestion de la recherche par section
-            document.getElementById('searchBySectionEleve').addEventListener('click', function() {
-                currentFilterType = 'eleve';
-                var modal = new bootstrap.Modal(document.getElementById('searchBySectionModal'));
-                modal.show();
-            });
-
-            document.getElementById('searchBySectionProf').addEventListener('click', function() {
-                currentFilterType = 'professeur';
-                var modal = new bootstrap.Modal(document.getElementById('searchBySectionModal'));
-                modal.show();
-            });
-
-            document.getElementById('applySectionFilter').addEventListener('click', function() {
-                const section = document.getElementById('sectionSelect').value;
-                // Ici vous devriez faire une requête AJAX pour filtrer les élèves/profs par section
-                // Pour l'exemple, on va juste afficher un message
-                alert(`Filtre appliqué pour la section: ${section} (${currentFilterType})`);
-
-                // Fermer le modal
-                var modal = bootstrap.Modal.getInstance(document.getElementById('searchBySectionModal'));
-                modal.hide();
-            });
-
-            function updateSelectedIds() {
-                const selectedEleves = [];
-                const selectedProfs = [];
-
-                document.querySelectorAll('.selectable-item.bg-light[data-type="eleve"]').forEach(el => {
-                    selectedEleves.push(el.getAttribute('data-id'));
-                });
-
-                document.querySelectorAll('.selectable-item.bg-light[data-type="professeur"]').forEach(el => {
-                    selectedProfs.push(el.getAttribute('data-id'));
-                });
-
-                document.getElementById('selectedEleves').value = selectedEleves.join(',');
-                document.getElementById('selectedProfs').value = selectedProfs.join(',');
             }
 
-            function updateSelectedItemsDisplay() {
-                // Mise à jour des élèves sélectionnés
-                const selectedElevesContainer = document.getElementById('selectedElevesContainer');
-                selectedElevesContainer.innerHTML = '';
+            $('#classeSelect').change(function() {
+                const selectedClass = $(this).val();
+                let section = '';
 
-                document.querySelectorAll('.selectable-item.bg-light[data-type="eleve"]').forEach(el => {
-                    const name = el.querySelector('span span').textContent;
-                    const id = el.getAttribute('data-id');
+                if (selectedClass.includes('Seconde')) {
+                    section = 'Seconde';
+                } else if (selectedClass.includes('Premiere') || selectedClass.includes('Première')) {
+                    section = 'Premiere';
+                } else if (selectedClass.includes('Terminale')) {
+                    section = 'Terminale';
+                }
 
-                    const badge = document.createElement('div');
-                    badge.className = 'selected-item-badge';
-                    badge.innerHTML = `
-                        ${name}
-                        <button type="button" class="remove-item" data-id="${id}" data-type="eleve">
-                            <i class="bi bi-x"></i>
-                        </button>
-                    `;
-                    selectedElevesContainer.appendChild(badge);
+                filterElevesBySection(section);
+            });
+
+
+            $('#searchBySectionEleve').click(function() {
+                $('#elevesListContainer').toggleClass('d-none');
+
+
+                $('#classeSelect').trigger('change');
+            });
+
+            $(document).on('click', '.selectable-item', function() {
+                const id = $(this).data('id');
+                const type = $(this).data('type');
+                const name = $(this).find('span span').first().text();
+
+                if ($(this).hasClass('selected')) {
+
+                    $(this).removeClass('selected');
+                    $(this).find('.badge').addClass('d-none');
+                    $(`#selected${type === 'eleve' ? 'Eleves' : 'Profs'}Container .badge[data-id="${id}"]`).remove();
+                } else {
+
+                    $(this).addClass('selected');
+                    $(this).find('.badge').removeClass('d-none');
+                    const container = $(`#selected${type === 'eleve' ? 'Eleves' : 'Profs'}Container`);
+                    container.append(`
+                        <div class="selected-item-badge" data-id="${id}">
+                            ${name}
+                            <button type="button" class="btn-remove-item" data-id="${id}" data-type="${type}">
+                                <i class="bi bi-x"></i>
+                            </button>
+                        </div>
+                    `);
+                }
+
+                updateHiddenFields();
+            });
+
+            $(document).on('click', '.btn-remove-item', function() {
+                const id = $(this).data('id');
+                const type = $(this).data('type');
+
+                $(this).parent().remove();
+                $(`.selectable-item[data-id="${id}"]`).removeClass('selected').find('.badge').addClass('d-none');
+
+                updateHiddenFields();
+            });
+
+            function updateHiddenFields() {
+                const selectedEleves = [];
+                $('.selectable-item.eleve-item.selected').each(function() {
+                    selectedEleves.push($(this).data('id'));
                 });
+                $('#selectedEleves').val(selectedEleves.join(','));
 
-                // Mise à jour des professeurs sélectionnés
-                const selectedProfsContainer = document.getElementById('selectedProfsContainer');
-                selectedProfsContainer.innerHTML = '';
-
-                document.querySelectorAll('.selectable-item.bg-light[data-type="professeur"]').forEach(el => {
-                    const name = el.querySelector('span span').textContent;
-                    const id = el.getAttribute('data-id');
-
-                    const badge = document.createElement('div');
-                    badge.className = 'selected-item-badge';
-                    badge.innerHTML = `
-                        ${name}
-                        <button type="button" class="remove-item" data-id="${id}" data-type="professeur">
-                            <i class="bi bi-x"></i>
-                        </button>
-                    `;
-                    selectedProfsContainer.appendChild(badge);
+                const selectedProfs = [];
+                $('.selectable-item[data-type="professeur"].selected').each(function() {
+                    selectedProfs.push($(this).data('id'));
                 });
-
-                // Gestion des boutons de suppression
-                document.querySelectorAll('.remove-item').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const id = this.getAttribute('data-id');
-                        const type = this.getAttribute('data-type');
-
-                        // Retirer la sélection visuelle
-                        document.querySelector(`.selectable-item.bg-light[data-id="${id}"][data-type="${type}"]`).classList.remove('bg-light');
-                        document.querySelector(`.selectable-item[data-id="${id}"][data-type="${type}"] .badge`).classList.add('d-none');
-
-                        // Mettre à jour les affichages
-                        updateSelectedIds();
-                        updateSelectedItemsDisplay();
-                    });
-                });
+                $('#selectedProfs').val(selectedProfs.join(','));
             }
         });
     </script>

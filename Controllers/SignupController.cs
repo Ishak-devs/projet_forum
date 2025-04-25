@@ -113,8 +113,10 @@ namespace Forum.Controllers
                 Email = modele.Email,
                 Motdepasse = passwordHasher.HashPassword(null, modele.Motdepasse),
                 Role = modele.Role,
-                Id_etablissement = utilisateurConnecte.Id_etablissement
+                Id_etablissement = utilisateurConnecte.Id_etablissement,
+                Section = modele.Section,
             };
+
 
             contextget.Add(nouvelEleve);
             try
