@@ -19,7 +19,7 @@ namespace Forum.Hubs
         {
             var userId = _httpContextAccessor.HttpContext?.Session.GetInt32("UserId");
 
-            var user = await _context.Utilisateurs.FindAsync((userId);
+            var user = await _context.Utilisateurs.FindAsync(userId);
             if (user == null) return;
 
             var promoExists = await _context.Promos.AnyAsync(p => p.Id_promo == promoId);
