@@ -17,10 +17,9 @@ namespace Forum.Hubs
 
         public async Task SendMessage(string message, int promoId)
         {
-            var userId = _httpContextAccessor.HttpContext?.Session.GetString("UserId");
-            if (string.IsNullOrEmpty(userId)) return;
+            var userId = _httpContextAccessor.HttpContext?.Session.GetInt32("UserId");
 
-            var user = await _context.Utilisateurs.FindAsync(int.Parse(userId));
+            var user = await _context.Utilisateurs.FindAsync((userId);
             if (user == null) return;
 
             var promoExists = await _context.Promos.AnyAsync(p => p.Id_promo == promoId);
