@@ -1,7 +1,14 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Controllers",
+    "\\Hubs",
+    "\\Models",
+    "\\Views",
+    "\\Views\\Classe",
+    "\\Views\\Forum",
+    "\\Views\\Shared"
   ],
-  "SelectedNode": "\\Forum.csproj",
+  "SelectedNode": "\\Hubs\\ChatHub.cs",
   "PreviewInSolutionExplorer": false
 }

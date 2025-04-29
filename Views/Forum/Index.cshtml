@@ -15,7 +15,7 @@
                 {
                     foreach (var classe in classes)
                     {
-                        <option value="@classe.Id_promo">@classe.Nom_promo</option>
+                <option value="@classe.Id_promo">@classe.Nom_promo</option>
                     }
                 }
             </select>
@@ -63,11 +63,12 @@
         const classSelect = document.getElementById("classSelect");
         const sendButton = document.getElementById("sendButton");
 
-        connection.on("ReceiveMessage", (user, message, timestamp, isCurrentUser) => {
-            const currentClassId = parseInt(classSelect.value);
-            const messageElement = createMessageElement(user, message, timestamp, isCurrentUser);
-            messagesList.appendChild(messageElement);
-            scrollToBottom();
+        connection.on("MessagesLoaded", function (messages) {
+            messages.forEach(msg => {
+                const messageElement = document.createElement("div");
+                messageElement.innerText = `${msg.SenderName}: ${msg.Message} (${msg.Date_message})`;
+                document.getElementById("chatContainer").appendChild(messageElement);
+            });
         });
 
         connection.on("LoadMessages", (messages) => {
