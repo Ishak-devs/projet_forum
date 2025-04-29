@@ -29,6 +29,19 @@
         </div>
 
         <div class="col-md-4">
+            <div class="card border-primary shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-calendar-plus fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Promotions</h5>
+                    <p class="card-text">Plannifier les cours.</p>
+                    <a href="@Url.Action("Ajouter_emplois_du_temps", "Classe")" class="btn btn-primary stretched-link">
+                        <i class="fas fa-plus me-1"></i> Gestion emplois du temps
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
             <div class="card border-success shadow-sm h-100">
                 <div class="card-body text-center">
                     <i class="fas fa-user-graduate fa-3x text-success mb-3"></i>
@@ -41,120 +54,120 @@
             </div>
         </div>
 
-    <div class="row">
-        <div class="col-12">
-            <div class="card shadow">
-                <div class="card-header bg-dark text-white">
-                    <h5 class="mb-0">
-                        <i class="fas fa-list me-2"></i>Promotions Actives
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Nom</th>
-                                    <th>Année Scolaire</th>
-                                    <th>Nombre d'Élèves</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                             
-                                <tr>
-                                    <td>Terminale A</td>
-                                    <td>2023-2024</td>
-                                    <td>32</td>
-                                    <td>
-                                        <a href="#" class="btn btn-sm btn-outline-primary">
-                                            <i class="fas fa-edit"></i> Modifier
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-outline-danger">
-                                            <i class="fas fa-trash"></i> Supprimer
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Première B</td>
-                                    <td>2023-2024</td>
-                                    <td>28</td>
-                                    <td>
-                                        <a href="#" class="btn btn-sm btn-outline-primary">
-                                            <i class="fas fa-edit"></i> Modifier
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-outline-danger">
-                                            <i class="fas fa-trash"></i> Supprimer
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-list me-2"></i>Promotions Actives
+                        </h5>
                     </div>
-                    <div class="d-flex justify-content-end mt-3">
-                        <a href="@Url.Action("ListePromotions", "Admin")" class="btn btn-outline-dark">
-                            <i class="fas fa-arrow-right me-1"></i> Voir toutes les promotions
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Nom</th>
+                                        <th>Année Scolaire</th>
+                                        <th>Nombre d'Élèves</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-    <!-- Section statistiques -->
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <div class="card shadow">
-                <div class="card-header bg-warning text-dark">
-                    <h5 class="mb-0">
-                        <i class="fas fa-chart-pie me-2"></i>Statistiques
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <canvas id="statsChart" width="100%" height="200"></canvas>
-                    <script>
-                        // Exemple: Graphique avec Chart.js (à adapter)
-                        const ctx = document.getElementById('statsChart').getContext('2d');
-                        new Chart(ctx, {
-                            type: 'bar',
-                            data: {
-                                labels: ['Élèves', 'Professeurs', 'Promotions'],
-                                datasets: [{
-                                    label: 'Effectifs',
-                                    data: [120, 15, 5],
-                                    backgroundColor: [
-                                        'rgba(75, 192, 192, 0.6)',
-                                        'rgba(54, 162, 235, 0.6)',
-                                        'rgba(153, 102, 255, 0.6)'
-                                    ]
-                                }]
-                            }
-                        });
-                    </script>
+                                    <tr>
+                                        <td>Terminale A</td>
+                                        <td>2023-2024</td>
+                                        <td>32</td>
+                                        <td>
+                                            <a href="#" class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-edit"></i> Modifier
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-outline-danger">
+                                                <i class="fas fa-trash"></i> Supprimer
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Première B</td>
+                                        <td>2023-2024</td>
+                                        <td>28</td>
+                                        <td>
+                                            <a href="#" class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-edit"></i> Modifier
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-outline-danger">
+                                                <i class="fas fa-trash"></i> Supprimer
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="d-flex justify-content-end mt-3">
+                            <a href="@Url.Action("ListePromotions", "Admin")" class="btn btn-outline-dark">
+                                <i class="fas fa-arrow-right me-1"></i> Voir toutes les promotions
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="card shadow">
-                <div class="card-header bg-danger text-white">
-                    <h5 class="mb-0">
-                        <i class="fas fa-bell me-2"></i>Alertes
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle me-2"></i>
-                        <strong>2 élèves</strong> n'ont pas encore payé les frais de scolarité.
+
+        <!-- Section statistiques -->
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="mb-0">
+                            <i class="fas fa-chart-pie me-2"></i>Statistiques
+                        </h5>
                     </div>
-                    <div class="alert alert-info">
-                        <i class="fas fa-info-circle me-2"></i>
-                        La <strong>promotion Terminale C</strong> n'a pas de professeur principal.
+                    <div class="card-body">
+                        <canvas id="statsChart" width="100%" height="200"></canvas>
+                        <script>
+                            // Exemple: Graphique avec Chart.js (à adapter)
+                            const ctx = document.getElementById('statsChart').getContext('2d');
+                            new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: ['Élèves', 'Professeurs', 'Promotions'],
+                                    datasets: [{
+                                        label: 'Effectifs',
+                                        data: [120, 15, 5],
+                                        backgroundColor: [
+                                            'rgba(75, 192, 192, 0.6)',
+                                            'rgba(54, 162, 235, 0.6)',
+                                            'rgba(153, 102, 255, 0.6)'
+                                        ]
+                                    }]
+                                }
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-header bg-danger text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-bell me-2"></i>Alertes
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            <strong>2 élèves</strong> n'ont pas encore payé les frais de scolarité.
+                        </div>
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            La <strong>promotion Terminale C</strong> n'a pas de professeur principal.
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 <!-- Scripts Bootstrap et Font Awesome -->
 @section Scripts {

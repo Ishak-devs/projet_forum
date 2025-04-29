@@ -114,6 +114,19 @@ namespace Forum.Controllers
                 return RedirectToAction("AjouterPromo");
             }
         }
+        public async Task<IActionResult> Ajouter_emplois_du_temps()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+            {
+                return RedirectToAction("Index", "Authentification");
+            }
+            var classes = await _context.Promos.ToListAsync();
+
+            ViewBag.Classes = classes;
+
+            return View();
+        }
 
     }
 }

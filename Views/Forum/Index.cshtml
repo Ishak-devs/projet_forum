@@ -62,6 +62,7 @@
         const sendButton = document.getElementById("sendButton");
 
         document.addEventListener("DOMContentLoaded", function () {
+
             connection.on("MessagesLoaded", function (messages) {
                 messagesList.innerHTML = "";
                 messages.forEach(m => {
