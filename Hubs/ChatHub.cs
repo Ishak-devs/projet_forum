@@ -1,6 +1,8 @@
-﻿using System.Data.Entity;
+﻿
+
 using Forum.Models;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Forum.Hubs
 {

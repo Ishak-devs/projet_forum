@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Forum.Models;
 using Microsoft.AspNetCore.Identity;
-using System.Data.Entity.Infrastructure;
+using Microsoft.EntityFrameworkCore;
+
+
 
 namespace Forum.Controllers
 {
