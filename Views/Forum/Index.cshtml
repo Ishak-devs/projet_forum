@@ -9,7 +9,7 @@
 
         <div class="mb-3">
             <label for="classSelect" class="form-label">Choisissez une classe :</label>
-            <select value="" id="classSelect" name="classId" class="form-select" onchange="setClassId()">
+            <select id="classSelect" name="classId" class="form-select" onchange="setClassId()">
                 <option value="">-- Sélectionnez une classe --</option>
                 @if (classes != null && classes.Any())
                 {
@@ -49,8 +49,7 @@
         ];
 
         function containsBannedWords(message) {
-            const lowerCaseMessage = message.toLowerCase();
-            return bannedWords.some(word => lowerCaseMessage.includes(word.toLowerCase()));
+            return bannedWords.some(word => message.toLowerCase().includes(word.toLowerCase()));
         }
 
         const connection = new signalR.HubConnectionBuilder()
@@ -60,124 +59,57 @@
 
         const messagesList = document.getElementById("messagesList");
         const messageInput = document.getElementById("messageInput");
-        const classSelect = document.getElementById("classSelect");
         const sendButton = document.getElementById("sendButton");
 
-        connection.on("MessagesLoaded", function (messages) {
-            messages.forEach(msg => {
-                const messageElement = document.createElement("div");
-                messageElement.innerText = `${msg.SenderName}: ${msg.Message} (${msg.Date_message})`;
-                document.getElementById("chatContainer").appendChild(messageElement);
+        document.addEventListener("DOMContentLoaded", function () {
+            connection.on("MessagesLoaded", function (messages) {
+                messagesList.innerHTML = "";
+                messages.forEach(m => {
+                    const messageDiv = document.createElement("div");
+                    messageDiv.textContent = `${m.SenderName}: ${m.Message} (${new Date(m.Date_message).toLocaleString()})`;
+                    messagesList.appendChild(messageDiv);
+                });
+                messagesList.scrollTop = messagesList.scrollHeight;
             });
+
+            connection.start().then(() => console.log("Connected to SignalR")).catch(err => console.error(err));
         });
 
-        connection.on("LoadMessages", (messages) => {
-            messagesList.innerHTML = '';
-            if (!messages || messages.length === 0) {
-                messagesList.innerHTML = '<p class="text-center text-muted p-3">Sélectionnez une classe pour voir les messages ou soyez le premier à en envoyer un.</p>';
+        function setClassId() {
+            const classId = parseInt(document.getElementById("classSelect").value);
+            if (!classId) {
+                messagesList.innerHTML = '<p class="text-center text-muted p-3">Sélectionnez une classe pour commencer à discuter.</p>';
+                messageInput.disabled = sendButton.disabled = true;
+                messageInput.placeholder = "Sélectionnez une classe pour discuter";
                 return;
             }
-            messages.forEach(msg => {
-                const messageElement = createMessageElement(msg.user, msg.message, msg.timestamp, msg.isCurrentUser);
-                messagesList.appendChild(messageElement);
+
+            messageInput.disabled = sendButton.disabled = false;
+            messageInput.placeholder = "Écrivez votre message...";
+            connection.invoke("LoadMessages", classId).catch(err => {
+                console.error("Erreur de chargement des messages", err);
+                messagesList.innerHTML = '<p class="text-center text-danger p-3">Erreur lors du chargement des messages.</p>';
             });
-            scrollToBottom();
-        });
-
-        function createMessageElement(user, message, timestamp, isCurrentUser) {
-            const messageWrapper = document.createElement("div");
-            messageWrapper.classList.add("d-flex", "mb-3");
-            messageWrapper.classList.add(isCurrentUser ? "justify-content-end" : "justify-content-start");
-
-            const messageBubble = document.createElement("div");
-            messageBubble.classList.add("p-2", "rounded", "shadow-sm");
-            messageBubble.style.maxWidth = '75%';
-            messageBubble.classList.add(isCurrentUser ? "bg-primary" : "bg-white");
-            messageBubble.classList.add(isCurrentUser ? "text-white" : "text-dark");
-
-            const messageContent = document.createElement("div");
-            messageContent.textContent = message;
-
-            const messageInfo = document.createElement("div");
-            messageInfo.classList.add("small", "mt-1");
-            if (isCurrentUser) {
-                messageInfo.classList.add("text-white-50");
-                messageInfo.textContent = `Vous • ${moment(timestamp).format('LT')}`;
-            } else {
-                messageInfo.classList.add("text-muted");
-                messageInfo.textContent = `${user} • ${moment(timestamp).format('LLL')}`;
-            }
-
-            messageBubble.appendChild(messageContent);
-            messageBubble.appendChild(messageInfo);
-            messageWrapper.appendChild(messageBubble);
-
-            return messageWrapper;
         }
 
-        function scrollToBottom() {
-            messagesList.scrollTop = messagesList.scrollHeight;
-        }
-
-        async function startConnection() {
-            try {
-                await connection.start();
-                console.log("Connected to SignalR hub");
-                await setClassId();
-            } catch (err) {
-                console.error("Connection error:", err);
-                messagesList.innerHTML = '<p class="text-center text-danger p-3">Impossible de se connecter au chat. Réessai dans 5 secondes...</p>';
-                setTimeout(startConnection, 5000);
-            }
-        }
-
-        async function setClassId() {
-            messagesList.innerHTML = '<p class="text-center text-muted p-3">Chargement des messages...</p>';
-            const classId = parseInt(classSelect.value);
-            const disableInput = !classId;
-            messageInput.disabled = disableInput;
-            sendButton.disabled = disableInput;
-            messageInput.placeholder = disableInput ? "Sélectionnez une classe pour discuter" : "Écrivez votre message...";
-
-            if (classId && connection.state === signalR.HubConnectionState.Connected) {
-                try {
-                    await connection.invoke("LoadMessages", classId);
-                } catch (err) {
-                    console.error("Error loading messages:", err);
-                    messagesList.innerHTML = '<p class="text-center text-danger p-3">Erreur lors du chargement des messages.</p>';
-                }
-            } else if (!classId) {
-                messagesList.innerHTML = '<p class="text-center text-muted p-3">Sélectionnez une classe pour commencer à discuter.</p>';
-            } else {
-                console.warn("Attempted to load messages but connection not ready.");
-                messagesList.innerHTML = '<p class="text-center text-warning p-3">Connexion au chat en cours...</p>';
-            }
-        }
-
-        async function sendMessage() {
+        function sendMessage() {
             const message = messageInput.value.trim();
-            const classId = parseInt(classSelect.value);
-
+            const classId = parseInt(document.getElementById("classSelect").value);
             if (containsBannedWords(message)) {
-                alert("Ce message contient des mots inappropriés et ne peut pas être envoyé.");
+                alert("Message interdit");
                 messageInput.value = "";
                 return;
             }
 
-            if (message && classId && connection.state === signalR.HubConnectionState.Connected) {
-                messageInput.disabled = true;
-                sendButton.disabled = true;
-
-                try {
-                    await connection.invoke("SendMessage", message, classId);
+            if (message && classId) {
+                messageInput.disabled = sendButton.disabled = true;
+                connection.invoke("SendMessage", message, classId).catch(err => {
+                    console.error("Erreur lors de l'envoi du message", err);
+                }).finally(() => {
+                    messageInput.disabled = sendButton.disabled = false;
                     messageInput.value = "";
-                } catch (err) {
-                    console.error("Error sending message:", err);
-                } finally {
-                    messageInput.disabled = false;
-                    sendButton.disabled = false;
                     messageInput.focus();
-                }
+                });
             }
         }
 
@@ -185,7 +117,5 @@
         messageInput.addEventListener("keydown", (e) => {
             if (e.key === "Enter") sendMessage();
         });
-
-        startConnection();
     </script>
 }
