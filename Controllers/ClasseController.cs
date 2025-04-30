@@ -17,7 +17,7 @@ namespace Forum.Controllers
         }
 
         [HttpGet]
-        public IActionResult AjouterPromo()
+        public IActionResult Ajouterclasse()
         {
             var userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null)
@@ -51,7 +51,7 @@ namespace Forum.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AjouterPromo(string Nom_promo, List<int> selectedEleves, List<int> selectedProfs)
+        public IActionResult Ajouterclasse(string Nom_classe, List<int> selectedEleves, List<int> selectedProfs)
         {
             var userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null)
@@ -71,12 +71,12 @@ namespace Forum.Controllers
 
             try
             {
-                var nouvellePromo = new Promos
+                var Nouvelle_Classe = new Classes
                 {
-                    Nom_promo = Nom_promo,
+                    Nom_classe = Nom_classe,
                 };
 
-                _context.Promos.Add(nouvellePromo);
+                _context.Classes.Add(Nouvelle_Classe);
                 _context.SaveChanges();
 
                 if (selectedEleves != null && selectedEleves.Any())
@@ -86,7 +86,7 @@ namespace Forum.Controllers
                         var eleve = _context.Utilisateurs.Find(eleveId);
                         if (eleve != null)
                         {
-                            eleve.Id_promo = nouvellePromo.Id_promo;
+                            eleve.Id_classe = Nouvelle_Classe.Id_classe;
                         }
                     }
                 }
@@ -98,20 +98,20 @@ namespace Forum.Controllers
                         var prof = _context.Utilisateurs.Find(profId);
                         if (prof != null)
                         {
-                            prof.Id_promo = nouvellePromo.Id_promo;
+                            prof.Id_classe = Nouvelle_Classe.Id_classe;
                         }
                     }
                 }
 
                 _context.SaveChanges();
 
-                TempData["SuccessMessage"] = $"La promotion {Nom_promo} a été créée avec succès !";
-                return RedirectToAction("AjouterPromo");
+                TempData["SuccessMessage"] = $"La promotion {Nom_classe} a été créée avec succès !";
+                return RedirectToAction("Ajouterclasse");
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Erreur lors de la création de la promotion : {ex.Message}";
-                return RedirectToAction("AjouterPromo");
+                TempData["ErrorMessage"] = $"Erreur lors de la création de la classe : {ex.Message}";
+                return RedirectToAction("Ajouterclasse");
             }
         }
         public async Task<IActionResult> Ajouter_emplois_du_temps()
@@ -121,7 +121,7 @@ namespace Forum.Controllers
             {
                 return RedirectToAction("Index", "Authentification");
             }
-            var classes = await _context.Promos.ToListAsync();
+            var classes = await _context.Classes.ToListAsync();
 
             ViewBag.Classes = classes;
 

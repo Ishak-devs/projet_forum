@@ -13,8 +13,8 @@ namespace Forum.Models
       
         public DateTime Date_module { get; set; }
 
-        [ForeignKey("Promos")]
-        public int Id_promo { get; set; }
-        public virtual Promos Promos { get; set; }
+        [ForeignKey("Classes")]
+        public int Id_classe { get; set; }
+        public virtual Classes Classes { get; set; }
     }
 }

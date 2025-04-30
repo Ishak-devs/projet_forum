@@ -20,40 +20,40 @@ namespace Forum.Hubs
             _logger.LogInformation("ChatHub instancié !");
         }
 
-        public async Task SendMessage(string message, int promoId)
+        public async Task SendMessage(string message, int Classid)
         {
-            _logger.LogInformation("SendMessage appelé avec message : {Message}, promoId : {PromoId}", message, promoId);
+            _logger.LogInformation("SendMessage appelé avec message : {Message}, Classid : {Classid}", message, Classid);
             var userId = _httpContextAccessor.HttpContext?.Session.GetInt32("UserId");
 
             var user = await _context.Utilisateurs.FindAsync(userId);
             if (user == null) return;
 
-            var promoExists = await _context.Promos.AnyAsync(p => p.Id_promo == promoId);
+            var promoExists = await _context.Classes.AnyAsync(p => p.Id_classe == Classid);
             if (!promoExists) return;
 
             var chatMessage = new Messages
             {
                 Id_utilisateur = user.Id_utilisateur,
                 Message = message,
-                Id_promo = promoId,
+                Id_classe = Classid,
                 Date_message = DateTime.Now
             };
 
             _context.Messages.Add(chatMessage);
             await _context.SaveChangesAsync();
 
-            await Clients.Group(promoId.ToString())
+            await Clients.Group(Classid.ToString())
                 .SendAsync("ReceiveMessage", user.Prenom, message, chatMessage.Date_message);
         }
 
-        public Task Message_send_and_echo_to_client(int promoId)
+        public Task Message_send_and_echo_to_client(int Classid)
         {
             try
             {
-                _logger.LogInformation($"Chargement des messages pour la promo {promoId}...");
+                _logger.LogInformation($"Chargement des messages pour la promo {Classid}...");
 
                 var messages = _context.Messages
-                    .Where(m => m.Id_promo == promoId)
+                    .Where(m => m.Id_classe == Classid)
                     .OrderBy(m => m.Date_message)
                     .Select(m => new
                     {
@@ -76,6 +76,6 @@ namespace Forum.Hubs
             }
         }
 
-        
+
     }
 }

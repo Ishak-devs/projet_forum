@@ -7,12 +7,27 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Forum.Migrations
 {
     /// <inheritdoc />
-    public partial class m13 : Migration
+    public partial class creation_db : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterDatabase()
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Classes",
+                columns: table => new
+                {
+                    Id_classe = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nom_classe = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Classes", x => x.Id_classe);
+                })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
@@ -54,21 +69,6 @@ namespace Forum.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Promos",
-                columns: table => new
-                {
-                    Id_promo = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nom_promo = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Promos", x => x.Id_promo);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "Modules",
                 columns: table => new
                 {
@@ -77,16 +77,16 @@ namespace Forum.Migrations
                     theme_module = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Date_module = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Id_promo = table.Column<int>(type: "int", nullable: false)
+                    Id_classe = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Modules", x => x.Id_module);
                     table.ForeignKey(
-                        name: "FK_Modules_Promos_Id_promo",
-                        column: x => x.Id_promo,
-                        principalTable: "Promos",
-                        principalColumn: "Id_promo",
+                        name: "FK_Modules_Classes_Id_classe",
+                        column: x => x.Id_classe,
+                        principalTable: "Classes",
+                        principalColumn: "Id_classe",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -97,7 +97,7 @@ namespace Forum.Migrations
                 {
                     Id_utilisateur = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Id_promo = table.Column<int>(type: "int", nullable: true),
+                    Id_classe = table.Column<int>(type: "int", nullable: true),
                     Nom = table.Column<string>(type: "varchar(70)", maxLength: 70, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Prenom = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
@@ -108,21 +108,23 @@ namespace Forum.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Role = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Id_etablissement = table.Column<int>(type: "int", nullable: true)
+                    Id_etablissement = table.Column<int>(type: "int", nullable: true),
+                    Section = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Utilisateurs", x => x.Id_utilisateur);
                     table.ForeignKey(
+                        name: "FK_Utilisateurs_Classes_Id_classe",
+                        column: x => x.Id_classe,
+                        principalTable: "Classes",
+                        principalColumn: "Id_classe");
+                    table.ForeignKey(
                         name: "FK_Utilisateurs_Etablissements_Id_etablissement",
                         column: x => x.Id_etablissement,
                         principalTable: "Etablissements",
                         principalColumn: "Id_etablissement");
-                    table.ForeignKey(
-                        name: "FK_Utilisateurs_Promos_Id_promo",
-                        column: x => x.Id_promo,
-                        principalTable: "Promos",
-                        principalColumn: "Id_promo");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -133,7 +135,7 @@ namespace Forum.Migrations
                     Id_message = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Id_utilisateur = table.Column<int>(type: "int", nullable: false),
-                    Id_promo = table.Column<int>(type: "int", nullable: false),
+                    Id_classe = table.Column<int>(type: "int", nullable: false),
                     Message = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Date_message = table.Column<DateTime>(type: "datetime(6)", nullable: false)
@@ -142,10 +144,10 @@ namespace Forum.Migrations
                 {
                     table.PrimaryKey("PK_Messages", x => x.Id_message);
                     table.ForeignKey(
-                        name: "FK_Messages_Promos_Id_promo",
-                        column: x => x.Id_promo,
-                        principalTable: "Promos",
-                        principalColumn: "Id_promo",
+                        name: "FK_Messages_Classes_Id_classe",
+                        column: x => x.Id_classe,
+                        principalTable: "Classes",
+                        principalColumn: "Id_classe",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Messages_Utilisateurs_Id_utilisateur",
@@ -157,9 +159,9 @@ namespace Forum.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Messages_Id_promo",
+                name: "IX_Messages_Id_classe",
                 table: "Messages",
-                column: "Id_promo");
+                column: "Id_classe");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Messages_Id_utilisateur",
@@ -167,19 +169,19 @@ namespace Forum.Migrations
                 column: "Id_utilisateur");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Modules_Id_promo",
+                name: "IX_Modules_Id_classe",
                 table: "Modules",
-                column: "Id_promo");
+                column: "Id_classe");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Utilisateurs_Id_classe",
+                table: "Utilisateurs",
+                column: "Id_classe");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Utilisateurs_Id_etablissement",
                 table: "Utilisateurs",
                 column: "Id_etablissement");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Utilisateurs_Id_promo",
-                table: "Utilisateurs",
-                column: "Id_promo");
         }
 
         /// <inheritdoc />
@@ -198,10 +200,10 @@ namespace Forum.Migrations
                 name: "Utilisateurs");
 
             migrationBuilder.DropTable(
-                name: "Etablissements");
+                name: "Classes");
 
             migrationBuilder.DropTable(
-                name: "Promos");
+                name: "Etablissements");
         }
     }
 }

@@ -21,6 +21,24 @@ namespace Forum.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
+            modelBuilder.Entity("Forum.Models.Classes", b =>
+                {
+                    b.Property<int>("Id_classe")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_classe"));
+
+                    b.Property<string>("Nom_classe")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("Id_classe");
+
+                    b.ToTable("Classes");
+                });
+
             modelBuilder.Entity("Forum.Models.Etablissements", b =>
                 {
                     b.Property<int>("Id_etablissement")
@@ -86,7 +104,7 @@ namespace Forum.Migrations
                     b.Property<DateTime>("Date_message")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("Id_promo")
+                    b.Property<int>("Id_classe")
                         .HasColumnType("int");
 
                     b.Property<int>("Id_utilisateur")
@@ -98,7 +116,7 @@ namespace Forum.Migrations
 
                     b.HasKey("Id_message");
 
-                    b.HasIndex("Id_promo");
+                    b.HasIndex("Id_classe");
 
                     b.HasIndex("Id_utilisateur");
 
@@ -116,7 +134,7 @@ namespace Forum.Migrations
                     b.Property<DateTime>("Date_module")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("Id_promo")
+                    b.Property<int>("Id_classe")
                         .HasColumnType("int");
 
                     b.Property<string>("theme_module")
@@ -125,27 +143,9 @@ namespace Forum.Migrations
 
                     b.HasKey("Id_module");
 
-                    b.HasIndex("Id_promo");
+                    b.HasIndex("Id_classe");
 
                     b.ToTable("Modules");
-                });
-
-            modelBuilder.Entity("Forum.Models.Promos", b =>
-                {
-                    b.Property<int>("Id_promo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_promo"));
-
-                    b.Property<string>("Nom_promo")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.HasKey("Id_promo");
-
-                    b.ToTable("Promos");
                 });
 
             modelBuilder.Entity("Forum.Models.Utilisateurs", b =>
@@ -161,10 +161,10 @@ namespace Forum.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
-                    b.Property<int?>("Id_etablissement")
+                    b.Property<int?>("Id_classe")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Id_promo")
+                    b.Property<int?>("Id_etablissement")
                         .HasColumnType("int");
 
                     b.Property<string>("Motdepasse")
@@ -193,18 +193,18 @@ namespace Forum.Migrations
 
                     b.HasKey("Id_utilisateur");
 
-                    b.HasIndex("Id_etablissement");
+                    b.HasIndex("Id_classe");
 
-                    b.HasIndex("Id_promo");
+                    b.HasIndex("Id_etablissement");
 
                     b.ToTable("Utilisateurs");
                 });
 
             modelBuilder.Entity("Forum.Models.Messages", b =>
                 {
-                    b.HasOne("Forum.Models.Promos", "Promos")
+                    b.HasOne("Forum.Models.Classes", "Classes")
                         .WithMany()
-                        .HasForeignKey("Id_promo")
+                        .HasForeignKey("Id_classe")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -214,35 +214,35 @@ namespace Forum.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Promos");
+                    b.Navigation("Classes");
 
                     b.Navigation("Utilisateurs");
                 });
 
             modelBuilder.Entity("Forum.Models.Modules", b =>
                 {
-                    b.HasOne("Forum.Models.Promos", "Promos")
+                    b.HasOne("Forum.Models.Classes", "Classes")
                         .WithMany()
-                        .HasForeignKey("Id_promo")
+                        .HasForeignKey("Id_classe")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Promos");
+                    b.Navigation("Classes");
                 });
 
             modelBuilder.Entity("Forum.Models.Utilisateurs", b =>
                 {
+                    b.HasOne("Forum.Models.Classes", "Classes")
+                        .WithMany()
+                        .HasForeignKey("Id_classe");
+
                     b.HasOne("Forum.Models.Etablissements", "Etablissements")
                         .WithMany()
                         .HasForeignKey("Id_etablissement");
 
-                    b.HasOne("Forum.Models.Promos", "Promos")
-                        .WithMany()
-                        .HasForeignKey("Id_promo");
+                    b.Navigation("Classes");
 
                     b.Navigation("Etablissements");
-
-                    b.Navigation("Promos");
                 });
 #pragma warning restore 612, 618
         }

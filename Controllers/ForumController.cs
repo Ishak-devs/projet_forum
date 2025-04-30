@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
+using Forum.Models;
 
 namespace Forum.Controllers
 {
@@ -23,9 +24,11 @@ namespace Forum.Controllers
                 return RedirectToAction("Index", "Authentification");
             }
 
-            var classes = await contextget.Promos.ToListAsync();
+            var classes = await contextget.Classes.ToListAsync();
+            var Utilisateurs = await contextget.Utilisateurs.ToListAsync();
 
             ViewBag.Classes = classes;
+            ViewBag.Users = Utilisateurs;
 
             return View();
         }
