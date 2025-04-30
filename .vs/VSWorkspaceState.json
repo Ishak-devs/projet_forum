@@ -4,10 +4,12 @@
     "\\Controllers",
     "\\Hubs",
     "\\Views",
-    "\\Views\\Classe",
-    "\\Views\\Forum",
-    "\\Views\\Shared"
+    "\\Views\\Home",
+    "\\wwwroot\\lib",
+    "\\wwwroot\\lib\\bootstrap",
+    "\\wwwroot\\lib\\bootstrap\\dist",
+    "\\wwwroot\\lib\\bootstrap\\dist\\css"
   ],
-  "SelectedNode": "\\Hubs\\ChatHub.cs",
+  "SelectedNode": "\\Views\\Home\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }

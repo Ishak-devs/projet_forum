@@ -4,21 +4,242 @@
 }
 
 <div class="container mt-4">
-    <div class="col-md-9">
-        <h2 class="forum-title text-center mb-4">Forum de discussion</h2>
+    <div class="row">
+        <div class="col-md-9">
+            <h2 class="forum-title text-center mb-4">Forum de discussion</h2>
 
-        <div class="mb-3">
-            <label for="classSelect" class="form-label">Choisissez une classe :</label>
-            <select id="classSelect" name="classId" class="form-select" onchange="setClassId()">
-                <option value="">-- Sélectionnez une classe --</option>
-                @if (classes != null && classes.Any())
-                {
-                    foreach (var classe in classes)
+            <div class="mb-3">
+                <label for="classSelect" class="form-label">Choisissez une classe :</label>
+                <select id="classSelect" name="classId" class="form-select" onchange="setClassId()">
+                    <option value="">-- Sélectionnez une classe --</option>
+                    @if (classes != null && classes.Any())
                     {
-                <option value="@classe.Id_promo">@classe.Nom_promo</option>
+                        foreach (var classe in classes)
+                        {
+                    <option value="@classe.Id_promo">@classe.Nom_promo</option>
+                        }
                     }
-                }
-            </select>
+                </select>
+            </div>
         </div>
+    </div>
+
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h3 class="mb-3">Emploi du temps</h3>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Heure/Jour</th>
+                                    <th>Lundi</th>
+                                    <th>Mardi</th>
+                                    <th>Mercredi</th>
+                                    <th>Jeudi</th>
+                                    <th>Vendredi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              
+                                <tr>
+                                    <td>12h-13h</td>
+                                    <td>
+                                        <div class="editable-slot" data-day="lundi" data-time="12-13">
+                                            <span class="empty-slot text-muted">Ajouter un cours</span>
+                                            <button class="btn btn-sm btn-outline-primary add-course-btn" style="display:none;">
+                                                <i class="bi bi-plus"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                        
+                            </tbody>
+                        </table>
+                    </div>
+
+               
+                    <div class="card mt-3" id="course-form" style="display:none;">
+                        <div class="card-body">
+                            <h5 class="card-title">Ajouter un cours</h5>
+                            <form id="addCourseForm">
+                                <input type="hidden" id="selected-day">
+                                <input type="hidden" id="selected-time">
+
+                                <div class="mb-3">
+                                    <label for="course-name" class="form-label">Nom du cours</label>
+                                    <input type="text" class="form-control" id="course-name" placeholder="Ex: Histoire" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="course-teacher" class="form-label">Enseignant</label>
+                                    <input type="text" class="form-control" id="course-teacher" placeholder="Nom de l'enseignant">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="course-room" class="form-label">Salle</label>
+                                    <input type="text" class="form-control" id="course-room" placeholder="Numéro de salle">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Ajouter</button>
+                                <button type="button" class="btn btn-outline-secondary" onclick="cancelAddCourse()">Annuler</button>
+                            </form>
+                        </div>
+                    </div>
+
+
+                    <div class="text-end mt-3">
+                        <button id="validate-btn" class="btn btn-success" disabled>
+                            <i class="bi bi-check-circle"></i> Valider l'emploi du temps
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 </div>
+
+@section Scripts {
+    <script>
+
+        $(document).ready(function () {
+
+            $('.editable-slot').hover(
+                function () {
+                    if ($(this).find('.course-item').length === 0) {
+                        $(this).find('.add-course-btn').show();
+                    }
+                },
+                function () {
+                    $(this).find('.add-course-btn').hide();
+                }
+            );
+
+
+            $('.editable-slot').on('click', '.add-course-btn', function (e) {
+                e.stopPropagation();
+                const slot = $(this).closest('.editable-slot');
+                $('#selected-day').val(slot.data('day'));
+                $('#selected-time').val(slot.data('time'));
+                $('#course-form').show();
+            });
+
+            $('#addCourseForm').submit(function (e) {
+                e.preventDefault();
+
+                const day = $('#selected-day').val();
+                const time = $('#selected-time').val();
+                const courseName = $('#course-name').val();
+                const teacher = $('#course-teacher').val();
+                const room = $('#course-room').val();
+
+
+                $(`[data-day="${day}"][data-time="${time}"]`).html(`
+                        <div class="course-item">
+                            <div class="fw-bold">${courseName}</div>
+                            <div class="text-muted small">${teacher || ''}</div>
+                            <div class="text-muted small">${room || ''}</div>
+                            <button class="btn btn-sm btn-outline-danger mt-1 remove-course">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    `);
+
+
+                $('#course-name').val('');
+                $('#course-teacher').val('');
+                $('#course-room').val('');
+                $('#course-form').hide();
+
+
+                $('#validate-btn').prop('disabled', false);
+            });
+
+
+            $(document).on('click', '.remove-course', function () {
+                const slot = $(this).closest('.editable-slot');
+                slot.html(`
+                        <span class="empty-slot text-muted">Ajouter un cours</span>
+                        <button class="btn btn-sm btn-outline-primary add-course-btn" style="display:none;">
+                            <i class="bi bi-plus"></i>
+                        </button>
+                    `);
+
+                if ($('.course-item').length === 0) {
+                    $('#validate-btn').prop('disabled', true);
+                }
+            });
+
+
+            $('#validate-btn').click(function () {
+
+                alert('Emploi du temps validé avec succès !');
+
+                const schedule = [];
+                $('.editable-slot').each(function () {
+                    if ($(this).find('.course-item').length > 0) {
+                        const day = $(this).data('day');
+                        const time = $(this).data('time');
+                        const courseName = $(this).find('.fw-bold').text();
+                        const teacher = $(this).find('.text-muted.small').first().text();
+                        const room = $(this).find('.text-muted.small').last().text();
+
+                        schedule.push({
+                            day: day,
+                            time: time,
+                            course: courseName,
+                            teacher: teacher,
+                            room: room
+                        });
+                    }
+                });
+
+                console.log('Emploi du temps:', schedule);
+            });
+        });
+
+        function cancelAddCourse() {
+            $('#course-form').hide();
+            $('#addCourseForm')[0].reset();
+        }
+
+        function setClassId() {
+           
+            const selectedClassId = $('#classSelect').val();
+        }
+    </script>
+
+    <style>
+        .editable-slot {
+            min-height: 80px;
+            padding: 5px;
+            cursor: pointer;
+            position: relative;
+        }
+
+            .editable-slot:hover {
+                background-color: #f8f9fa;
+            }
+
+        .course-item {
+            background-color: #e9f7fe;
+            padding: 8px;
+            border-radius: 4px;
+            border-left: 3px solid #0d6efd;
+        }
+
+        .add-course-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+}
