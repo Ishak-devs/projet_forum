@@ -46,7 +46,7 @@ namespace Forum.Hubs
                 .SendAsync("ReceiveMessage", user.Prenom, message, chatMessage.Date_message);
         }
 
-        public Task LoadMessages(int promoId)
+        public Task Message_send_and_echo_to_client(int promoId)
         {
             try
             {
@@ -76,15 +76,6 @@ namespace Forum.Hubs
             }
         }
 
-        public async Task JoinPromoGroup(int promoId)
-        {
-            await Groups.AddToGroupAsync(Context.ConnectionId, promoId.ToString());
-            await LoadMessages(promoId); 
-        }
-
-        public async Task LeavePromoGroup(int promoId)
-        {
-            await Groups.RemoveFromGroupAsync(Context.ConnectionId, promoId.ToString());
-        }
+        
     }
 }

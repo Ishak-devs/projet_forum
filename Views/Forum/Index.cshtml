@@ -63,7 +63,16 @@
 
         document.addEventListener("DOMContentLoaded", function () {
 
-            connection.on("MessagesLoaded", function (messages) {
+            function sendMessage() {
+                const message = messageInput.value.trim();
+                const classId = parseInt(document.getElementById("classSelect").value);
+                if (containsBannedWords(message)) {
+                    alert("Message interdit");
+                    messageInput.value = "";
+                    return;
+                }
+
+            connection.on("Message_send_and_echo_to_client", function (messages) {
                 messagesList.innerHTML = "";
                 messages.forEach(m => {
                     const messageDiv = document.createElement("div");
@@ -73,7 +82,7 @@
                 messagesList.scrollTop = messagesList.scrollHeight;
             });
 
-            connection.start().then(() => console.log("Connected to SignalR")).catch(err => console.error(err));
+            connection.start().then(() => console.log("Connected to SignalR")).catch(err => console.error(err)); //connexion signalR
         });
 
         function setClassId() {
@@ -93,14 +102,7 @@
             });
         }
 
-        function sendMessage() {
-            const message = messageInput.value.trim();
-            const classId = parseInt(document.getElementById("classSelect").value);
-            if (containsBannedWords(message)) {
-                alert("Message interdit");
-                messageInput.value = "";
-                return;
-            }
+
 
             if (message && classId) {
                 messageInput.disabled = sendButton.disabled = true;
