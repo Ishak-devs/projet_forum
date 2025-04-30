@@ -4,12 +4,11 @@
     "\\Controllers",
     "\\Hubs",
     "\\Views",
-    "\\Views\\Home",
+    "\\Views\\Signup",
     "\\wwwroot\\lib",
     "\\wwwroot\\lib\\bootstrap",
-    "\\wwwroot\\lib\\bootstrap\\dist",
     "\\wwwroot\\lib\\bootstrap\\dist\\css"
   ],
-  "SelectedNode": "\\Views\\Home\\Index.cshtml",
+  "SelectedNode": "\\Controllers\\SignupController.cs",
   "PreviewInSolutionExplorer": false
 }

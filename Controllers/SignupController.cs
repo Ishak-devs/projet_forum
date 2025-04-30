@@ -144,6 +144,7 @@ namespace Forum.Controllers
                 return View(modele);
             }
 
+
             var newEtablissement = new Etablissements
             {
                 numero_rue = modele.numero_rue,
@@ -155,6 +156,7 @@ namespace Forum.Controllers
 
             contextget.Add(newEtablissement);
 
+            contextget.SaveChanges();
             try
             {
                 contextget.SaveChanges();
