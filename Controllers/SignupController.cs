@@ -33,7 +33,7 @@ namespace Forum.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Vérifie si l'email existe déjà
+               
                 if (contextget.Utilisateurs.Any(u => u.Email == modele.Email))
                 {
                     ModelState.AddModelError("Email", "Cet email est déjà utilisé");
