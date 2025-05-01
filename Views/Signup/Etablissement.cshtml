@@ -72,14 +72,10 @@
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $('#Region').on('change', function () {
-            const region = $(this).val();
-            if (!region) return;
 
-            $('#loader').show();
 
             $.ajax({
-                 url: `https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-annuaire-education&rows=50&refine.nom_academie=${encodeURIComponent(region)}`,
+                url: `https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-annuaire-education&rows=50&refine.nom_academie=${encodeURIComponent(region)}&refine.type_etablissement=${encodeURIComponent(typeEtablissement)}`
                 method: 'GET',
                 success: function (data) {
 
