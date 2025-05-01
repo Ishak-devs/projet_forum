@@ -26,7 +26,8 @@ namespace Forum.Controllers
         public IActionResult Index()
         {
 
-            return View();
+            //return View();
+            return RedirectToAction("Etablissement", "Signup");
         }
         [HttpPost] 
         public ActionResult Index(Utilisateurs modele)
@@ -69,6 +70,7 @@ namespace Forum.Controllers
                 }
             }
             return View(modele);
+            return RedirectToAction("Etablissement", "Signup");
         }
 
         [HttpGet]

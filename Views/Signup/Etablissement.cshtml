@@ -73,10 +73,13 @@
                 method: 'GET',
                 success: function (data) {
 
+                      
+                         data.records.forEach(function (record) {
+                    const nomEtablissement = record.fields.nom_etablissement;
+                    const idEtablissement = record.fields.idEtablissement;
 
-                    data.forEach(function () {
-                         $('#loader').hide();
-                         $('#etablissements').append(`<option value="${region.nom_etablissement}">${region.nom_etablissement}</option>`);
+                       $('#etablissements').append(`<option value="${idEtablissement}">${nomEtablissement}</option>`);
+
                     });
                 },
                 error: function () {
