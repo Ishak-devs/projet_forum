@@ -1,26 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Forum.Models;
 
-namespace Forum.API
+[ApiController]
+[Route("api/[controller]")]
+public class EtablissementsController : ControllerBase
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class EtablissementsApiController : ControllerBase
+    private readonly ApplicationDbContext _context;
+
+    public EtablissementsController(ApplicationDbContext context)
     {
-        private readonly EtablissementService _service;
+        _context = context;
+    }
 
-        public EtablissementsApiController(EtablissementService service)
-        {
-            _service = service;
-        }
+    [HttpGet]
+    public IActionResult GetByRegion(string region)
+    {
+        var etablissements = _context.Etablissements
+            .Where(e => e.Region == region)
+            .Select(e => new { e.Id_etablissement, e.Nom_etablissement }) 
+            .ToList();
 
-
-        [HttpGet]
-        public async Task<IActionResult> Get(string region, string niveau)
-        {
-            var etablissements = await _service.GetEtablissementsAsync(region, niveau);
-            return Ok(etablissements);
-
-        }
+        return Ok(etablissements);
     }
 }

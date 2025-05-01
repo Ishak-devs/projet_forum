@@ -49,7 +49,7 @@
             $('#loader').show();
 
             $.ajax({
-                url: `/api/etablissements?region=${encodeURIComponent(region)}`,
+                 url: `https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-annuaire-education&rows=50&refine.nom_academie=${encodeURIComponent(region)}`,
                 method: 'GET',
                 success: function (data) {
                     data.forEach(function (etablissement_trouve) {
