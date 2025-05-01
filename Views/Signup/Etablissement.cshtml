@@ -41,13 +41,6 @@
         </select>
         <span asp-validation-for="Region" class="text-danger"></span>
 
-        <span asp-validation-for="Region" class="text-danger"></span>
-
-        <label asp-for="type_etablissement"></label>
-        <select asp-for="type_etablissement" class="form-control" required />
-        <option value="">-- Choisir un type --</option>
-        <span asp-validation-for="type_etablissement" class="text-danger"></span>
-
         <label for="etablissements">Établissements disponibles</label>
         <select id="etablissements" class="form-control">
             <option value="">-- Choisir un établissement --</option>
@@ -80,11 +73,10 @@
                 method: 'GET',
                 success: function (data) {
 
-                    //fonction pour append es etablissements dans nos balises
+
                     data.forEach(function () {
                          $('#loader').hide();
-       
-                         $('#etablissements').append(`<option value="${etablissements.libelle_region}">${etablissements.libelle_region}</option>`);
+                         $('#etablissements').append(`<option value="${region.nom_etablissement}">${region.nom_etablissement}</option>`);
                     });
                 },
                 error: function () {
