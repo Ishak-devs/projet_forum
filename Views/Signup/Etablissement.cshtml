@@ -18,11 +18,12 @@
 
     <div class="form-group">
         <label asp-for="Region"></label>
-        <input asp-for="Region" class="form-control" required />
+        <select asp-for="Region" class="form-control" required />
+        <option value="">-- Choisir une région --</option>
         <span asp-validation-for="Region" class="text-danger"></span>
 
         <label for="etablissements">Établissements disponibles</label>
-        <select id="etablissements_select" class="form-control">
+        <select id="etablissements" class="form-control">
             <option value="">-- Choisir un établissement --</option>
         </select>
     </div>
@@ -52,10 +53,12 @@
                  url: `https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-annuaire-education&rows=50&refine.nom_academie=${encodeURIComponent(region)}`,
                 method: 'GET',
                 success: function (data) {
-                    data.forEach(function (etablissement_trouve) {
-                         $('#etablissements_select').hide;
+
+                    //fonction pour append es etablissements dans nos balises
+                    data.forEach(function () {
                          $('#loader').hide();
-                         $('#etablissements').append(`<option value="${etablissement_trouve.id}">${etablissement_trouve.nom}</option>`);
+                         $('#RegionSelect').append(`<option value="${region.nom}">${region.nom}</option>`);
+                         $('#etablissements').append(`<option value="${etablissements.nom}">${etablissements.nom}</option>`);
                     });
                 },
                 error: function () {
