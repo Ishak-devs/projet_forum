@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Forum.Models;   // modèle Etablissement
+using Forum.Models;
 
-namespace Forum.Controllers
+namespace Forum.API
 {
     [ApiController]
     [Route("[controller]")]
