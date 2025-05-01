@@ -7,6 +7,7 @@ namespace Forum.Models
     {
         [Key]
         public int Id_etablissement { get; set; }
+        public string type_etablissement { get; set; }
         public int numero_rue { get; set; }
         public string nom_rue { get; set; }
         public int code_postal { get; set; }
