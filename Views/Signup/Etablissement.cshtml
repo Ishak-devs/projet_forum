@@ -18,9 +18,35 @@
 
     <div class="form-group">
         <label asp-for="Region"></label>
-        <select asp-for="Region" class="form-control" required />
-        <option value="">-- Choisir une région --</option>
+        <select asp-for="Region" class="form-control" required>
+            <option value="">-- Choisir une région --</option>
+            <option value="Auvergne-Rhône-Alpes">Auvergne-Rhône-Alpes</option>
+            <option value="Bourgogne-Franche-Comté">Bourgogne-Franche-Comté</option>
+            <option value="Bretagne">Bretagne</option>
+            <option value="Centre-Val de Loire">Centre-Val de Loire</option>
+            <option value="Corse">Corse</option>
+            <option value="Grand Est">Grand Est</option>
+            <option value="Hauts-de-France">Hauts-de-France</option>
+            <option value="Île-de-France">Île-de-France</option>
+            <option value="Normandie">Normandie</option>
+            <option value="Nouvelle-Aquitaine">Nouvelle-Aquitaine</option>
+            <option value="Occitanie">Occitanie</option>
+            <option value="Pays de la Loire">Pays de la Loire</option>
+            <option value="Provence-Alpes-Côte d'Azur">Provence-Alpes-Côte d'Azur</option>
+            <option value="Guadeloupe">Guadeloupe</option>
+            <option value="Martinique">Martinique</option>
+            <option value="Guyane">Guyane</option>
+            <option value="La Réunion">La Réunion</option>
+            <option value="Mayotte">Mayotte</option>
+        </select>
         <span asp-validation-for="Region" class="text-danger"></span>
+
+        <span asp-validation-for="Region" class="text-danger"></span>
+
+        <label asp-for="type_etablissement"></label>
+        <select asp-for="type_etablissement" class="form-control" required />
+        <option value="">-- Choisir un type --</option>
+        <span asp-validation-for="type_etablissement" class="text-danger"></span>
 
         <label for="etablissements">Établissements disponibles</label>
         <select id="etablissements" class="form-control">
@@ -57,8 +83,8 @@
                     //fonction pour append es etablissements dans nos balises
                     data.forEach(function () {
                          $('#loader').hide();
-                         $('#RegionSelect').append(`<option value="${region.nom}">${region.nom}</option>`);
-                         $('#etablissements').append(`<option value="${etablissements.nom}">${etablissements.nom}</option>`);
+       
+                         $('#etablissements').append(`<option value="${etablissements.libelle_region}">${etablissements.libelle_region}</option>`);
                     });
                 },
                 error: function () {
