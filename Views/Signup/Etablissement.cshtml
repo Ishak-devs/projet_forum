@@ -43,7 +43,7 @@
 
 
         <label asp-for="type_etablissement">Type d'établissement</label>
-        <select asp-for="type_etablissement" , id="type_etablissement" class="form-control" required>
+        <select asp-for="type_etablissement" id="type_etablissement" class="form-control" required>
             <option value="">-- Choisir un type --</option>
             <option value="lycée">Lycée</option>
             <option value="collège">Collège</option>
@@ -72,6 +72,10 @@
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+         $(document).ready(function() {
+            $('#Region, #type_etablissement').change(function() {
+                const region = $('#Region').val();
+                const typeEtablissement = $('#type_etablissement').val();
 
 
             $.ajax({
