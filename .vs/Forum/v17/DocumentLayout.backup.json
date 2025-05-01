@@ -38,11 +38,11 @@
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
@@ -63,9 +63,9 @@
               "Title": "Etablissement.cshtml",
               "DocumentMoniker": "D:\\Projet\\projet_forum\\Views\\Signup\\Etablissement.cshtml",
               "RelativeDocumentMoniker": "Views\\Signup\\Etablissement.cshtml",
-              "ToolTip": "D:\\Projet\\projet_forum\\Views\\Signup\\Etablissement.cshtml",
-              "RelativeToolTip": "Views\\Signup\\Etablissement.cshtml",
-              "ViewState": "AgIAAEUAAAAAAAAAAADwv1kAAAAJAAAAAAAAAA==",
+              "ToolTip": "D:\\Projet\\projet_forum\\Views\\Signup\\Etablissement.cshtml*",
+              "RelativeToolTip": "Views\\Signup\\Etablissement.cshtml*",
+              "ViewState": "AgIAAB8AAAAAAAAAAADwvzIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-01T09:13:56.428Z",
               "EditorCaption": ""
