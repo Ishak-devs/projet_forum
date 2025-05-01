@@ -41,6 +41,16 @@
         </select>
         <span asp-validation-for="Region" class="text-danger"></span>
 
+
+        <label asp-for="type_etablissement">Type d'établissement</label>
+        <select asp-for="type_etablissement" , id="type_etablissement" class="form-control" required>
+            <option value="">-- Choisir un type --</option>
+            <option value="lycée">Lycée</option>
+            <option value="collège">Collège</option>
+            <option value="école privée">École privée</option>
+        </select>
+
+
         <label for="etablissements">Établissements disponibles</label>
         <select id="etablissements" class="form-control">
             <option value="">-- Choisir un établissement --</option>
