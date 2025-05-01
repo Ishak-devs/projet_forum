@@ -78,11 +78,24 @@
               "Title": "EtablissementService.cs",
               "DocumentMoniker": "D:\\Projet\\projet_forum\\EtablissementService.cs",
               "RelativeDocumentMoniker": "EtablissementService.cs",
-              "ToolTip": "D:\\Projet\\projet_forum\\EtablissementService.cs",
-              "RelativeToolTip": "EtablissementService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABRAAAAAAAAAA==",
+              "ToolTip": "D:\\Projet\\projet_forum\\EtablissementService.cs*",
+              "RelativeToolTip": "EtablissementService.cs*",
+              "ViewState": "AgIAAA0AAAAAAAAAAADgvysAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-28T16:55:32.57Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Etablissements.cs",
+              "DocumentMoniker": "D:\\Projet\\projet_forum\\Models\\Etablissements.cs",
+              "RelativeDocumentMoniker": "Models\\Etablissements.cs",
+              "ToolTip": "D:\\Projet\\projet_forum\\Models\\Etablissements.cs",
+              "RelativeToolTip": "Models\\Etablissements.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T15:50:30.194Z",
               "EditorCaption": ""
             },
             {
@@ -95,19 +108,8 @@
               "RelativeToolTip": "Controllers\\EtablissementsApiController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T16:13:04.786Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Etablissements.cs",
-              "DocumentMoniker": "D:\\Projet\\projet_forum\\Models\\Etablissements.cs",
-              "RelativeDocumentMoniker": "Models\\Etablissements.cs",
-              "ToolTip": "D:\\Projet\\projet_forum\\Models\\Etablissements.cs",
-              "RelativeToolTip": "Models\\Etablissements.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T15:50:30.194Z"
+              "WhenOpened": "2025-04-28T16:13:04.786Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
