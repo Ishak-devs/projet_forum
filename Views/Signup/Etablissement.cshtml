@@ -22,7 +22,7 @@
         <span asp-validation-for="Region" class="text-danger"></span>
 
         <label for="etablissements">Établissements disponibles</label>
-        <select id="etablissements" class="form-control">
+        <select id="etablissements_select" class="form-control">
             <option value="">-- Choisir un établissement --</option>
         </select>
     </div>
@@ -37,8 +37,35 @@
 
     <button type="submit" class="btn btn-primary">Soumettre</button>
 </form>
-@section Scripts {
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $('#Region').on('change', function () {
+            const region = $(this).val();
+            if (!region) return;
+
+            $('#loader').show();
+
+            $.ajax({
+                url: `/api/etablissements?region=${encodeURIComponent(region)}`,
+                method: 'GET',
+                success: function (data) {
+                    data.forEach(function (etablissement_trouve) {
+                         $('#etablissements_select').hide;
+                         $('#loader').hide();
+                         $('#etablissements').append(`<option value="${etablissement_trouve.id}">${etablissement_trouve.nom}</option>`);
+                    });
+                },
+                error: function () {
+                    $('#etablissements').empty().append('<option>Erreur de chargement</option>');
+                },
+                complete: function () {
+                    $('#loader').hide();
+                }
+            });
+        });
+    </script>
 }
 
