@@ -64,8 +64,8 @@
     </div>
 
     <div>
-        <label asp-for="adresse">Nom rue</label>
-        <input type="text" id="nom_rue" class="form-control" readonly>
+        <label asp-for="adresse">Adresse</label>
+        <input type="text" id="adresse" class="form-control" readonly>
     </div>
 
     <div>
@@ -74,18 +74,18 @@
     </div>
 
     <div>
-        <label asp-for="commune">Ville</label>
-        <input type="text" id="ville" class="form-control" readonly>
+        <label asp-for="commune">commune</label>
+        <input type="text" id="commune" class="form-control" readonly>
     </div>
 
 
-    <input type="submit" class="btn btn-primary" value="Valider" readonly>
+    <input type="submit" class="btn btn-primary" value="Valider">
 </form>
 
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <script>
+        let etablissementsData = {};
 
         $(document).ready(function () {
             $('#Region, #type_etablissement').change(function () {
@@ -99,27 +99,32 @@
 
                 $('#loader').show();
                 $('#etablissements').html('<option value="">Chargement...</option>');
+                etablissementsData = {};
 
                 $.ajax({
                     url: `https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-annuaire-education&rows=50&refine.nom_academie=${encodeURIComponent(region)}&refine.type_etablissement=${encodeURIComponent(typeEtablissement)}`,
                     method: 'GET',
                     success: function (data) {
-                        console.log("Réponse API:", data);
                         $('#etablissements').empty();
-
                         if (data.nhits === 0) {
                             $('#etablissements').append('<option value="">Aucun établissement trouvé</option>');
                         } else {
                             $('#etablissements').append('<option value="">-- Sélectionnez --</option>');
                             data.records.forEach(function (record) {
+                                const id = record.recordid;
                                 const nom = record.fields.nom_etablissement || 'Établissement sans nom';
-                                const commune = record.fields.commune ? ` (${record.fields.commune})` : '';
-                                const adresse = record.fields.adresse ? ` (${record.fields.adresse})` : '';
-                                const code_postal = record.fields.code_postal ? ` (${record.fields.code_postal})` : '';
-                                const adresse = record.fields.commune ? ` (${record.fields.adresse})` : '';
+                                const commune = record.fields.commune || '';
+                                const adresse = record.fields.adresse || '';
+                                const code_postal = record.fields.code_postal || '';
+
+                                etablissementsData[id] = {
+                                    adresse,
+                                    commune,
+                                    codePostal: code_postal
+                                };
 
                                 $('#etablissements').append(
-                                    `<option value="${record.recordid}">${nom}${commune}</option>`
+                                    `<option value="${id}">${nom} (${commune})</option>`
                                 );
                             });
                         }
@@ -132,6 +137,19 @@
                         $('#loader').hide();
                     }
                 });
+            });
+
+            $('#etablissements').change(function () {
+                const selectedId = $(this).val();
+                const data = etablissementsData[selectedId];
+
+                if (data) {
+                    $('#nom_rue').val(data.adresse);
+                    $('#code_postal').val(data.codePostal);
+                    $('#ville').val(data.commune);
+                } else {
+                    $('#nom_rue, #code_postal, #ville').val('');
+                }
             });
         });
     </script>

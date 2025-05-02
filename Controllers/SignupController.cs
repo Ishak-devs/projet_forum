@@ -29,12 +29,12 @@ namespace Forum.Controllers
             //return View();
             return RedirectToAction("Etablissement", "Signup");
         }
-        [HttpPost] 
+        [HttpPost]
         public ActionResult Index(Utilisateurs modele)
         {
             if (ModelState.IsValid)
             {
-               
+
                 if (contextget.Utilisateurs.Any(u => u.Email == modele.Email))
                 {
                     ModelState.AddModelError("Email", "Cet email est déjà utilisé");
@@ -149,11 +149,11 @@ namespace Forum.Controllers
 
             var newEtablissement = new Etablissements
             {
-                numero_rue = modele.numero_rue,
-                nom_rue = modele.nom_rue,
+                adresse = modele.adresse,
                 code_postal = modele.code_postal,
-                ville = modele.ville,
+                commune = modele.commune,
                 nom_etablissement = modele.nom_etablissement,
+                type_etablissement = modele.type_etablissement
             };
 
             contextget.Add(newEtablissement);

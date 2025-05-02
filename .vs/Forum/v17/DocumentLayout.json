@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\ishak\\Forum\\Forum\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\ishak\\Forum\\Forum\\Controllers\\SignupController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\SignupController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\ishak\\Forum\\Forum\\Views\\Signup\\Etablissement.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Views\\Signup\\Etablissement.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\ishak\\Forum\\Forum\\Models\\Etablissements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Models\\Etablissements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\ishak\\Forum\\Forum\\Controllers\\SignupController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\SignupController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,17 +22,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "SignupController.cs",
               "DocumentMoniker": "C:\\ishak\\Forum\\Forum\\Controllers\\SignupController.cs",
               "RelativeDocumentMoniker": "Controllers\\SignupController.cs",
               "ToolTip": "C:\\ishak\\Forum\\Forum\\Controllers\\SignupController.cs",
               "RelativeToolTip": "Controllers\\SignupController.cs",
-              "ViewState": "AgIAAIQAAAAAAAAAAAAAAJwAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAIoAAAAAAAAAAAAYwJ0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-30T13:07:58.715Z",
               "IsPinned": true,
@@ -40,13 +40,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Etablissement.cshtml",
               "DocumentMoniker": "C:\\ishak\\Forum\\Forum\\Views\\Signup\\Etablissement.cshtml",
               "RelativeDocumentMoniker": "Views\\Signup\\Etablissement.cshtml",
               "ToolTip": "C:\\ishak\\Forum\\Forum\\Views\\Signup\\Etablissement.cshtml",
               "RelativeToolTip": "Views\\Signup\\Etablissement.cshtml",
-              "ViewState": "AgIAAFcAAAAAAAAAAAAuwHYAAABrAAAAAAAAAA==",
+              "ViewState": "AgIAACUAAAAAAAAAAAAuwEUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-02T07:45:23.79Z",
               "IsPinned": true,
@@ -54,13 +54,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Etablissements.cs",
               "DocumentMoniker": "C:\\ishak\\Forum\\Forum\\Models\\Etablissements.cs",
               "RelativeDocumentMoniker": "Models\\Etablissements.cs",
               "ToolTip": "C:\\ishak\\Forum\\Forum\\Models\\Etablissements.cs",
               "RelativeToolTip": "Models\\Etablissements.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-02T07:51:46.994Z",
               "IsPinned": true,
