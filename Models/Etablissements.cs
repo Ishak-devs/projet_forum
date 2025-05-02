@@ -8,10 +8,9 @@ namespace Forum.Models
         [Key]
         public int Id_etablissement { get; set; }
         public string type_etablissement { get; set; }
-        public string adresse { get; set; }
         public int code_postal { get; set; }
         public string Region { get; set; }
-        public string commune { get; set; }
+        public string academie { get; set; }
         public string nom_etablissement { get; set; }
 
     }

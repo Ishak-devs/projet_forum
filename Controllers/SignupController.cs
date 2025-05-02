@@ -149,9 +149,8 @@ namespace Forum.Controllers
 
             var newEtablissement = new Etablissements
             {
-                adresse = modele.adresse,
                 code_postal = modele.code_postal,
-                commune = modele.commune,
+                academie = modele.academie,
                 nom_etablissement = modele.nom_etablissement,
                 type_etablissement = modele.type_etablissement
             };
