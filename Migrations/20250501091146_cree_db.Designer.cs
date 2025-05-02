@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250430131945_creation_db")]
-    partial class creation_db
+    [Migration("20250501091146_cree_db")]
+    partial class cree_db
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,6 +50,10 @@ namespace Forum.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_etablissement"));
 
+                    b.Property<string>("Region")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<int>("code_postal")
                         .HasColumnType("int");
 
@@ -63,6 +67,10 @@ namespace Forum.Migrations
 
                     b.Property<int>("numero_rue")
                         .HasColumnType("int");
+
+                    b.Property<string>("type_etablissement")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ville")
                         .IsRequired()

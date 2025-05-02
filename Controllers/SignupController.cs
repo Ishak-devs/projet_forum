@@ -26,14 +26,15 @@ namespace Forum.Controllers
         public IActionResult Index()
         {
 
-            return View();
+            //return View();
+            return RedirectToAction("Etablissement", "Signup");
         }
         [HttpPost] 
         public ActionResult Index(Utilisateurs modele)
         {
             if (ModelState.IsValid)
             {
-                // Vérifie si l'email existe déjà
+               
                 if (contextget.Utilisateurs.Any(u => u.Email == modele.Email))
                 {
                     ModelState.AddModelError("Email", "Cet email est déjà utilisé");
@@ -69,6 +70,7 @@ namespace Forum.Controllers
                 }
             }
             return View(modele);
+            return RedirectToAction("Etablissement", "Signup");
         }
 
         [HttpGet]

@@ -17,30 +17,45 @@
 
 
     <div class="form-group">
-        <label asp-for="nom_etablissement"></label>
-        <input asp-for="nom_etablissement" class="form-control" required />
-        <span asp-validation-for="nom_etablissement" class="text-danger"></span>
+        <label asp-for="Region"></label>
+        <select asp-for="Region" class="form-control" required>
+            <option value="">-- Choisir une région --</option>
+            <option value="Auvergne-Rhône-Alpes">Auvergne-Rhône-Alpes</option>
+            <option value="Bourgogne-Franche-Comté">Bourgogne-Franche-Comté</option>
+            <option value="Bretagne">Bretagne</option>
+            <option value="Centre-Val de Loire">Centre-Val de Loire</option>
+            <option value="Corse">Corse</option>
+            <option value="Grand Est">Grand Est</option>
+            <option value="Hauts-de-France">Hauts-de-France</option>
+            <option value="Île-de-France">Île-de-France</option>
+            <option value="Normandie">Normandie</option>
+            <option value="Nouvelle-Aquitaine">Nouvelle-Aquitaine</option>
+            <option value="Occitanie">Occitanie</option>
+            <option value="Pays de la Loire">Pays de la Loire</option>
+            <option value="Provence-Alpes-Côte d'Azur">Provence-Alpes-Côte d'Azur</option>
+            <option value="Guadeloupe">Guadeloupe</option>
+            <option value="Martinique">Martinique</option>
+            <option value="Guyane">Guyane</option>
+            <option value="La Réunion">La Réunion</option>
+            <option value="Mayotte">Mayotte</option>
+        </select>
+        <span asp-validation-for="Region" class="text-danger"></span>
+
+        <select asp-for="type_etablissement" id="type_etablissement" class="form-control" required>
+            <option value="">-- Choisir un type --</option>
+            <option value="Ecole">Ecole</option>
+            <option value="Collège">Collège</option>
+            <option value="Lycée">Lycée</option>
+            <option value="EREA">EREA</option>
+        </select>
+
+
+        <label for="etablissements">Établissements disponibles</label>
+        <select id="etablissements" class="form-control">
+            <option value="">-- Choisir un établissement --</option>
+        </select>
     </div>
-    <div class="form-group">
-        <label asp-for="numero_rue"></label>
-        <input asp-for="numero_rue" class="form-control" required />
-        <span asp-validation-for="numero_rue" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="nom_rue"></label>
-        <input asp-for="nom_rue" class="form-control" required />
-        <span asp-validation-for="nom_rue" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="code_postal"></label>
-        <input asp-for="code_postal" class="form-control" required />
-        <span asp-validation-for="code_postal" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="ville"></label>
-        <input asp-for="ville" class="form-control" required />
-        <span asp-validation-for="ville" class="text-danger"></span>
-    </div>
+
 
     <div id="loader" class="text-center" style="display:none;">
         <div class="spinner-border text-primary" role="status">
@@ -52,3 +67,50 @@
     <button type="submit" class="btn btn-primary">Soumettre</button>
 </form>
 
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('#Region, #type_etablissement').change(function() {
+                const region = $('#Region').val();
+                const typeEtablissement = $('#type_etablissement').val();
+
+                if (!region || !typeEtablissement) {
+                    $('#etablissements').html('<option value="">-- Sélectionnez région et type --</option>');
+                    return;
+                }
+
+                $('#loader').show();
+                $('#etablissements').html('<option value="">Chargement...</option>');
+
+                $.ajax({
+                    url: `https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-annuaire-education&rows=50&refine.nom_academie=${encodeURIComponent(region)}&refine.type_etablissement=${encodeURIComponent(typeEtablissement)}`,
+                    method: 'GET',
+                    success: function(data) {
+                        console.log("Réponse API:", data); 
+                        $('#etablissements').empty();
+
+                        if (data.nhits === 0) {
+                            $('#etablissements').append('<option value="">Aucun établissement trouvé</option>');
+                        } else {
+                            $('#etablissements').append('<option value="">-- Sélectionnez --</option>');
+                            data.records.forEach(function(record) {
+                                const nom = record.fields.nom_etablissement || 'Établissement sans nom';
+                                const commune = record.fields.commune ? ` (${record.fields.commune})` : '';
+                                $('#etablissements').append(
+                                    `<option value="${record.recordid}">${nom}${commune}</option>`
+                                );
+                            });
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Erreur AJAX:", status, error);
+                        $('#etablissements').html('<option value="">Erreur de connexion</option>');
+                    },
+                    complete: function() {
+                        $('#loader').hide();
+                    }
+                });
+            });
+        });
+    </script>
+}
