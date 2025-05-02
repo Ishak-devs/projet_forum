@@ -18,8 +18,12 @@
 <div class="d-flex justify-content-between mt-2">
     <button id="sendMessageBtn" class="btn btn-primary">Envoyer</button>
 </div>
-
-<script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.9/signalr.min.js"></script>
 
-</script>
+<script>
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/chatHub")  // URL de notre Hub SignalR 
+        .configureLogging(signalR.LogLevel.Information)  // Pour afficher les logs de la connexion dans la console
+        .build();
+
+    </script>
