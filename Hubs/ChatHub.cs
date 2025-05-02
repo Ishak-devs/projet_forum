@@ -46,6 +46,18 @@ namespace Forum.Hubs
                 .SendAsync("ReceiveMessage", user.Prenom, message, chatMessage.Date_message);
         }
 
+
+        public async Task LoadMessages(int classId)
+        {
+            var messages = _context.Messages
+                .Where(m => m.Id_classe == classId)
+                .OrderBy(m => m.Date_message)
+                .ToList();
+
+            await Clients.Caller.SendAsync("MessagesLoaded", messages);
+        }
+
+
         public Task Message_send_and_echo_to_client(int Classid)
         {
             try
