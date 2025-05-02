@@ -34,5 +34,28 @@
             return console.error("Erreur de connexion SignalR: ", err.toString());
         });
 
+    connection.on("ReceiveMessage", function (senderName, message, dateMessage) {
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("message");
+        messageElement.innerHTML = `<strong>${senderName}</strong>: ${message} <em>${dateMessage}</em>`;
+
+        document.getElementById("messagesContainer").appendChild(messageElement);
+    });
+
+    document.getElementById("sendMessageBtn").addEventListener("click", function () {
+        const message = document.getElementById("messageInput").value;
+        const classId = 1; 
+
+        if (message.trim() !== "") {
+            connection.invoke("SendMessage", message, classId)
+                .then(() => {
+                    document.getElementById("messageInput").value = ""; 
+                })
+                .catch(function (err) {
+                    console.error("Erreur lors de l'envoi du message :", err.toString());
+                });
+        }
+    });
+
 
     </script>
