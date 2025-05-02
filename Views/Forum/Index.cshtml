@@ -71,19 +71,6 @@
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
-
-    // Charger les anciens messages lors de la connexion
-    connection.start()
-        .then(function () {
-            console.log("Connexion réussie au ChatHub!");
-
-            const classId = 1; 
-            return connection.invoke("LoadMessages", classId);
-        })
-        .catch(function (err) {
-            console.error("Erreur de connexion SignalR: ", err.toString());
-        });
-
     connection.on("MessagesLoaded", function (messages) {
         console.log("Messages chargés:", messages);
         const container = document.getElementById("messagesContainer");
