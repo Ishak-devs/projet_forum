@@ -124,7 +124,7 @@
                                 };
 
                                 $('#etablissements').append(
-                                    `<option value="${id}">${nom} (${commune})</option>`
+                                    `<option value="${id}">${nom}</option>`
                                 );
                             });
                         }
@@ -144,9 +144,9 @@
                 const data = etablissementsData[selectedId];
 
                 if (data) {
-                    $('#nom_rue').val(data.adresse);
+                    $('#adresse').val(data.adresse);
                     $('#code_postal').val(data.codePostal);
-                    $('#ville').val(data.commune);
+                    $('#commune').val(data.commune);
                 } else {
                     $('#nom_rue, #code_postal, #ville').val('');
                 }
