@@ -63,24 +63,18 @@
         <p>Chargement en cours...</p>
     </div>
 
-
     <div>
-        <label for="numero_rue">Numéro rue</label>
-        <input type="number" id="numero_rue" class="form-control" readonly>
-    </div>
-
-    <div>
-        <label for="nom_rue">Nom rue</label>
+        <label asp-for="adresse">Nom rue</label>
         <input type="text" id="nom_rue" class="form-control" readonly>
     </div>
 
     <div>
-        <label for="code_postal">Code postal</label>
+        <label asp-for="code_postal">Code postal</label>
         <input type="number" id="code_postal" class="form-control" readonly>
     </div>
 
     <div>
-        <label for="ville">Ville</label>
+        <label asp-for="commune">Ville</label>
         <input type="text" id="ville" class="form-control" readonly>
     </div>
 
@@ -120,6 +114,10 @@
                             data.records.forEach(function (record) {
                                 const nom = record.fields.nom_etablissement || 'Établissement sans nom';
                                 const commune = record.fields.commune ? ` (${record.fields.commune})` : '';
+                                const adresse = record.fields.adresse ? ` (${record.fields.adresse})` : '';
+                                const code_postal = record.fields.code_postal ? ` (${record.fields.code_postal})` : '';
+                                const adresse = record.fields.commune ? ` (${record.fields.adresse})` : '';
+
                                 $('#etablissements').append(
                                     `<option value="${record.recordid}">${nom}${commune}</option>`
                                 );
