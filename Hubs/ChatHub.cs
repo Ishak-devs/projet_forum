@@ -75,7 +75,31 @@ namespace Forum.Hubs
                 throw;
             }
         }
+        //public override async Task OnConnectedAsync()
+        //{
+        //    var userId = _httpContextAccessor.HttpContext?.Session.GetInt32("UserId");
+        //    var user = await _context.Utilisateurs.FindAsync(userId);
+        //    if (user == null) return;
 
+        //    var classId = user.Id_classe;
+        //    await Groups.AddToGroupAsync(Context.ConnectionId, classId.ToString());
+
+        //    await base.OnConnectedAsync();
+        //}
+
+        public override async Task OnConnectedAsync()
+        {
+            var userId = _httpContextAccessor.HttpContext?.Session.GetInt32("UserId");
+            if (userId.HasValue)
+            {
+                var user = await _context.Utilisateurs.FindAsync(userId.Value);
+                if (user != null && user.Id_classe.HasValue)
+                {
+                    await Groups.AddToGroupAsync(Context.ConnectionId, user.Id_classe.Value.ToString());
+                }
+            }
+            await base.OnConnectedAsync();
+        }
 
     }
 }

@@ -21,41 +21,109 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.9/signalr.min.js"></script>
 
 <script>
+    //const connection = new signalR.HubConnectionBuilder()
+    //    .withUrl("/chatHub")  // URL de notre Hub SignalR 
+    //    .configureLogging(signalR.LogLevel.Information)  // Pour afficher les logs de la connexion dans la console
+    //    .build();
+
+    //connection.start()
+    //    .then(function () {
+    //        console.log("Connexion réussie au ChatHub!");
+    //    })
+    //    .catch(function (err) {
+    //        return console.error("Erreur de connexion SignalR: ", err.toString());
+    //    });
+
+    //connection.on("ReceiveMessage", function (senderName, message, dateMessage) {
+    //    console.log("Message reçu :", senderName, message, dateMessage);
+    //    const messageElement = document.createElement("div");
+    //    messageElement.classList.add("message");
+    //    messageElement.innerHTML = `<strong>${senderName}</strong>: ${message} <em>${dateMessage}</em>`;
+
+    //    document.getElementById("messagesContainer").appendChild(messageElement);
+    //});
+
+    //document.getElementById("sendMessageBtn").addEventListener("click", function () {
+    //    const message = document.getElementById("messageInput").value;
+    //    const classId = 1; 
+
+    //    if (message.trim() !== "") {
+    //        connection.invoke("SendMessage", message, classId)
+    //            .then(() => {
+    //                document.getElementById("messageInput").value = ""; 
+    //            })
+    //            .catch(function (err) {
+    //                console.error("Erreur lors de l'envoi du message :", err.toString());
+    //            });
+    //    }
+
+    //});
     const connection = new signalR.HubConnectionBuilder()
-        .withUrl("/chatHub")  // URL de notre Hub SignalR 
-        .configureLogging(signalR.LogLevel.Information)  // Pour afficher les logs de la connexion dans la console
+        .withUrl("/chatHub")
+        .configureLogging(signalR.LogLevel.Information)
         .build();
 
+    // Gestion de la connexion
     connection.start()
         .then(function () {
             console.log("Connexion réussie au ChatHub!");
+
+            const classId = 1; 
+            return connection.invoke("Message_send_and_echo_to_client", classId);
         })
         .catch(function (err) {
-            return console.error("Erreur de connexion SignalR: ", err.toString());
+            console.error("Erreur de connexion SignalR: ", err.toString());
         });
 
+    // Réception des nouveaux messages
     connection.on("ReceiveMessage", function (senderName, message, dateMessage) {
-        const messageElement = document.createElement("div");
-        messageElement.classList.add("message");
-        messageElement.innerHTML = `<strong>${senderName}</strong>: ${message} <em>${dateMessage}</em>`;
-
-        document.getElementById("messagesContainer").appendChild(messageElement);
+        addMessageToUI(senderName, message, dateMessage);
     });
 
+    // Réception des messages historiques
+    connection.on("MessagesLoaded", function (messages) {
+        console.log("Messages chargés:", messages);
+        const container = document.getElementById("messagesContainer");
+        container.innerHTML = ""; 
+
+        messages.forEach(msg => {
+            addMessageToUI(msg.SenderName, msg.Message, msg.Date_message);
+        });
+    });
+
+    function addMessageToUI(senderName, message, dateMessage) {
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("message");
+
+        // Formatage de la date
+        const date = new Date(dateMessage);
+        const formattedDate = date.toLocaleString();
+
+        messageElement.innerHTML = `<strong>${senderName}</strong>: ${message} <em>${formattedDate}</em>`;
+
+        // Récupérer le conteneur des messages
+        const messagesContainer = document.getElementById("messagesContainer");
+        messagesContainer.appendChild(messageElement);
+
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    // Envoi de message
     document.getElementById("sendMessageBtn").addEventListener("click", function () {
         const message = document.getElementById("messageInput").value;
         const classId = 1; 
 
         if (message.trim() !== "") {
+            addMessageToUI("Vous", message, new Date());
+
             connection.invoke("SendMessage", message, classId)
                 .then(() => {
-                    document.getElementById("messageInput").value = ""; 
+                    document.getElementById("messageInput").value = "";
                 })
-                .catch(function (err) {
-                    console.error("Erreur lors de l'envoi du message :", err.toString());
+                .catch(err => {
+                    console.error("Erreur lors de l'envoi:", err.toString());
                 });
         }
     });
-
 
     </script>
