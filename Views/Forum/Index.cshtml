@@ -20,44 +20,7 @@
 </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.9/signalr.min.js"></script>
 
-<script>
-    //const connection = new signalR.HubConnectionBuilder()
-    //    .withUrl("/chatHub")  // URL de notre Hub SignalR 
-    //    .configureLogging(signalR.LogLevel.Information)  // Pour afficher les logs de la connexion dans la console
-    //    .build();
-
-    //connection.start()
-    //    .then(function () {
-    //        console.log("Connexion réussie au ChatHub!");
-    //    })
-    //    .catch(function (err) {
-    //        return console.error("Erreur de connexion SignalR: ", err.toString());
-    //    });
-
-    //connection.on("ReceiveMessage", function (senderName, message, dateMessage) {
-    //    console.log("Message reçu :", senderName, message, dateMessage);
-    //    const messageElement = document.createElement("div");
-    //    messageElement.classList.add("message");
-    //    messageElement.innerHTML = `<strong>${senderName}</strong>: ${message} <em>${dateMessage}</em>`;
-
-    //    document.getElementById("messagesContainer").appendChild(messageElement);
-    //});
-
-    //document.getElementById("sendMessageBtn").addEventListener("click", function () {
-    //    const message = document.getElementById("messageInput").value;
-    //    const classId = 1; 
-
-    //    if (message.trim() !== "") {
-    //        connection.invoke("SendMessage", message, classId)
-    //            .then(() => {
-    //                document.getElementById("messageInput").value = ""; 
-    //            })
-    //            .catch(function (err) {
-    //                console.error("Erreur lors de l'envoi du message :", err.toString());
-    //            });
-    //    }
-
-    //});
+<script>;
     const connection = new signalR.HubConnectionBuilder()
         .withUrl("/chatHub")
         .configureLogging(signalR.LogLevel.Information)
@@ -108,6 +71,30 @@
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
+
+    // Charger les anciens messages lors de la connexion
+    connection.start()
+        .then(function () {
+            console.log("Connexion réussie au ChatHub!");
+
+            const classId = 1; 
+            return connection.invoke("LoadMessages", classId);
+        })
+        .catch(function (err) {
+            console.error("Erreur de connexion SignalR: ", err.toString());
+        });
+
+    connection.on("MessagesLoaded", function (messages) {
+        console.log("Messages chargés:", messages);
+        const container = document.getElementById("messagesContainer");
+        container.innerHTML = "";  
+
+        messages.forEach(msg => {
+            addMessageToUI(msg.SenderName, msg.Message, msg.Date_message);
+        });
+    });
+
+
     // Envoi de message
     document.getElementById("sendMessageBtn").addEventListener("click", function () {
         const message = document.getElementById("messageInput").value;
@@ -125,5 +112,6 @@
                 });
         }
     });
+
 
     </script>
