@@ -156,8 +156,9 @@ namespace Forum.Controllers
             };
 
             contextget.Add(newEtablissement);
-
             contextget.SaveChanges();
+
+
             try
             {
                 contextget.SaveChanges();
