@@ -26,8 +26,7 @@ namespace Forum.Controllers
         public IActionResult Index()
         {
 
-            //return View();
-            return RedirectToAction("Etablissement", "Signup");
+            return View();
         }
         [HttpPost]
         public ActionResult Index(Utilisateurs modele)
@@ -152,7 +151,8 @@ namespace Forum.Controllers
                 code_postal = modele.code_postal,
                 academie = modele.academie,
                 nom_etablissement = modele.nom_etablissement,
-                type_etablissement = modele.type_etablissement
+                type_etablissement = modele.type_etablissement,
+                Region = modele.Region,
             };
 
             contextget.Add(newEtablissement);

@@ -11,10 +11,6 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Models\\Etablissements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\ishak\\Forum\\Forum\\Views\\Dashboard\\Eleve.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Views\\Dashboard\\Eleve.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\ishak\\Forum\\Forum\\Views\\Signup\\Etablissement.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Views\\Signup\\Etablissement.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
@@ -36,9 +32,23 @@
               "RelativeDocumentMoniker": "Controllers\\SignupController.cs",
               "ToolTip": "C:\\ishak\\Forum\\Forum\\Controllers\\SignupController.cs",
               "RelativeToolTip": "Controllers\\SignupController.cs",
-              "ViewState": "AgIAAHgAAAAAAAAAAAAYwJYAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAAAIkAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-30T13:07:58.715Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Etablissement.cshtml",
+              "DocumentMoniker": "C:\\ishak\\Forum\\Forum\\Views\\Signup\\Etablissement.cshtml",
+              "RelativeDocumentMoniker": "Views\\Signup\\Etablissement.cshtml",
+              "ToolTip": "C:\\ishak\\Forum\\Forum\\Views\\Signup\\Etablissement.cshtml",
+              "RelativeToolTip": "Views\\Signup\\Etablissement.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAADQAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-02T09:34:52.523Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -50,23 +60,9 @@
               "RelativeDocumentMoniker": "Models\\Etablissements.cs",
               "ToolTip": "C:\\ishak\\Forum\\Forum\\Models\\Etablissements.cs",
               "RelativeToolTip": "Models\\Etablissements.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-02T07:51:46.994Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Etablissement.cshtml",
-              "DocumentMoniker": "C:\\ishak\\Forum\\Forum\\Views\\Signup\\Etablissement.cshtml",
-              "RelativeDocumentMoniker": "Views\\Signup\\Etablissement.cshtml",
-              "ToolTip": "C:\\ishak\\Forum\\Forum\\Views\\Signup\\Etablissement.cshtml",
-              "RelativeToolTip": "Views\\Signup\\Etablissement.cshtml",
-              "ViewState": "AgIAACMAAAAAAAAAAAAuwIYAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-02T07:45:23.79Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -81,19 +77,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Eleve.cshtml",
-              "DocumentMoniker": "C:\\ishak\\Forum\\Forum\\Views\\Dashboard\\Eleve.cshtml",
-              "RelativeDocumentMoniker": "Views\\Dashboard\\Eleve.cshtml",
-              "ToolTip": "C:\\ishak\\Forum\\Forum\\Views\\Dashboard\\Eleve.cshtml",
-              "RelativeToolTip": "Views\\Dashboard\\Eleve.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-02T08:35:05.239Z",
-              "EditorCaption": ""
             }
           ]
         }
