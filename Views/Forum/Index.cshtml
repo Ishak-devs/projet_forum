@@ -26,4 +26,13 @@
         .configureLogging(signalR.LogLevel.Information)  // Pour afficher les logs de la connexion dans la console
         .build();
 
+    connection.start()
+        .then(function () {
+            console.log("Connexion réussie au ChatHub!");
+        })
+        .catch(function (err) {
+            return console.error("Erreur de connexion SignalR: ", err.toString());
+        });
+
+
     </script>
