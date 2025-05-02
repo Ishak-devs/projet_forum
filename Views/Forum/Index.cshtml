@@ -71,16 +71,6 @@
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
-    connection.on("MessagesLoaded", function (messages) {
-        console.log("Messages chargés:", messages);
-        const container = document.getElementById("messagesContainer");
-        container.innerHTML = "";  
-
-        messages.forEach(msg => {
-            addMessageToUI(msg.SenderName, msg.Message, msg.Date_message);
-        });
-    });
-
 
     // Envoi de message
     document.getElementById("sendMessageBtn").addEventListener("click", function () {
