@@ -9,9 +9,9 @@
 
 @if (TempData["Message"] != null)
 {
-    <div class="alert alert-@(TempData["MessageType"] ?? "success")">
-        @TempData["Message"]
-    </div>
+<div class="alert alert-@(TempData["MessageType"] ?? "success")">
+    @TempData["Message"]
+</div>
 }
 <form id="etablissementForm" method="post">
 
@@ -56,7 +56,6 @@
         </select>
     </div>
 
-
     <div id="loader" class="text-center" style="display:none;">
         <div class="spinner-border text-primary" role="status">
             <span class="sr-only">Loading...</span>
@@ -64,13 +63,38 @@
         <p>Chargement en cours...</p>
     </div>
 
-    <button type="submit" class="btn btn-primary">Soumettre</button>
+
+    <div>
+        <label for="numero_rue">Numéro rue</label>
+        <input type="number" id="numero_rue" class="form-control">
+    </div>
+
+    <div>
+        <label for="nom_rue">Nom rue</label>
+        <input type="text" id="nom_rue" class="form-control">
+    </div>
+
+    <div>
+        <label for="code_postal">Code postal</label>
+        <input type="number" id="code_postal" class="form-control">
+    </div>
+
+    <div>
+        <label for="ville">Ville</label>
+        <input type="text" id="ville" class="form-control">
+    </div>
+
+
+    <input type="submit" class="btn btn-primary" value="Valider">
 </form>
 
 @section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
-        $(document).ready(function() {
-            $('#Region, #type_etablissement').change(function() {
+
+        $(document).ready(function () {
+            $('#Region, #type_etablissement').change(function () {
                 const region = $('#Region').val();
                 const typeEtablissement = $('#type_etablissement').val();
 
@@ -85,15 +109,15 @@
                 $.ajax({
                     url: `https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-annuaire-education&rows=50&refine.nom_academie=${encodeURIComponent(region)}&refine.type_etablissement=${encodeURIComponent(typeEtablissement)}`,
                     method: 'GET',
-                    success: function(data) {
-                        console.log("Réponse API:", data); 
+                    success: function (data) {
+                        console.log("Réponse API:", data);
                         $('#etablissements').empty();
 
                         if (data.nhits === 0) {
                             $('#etablissements').append('<option value="">Aucun établissement trouvé</option>');
                         } else {
                             $('#etablissements').append('<option value="">-- Sélectionnez --</option>');
-                            data.records.forEach(function(record) {
+                            data.records.forEach(function (record) {
                                 const nom = record.fields.nom_etablissement || 'Établissement sans nom';
                                 const commune = record.fields.commune ? ` (${record.fields.commune})` : '';
                                 $('#etablissements').append(
@@ -102,11 +126,11 @@
                             });
                         }
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.error("Erreur AJAX:", status, error);
                         $('#etablissements').html('<option value="">Erreur de connexion</option>');
                     },
-                    complete: function() {
+                    complete: function () {
                         $('#loader').hide();
                     }
                 });

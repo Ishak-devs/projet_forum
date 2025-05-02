@@ -1,34 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Projet\\projet_forum\\",
+  "WorkspaceRootPath": "C:\\ishak\\Forum\\Forum\\",
   "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\ishak\\Forum\\Forum\\Controllers\\ForumController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\ForumController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\ishak\\Forum\\Forum\\Controllers\\AuthentificationController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\AuthentificationController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\ishak\\Forum\\Forum\\Controllers\\SignupController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\SignupController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\ishak\\Forum\\Forum\\Views\\Signup\\Etablissement.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Views\\Signup\\Etablissement.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\ishak\\Forum\\Forum\\Views\\Forum\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Views\\Forum\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\ishak\\Forum\\Forum\\Models\\Etablissements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Models\\Etablissements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\ishak\\Forum\\Forum\\Views\\Classe\\Ajouterclasse.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Views\\Classe\\Ajouterclasse.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\ishak\\Forum\\Forum\\Views\\Classe\\Ajouter_emplois_du_temps.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Views\\Classe\\Ajouter_emplois_du_temps.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\ishak\\Forum\\Forum\\Controllers\\SignupController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\SignupController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,102 +22,61 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ForumController.cs",
-              "DocumentMoniker": "C:\\ishak\\Forum\\Forum\\Controllers\\ForumController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ForumController.cs",
-              "ToolTip": "C:\\ishak\\Forum\\Forum\\Controllers\\ForumController.cs",
-              "RelativeToolTip": "Controllers\\ForumController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAVAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "SignupController.cs",
+              "DocumentMoniker": "C:\\ishak\\Forum\\Forum\\Controllers\\SignupController.cs",
+              "RelativeDocumentMoniker": "Controllers\\SignupController.cs",
+              "ToolTip": "C:\\ishak\\Forum\\Forum\\Controllers\\SignupController.cs",
+              "RelativeToolTip": "Controllers\\SignupController.cs",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAAAJwAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T13:55:22.252Z",
+              "WhenOpened": "2025-04-30T13:07:58.715Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Etablissement.cshtml",
               "DocumentMoniker": "C:\\ishak\\Forum\\Forum\\Views\\Signup\\Etablissement.cshtml",
               "RelativeDocumentMoniker": "Views\\Signup\\Etablissement.cshtml",
               "ToolTip": "C:\\ishak\\Forum\\Forum\\Views\\Signup\\Etablissement.cshtml",
               "RelativeToolTip": "Views\\Signup\\Etablissement.cshtml",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADcAAAAAAAAAAAAuwE0AAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-30T13:26:30.948Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\ishak\\Forum\\Forum\\Views\\Forum\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Forum\\Index.cshtml",
-              "ToolTip": "C:\\ishak\\Forum\\Forum\\Views\\Forum\\Index.cshtml",
-              "RelativeToolTip": "Views\\Forum\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-30T13:21:48.117Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Ajouter_emplois_du_temps.cshtml",
-              "DocumentMoniker": "C:\\ishak\\Forum\\Forum\\Views\\Classe\\Ajouter_emplois_du_temps.cshtml",
-              "RelativeDocumentMoniker": "Views\\Classe\\Ajouter_emplois_du_temps.cshtml",
-              "ToolTip": "C:\\ishak\\Forum\\Forum\\Views\\Classe\\Ajouter_emplois_du_temps.cshtml",
-              "RelativeToolTip": "Views\\Classe\\Ajouter_emplois_du_temps.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-30T13:16:15.301Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Ajouterclasse.cshtml",
-              "DocumentMoniker": "C:\\ishak\\Forum\\Forum\\Views\\Classe\\Ajouterclasse.cshtml",
-              "RelativeDocumentMoniker": "Views\\Classe\\Ajouterclasse.cshtml",
-              "ToolTip": "C:\\ishak\\Forum\\Forum\\Views\\Classe\\Ajouterclasse.cshtml",
-              "RelativeToolTip": "Views\\Classe\\Ajouterclasse.cshtml",
-              "ViewState": "AgIAAFcAAAAAAAAAAAAAACYAAABcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-30T13:08:47.825Z"
+              "WhenOpened": "2025-05-02T07:45:23.79Z",
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AuthentificationController.cs",
-              "DocumentMoniker": "C:\\ishak\\Forum\\Forum\\Controllers\\AuthentificationController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AuthentificationController.cs",
-              "ToolTip": "C:\\ishak\\Forum\\Forum\\Controllers\\AuthentificationController.cs",
-              "RelativeToolTip": "Controllers\\AuthentificationController.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAAD4AAAARAAAAAAAAAA==",
+              "Title": "Etablissements.cs",
+              "DocumentMoniker": "C:\\ishak\\Forum\\Forum\\Models\\Etablissements.cs",
+              "RelativeDocumentMoniker": "Models\\Etablissements.cs",
+              "ToolTip": "C:\\ishak\\Forum\\Forum\\Models\\Etablissements.cs",
+              "RelativeToolTip": "Models\\Etablissements.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T13:08:06.982Z",
+              "WhenOpened": "2025-05-02T07:51:46.994Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SignupController.cs",
-              "DocumentMoniker": "D:\\Projet\\projet_forum\\Controllers\\SignupController.cs",
-              "RelativeDocumentMoniker": "Controllers\\SignupController.cs",
-              "ToolTip": "D:\\Projet\\projet_forum\\Controllers\\SignupController.cs",
-              "RelativeToolTip": "Controllers\\SignupController.cs",
-              "ViewState": "AgIAAIMAAAAAAAAAAAAYwKoAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T13:07:58.715Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             }
           ]
         }
