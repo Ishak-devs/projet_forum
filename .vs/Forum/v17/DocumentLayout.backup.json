@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\Projet\\projet_forum\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|d:\\projet\\projet_forum\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|solutionrelative:controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|d:\\projet\\projet_forum\\views\\signup\\etablissement.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|solutionrelative:views\\signup\\etablissement.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|d:\\projet\\projet_forum\\controllers\\authentificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|solutionrelative:controllers\\authentificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|d:\\projet\\projet_forum\\models\\etablissements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|solutionrelative:models\\etablissements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|d:\\projet\\projet_forum\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|d:\\projet\\projet_forum\\controllers\\etablissementscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|solutionrelative:controllers\\etablissementscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,47 +22,47 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "D:\\Projet\\projet_forum\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "D:\\Projet\\projet_forum\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAACcAAAAAAAAAAAAqwD0AAAB7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-03T12:32:55.275Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DashboardController.cs",
-              "DocumentMoniker": "D:\\Projet\\projet_forum\\Controllers\\DashboardController.cs",
-              "RelativeDocumentMoniker": "Controllers\\DashboardController.cs",
-              "ToolTip": "D:\\Projet\\projet_forum\\Controllers\\DashboardController.cs",
-              "RelativeToolTip": "Controllers\\DashboardController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAA8wA4AAAAAAAAAAAAAAA==",
+              "Title": "EtablissementsController.cs",
+              "DocumentMoniker": "D:\\Projet\\projet_forum\\Controllers\\EtablissementsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\EtablissementsController.cs",
+              "ToolTip": "D:\\Projet\\projet_forum\\Controllers\\EtablissementsController.cs",
+              "RelativeToolTip": "Controllers\\EtablissementsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T12:33:23.133Z",
+              "WhenOpened": "2025-05-03T12:46:03.028Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AuthentificationController.cs",
-              "DocumentMoniker": "D:\\Projet\\projet_forum\\Controllers\\AuthentificationController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AuthentificationController.cs",
-              "ToolTip": "D:\\Projet\\projet_forum\\Controllers\\AuthentificationController.cs",
-              "RelativeToolTip": "Controllers\\AuthentificationController.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAcwCkAAAAoAAAAAAAAAA==",
+              "Title": "Etablissements.cs",
+              "DocumentMoniker": "D:\\Projet\\projet_forum\\Models\\Etablissements.cs",
+              "RelativeDocumentMoniker": "Models\\Etablissements.cs",
+              "ToolTip": "D:\\Projet\\projet_forum\\Models\\Etablissements.cs",
+              "RelativeToolTip": "Models\\Etablissements.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T12:34:06.924Z",
+              "WhenOpened": "2025-05-03T12:46:16.291Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Etablissement.cshtml",
+              "DocumentMoniker": "D:\\Projet\\projet_forum\\Views\\Signup\\Etablissement.cshtml",
+              "RelativeDocumentMoniker": "Views\\Signup\\Etablissement.cshtml",
+              "ToolTip": "D:\\Projet\\projet_forum\\Views\\Signup\\Etablissement.cshtml",
+              "RelativeToolTip": "Views\\Signup\\Etablissement.cshtml",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAADgAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-03T12:46:27.592Z",
               "IsPinned": true,
               "EditorCaption": ""
             },

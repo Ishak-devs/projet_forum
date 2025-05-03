@@ -14,8 +14,8 @@ namespace Forum.Controllers
         private readonly ApplicationDbContext contextget;
 
         private readonly PasswordHasher<Utilisateurs> passwordHasher;
-
-        public SignupController(ApplicationDbContext context, PasswordHasher<Utilisateurs> passwordHasher)
+        private readonly ILogger<SignupController> _logger;
+        public SignupController(ApplicationDbContext context, ILogger<SignupController> _logger, PasswordHasher<Utilisateurs> passwordHasher)
         {
             contextget = context;
             this.passwordHasher = passwordHasher;
@@ -69,7 +69,7 @@ namespace Forum.Controllers
                 }
             }
             return View(modele);
-            return RedirectToAction("Etablissement", "Signup");
+            //return RedirectToAction("Etablissement", "Signup");
         }
 
         [HttpGet]
@@ -173,7 +173,7 @@ namespace Forum.Controllers
             }
             catch (DbUpdateException ex)
             {
-                Console.WriteLine("", "Erreur d'enregistrement : " + ex.Message);
+                _logger.LogError(ex, "Erreur d'enregistrement : ");
                 return View(modele);
             }
         }
