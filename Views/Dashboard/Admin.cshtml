@@ -9,12 +9,13 @@
                 <i class="fas fa-school me-2"></i>Gestion de l'Établissement
             </h1>
 
-            @if (ViewBag.NomEtablissementCree != null)
+            @if (TempData["NomEtablissementCree"] != null)
             {
                 <h2 class="display-4 fw-bold text-primary">
-                    <i class="fas fa-school me-2"></i>Ecole @ViewBag.NomEtablissementCree
+                    <i class="fas fa-school me-2"></i>Ecole @TempData["NomEtablissementCree"]
                 </h2>
             }
+           
            
             <p class="lead">Espace réservé à l'administration.</p>
 

@@ -163,7 +163,8 @@ namespace Forum.Controllers
 
             contextget.Add(newEtablissement);
 
-            ViewBag.NomEtablissementCree = newEtablissement.nom_etablissement; 
+            TempData["NomEtablissementCree"] = newEtablissement.nom_etablissement;
+
 
             try
             {
