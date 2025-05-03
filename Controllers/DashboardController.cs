@@ -51,7 +51,7 @@ namespace Forum.Controllers
 
 
         }
-             public IActionResult Schoolspace()
+        public IActionResult Schoolspace()
         {
             return View();
         }
