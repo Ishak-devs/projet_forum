@@ -173,7 +173,7 @@ namespace Forum.Controllers
             }
             catch (DbUpdateException ex)
             {
-                ModelState.AddModelError("", "Erreur d'enregistrement : " + ex.Message);
+                Console.WriteLine("", "Erreur d'enregistrement : " + ex.Message);
                 return View(modele);
             }
         }
