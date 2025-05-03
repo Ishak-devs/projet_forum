@@ -163,6 +163,8 @@ namespace Forum.Controllers
 
             contextget.Add(newEtablissement);
 
+            ViewBag.NomEtablissementCree = newEtablissement.nom_etablissement; 
+
             try
             {
                 _logger.LogInformation("Tentative de sauvegarde de l'établissement");
