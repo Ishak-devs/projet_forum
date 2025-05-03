@@ -147,6 +147,7 @@ namespace Forum.Controllers
                 return View(modele);
             }
 
+            _logger.LogInformation("Tentative d'enregistrement d'un établissement");
 
             var newEtablissement = new Etablissements
             {
