@@ -149,16 +149,31 @@ namespace Forum.Controllers
 
             _logger.LogInformation("Tentative d'enregistrement d'un établissement");
 
-            var newEtablissement = new Etablissements
-            {
-                code_postal = modele.code_postal,
-                academie = modele.academie,
-                nom_etablissement = modele.nom_etablissement,
-                type_etablissement = modele.type_etablissement,
-                Region = modele.Region,
-            };
 
-            contextget.Add(newEtablissement);
+            try
+            {
+
+                var newEtablissement = new Etablissements
+                {
+                    code_postal = modele.code_postal,
+                    academie = modele.academie,
+                    nom_etablissement = modele.nom_etablissement,
+                    type_etablissement = modele.type_etablissement,
+                    Region = modele.Region,
+
+                };
+                contextget.Add(newEtablissement);
+            }
+
+          
+
+           catch (DbUpdateException ex)
+            {
+                _logger.LogError(ex, "Erreur d'enregistrement : ");
+                return View(modele);
+            }
+
+          
 
 
             try
