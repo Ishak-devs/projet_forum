@@ -57,7 +57,7 @@ namespace Forum.Controllers
                 try
                 {
                     contextget.SaveChanges();
-                    HttpContext.Session.SetString("UserId", newUtilisateur.Id_utilisateur.ToString());
+                    HttpContext.Session.SetInt32("UserId", newUtilisateur.Id_utilisateur);
 
 
                     // Redirection après succès
