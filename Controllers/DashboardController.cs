@@ -15,14 +15,13 @@ namespace Forum.Controllers
 
         public IActionResult Index()
         {
-                        HttpContext.Session.GetString("UserRole");
-
-            //if (utilisateur.Role == "Admin")
-            //    return View("Admin");
-            //else if (utilisateur.Role == "Professeur")
-            //    return View("Professeur");
-            //else (utilisateur.Role == "Etudiant");
-                return View("Etudiant");
+            string? Role = HttpContext.Session.GetString("UserRole");
+            if (Role == "Admin")
+                return View("Admin");
+            else if (Role == "Professeur") 
+                return View("Professeur");
+            else if (Role == "Etudiant");
+            return View("Etudiant");
         }
                 
         public IActionResult Eleve()
