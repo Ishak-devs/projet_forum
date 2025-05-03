@@ -138,60 +138,63 @@ namespace Forum.Controllers
         [HttpPost]
         public ActionResult Etablissement(Etablissements modele)
         {
+            _logger.LogInformation("Début de la méthode Etablissement");
 
             var userId = HttpContext.Session.GetInt32("UserId");
+            _logger.LogInformation($"UserID from session: {userId}");
 
             if (userId == null)
             {
+                _logger.LogWarning("UserID est null dans la session");
                 ModelState.AddModelError("", "Utilisateur non connecté.");
                 return View(modele);
             }
 
-            _logger.LogInformation("Tentative d'enregistrement d'un établissement");
+            var newEtablissement = new Etablissements
+            {
+                code_postal = modele.code_postal,
+                academie = modele.academie,
+                nom_etablissement = modele.nom_etablissement,
+                type_etablissement = modele.type_etablissement,
+                Region = modele.Region,
+            };
 
+            _logger.LogInformation("Nouvel établissement créé, prêt à être ajouté");
+
+            contextget.Add(newEtablissement);
 
             try
             {
-
-                var newEtablissement = new Etablissements
-                {
-                    code_postal = modele.code_postal,
-                    academie = modele.academie,
-                    nom_etablissement = modele.nom_etablissement,
-                    type_etablissement = modele.type_etablissement,
-                    Region = modele.Region,
-
-                };
-                contextget.Add(newEtablissement);
-            }
-
-          
-
-           catch (DbUpdateException ex)
-            {
-                _logger.LogError(ex, "Erreur d'enregistrement : ");
-                return View(modele);
-            }
-
-          
-
-
-            try
-            {
+                _logger.LogInformation("Tentative de sauvegarde de l'établissement");
                 contextget.SaveChanges();
+                _logger.LogInformation($"Établissement sauvegardé avec ID: {newEtablissement.Id_etablissement}");
 
                 var utilisateur = contextget.Utilisateurs.Find(userId);
                 if (utilisateur != null)
                 {
+                    _logger.LogInformation($"Utilisateur trouvé: {utilisateur.Email}");
                     utilisateur.Id_etablissement = newEtablissement.Id_etablissement;
+                    _logger.LogInformation("Tentative de mise à jour de l'utilisateur");
                     contextget.SaveChanges();
+                    _logger.LogInformation("Utilisateur mis à jour avec l'ID établissement");
+                }
+                else
+                {
+                    _logger.LogWarning("Utilisateur non trouvé dans la base de données");
                 }
 
                 return RedirectToAction("Etablissement_etape2");
             }
             catch (DbUpdateException ex)
             {
-                _logger.LogError(ex, "Erreur d'enregistrement : ");
+                _logger.LogError(ex, "Erreur DbUpdateException lors de la sauvegarde");
+                ModelState.AddModelError("", "Erreur lors de la sauvegarde. Voir les logs pour plus de détails.");
+                return View(modele);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erreur inattendue");
+                ModelState.AddModelError("", "Erreur inattendue. Voir les logs pour plus de détails.");
                 return View(modele);
             }
         }
