@@ -2,6 +2,7 @@
 using Forum.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 
 
@@ -15,10 +16,11 @@ namespace Forum.Controllers
 
         private readonly PasswordHasher<Utilisateurs> passwordHasher;
         private readonly ILogger<SignupController> _logger;
-        public SignupController(ApplicationDbContext context, ILogger<SignupController> _logger, PasswordHasher<Utilisateurs> passwordHasher)
+        public SignupController(ApplicationDbContext context, ILogger<SignupController> logger, PasswordHasher<Utilisateurs> passwordHasher)
         {
             contextget = context;
             this.passwordHasher = passwordHasher;
+            _logger = logger;
         }
 
 
