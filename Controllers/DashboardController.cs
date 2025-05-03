@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Forum.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Forum.Controllers
 {
@@ -12,6 +13,18 @@ namespace Forum.Controllers
             contextget = context;
         }
 
+        public IActionResult Index()
+        {
+                        HttpContext.Session.GetString("UserRole");
+
+            //if (utilisateur.Role == "Admin")
+            //    return View("Admin");
+            //else if (utilisateur.Role == "Professeur")
+            //    return View("Professeur");
+            //else (utilisateur.Role == "Etudiant");
+                return View("Etudiant");
+        }
+                
         public IActionResult Eleve()
         {
             var eleveId = HttpContext.Session.GetString("Eleve_id");
