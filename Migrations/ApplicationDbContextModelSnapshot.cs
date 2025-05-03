@@ -51,16 +51,12 @@ namespace Forum.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("adresse")
+                    b.Property<string>("academie")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("code_postal")
                         .HasColumnType("int");
-
-                    b.Property<string>("commune")
-                        .IsRequired()
-                        .HasColumnType("longtext");
 
                     b.Property<string>("nom_etablissement")
                         .IsRequired()

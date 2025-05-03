@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250501091146_cree_db")]
-    partial class cree_db
+    [Migration("20250503132314_init_db")]
+    partial class init_db
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,6 +54,10 @@ namespace Forum.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("academie")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<int>("code_postal")
                         .HasColumnType("int");
 
@@ -61,18 +65,7 @@ namespace Forum.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("nom_rue")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("numero_rue")
-                        .HasColumnType("int");
-
                     b.Property<string>("type_etablissement")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("ville")
                         .IsRequired()
                         .HasColumnType("longtext");
 
