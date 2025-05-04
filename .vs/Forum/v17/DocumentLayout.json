@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\Projet\\projet_forum\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|d:\\projet\\projet_forum\\views\\classe\\ajouter_emplois_du_temps.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|solutionrelative:views\\classe\\ajouter_emplois_du_temps.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|d:\\projet\\projet_forum\\views\\dashboard\\admin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{1E2F68B0-6D1A-44A3-9804-CC71F61EE2DD}|Forum.csproj|solutionrelative:views\\dashboard\\admin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
@@ -23,12 +27,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Ajouter_emplois_du_temps.cshtml",
+              "DocumentMoniker": "D:\\Projet\\projet_forum\\Views\\Classe\\Ajouter_emplois_du_temps.cshtml",
+              "RelativeDocumentMoniker": "Views\\Classe\\Ajouter_emplois_du_temps.cshtml",
+              "ToolTip": "D:\\Projet\\projet_forum\\Views\\Classe\\Ajouter_emplois_du_temps.cshtml",
+              "RelativeToolTip": "Views\\Classe\\Ajouter_emplois_du_temps.cshtml",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAlwKMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-04T14:01:14.473Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Admin.cshtml",
               "DocumentMoniker": "D:\\Projet\\projet_forum\\Views\\Dashboard\\Admin.cshtml",
               "RelativeDocumentMoniker": "Views\\Dashboard\\Admin.cshtml",
               "ToolTip": "D:\\Projet\\projet_forum\\Views\\Dashboard\\Admin.cshtml",
               "RelativeToolTip": "Views\\Dashboard\\Admin.cshtml",
-              "ViewState": "AgIAABkAAAAAAAAAAAAmwDQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAQwDQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-04T13:54:31.614Z",
               "EditorCaption": ""
