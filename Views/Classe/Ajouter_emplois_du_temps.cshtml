@@ -13,6 +13,7 @@
                 <select id="classSelect" name="classId" class="form-select" onchange="setClassId()">
                     <option value="">-- Sélectionnez une classe --</option>
                     @if (classes != null && classes.Any())
+
                     {
                         foreach (var classe in classes)
                         {

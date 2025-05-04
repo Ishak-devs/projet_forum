@@ -15,10 +15,17 @@ namespace Forum.Controllers
         {
             _context = context;
         }
+        public async Task<IActionResult> Index()
+        {
+            var classes = await _context.Classes.ToListAsync();
+            ViewBag.Classes = classes;
+        }
 
         [HttpGet]
         public IActionResult Ajouterclasse()
         {
+            
+
             var userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null)
             {
