@@ -5,7 +5,7 @@
 
 # dotenv files
 .env
-
+.vs
 # User-specific files
 *.rsuser
 *.suo
