@@ -19,6 +19,7 @@ namespace Forum.Controllers
         {
             var classes = await _context.Classes.ToListAsync();
             ViewBag.Classes = classes;
+            return new EmptyResult();
         }
 
         [HttpGet]
