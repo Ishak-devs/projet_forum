@@ -26,12 +26,12 @@
     <div class="row g-4 mb-4">
 
         <div class="col-md-4">
-            <div class="card border-primary shadow-sm h-100">
+            <div class="card border-success shadow-sm h-100">
                 <div class="card-body text-center">
-                    <i class="fas fa-calendar-plus fa-3x text-primary mb-3"></i>
+                    <i class="fas fa-calendar-plus fa-3x text-success mb-3"></i>
                     <h5 class="card-title">Promotions</h5>
                     <p class="card-text">Créez une nouvelle promotion pour l'année scolaire.</p>
-                    <a href="@Url.Action("AjouterPromo", "Classe")" class="btn btn-primary stretched-link">
+                    <a href="@Url.Action("AjouterPromo", "Classe")" class="btn btn-success stretched-link">
                         <i class="fas fa-plus me-1"></i> Ajouter une promo
                     </a>
                 </div>
@@ -39,17 +39,19 @@
         </div>
 
         <div class="col-md-4">
-            <div class="card border-primary shadow-sm h-100">
+            <div class="card border-warning shadow-sm h-100">
                 <div class="card-body text-center">
-                    <i class="fas fa-calendar-plus fa-3x text-primary mb-3"></i>
-                    <h5 class="card-title">Promotions</h5>
+                    <i class="fas fa-calendar-alt fa-3x text-warning mb-3"></i>
+                    <h5 class="card-title">Planning</h5>
                     <p class="card-text">Plannifier les cours.</p>
-                    <a href="@Url.Action("Ajouter_emplois_du_temps", "Classe")" class="btn btn-primary stretched-link">
-                        <i class="fas fa-plus me-1"></i> Gestion emplois du temps
+                    <a href="@Url.Action("Ajouter_emplois_du_temps", "Classe")" class="btn btn-warning stretched-link text-white">
+                        <i class="fas fa-clock me-1"></i> Gestion emplois du temps
                     </a>
                 </div>
             </div>
         </div>
+
+
 
         <div class="col-md-4">
             <div class="card border-success shadow-sm h-100">
