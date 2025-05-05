@@ -24,11 +24,11 @@ namespace Forum.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetModulesByClasse(int id)
+        public async Task<IActionResult> GetProfByClasse(int id)
         {
-            var modules = await _context.Modules
-                .Where(m => m.Id_classe == id)
-                .Select(m => new { m.Id_module, m.Theme_module })
+            var modules = await _context.Utilisateurs
+                .Where(m => m.Role == "Professeur")
+                .Select(m => new { m.Id_utilisateur, m.Prenom, m.Nom, m.Matiere })
                 .ToListAsync();
 
             return Json(modules);
@@ -43,11 +43,10 @@ namespace Forum.Controllers
                 return RedirectToAction("Index", "Authentification");
             }
             var classes = await _context.Classes.ToListAsync();
-            var utilisateurs = await _context.Utilisateurs.ToListAsync();
-
+         
 
             ViewBag.Classes = classes;
-            ViewBag.Utilisateurs = utilisateurs;
+
 
             return View();
         }
