@@ -2,6 +2,7 @@
     ViewData["Title"] = "Forum de discussion";
     List<Classes>? classes = ViewBag.Classes;
     List<Utilisateurs>? utilisateurs = ViewBag.Utilisateurs;
+List<Modules>? modules = ViewBag.Modules;
 }
 
 <div class="container mt-4">
@@ -11,16 +12,29 @@
 
             <div class="mb-3">
                 <label for="classSelect" class="form-label">Choisissez une classe :</label>
-                <select id="classSelect" name="classId" class="form-select" onchange="setClassId()">
-                    <option value="">-- Sélectionnez une classe --</option>
-                    @if (classes != null && classes.Any())
 
-                    {
-                        foreach (var classe in classes)
-                        {
+                <select id="classSelect" name="classId" class="form-select" onchange="loadModules()">
+                    <option value="">-- Sélectionnez une classe --</option>
+                    @foreach (var classe in classes)
+    {
                     <option value="@classe.Id_classe">@classe.Nom_classe</option>
-                        }
-                    }
+    }
+                </select>
+
+                <select id="moduleSelect">
+                    <option value="">-- Sélectionnez un cours --</option>
+                </select>
+
+                <select>
+                    <option value="">-- Sélectionnez un cours --</option>
+                    @if (modules != null && modules.Any())
+
+{
+    foreach (var cours in modules.Where(u => u.Classe == Id_classe))
+    {
+                    <option value="@cours.Id_module">@cours.theme_module</option>
+    }
+}
                 </select>
 
                 <select>
