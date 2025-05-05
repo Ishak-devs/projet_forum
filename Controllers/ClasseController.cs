@@ -130,8 +130,10 @@ namespace Forum.Controllers
                 return RedirectToAction("Index", "Authentification");
             }
             var classes = await _context.Classes.ToListAsync();
+            var utilisateurs = await _context.Utilisateurs.ToListAsync();
 
             ViewBag.Classes = classes;
+            ViewBag.Utilisateurs = utilisateurs;
 
             return View();
         }

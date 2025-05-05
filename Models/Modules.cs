@@ -13,6 +13,10 @@ namespace Forum.Models
       
         public DateTime Date_module { get; set; }
 
+        public DateTime debut_cours { get; set; }
+
+        public DateTime fin_cours { get; set; }
+
         [ForeignKey("Classes")]
         public int Id_classe { get; set; }
         public virtual Classes Classes { get; set; }

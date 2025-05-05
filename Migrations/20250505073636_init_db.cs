@@ -78,6 +78,8 @@ namespace Forum.Migrations
                     theme_module = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Date_module = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    debut_cours = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    fin_cours = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Id_classe = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

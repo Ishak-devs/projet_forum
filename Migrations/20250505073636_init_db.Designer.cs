@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250503132314_init_db")]
+    [Migration("20250505073636_init_db")]
     partial class init_db
     {
         /// <inheritdoc />
@@ -140,6 +140,12 @@ namespace Forum.Migrations
 
                     b.Property<int>("Id_classe")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("debut_cours")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("fin_cours")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("theme_module")
                         .IsRequired()

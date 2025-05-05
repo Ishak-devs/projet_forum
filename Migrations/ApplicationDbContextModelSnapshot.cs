@@ -138,6 +138,12 @@ namespace Forum.Migrations
                     b.Property<int>("Id_classe")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("debut_cours")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("fin_cours")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("theme_module")
                         .IsRequired()
                         .HasColumnType("longtext");
