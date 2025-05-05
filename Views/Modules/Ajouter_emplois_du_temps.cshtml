@@ -2,7 +2,7 @@
     ViewData["Title"] = "Forum de discussion";
     List<Classes>? classes = ViewBag.Classes;
     List<Utilisateurs>? utilisateurs = ViewBag.Utilisateurs;
-List<Modules>? modules = ViewBag.Modules;
+    List<Modules>? modules = ViewBag.Modules;
 }
 
 <div class="container mt-4">
@@ -15,35 +15,26 @@ List<Modules>? modules = ViewBag.Modules;
 
                 <select id="classSelect" name="classId" class="form-select" onchange="loadModules()">
                     <option value="">-- Sélectionnez une classe --</option>
-                    @foreach (var classe in classes)
+    @foreach (var classe in classes)
     {
                     <option value="@classe.Id_classe">@classe.Nom_classe</option>
     }
                 </select>
 
-                <script>
-                    function loadModules() {
-                        var classId = document.getElementById("classSelect").value;
-                        fetch('/Modules/GetModulesByClasse?id=' + classId)
-                            .then(res => res.json())
-                            .then(data => {
-                                var select = document.getElementById("moduleSelect");
-                                select.innerHTML = '<option value="">-- Sélectionnez un cours --</option>';
-                                data.forEach(m => {
-                                    select.innerHTML += `<option value="${m.id_module}">${m.theme_module}</option>`;
-                                });
-                            });
-                    }
-                </script>
-
                 <select id="moduleSelect">
                     <option value="">-- Sélectionnez un cours --</option>
+                    @if (modules != null)
+    {
+        foreach (var module in modules)
+        {
+                    <option value="@module.Id_module">@module.Theme_module</option>
+        }
+    }
                 </select>
 
                 <select>
                     <option value="">-- Sélectionnez un professeur --</option>
-                    @if (utilisateurs != null && utilisateurs.Any())
-
+@if (utilisateurs != null && utilisateurs.Any())
 {
     foreach (var users in utilisateurs.Where(u => u.Role == "Professeur"))
     {
@@ -110,14 +101,13 @@ List<Modules>? modules = ViewBag.Modules;
                                 </div>
 
 
-
                                 <div class="mb-3">
                                     <label for="course-room" class="form-label">Salle</label>
                                     <input type="text" class="form-control" id="course-room" placeholder="Numéro de salle">
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">Ajouter</button>
-                                <button type="button" class="btn btn-outline-secondary" onclick="cancelAddCourse()">Annuler</button>
+                                <button type="button" class="btn btn-outline-secondary">Annuler</button>
                             </form>
                         </div>
                     </div>
@@ -134,4 +124,18 @@ List<Modules>? modules = ViewBag.Modules;
     </div>
 </div>
 
+<script>
+    function loadModules() {
+        var classId = document.getElementById("classSelect").value;
+        fetch('/Modules/GetModulesByClasse?id=' + classId)
+            .then(res => res.json())
+            .then(data => {
+                var select = document.getElementById("moduleSelect");
+                select.innerHTML = '<option value="">-- Sélectionnez un cours --</option>';
+                data.forEach(m => {
+                    select.innerHTML += `<option value="${m.id_module}">${m.theme_module}</option>`;
+                });
+            });
+    }
 
+</script>
