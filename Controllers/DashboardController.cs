@@ -15,23 +15,25 @@ namespace Forum.Controllers
 
         public IActionResult Index()
         {
-            string? Role = HttpContext.Session.GetInt32("UserRole");
+            string? Role = HttpContext.Session.GetInt32("UserRole").ToString();
             if (Role == "Admin")
                 return View("Admin");
-            else if (Role == "Professeur") 
+            else if (Role == "Professeur")
                 return View("Professeur");
-            else if (Role == "Etudiant");
-            return View("Etudiant");
+            else if (Role == "Etudiant")
+                return View("Etudiant");
+
+            return View();
         }
-                
+
         public IActionResult Eleve()
         {
             var eleveId = HttpContext.Session.GetInt32("Etudiant");
 
-          
-
+            if (eleveId.HasValue)
+            {
                 var eleve = contextget.Utilisateurs
-                    .FirstOrDefault(p => p.Id_utilisateur == id);
+                    .FirstOrDefault(p => p.Id_utilisateur == eleveId.Value);
 
                 if (eleve != null)
                 {
@@ -43,12 +45,12 @@ namespace Forum.Controllers
 
             return View();
         }
+
         public IActionResult Admin()
         {
             return View();
-
-
         }
+
         public IActionResult Schoolspace()
         {
             return View();
@@ -57,8 +59,11 @@ namespace Forum.Controllers
         public IActionResult Professeur()
         {
             var profId = HttpContext.Session.GetInt32("Professeur");
+
+            if (profId.HasValue)
+            {
                 var professeur = contextget.Utilisateurs
-                    .FirstOrDefault(p => p.Id_utilisateur == id);
+                    .FirstOrDefault(p => p.Id_utilisateur == profId.Value);
 
                 if (professeur != null)
                 {
