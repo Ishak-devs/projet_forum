@@ -1,7 +1,7 @@
 @{
+
     ViewData["Title"] = "Forum de discussion";
      var classes = ViewBag.Classes as List<Classes> ?? new List<Classes>();
-    var modules = ViewBag.Modules as List<Modules> ?? new List<Modules>();
     var utilisateurs = ViewBag.Utilisateurs as List<Utilisateurs> ?? new List<Utilisateurs>();
 }
 
@@ -15,32 +15,24 @@
 
                 <select id="classSelect" name="classId" class="form-select" onchange="loadModules()">
                     <option value="">-- Sélectionnez une classe --</option>
-    @foreach (var classe in classes)
+                    @foreach (var classe in classes)
     {
                     <option value="@classe.Id_classe">@classe.Nom_classe</option>
     }
                 </select>
 
-                <select id="moduleSelect">
-                    <option value="">-- Sélectionnez un cours --</option>
-                    @if (modules != null)
-    {
-        foreach (var module in modules)
-        {
-                    <option value="@module.Id_module">@module.Theme_module</option>
-        }
-    }
-                </select>
-
                 <select>
                     <option value="">-- Sélectionnez un professeur --</option>
-@if (utilisateurs != null && utilisateurs.Any())
+                    @if (utilisateurs != null && utilisateurs.Any())
 {
     foreach (var users in utilisateurs.Where(u => u.Role == "Professeur"))
     {
                     <option value="@users.Id_utilisateur">@users.Prenom @users.Nom</option>
     }
 }
+                </select>
+                <select id="moduleSelect" class="form-select mt-2">
+                    <option value="">-- Sélectionnez un cours --</option>
                 </select>
             </div>
         </div>
@@ -124,7 +116,7 @@
     </div>
 </div>
 
-@*<script>
+<script>
     function loadModules() {
         var classId = document.getElementById("classSelect").value;
         console.log = (classid);
@@ -138,4 +130,4 @@
                 });
             });
     }
-</script>*@
+</script>
