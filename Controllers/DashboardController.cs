@@ -26,11 +26,9 @@ namespace Forum.Controllers
                 
         public IActionResult Eleve()
         {
-            var eleveId = HttpContext.Session.GetInt32("Eleve_id");
+            var eleveId = HttpContext.Session.GetInt32("Etudiant");
 
-            if (!string.IsNullOrEmpty(eleveId))
-            {
-                int id = int.Parse(eleveId);
+          
 
                 var eleve = contextget.Utilisateurs
                     .FirstOrDefault(p => p.Id_utilisateur == id);
@@ -58,12 +56,7 @@ namespace Forum.Controllers
 
         public IActionResult Professeur()
         {
-            var profId = HttpContext.Session.GetString("Prof_id");
-
-            if (!string.IsNullOrEmpty(profId))
-            {
-                int id = int.Parse(profId);
-
+            var profId = HttpContext.Session.GetInt32("Professeur");
                 var professeur = contextget.Utilisateurs
                     .FirstOrDefault(p => p.Id_utilisateur == id);
 
