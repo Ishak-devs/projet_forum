@@ -23,7 +23,7 @@ namespace Forum.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetModulesByClasse(string id)
+        public async Task<IActionResult> GetModulesByClasse(int id)
         {
             var modules = await _context.Modules
                 .Where(m => m.Id_classe == id)
