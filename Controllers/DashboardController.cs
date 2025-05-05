@@ -15,7 +15,7 @@ namespace Forum.Controllers
 
         public IActionResult Index()
         {
-            string? Role = HttpContext.Session.GetString("UserRole");
+            string? Role = HttpContext.Session.GetInt32("UserRole");
             if (Role == "Admin")
                 return View("Admin");
             else if (Role == "Professeur") 
@@ -26,7 +26,7 @@ namespace Forum.Controllers
                 
         public IActionResult Eleve()
         {
-            var eleveId = HttpContext.Session.GetString("Eleve_id");
+            var eleveId = HttpContext.Session.GetInt32("Eleve_id");
 
             if (!string.IsNullOrEmpty(eleveId))
             {
