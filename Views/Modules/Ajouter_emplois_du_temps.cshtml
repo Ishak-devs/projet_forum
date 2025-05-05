@@ -1,6 +1,8 @@
 @{
     ViewData["Title"] = "Forum de discussion";
-
+    ViewBag.Classes = await _context.Classes.ToListAsync();
+    ViewBag.Modules = await _context.Modules.ToListAsync();
+    ViewBag.Utilisateurs = await _context.Utilisateurs.ToListAsync();
 }
 
 <div class="container mt-4">
