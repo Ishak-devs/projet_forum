@@ -46,10 +46,6 @@ namespace Forum.Controllers
             var utilisateurs = await _context.Utilisateurs.ToListAsync();
             var modules = await _context.Modules.ToListAsync();
 
-            ViewBag.Classes = classes;
-            ViewBag.Utilisateurs = utilisateurs;
-            ViewBag.Modules = modules;
-
             return View();
         }
     }
