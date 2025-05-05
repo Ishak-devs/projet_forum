@@ -122,21 +122,7 @@ namespace Forum.Controllers
                 return RedirectToAction("Ajouterclasse");
             }
         }
-        public async Task<IActionResult> Ajouter_emplois_du_temps()
-        {
-            var userId = HttpContext.Session.GetInt32("UserId");
-            if (userId == null)
-            {
-                return RedirectToAction("Index", "Authentification");
-            }
-            var classes = await _context.Classes.ToListAsync();
-            var utilisateurs = await _context.Utilisateurs.ToListAsync();
-
-            ViewBag.Classes = classes;
-            ViewBag.Utilisateurs = utilisateurs;
-
-            return View();
-        }
+      
 
     }
 }

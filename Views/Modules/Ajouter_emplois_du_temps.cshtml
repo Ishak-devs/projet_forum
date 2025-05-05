@@ -58,7 +58,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                              
+
                                 <tr>
                                     <td>12h-13h</td>
                                     <td>
@@ -74,12 +74,12 @@
                                     <td></td>
                                     <td></td>
                                 </tr>
-                        
+
                             </tbody>
                         </table>
                     </div>
 
-               
+
                     <div class="card mt-3" id="course-form" style="display:none;">
                         <div class="card-body">
                             <h5 class="card-title">Ajouter un cours</h5>
@@ -92,7 +92,7 @@
                                     <input type="text" class="form-control" id="course-name" placeholder="Ex: Histoire" required>
                                 </div>
 
-                               
+
 
                                 <div class="mb-3">
                                     <label for="course-room" class="form-label">Salle</label>
@@ -117,30 +117,29 @@
     </div>
 </div>
 
-    <style>
-        .editable-slot {
-            min-height: 80px;
-            padding: 5px;
-            cursor: pointer;
-            position: relative;
+<style>
+    .editable-slot {
+        min-height: 80px;
+        padding: 5px;
+        cursor: pointer;
+        position: relative;
+    }
+
+        .editable-slot:hover {
+            background-color: #f8f9fa;
         }
 
-            .editable-slot:hover {
-                background-color: #f8f9fa;
-            }
+    .course-item {
+        background-color: #e9f7fe;
+        padding: 8px;
+        border-radius: 4px;
+        border-left: 3px solid #0d6efd;
+    }
 
-        .course-item {
-            background-color: #e9f7fe;
-            padding: 8px;
-            border-radius: 4px;
-            border-left: 3px solid #0d6efd;
-        }
-
-        .add-course-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-    </style>
-}
+    .add-course-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
