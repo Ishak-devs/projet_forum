@@ -75,7 +75,7 @@ namespace Forum.Migrations
                 {
                     Id_module = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    theme_module = table.Column<string>(type: "longtext", nullable: false)
+                    Theme_module = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Date_module = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     debut_cours = table.Column<DateTime>(type: "datetime(6)", nullable: false),
@@ -112,6 +112,8 @@ namespace Forum.Migrations
                     Role = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Id_etablissement = table.Column<int>(type: "int", nullable: true),
+                    Matiere = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Section = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },

@@ -34,7 +34,9 @@ namespace Forum.Models
         public virtual Etablissements? Etablissements { get; set; }
 
         [StringLength(30)]
-        public string? Section { get; set; }
+        public string? Matiere { get; set; }
 
+        [StringLength(30)]
+        public string? Section { get; set; }
     }
 }
