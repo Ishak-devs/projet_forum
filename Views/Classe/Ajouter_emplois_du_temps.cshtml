@@ -1,6 +1,7 @@
 @{
     ViewData["Title"] = "Forum de discussion";
     List<Classes>? classes = ViewBag.Classes;
+    List<Utilisateurs>? utilisateurs = ViewBag.Utilisateurs;
 }
 
 <div class="container mt-4">
@@ -20,6 +21,18 @@
                     <option value="@classe.Id_classe">@classe.Nom_classe</option>
                         }
                     }
+                </select>
+
+                <select>
+                    <option value="">-- Sélectionnez un professeur --</option>
+                    @if (utilisateurs != null && utilisateurs.Any())
+
+{
+    foreach (var users in utilisateurs.Where(u => u.Role == "Professeur"))
+    {
+                    <option value="@users.Nom">@users.Prenom</option>
+    }
+}
                 </select>
             </div>
         </div>
@@ -79,10 +92,7 @@
                                     <input type="text" class="form-control" id="course-name" placeholder="Ex: Histoire" required>
                                 </div>
 
-                                <div class="mb-3">
-                                    <label for="course-teacher" class="form-label">Enseignant</label>
-                                    <input type="text" class="form-control" id="course-teacher" placeholder="Nom de l'enseignant">
-                                </div>
+                               
 
                                 <div class="mb-3">
                                     <label for="course-room" class="form-label">Salle</label>
