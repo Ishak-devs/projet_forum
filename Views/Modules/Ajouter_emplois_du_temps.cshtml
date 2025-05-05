@@ -127,15 +127,16 @@
 <script>
     function loadModules() {
         var classId = document.getElementById("classSelect").value;
-        fetch('/Modules/GetModulesByClasse?id=' + classId)
-            .then(res => res.json())
-            .then(data => {
-                var select = document.getElementById("moduleSelect");
-                select.innerHTML = '<option value="">-- Sélectionnez un cours --</option>';
-                data.forEach(m => {
-                    select.innerHTML += `<option value="${m.id_module}">${m.theme_module}</option>`;
-                });
-            });
-    }
+        console.log = classid;
+    //    fetch('/Modules/GetModulesByClasse?id=' + classId)
+    //        .then(res => res.json())
+    //        .then(data => {
+    //            var select = document.getElementById("moduleSelect");
+    //            select.innerHTML = '<option value="">-- Sélectionnez un cours --</option>';
+    //            data.forEach(m => {
+    //                select.innerHTML += `<option value="${m.id_module}">${m.theme_module}</option>`;
+    //            });
+    //        });
+    //}
 
 </script>
