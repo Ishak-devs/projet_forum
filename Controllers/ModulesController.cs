@@ -22,6 +22,18 @@ namespace Forum.Controllers
             return new EmptyResult();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetModulesByClasse(string id)
+        {
+            var modules = await _context.Modules
+                .Where(m => m.Id_classe == id)
+                .Select(m => new { m.Id_module, m.theme_module })
+                .ToListAsync();
+
+            return Json(modules);
+        }
+
+
         public async Task<IActionResult> Ajouter_emplois_du_temps()
         {
             var userId = HttpContext.Session.GetInt32("UserId");

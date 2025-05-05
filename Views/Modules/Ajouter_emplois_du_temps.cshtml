@@ -21,20 +21,23 @@ List<Modules>? modules = ViewBag.Modules;
     }
                 </select>
 
+                <script>
+                    function loadModules() {
+                        var classId = document.getElementById("classSelect").value;
+                        fetch('/Modules/GetModulesByClasse?id=' + classId)
+                            .then(res => res.json())
+                            .then(data => {
+                                var select = document.getElementById("moduleSelect");
+                                select.innerHTML = '<option value="">-- Sélectionnez un cours --</option>';
+                                data.forEach(m => {
+                                    select.innerHTML += `<option value="${m.id_module}">${m.theme_module}</option>`;
+                                });
+                            });
+                    }
+                </script>
+
                 <select id="moduleSelect">
                     <option value="">-- Sélectionnez un cours --</option>
-                </select>
-
-                <select>
-                    <option value="">-- Sélectionnez un cours --</option>
-                    @if (modules != null && modules.Any())
-
-{
-    foreach (var cours in modules.Where(u => u.Classe == Id_classe))
-    {
-                    <option value="@cours.Id_module">@cours.theme_module</option>
-    }
-}
                 </select>
 
                 <select>
@@ -131,29 +134,4 @@ List<Modules>? modules = ViewBag.Modules;
     </div>
 </div>
 
-<style>
-    .editable-slot {
-        min-height: 80px;
-        padding: 5px;
-        cursor: pointer;
-        position: relative;
-    }
 
-        .editable-slot:hover {
-            background-color: #f8f9fa;
-        }
-
-    .course-item {
-        background-color: #e9f7fe;
-        padding: 8px;
-        border-radius: 4px;
-        border-left: 3px solid #0d6efd;
-    }
-
-    .add-course-btn {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-</style>
