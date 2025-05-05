@@ -27,7 +27,7 @@
 {
     foreach (var users in utilisateurs.Where(u => u.Role == "Professeur"))
     {
-                    <option value="@users.Id_utilisateur">@users.Prenom @users.Nom @users.section</option>
+                    <option value="@users.Id_utilisateur">@users.Prenom @users.Nom @users.Section</option>
     }
 }
                 </select>
