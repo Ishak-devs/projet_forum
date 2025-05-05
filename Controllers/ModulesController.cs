@@ -3,6 +3,7 @@ using Forum.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace Forum.Controllers
 {
     public class ModulesController : Controller
@@ -27,7 +28,7 @@ namespace Forum.Controllers
         {
             var modules = await _context.Modules
                 .Where(m => m.Id_classe == id)
-                .Select(m => new { m.Id_module, m.theme_module })
+                .Select(m => new { m.Id_module, m.Theme_module })
                 .ToListAsync();
 
             return Json(modules);

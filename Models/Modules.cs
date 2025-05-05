@@ -9,7 +9,7 @@ namespace Forum.Models
         [Key]
         public int Id_module { get; set; }
 
-        public string theme_module { get; set; }
+        public string Theme_module { get; set; }
       
         public DateTime Date_module { get; set; }
 
