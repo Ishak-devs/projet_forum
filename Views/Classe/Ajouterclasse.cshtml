@@ -2,6 +2,14 @@
 
 @{
     ViewData["Title"] = "Créer une nouvelle promotion - Administration";
+
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+<div class="alert alert-success">
+    @TempData["SuccessMessage"]
+</div>
 }
 
 <div class="container py-5">
@@ -14,10 +22,10 @@
 
                 @if (TempData["ErrorMessage"] != null)
                 {
-                    <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
-                        @TempData["ErrorMessage"]
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
+                <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
+                    @TempData["ErrorMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
                 }
 
                 <div class="card-body">
@@ -38,49 +46,49 @@
                             <div class="p-3">
                                 @if (ViewBag.Etudiant != null && ViewBag.Etudiant.Count > 0)
                                 {
-                                    <div class="table-responsive">
-                                        <table class="table table-hover align-middle">
-                                            <thead class="table-light">
-                                                <tr>
-                                                    <th width="50px"></th>
-                                                    <th>Nom</th>
-                                                    <th>Prénom</th>
-                                                    <th>Section</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach (var eleve in ViewBag.Etudiant)
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th width="50px"></th>
+                                                <th>Nom</th>
+                                                <th>Prénom</th>
+                                                <th>Section</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var eleve in ViewBag.Etudiant)
                                                 {
-                                                    <tr>
-                                                        <td>
-                                                            <input type="checkbox" name="selectedEleves" value="@eleve.Id_utilisateur"
-                                                                   class="form-check-input fs-5" />
-                                                        </td>
-                                                        <td>@eleve.Nom</td>
-                                                        <td>@eleve.Prenom</td>
-                                                        <td>@eleve.Section</td>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" name="selectedEleves" value="@eleve.Id_utilisateur"
+                                                           class="form-check-input fs-5" />
+                                                </td>
+                                                <td>@eleve.Nom</td>
+                                                <td>@eleve.Prenom</td>
+                                                <td>@eleve.Section</td>
 
-                                                    </tr>
+                                            </tr>
                                                 }
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                        </tbody>
+                                    </table>
+                                </div>
 
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="selectAllEleves">
-                                            <label class="form-check-label" for="selectAllEleves">
-                                                Sélectionner tous les élèves
-                                            </label>
-                                        </div>
-                                        <span class="badge bg-primary">@ViewBag.Etudiant.Count élèves</span>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="selectAllEleves">
+                                        <label class="form-check-label" for="selectAllEleves">
+                                            Sélectionner tous les élèves
+                                        </label>
                                     </div>
+                                    <span class="badge bg-primary">@ViewBag.Etudiant.Count élèves</span>
+                                </div>
                                 }
                                 else
                                 {
-                                    <div class="alert alert-warning mb-0">
-                                        <i class="bi bi-exclamation-triangle-fill me-2"></i>Aucun élève trouvé dans cet établissement.
-                                    </div>
+                                <div class="alert alert-warning mb-0">
+                                    <i class="bi bi-exclamation-triangle-fill me-2"></i>Aucun élève trouvé dans cet établissement.
+                                </div>
                                 }
                             </div>
                         </div>
@@ -94,50 +102,50 @@
                             <div class="p-3">
                                 @if (ViewBag.Professeurs != null && ViewBag.Professeurs.Count > 0)
                                 {
-                                    <div class="table-responsive">
-                                        <table class="table table-hover align-middle">
-                                            <thead class="table-light">
-                                                <tr>
-                                                    <th width="50px"></th>
-                                                    <th>Nom</th>
-                                                    <th>Prénom</th>
-                                                    <th>Matière</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach (var prof in ViewBag.Professeurs)
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th width="50px"></th>
+                                                <th>Nom</th>
+                                                <th>Prénom</th>
+                                                <th>Matière</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var prof in ViewBag.Professeurs)
                                                 {
-                                                    <tr>
-                                                        <td>
-                                                            <input type="checkbox" name="selectedProfs" value="@prof.Id_utilisateur"
-                                                                   class="form-check-input fs-5" />
-                                                        </td>
-                                                        <td>@prof.Nom</td>
-                                                        <td>@prof.Prenom</td>
-                                                        <td>@prof.Matiere</td>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" name="selectedProfs" value="@prof.Id_utilisateur"
+                                                           class="form-check-input fs-5" />
+                                                </td>
+                                                <td>@prof.Nom</td>
+                                                <td>@prof.Prenom</td>
+                                                <td>@prof.Matiere</td>
 
 
-                                                    </tr>
+                                            </tr>
                                                 }
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                        </tbody>
+                                    </table>
+                                </div>
 
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="selectAllProfs">
-                                            <label class="form-check-label" for="selectAllProfs">
-                                                Sélectionner tous les professeurs
-                                            </label>
-                                        </div>
-                                        <span class="badge bg-primary">@ViewBag.Professeurs.Count professeurs</span>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="selectAllProfs">
+                                        <label class="form-check-label" for="selectAllProfs">
+                                            Sélectionner tous les professeurs
+                                        </label>
                                     </div>
+                                    <span class="badge bg-primary">@ViewBag.Professeurs.Count professeurs</span>
+                                </div>
                                 }
                                 else
                                 {
-                                    <div class="alert alert-warning mb-0">
-                                        <i class="bi bi-exclamation-triangle-fill me-2"></i>Aucun professeur trouvé dans cet établissement.
-                                    </div>
+                                <div class="alert alert-warning mb-0">
+                                    <i class="bi bi-exclamation-triangle-fill me-2"></i>Aucun professeur trouvé dans cet établissement.
+                                </div>
                                 }
                             </div>
                         </div>
@@ -159,12 +167,12 @@
 
 @section Scripts {
     <script>
-        $(document).ready(function() {
-            $('#selectAllEleves').change(function() {
+        $(document).ready(function () {
+            $('#selectAllEleves').change(function () {
                 $('input[name="selectedEleves"]').prop('checked', this.checked);
             });
 
-            $('#selectAllProfs').change(function() {
+            $('#selectAllProfs').change(function () {
                 $('input[name="selectedProfs"]').prop('checked', this.checked);
             });
         });
