@@ -53,7 +53,7 @@ namespace Forum.Controllers
 
 
         [HttpPost]
-        public IActionResult AjouterEmploiDuTemps(int classId, string theme_module, int profId, string horaire)
+        public IActionResult Ajouter_emplois_du_temps(int classId, string theme_module, int profId, string horaire)
         {
             
             var module = new Modules
