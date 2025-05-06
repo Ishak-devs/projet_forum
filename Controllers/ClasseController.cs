@@ -32,6 +32,8 @@ namespace Forum.Controllers
                 return RedirectToAction("Index", "Authentification");
             }
 
+
+
             var admin = _context.Utilisateurs
                 .Include(u => u.Etablissements)
                 .FirstOrDefault(u => u.Id_utilisateur == userId);
@@ -59,7 +61,7 @@ namespace Forum.Controllers
         }
 
         [HttpPost]
-        public IActionResult Ajouterclasse(string Nom_classe, List<int> selectedEleves, List<int> selectedProfs, int? ProfPrincipalId)
+        public IActionResult Ajouterclasse(string Nom_classe, List<int> selectedEleves, List<int> selectedProfs, int? ProfesseurPrincipalId)
         {
             {
                 var userId = HttpContext.Session.GetInt32("UserId");
@@ -83,7 +85,7 @@ namespace Forum.Controllers
                     var Nouvelle_Classe = new Classes
                     {
                         Nom_classe = Nom_classe,
-                        ProfesseurPrincipalId = ProfPrincipalId
+                        ProfesseurPrincipalId = ProfesseurPrincipalId
                     };
 
                     _context.Classes.Add(Nouvelle_Classe);
