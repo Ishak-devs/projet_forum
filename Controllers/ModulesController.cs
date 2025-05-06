@@ -51,5 +51,24 @@ namespace Forum.Controllers
             return View();
         }
 
+
+        [HttpPost]
+        public IActionResult AjouterEmploiDuTemps(int classId, string theme_module, int profId, string horaire)
+        {
+            
+            var module = new Modules
+            {
+                Id_classe = classId,
+                Theme_module = theme_module,
+                Horaire = horaire
+            };
+
+
+            _context.Modules.Add(module);
+            _context.SaveChanges();
+
+            return RedirectToAction("Ajouter_emplois_du_temps");  
+        }
+
     }
 }
