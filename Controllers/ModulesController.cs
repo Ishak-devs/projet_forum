@@ -53,7 +53,7 @@ namespace Forum.Controllers
 
 
         [HttpPost]
-        public IActionResult Ajouter_emplois_du_temps(int classId, string theme_module, int profId, string horaire)
+        public IActionResult Ajouter_emplois_du_temps(int classId, string theme_module, string horaire)
         {
             
             var module = new Modules
@@ -63,9 +63,21 @@ namespace Forum.Controllers
                 Horaire = horaire
             };
 
+            try
+            {
+                _context.Modules.Add(module);
+                _context.SaveChanges();
+                HttpContext.Session.SetInt32("UserId", newUtilisateur.Id_utilisateur);
 
-            _context.Modules.Add(module);
-            _context.SaveChanges();
+                TempData["SuccessMessage"] = "Ajout réussie !";
+                return View();
+            }
+            catch (DbUpdateException ex)
+            {
+                ModelState.AddModelError("", "Erreur d'enregistrement : " + ex.Message);
+                return View(modele);
+            }
+
 
             return RedirectToAction("Ajouter_emplois_du_temps");  
         }
