@@ -22,8 +22,8 @@
                 </select>
 
                 <div class="mb-3">
-                    <label for="courseSelect" class="form-label">Choisissez un cours :</label>
-                    <select class="forum-title text-center mb-4" id="courseSelect">
+                    <label for="theme_module" class="form-label">Choisissez un cours :</label>
+                    <select class="forum-title text-center mb-4" id="theme_module" name="theme_module">
                         <option value="">-- Sélectionnez un cours --</option>
                         <option value="mathematiques">Mathématiques</option>
                         <option value="francais">Français</option>
@@ -109,84 +109,6 @@
             </div>
             </div>
     </div>
-
-
-    @*<div class="row mt-4">
-        <div class="col-md-12">
-            <h3 class="mb-3">Emploi du temps</h3>
-
-            <div class="card">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Heure/Jour</th>
-                                    <th>Lundi</th>
-                                    <th>Mardi</th>
-                                    <th>Mercredi</th>
-                                    <th>Jeudi</th>
-                                    <th>Vendredi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <tr>
-                                    <td>12h-13h</td>
-                                    <td>
-                                        <div class="editable-slot" data-day="lundi" data-time="12-13">
-                                            <span class="empty-slot text-muted">Ajouter un cours</span>
-                                            <button class="btn btn-sm btn-outline-primary add-course-btn" style="display:none;">
-                                                <i class="bi bi-plus"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
-
-
-                    <div class="card mt-3" id="course-form" style="display:none;">
-                        <div class="card-body">
-                            <h5 class="card-title">Ajouter un cours</h5>
-                            <form id="addCourseForm">
-                                <input type="hidden" id="selected-day">
-                                <input type="hidden" id="selected-time">
-
-                                <div class="mb-3">
-                                    <label for="course-name" class="form-label">Nom du cours</label>
-                                    <input type="text" class="form-control" id="course-name" placeholder="Ex: Histoire" required>
-                                </div>
-
-
-                                <div class="mb-3">
-                                    <label for="course-room" class="form-label">Salle</label>
-                                    <input type="text" class="form-control" id="course-room" placeholder="Numéro de salle">
-                                </div>
-
-                                <button type="submit" class="btn btn-primary">Ajouter</button>
-                                <button type="button" class="btn btn-outline-secondary">Annuler</button>
-                            </form>
-                        </div>
-                    </div>
-
-
-                    <div class="text-end mt-3">
-                        <button id="validate-btn" class="btn btn-success" disabled>
-                            <i class="bi bi-check-circle"></i> Valider l'emploi du temps
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>*@
 
 <script>
     function loadModules() {
