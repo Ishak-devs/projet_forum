@@ -63,14 +63,20 @@
         <span asp-validation-for="Role" class="text-danger"></span>
     </div>
 
+    <div class="form-group">
+        <label asp-for="Matiere">Matière</label>
+        <input asp-for="Matiere" class="form-control" type="text" required />
+        <span asp-validation-for="Matiere" class="text-danger"></span>
+    </div>
+
     <label for="Sections">Sections</label>
     <select asp-for="Section" class="form-select" id="">
-            <option value="Seconde_general">Seconde Générale</option>
-            <option value="Seconde_pro">Seconde Pro</option>
-            <option value="Premiere_general">Première Générale</option>
-            <option value="Premiere_general">Première Pro</option>
-            <option value="Terminale_general">Terminale Générale</option>
-            <option value="Terminale_pro">Terminale Pro</option>
+        <option value="Seconde_general">Seconde Générale</option>
+        <option value="Seconde_pro">Seconde Pro</option>
+        <option value="Premiere_general">Première Générale</option>
+        <option value="Premiere_general">Première Pro</option>
+        <option value="Terminale_general">Terminale Générale</option>
+        <option value="Terminale_pro">Terminale Pro</option>
     </select>
 
     <button type="submit" class="btn btn-primary">Valider l'inscription</button>

@@ -118,6 +118,7 @@ namespace Forum.Controllers
                 Role = modele.Role,
                 Id_etablissement = utilisateurConnecte.Id_etablissement,
                 Section = modele.Section,
+                Matiere = modele.Matiere,
             };
 
 
