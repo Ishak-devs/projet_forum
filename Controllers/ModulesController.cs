@@ -67,7 +67,6 @@ namespace Forum.Controllers
             {
                 _context.Modules.Add(module);
                 _context.SaveChanges();
-                HttpContext.Session.SetInt32("UserId", newUtilisateur.Id_utilisateur);
 
                 TempData["SuccessMessage"] = "Ajout réussie !";
                 return View();
@@ -75,7 +74,7 @@ namespace Forum.Controllers
             catch (DbUpdateException ex)
             {
                 ModelState.AddModelError("", "Erreur d'enregistrement : " + ex.Message);
-                return View(modele);
+                return View();
             }
 
 
