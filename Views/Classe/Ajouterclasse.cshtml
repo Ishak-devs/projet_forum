@@ -45,9 +45,7 @@
                                                     <th width="50px"></th>
                                                     <th>Nom</th>
                                                     <th>Prénom</th>
-                                                    <th>Niveau</th>
-                                                    <th>Voie</th>
-                                                    <th>Email</th>
+                                                    <th>Section</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -60,11 +58,8 @@
                                                         </td>
                                                         <td>@eleve.Nom</td>
                                                         <td>@eleve.Prenom</td>
-                                                        <td>
-                                                            <span class="badge bg-info">@eleve.Section</span>
-                                                        </td>
-                                                     
-                                                        <td class="text-truncate" style="max-width: 200px;">@eleve.Email</td>
+                                                        <td>@eleve.Section</td>
+
                                                     </tr>
                                                 }
                                             </tbody>
@@ -107,7 +102,6 @@
                                                     <th>Nom</th>
                                                     <th>Prénom</th>
                                                     <th>Matière</th>
-                                                    <th>Email</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -120,8 +114,9 @@
                                                         </td>
                                                         <td>@prof.Nom</td>
                                                         <td>@prof.Prenom</td>
-                                                     
-                                                        <td class="text-truncate" style="max-width: 200px;">@prof.Email</td>
+                                                        <td>@prof.Matiere</td>
+
+
                                                     </tr>
                                                 }
                                             </tbody>

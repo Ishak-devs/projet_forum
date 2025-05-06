@@ -58,6 +58,8 @@ namespace Forum.Controllers
 
             return View();
         }
+
+
         [HttpPost]
         public IActionResult Ajouterclasse(string Nom_classe, List<int> selectedEleves, List<int> selectedProfs)
         {
