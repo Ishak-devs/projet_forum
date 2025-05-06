@@ -93,13 +93,13 @@
                                             <td>@classe.Nom_classe</td>
                                             <td>
                                                 @{
-                                                int count = 0;
+                                                int nombre_etudiant = 0;
                                                 if (ViewBag.EffectifsParClasse != null && ViewBag.EffectifsParClasse.ContainsKey(classe.Id_classe))
                                                 {
-                                                    count = ViewBag.EffectifsParClasse[classe.Id_classe];
+                                                    nombre_etudiant = ViewBag.EffectifsParClasse[classe.Id_classe];
                                                 }
                                                 }
-                                                @count étudiants
+                                                @nombre_etudiant étudiants
                                             </td>
                                             <td>
                                                 <a href="#" class="btn btn-sm btn-outline-primary">

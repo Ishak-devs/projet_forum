@@ -55,7 +55,7 @@ namespace Forum.Controllers
              var effectifsParClasse = contextget.Utilisateurs
             .Where(u => u.Role == "Etudiant" && u.Id_classe != null)
             .GroupBy(u => u.Id_classe)
-            .ToDictionary(g => g.Key.Value, g => g.Count());
+            .ToDictionary(groupe_eleve => groupe_eleve.Key, groupe_eleve => groupe_eleve.Count());
 
             ViewBag.EffectifsParClasse = effectifsParClasse;
 
