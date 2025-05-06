@@ -10,12 +10,8 @@ namespace Forum.Models
         public int Id_module { get; set; }
 
         public string Theme_module { get; set; }
-      
-        public DateTime Date_module { get; set; }
 
-        public DateTime debut_cours { get; set; }
-
-        public DateTime fin_cours { get; set; }
+        public string Horaire { get; set; }
 
         [ForeignKey("Classes")]
         public int Id_classe { get; set; }

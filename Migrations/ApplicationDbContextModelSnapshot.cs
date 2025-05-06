@@ -132,8 +132,9 @@ namespace Forum.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_module"));
 
-                    b.Property<DateTime>("Date_module")
-                        .HasColumnType("datetime(6)");
+                    b.Property<string>("Horaire")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<int>("Id_classe")
                         .HasColumnType("int");
@@ -141,12 +142,6 @@ namespace Forum.Migrations
                     b.Property<string>("Theme_module")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<DateTime>("debut_cours")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime>("fin_cours")
-                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id_module");
 
