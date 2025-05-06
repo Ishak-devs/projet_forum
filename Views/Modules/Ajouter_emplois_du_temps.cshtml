@@ -5,13 +5,21 @@
     var utilisateurs = ViewBag.Utilisateurs as List<Utilisateurs> ?? new List<Utilisateurs>();
 }
 
+@if (TempData["SuccessMessage"] != null)
+{
+<div class="alert alert-success">
+    @TempData["SuccessMessage"]
+</div>
+}
+
 <div class="container mt-4">
     <div class="row">
-        <div class="col-md-9">theme_module
+        <div class="col-md-9">
+            theme_module
             <h2 class="forum-title text-center mb-4">Gestion des emplois du temps</h2>
 
 
-            <form  asp-action="Ajouter_emplois_du_temps">
+            <form asp-action="Ajouter_emplois_du_temps">
                 <div class="mb-3">
                     <label for="classSelect" class="form-label">Choisissez une classe :</label>
 
@@ -115,9 +123,9 @@
 
             </form>
 
-            </div>
+        </div>
     </div>
-    </div>
+</div>
 <script>
     function loadModules() {
         var Profid = document.getElementById("classSelect").value;

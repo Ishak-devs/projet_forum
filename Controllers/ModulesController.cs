@@ -69,7 +69,6 @@ namespace Forum.Controllers
                 _context.SaveChanges();
 
                 TempData["SuccessMessage"] = "Ajout réussie !";
-                return View();
             }
             catch (DbUpdateException ex)
             {
