@@ -22,8 +22,8 @@ namespace Forum.Controllers
                 return View("Professeur");
             else if (Role == "Etudiant")
                 return View("Etudiant");
+            return new EmptyResult();
 
-            return View();
         }
 
         public IActionResult Eleve()
