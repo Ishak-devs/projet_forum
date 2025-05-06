@@ -113,9 +113,10 @@
             .then(res => res.json())
             .then(data => {
                 var select = document.getElementById("profselect");
+                console.log(data);
                 select.innerHTML = '<option value="">-- Sélectionnez un professeur --</option>';
                 data.forEach(m => {
-                    select.innerHTML += `<option value="${m.Id_professeur}">${m.Nom} ${m.Prenom} ${m.Matiere}</option>`;
+                    select.innerHTML += `<option value="${m.id_professeur}">${m.nom} ${m.prenom} ${m.matiere}</option>`;
                 });
             });
     }
