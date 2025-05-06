@@ -109,7 +109,7 @@ namespace Forum.Controllers
                 return View(modele);
             }
 
-            var nouvelEleve = new Utilisateurs
+            var nouveau_user = new Utilisateurs
             {
                 Nom = modele.Nom,
                 Prenom = modele.Prenom,
@@ -121,11 +121,11 @@ namespace Forum.Controllers
             };
 
 
-            contextget.Add(nouvelEleve);
+            contextget.Add(nouveau_user);
             try
             {
                 contextget.SaveChanges();
-                TempData["SuccessMessage"] = "Élève inscrit avec succès !";
+                TempData["SuccessMessage"] = "Utilisateur inscrit avec succès !";
                 return RedirectToAction("Inscrire_utilisateur");
             }
             catch (DbUpdateException ex)
