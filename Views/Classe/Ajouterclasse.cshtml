@@ -61,7 +61,7 @@
                                                 {
                                             <tr>
                                                 <td>
-                                                    <input type="checkbox" name="selectedEleves", id="selectedEleves", value="@eleve.Id_utilisateur"
+                                                    <input type="checkbox" name="selectedEleves" , id="selectedEleves" , value="@eleve.Id_utilisateur"
                                                            class="form-check-input fs-5" />
                                                 </td>
                                                 <td>@eleve.Nom</td>
@@ -110,6 +110,7 @@
                                                 <th>Nom</th>
                                                 <th>Prénom</th>
                                                 <th>Matière</th>
+                                                <th>Professeur principale ?</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -123,9 +124,14 @@
                                                 <td>@prof.Nom</td>
                                                 <td>@prof.Prenom</td>
                                                 <td>@prof.Matiere</td>
+                                                <td>
+                                                    <label for="ProfesseurPrincipalId">oui</label>
+                                                    <input type="radio" asp-for="ProfesseurPrincipalId" name=""ProfesseurPrincipalId" value="@prof.Id_utilisateur" />
+                                                </td>
 
 
                                             </tr>
+
                                                 }
                                         </tbody>
                                     </table>
@@ -149,6 +155,9 @@
                                 }
                             </div>
                         </div>
+
+                       
+
 
                         <div class="d-flex justify-content-between mt-4">
                             <a asp-action="Index" asp-controller="Dashboard" class="btn btn-outline-secondary">

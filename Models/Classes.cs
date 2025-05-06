@@ -10,5 +10,6 @@ namespace Forum.Models
         [StringLength(100)]
         public string Nom_classe { get; set; }
 
+        public int? ProfesseurPrincipalId { get; set; }
     }
 }

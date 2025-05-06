@@ -25,7 +25,6 @@ namespace Forum.Controllers
         [HttpGet]
         public IActionResult Ajouterclasse()
         {
-            
 
             var userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null)
@@ -59,72 +58,77 @@ namespace Forum.Controllers
             return View();
         }
 
-
         [HttpPost]
-        public IActionResult Ajouterclasse(string Nom_classe, List<int> selectedEleves, List<int> selectedProfs)
+        public IActionResult Ajouterclasse(string Nom_classe, List<int> selectedEleves, List<int> selectedProfs, int? ProfPrincipalId)
         {
-            var userId = HttpContext.Session.GetInt32("UserId");
-            if (userId == null)
             {
-                return RedirectToAction("Index", "Authentification");
-            }
-
-            var admin = _context.Utilisateurs
-                .Include(u => u.Etablissements)
-                .FirstOrDefault(u => u.Id_utilisateur == userId);
-
-            if (admin == null || admin.Id_etablissement == null)
-            {
-                TempData["ErrorMessage"] = "Admin ou établissement non trouvé";
-                return RedirectToAction("Index", "Dashboard");
-            }
-
-            try
-            {
-                var Nouvelle_Classe = new Classes
+                var userId = HttpContext.Session.GetInt32("UserId");
+                if (userId == null)
                 {
-                    Nom_classe = Nom_classe,
-                };
-
-                _context.Classes.Add(Nouvelle_Classe);
-                _context.SaveChanges();
-
-                if (selectedEleves != null && selectedEleves.Any())
-                {
-                    foreach (var eleveId in selectedEleves)
-                    {
-                        var eleve = _context.Utilisateurs.Find(eleveId);
-                        if (eleve != null)
-                        {
-                            eleve.Id_classe = Nouvelle_Classe.Id_classe;
-                        }
-                    }
+                    return RedirectToAction("Index", "Authentification");
                 }
 
-                if (selectedProfs != null && selectedProfs.Any())
+                var admin = _context.Utilisateurs
+                    .Include(u => u.Etablissements)
+                    .FirstOrDefault(u => u.Id_utilisateur == userId);
+
+                if (admin == null || admin.Id_etablissement == null)
                 {
-                    foreach (var profId in selectedProfs)
-                    {
-                        var prof = _context.Utilisateurs.Find(profId);
-                        if (prof != null)
-                        {
-                            prof.Id_classe = Nouvelle_Classe.Id_classe;
-                        }
-                    }
+                    TempData["ErrorMessage"] = "Admin ou établissement non trouvé";
+                    return RedirectToAction("Index", "Dashboard");
                 }
 
-                _context.SaveChanges();
+                try
+                {
+                    var Nouvelle_Classe = new Classes
+                    {
+                        Nom_classe = Nom_classe,
+                        ProfesseurPrincipalId = ProfPrincipalId
+                    };
 
-                TempData["SuccessMessage"] = $"La promotion {Nom_classe} a été créée avec succès !";
-                return RedirectToAction("Ajouterclasse");
+                    _context.Classes.Add(Nouvelle_Classe);
+                    _context.SaveChanges();
+
+                    if (selectedEleves != null && selectedEleves.Any())
+                    {
+                        foreach (var eleveId in selectedEleves)
+                        {
+                            var eleve = _context.Utilisateurs.Find(eleveId);
+
+                            if (eleve != null)
+                            {
+                                eleve.Id_classe = Nouvelle_Classe.Id_classe;
+                            }
+                        }
+                    }
+
+                    if (selectedProfs != null && selectedProfs.Any())
+                    {
+                        foreach (var profId in selectedProfs)
+                        {
+                            var prof = _context.Utilisateurs.Find(profId);
+                            
+                            if (prof != null)
+                            {
+                                prof.Id_classe = Nouvelle_Classe.Id_classe;
+
+                            }
+                        }
+                    }
+
+                    _context.SaveChanges();
+
+                    TempData["SuccessMessage"] = $"La promotion {Nom_classe} a été créée avec succès !";
+                    return RedirectToAction("Ajouterclasse");
+                }
+                catch (Exception ex)
+                {
+                    TempData["ErrorMessage"] = $"Erreur lors de la création de la classe : {ex.Message}";
+                    return RedirectToAction("Ajouterclasse");
+                }
             }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = $"Erreur lors de la création de la classe : {ex.Message}";
-                return RedirectToAction("Ajouterclasse");
-            }
+
+
         }
-      
-
     }
 }

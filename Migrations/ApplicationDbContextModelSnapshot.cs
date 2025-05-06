@@ -34,6 +34,9 @@ namespace Forum.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
+                    b.Property<int?>("ProfesseurPrincipalId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id_classe");
 
                     b.ToTable("Classes");
@@ -199,7 +202,8 @@ namespace Forum.Migrations
 
                     b.HasKey("Id_utilisateur");
 
-                    b.HasIndex("Id_classe");
+                    b.HasIndex("Id_classe")
+                        .IsUnique();
 
                     b.HasIndex("Id_etablissement");
 
@@ -239,8 +243,8 @@ namespace Forum.Migrations
             modelBuilder.Entity("Forum.Models.Utilisateurs", b =>
                 {
                     b.HasOne("Forum.Models.Classes", "Classes")
-                        .WithMany()
-                        .HasForeignKey("Id_classe");
+                        .WithOne("ProfesseurPrincipal")
+                        .HasForeignKey("Forum.Models.Utilisateurs", "Id_classe");
 
                     b.HasOne("Forum.Models.Etablissements", "Etablissements")
                         .WithMany()
@@ -249,6 +253,11 @@ namespace Forum.Migrations
                     b.Navigation("Classes");
 
                     b.Navigation("Etablissements");
+                });
+
+            modelBuilder.Entity("Forum.Models.Classes", b =>
+                {
+                    b.Navigation("ProfesseurPrincipal");
                 });
 #pragma warning restore 612, 618
         }
