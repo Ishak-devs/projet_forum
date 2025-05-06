@@ -15,7 +15,7 @@ namespace Forum.Controllers
 
         public IActionResult Index()
         {
-            string? Role = HttpContext.Session.GetInt32("UserRole").ToString();
+            string? Role = HttpContext.Session.GetString("UserRole").ToString();
             if (Role == "Admin")
                 return View("Admin");
             else if (Role == "Professeur")
