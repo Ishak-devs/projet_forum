@@ -15,9 +15,11 @@ namespace Forum.Controllers
 
         public IActionResult Index()
         {
+
+            var classes = contextget.Classes.ToList();
             string? Role = HttpContext.Session.GetString("UserRole").ToString();
             if (Role == "Admin")
-                return View("Admin");
+                return View("Admin", classes);
             else if (Role == "Professeur")
                 return View("Professeur");
             else if (Role == "Etudiant")
@@ -48,8 +50,10 @@ namespace Forum.Controllers
 
         public IActionResult Admin()
         {
-            return View();
+            var classes = contextget.Classes.ToList();
+            return View(classes);
         }
+
 
         public IActionResult Schoolspace()
         {
@@ -73,7 +77,8 @@ namespace Forum.Controllers
                 }
             }
 
-            return View();
+            return RedirectToAction("Index");
         }
+        
     }
 }
