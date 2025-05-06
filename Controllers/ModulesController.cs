@@ -34,7 +34,7 @@ namespace Forum.Controllers
             return Json(modules);
         }
 
-
+        [HttpGet]
         public async Task<IActionResult> Ajouter_emplois_du_temps()
         {
             var userId = HttpContext.Session.GetInt32("UserId");
@@ -50,5 +50,6 @@ namespace Forum.Controllers
 
             return View();
         }
+
     }
 }
