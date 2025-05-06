@@ -51,7 +51,21 @@ namespace Forum.Controllers
         public IActionResult Admin()
         {
             var classes = contextget.Classes.ToList();
+
+            var effectifsParClasse = contextget.Utilisateurs
+           .Where(u => u.Role == "Etudiant" && u.Id_classe != null)
+           .GroupBy(u => u.Id_classe)
+           .Select(g => new
+           {
+               IdClasse = g.Key,
+               NombreEtudiants = g.Count()
+           })
+           .ToList();
+
+            ViewBag.EffectifsParClasse = effectifsParClasse;
+
             return View(classes);
+
         }
 
 
