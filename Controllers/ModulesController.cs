@@ -61,6 +61,7 @@ namespace Forum.Controllers
                 Id_classe = classId,
                 Theme_module = theme_module,
                 Horaire = horaire
+               
             };
 
             try
@@ -75,7 +76,6 @@ namespace Forum.Controllers
                 ModelState.AddModelError("", "Erreur d'enregistrement : " + ex.Message);
                 return View();
             }
-
 
             return RedirectToAction("Ajouter_emplois_du_temps");  
         }

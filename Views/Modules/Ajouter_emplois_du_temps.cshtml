@@ -64,7 +64,9 @@
                     <div id="tempDropZone" class="mt-3 p-2 border rounded"
                          ondragover="allowDrop(event)"
                          ondrop="drop(event)">
-                        <p class="text-muted small">Glissez les cours ici pour les supprimer</p>
+                        <div class="alert alert-danger text-center p-3 rounded shadow-sm" style="cursor: pointer;">
+                            <i class="bi bi-trash3-fill me-2"></i> Glissez les cours ici pour les supprimer
+                        </div>
                     </div>
                 </div>
             </div>
@@ -384,7 +386,7 @@
             modal.show();
 
             document.getElementById('confirmSaveBtn').onclick = function () {
-                fetch('/Modules/SaveTimetable', {
+                fetch('/Modules/Ajouter_emplois_du_temps', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
