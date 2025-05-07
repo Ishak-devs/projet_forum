@@ -60,6 +60,9 @@
                         </button>
                     </div>
 
+                    <p id="message_confirm" class="text-success"></p>
+                    <p id="message_erreur" class="text-danger"></p>
+
                     <!-- Zone de dépôt temporaire -->
                     <div id="tempDropZone" class="mt-3 p-2 border rounded"
                          ondragover="allowDrop(event)"
@@ -236,7 +239,8 @@
             var profSelect = document.getElementById("profselect");
 
             if (!classSelect.value || !themeSelect.value || !profSelect.value) {
-                alert("Veuillez sélectionner une classe, un cours et un professeur");
+                document.getElementById("message_erreur").textContent = "Veuillez sélectionner une classe, un cours et un professeur";
+
                 return;
             }
 
@@ -248,8 +252,7 @@
                 profValue: profSelect.value
             };
 
-            // Activer le mode sélection de créneau
-            alert("Cliquez maintenant sur le créneau horaire où vous voulez placer ce cours");
+            document.getElementById("message_confirm").textContent = "Choisissez maintenant le creneaux";
 
             // Ajouter un style aux créneaux pour indiquer qu'ils sont sélectionnables
             const slots = document.querySelectorAll('.timetable-slot');
@@ -378,7 +381,7 @@
             });
 
             if (timetableData.length === 0) {
-                alert("Aucun cours à enregistrer");
+                document.getElementById("message_erreur").textContent = "Aucun cours à enregistrer";
                 return;
             }
 
