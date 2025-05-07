@@ -6,17 +6,17 @@ namespace Forum.Controllers
 {
     public class DashboardController : Controller
     {
-        private readonly ApplicationDbContext contextget;
+        private readonly ApplicationDbContext _context;
 
         public DashboardController(ApplicationDbContext context)
         {
-            contextget = context;
+            _context = context;
         }
 
         public IActionResult Index()
         {
 
-            var classes = contextget.Classes.ToList();
+            var classes = _context.Classes.ToList();
             string? Role = HttpContext.Session.GetString("UserRole").ToString();
             if (Role == "Admin")
                 return View("Admin", classes);
@@ -34,7 +34,7 @@ namespace Forum.Controllers
 
             if (eleveId.HasValue)
             {
-                var eleve = contextget.Utilisateurs
+                var eleve = _context.Utilisateurs
                     .FirstOrDefault(p => p.Id_utilisateur == eleveId.Value);
 
                 if (eleve != null)
@@ -50,26 +50,27 @@ namespace Forum.Controllers
 
         public IActionResult Admin()
         {
-            var classes = contextget.Classes
-                .Select(c => new
-                {
-                    Classe = c,
-                    ProfPrincipal = contextget.Utilisateurs.FirstOrDefault(u => u.Id_utilisateur == c.ProfesseurPrincipalId)
-                })
-                .ToList();
 
-            var effectifsParClasse = contextget.Utilisateurs
+            var classes = _context.Classes.ToList();
+
+
+            var Prof_principal = classes.Select(c => new
+            {
+                Classe = c,
+                ProfPrincipal = _context.Utilisateurs
+                    .FirstOrDefault(u => u.Id_utilisateur == c.ProfesseurPrincipalId)
+            }).ToList();
+
+            var effectifsParClasse = _context.Utilisateurs
                 .Where(u => u.Role == "Etudiant" && u.Id_classe != null)
                 .GroupBy(u => u.Id_classe)
                 .ToDictionary(g => g.Key, g => g.Count());
 
             ViewBag.EffectifsParClasse = effectifsParClasse;
-            ViewBag.ClassesAvecProfs = classes;
+            ViewBag.prof_principal = Prof_principal;
 
             return View(classes);
         }
-
-
 
         public IActionResult Schoolspace()
         {
@@ -82,7 +83,7 @@ namespace Forum.Controllers
 
             if (profId.HasValue)
             {
-                var professeur = contextget.Utilisateurs
+                var professeur = _context.Utilisateurs
                     .FirstOrDefault(p => p.Id_utilisateur == profId.Value);
 
                 if (professeur != null)
@@ -95,6 +96,6 @@ namespace Forum.Controllers
 
             return RedirectToAction("Index");
         }
-        
+
     }
 }

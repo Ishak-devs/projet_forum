@@ -39,6 +39,8 @@ namespace Forum.Migrations
 
                     b.HasKey("Id_classe");
 
+                    b.HasIndex("ProfesseurPrincipalId");
+
                     b.ToTable("Classes");
                 });
 
@@ -202,12 +204,20 @@ namespace Forum.Migrations
 
                     b.HasKey("Id_utilisateur");
 
-                    b.HasIndex("Id_classe")
-                        .IsUnique();
+                    b.HasIndex("Id_classe");
 
                     b.HasIndex("Id_etablissement");
 
                     b.ToTable("Utilisateurs");
+                });
+
+            modelBuilder.Entity("Forum.Models.Classes", b =>
+                {
+                    b.HasOne("Forum.Models.Utilisateurs", "ProfesseurPrincipal")
+                        .WithMany()
+                        .HasForeignKey("ProfesseurPrincipalId");
+
+                    b.Navigation("ProfesseurPrincipal");
                 });
 
             modelBuilder.Entity("Forum.Models.Messages", b =>
@@ -243,8 +253,8 @@ namespace Forum.Migrations
             modelBuilder.Entity("Forum.Models.Utilisateurs", b =>
                 {
                     b.HasOne("Forum.Models.Classes", "Classes")
-                        .WithOne("ProfesseurPrincipal")
-                        .HasForeignKey("Forum.Models.Utilisateurs", "Id_classe");
+                        .WithMany()
+                        .HasForeignKey("Id_classe");
 
                     b.HasOne("Forum.Models.Etablissements", "Etablissements")
                         .WithMany()
@@ -253,11 +263,6 @@ namespace Forum.Migrations
                     b.Navigation("Classes");
 
                     b.Navigation("Etablissements");
-                });
-
-            modelBuilder.Entity("Forum.Models.Classes", b =>
-                {
-                    b.Navigation("ProfesseurPrincipal");
                 });
 #pragma warning restore 612, 618
         }

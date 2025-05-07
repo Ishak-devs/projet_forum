@@ -16,21 +16,6 @@ namespace Forum.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Classes",
-                columns: table => new
-                {
-                    Id_classe = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nom_classe = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Classes", x => x.Id_classe);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "Etablissements",
                 columns: table => new
                 {
@@ -66,6 +51,22 @@ namespace Forum.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Evaluations", x => x.Id_evaluation);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Classes",
+                columns: table => new
+                {
+                    Id_classe = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nom_classe = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    ProfesseurPrincipalId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Classes", x => x.Id_classe);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -163,6 +164,11 @@ namespace Forum.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Classes_ProfesseurPrincipalId",
+                table: "Classes",
+                column: "ProfesseurPrincipalId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Messages_Id_classe",
                 table: "Messages",
                 column: "Id_classe");
@@ -186,11 +192,22 @@ namespace Forum.Migrations
                 name: "IX_Utilisateurs_Id_etablissement",
                 table: "Utilisateurs",
                 column: "Id_etablissement");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Classes_Utilisateurs_ProfesseurPrincipalId",
+                table: "Classes",
+                column: "ProfesseurPrincipalId",
+                principalTable: "Utilisateurs",
+                principalColumn: "Id_utilisateur");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Classes_Utilisateurs_ProfesseurPrincipalId",
+                table: "Classes");
+
             migrationBuilder.DropTable(
                 name: "Evaluations");
 

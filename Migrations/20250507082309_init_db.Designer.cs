@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250506102550_ini")]
-    partial class ini
+    [Migration("20250507082309_init_db")]
+    partial class init_db
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,6 +41,8 @@ namespace Forum.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id_classe");
+
+                    b.HasIndex("ProfesseurPrincipalId");
 
                     b.ToTable("Classes");
                 });
@@ -210,6 +212,15 @@ namespace Forum.Migrations
                     b.HasIndex("Id_etablissement");
 
                     b.ToTable("Utilisateurs");
+                });
+
+            modelBuilder.Entity("Forum.Models.Classes", b =>
+                {
+                    b.HasOne("Forum.Models.Utilisateurs", "ProfesseurPrincipal")
+                        .WithMany()
+                        .HasForeignKey("ProfesseurPrincipalId");
+
+                    b.Navigation("ProfesseurPrincipal");
                 });
 
             modelBuilder.Entity("Forum.Models.Messages", b =>
