@@ -66,7 +66,7 @@ namespace Forum.Controllers
             ViewBag.EffectifsParClasse = effectifsParClasse;
             ViewBag.ClassesAvecProfs = classes;
 
-            return View();
+            return View(classes);
         }
 
 
