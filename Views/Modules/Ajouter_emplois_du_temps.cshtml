@@ -1,147 +1,4 @@
-@*@{
-
-        ViewData["Title"] = "Forum de discussion";
-         var classes = ViewBag.Classes as List<Classes> ?? new List<Classes>();
-        var utilisateurs = ViewBag.Utilisateurs as List<Utilisateurs> ?? new List<Utilisateurs>();
-    }
-
-    @if (TempData["SuccessMessage"] != null)
-    {
-    <div class="alert alert-success">
-        @TempData["SuccessMessage"]
-    </div>
-    }
-
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-9">
-                <h2 class="forum-title text-center mb-4">Gestion des emplois du temps</h2>
-
-
-                <form asp-action="Ajouter_emplois_du_temps">
-                    <div class="mb-3">
-                        <label for="classSelect" class="form-label">Choisissez une classe :</label>
-
-                        <select id="classSelect" name="classId" class="form-select" onchange="loadModules()">
-                            <option value="">-- S�lectionnez une classe --</option>
-                            @foreach (var classe in classes)
-        {
-                            <option value="@classe.Id_classe">@classe.Nom_classe</option>
-        }
-                        </select>
-
-                        <div class="mb-3">
-                            <label for="theme_module" class="form-label">Choisissez un cours :</label>
-                            <select class="form-select" text-center mb-4" id="theme_module" name="theme_module">
-                                <option value="">-- S�lectionnez un cours --</option>
-                                <option value="mathematiques">Math�matiques</option>
-                                <option value="francais">Fran�ais</option>
-                                <option value="histoire">Histoire</option>
-                                <option value="geographie">G�ographie</option>
-                                <option value="anglais">Anglais</option>
-                                <option value="physique">Physique</option>
-                                <option value="chimie">Chimie</option>
-                                <option value="informatique">Informatique</option>
-                                <option value="sport">Sport</option>
-                            </select>
-                        </div>
-
-
-                        <select class="form-select" id="profselect">
-                            <option value="">-- S�lectionnez un professeur --</option>
-                        </select>
-
-                        <div class="mb-4">
-                            <label for="Horaire" class="form-label">Choisissez un jour et un horaire</label>
-                            <select name="Horaire"class="form-select" id="horaireSelect">
-                                <option value="">-- S�lectionnez un jour et un horaire --</option>
-                                <option value="Lundi 08:00-09:00">Lundi 08:00 - 09:00</option>
-                                <option value="Lundi 09:00-10:00">Lundi 09:00 - 10:00</option>
-                                <option value="Lundi 10:00-11:00">Lundi 10:00 - 11:00</option>
-                                <option value="Lundi 11:00-12:00">Lundi 11:00 - 12:00</option>
-                                <option value="Lundi 12:00-13:00">Lundi 12:00 - 13:00</option>
-                                <option value="Lundi 13:00-14:00">Lundi 13:00 - 14:00</option>
-                                <option value="Lundi 14:00-15:00">Lundi 14:00 - 15:00</option>
-                                <option value="Lundi 15:00-16:00">Lundi 15:00 - 16:00</option>
-                                <option value="Lundi 16:00-17:00">Lundi 16:00 - 17:00</option>
-                                <option value="Lundi 17:00-18:00">Lundi 17:00 - 18:00</option>
-
-                                <option value="Mardi 08:00-09:00">Mardi 08:00 - 09:00</option>
-                                <option value="Mardi 09:00-10:00">Mardi 09:00 - 10:00</option>
-                                <option value="Mardi 10:00-11:00">Mardi 10:00 - 11:00</option>
-                                <option value="Mardi 11:00-12:00">Mardi 11:00 - 12:00</option>
-                                <option value="Mardi 12:00-13:00">Mardi 12:00 - 13:00</option>
-                                <option value="Mardi 13:00-14:00">Mardi 13:00 - 14:00</option>
-                                <option value="Mardi 14:00-15:00">Mardi 14:00 - 15:00</option>
-                                <option value="Mardi 15:00-16:00">Mardi 15:00 - 16:00</option>
-                                <option value="Mardi 16:00-17:00">Mardi 16:00 - 17:00</option>
-                                <option value="Mardi 17:00-18:00">Mardi 17:00 - 18:00</option>
-
-                                <option value="Mercredi 08:00-09:00">Mercredi 08:00 - 09:00</option>
-                                <option value="Mercredi 09:00-10:00">Mercredi 09:00 - 10:00</option>
-                                <option value="Mercredi 10:00-11:00">Mercredi 10:00 - 11:00</option>
-                                <option value="Mercredi 11:00-12:00">Mercredi 11:00 - 12:00</option>
-                                <option value="Mercredi 12:00-13:00">Mercredi 12:00 - 13:00</option>
-                                <option value="Mercredi 13:00-14:00">Mercredi 13:00 - 14:00</option>
-                                <option value="Mercredi 14:00-15:00">Mercredi 14:00 - 15:00</option>
-                                <option value="Mercredi 15:00-16:00">Mercredi 15:00 - 16:00</option>
-                                <option value="Mercredi 16:00-17:00">Mercredi 16:00 - 17:00</option>
-                                <option value="Mercredi 17:00-18:00">Mercredi 17:00 - 18:00</option>
-
-                                <option value="Jeudi 08:00-09:00">Jeudi 08:00 - 09:00</option>
-                                <option value="Jeudi 09:00-10:00">Jeudi 09:00 - 10:00</option>
-                                <option value="Jeudi 10:00-11:00">Jeudi 10:00 - 11:00</option>
-                                <option value="Jeudi 11:00-12:00">Jeudi 11:00 - 12:00</option>
-                                <option value="Jeudi 12:00-13:00">Jeudi 12:00 - 13:00</option>
-                                <option value="Jeudi 13:00-14:00">Jeudi 13:00 - 14:00</option>
-                                <option value="Jeudi 14:00-15:00">Jeudi 14:00 - 15:00</option>
-                                <option value="Jeudi 15:00-16:00">Jeudi 15:00 - 16:00</option>
-                                <option value="Jeudi 16:00-17:00">Jeudi 16:00 - 17:00</option>
-                                <option value="Jeudi 17:00-18:00">Jeudi 17:00 - 18:00</option>
-
-                                <option value="Vendredi 08:00-09:00">Vendredi 08:00 - 09:00</option>
-                                <option value="Vendredi 09:00-10:00">Vendredi 09:00 - 10:00</option>
-                                <option value="Vendredi 10:00-11:00">Vendredi 10:00 - 11:00</option>
-                                <option value="Vendredi 11:00-12:00">Vendredi 11:00 - 12:00</option>
-                                <option value="Vendredi 12:00-13:00">Vendredi 12:00 - 13:00</option>
-                                <option value="Vendredi 13:00-14:00">Vendredi 13:00 - 14:00</option>
-                                <option value="Vendredi 14:00-15:00">Vendredi 14:00 - 15:00</option>
-                                <option value="Vendredi 15:00-16:00">Vendredi 15:00 - 16:00</option>
-                                <option value="Vendredi 16:00-17:00">Vendredi 16:00 - 17:00</option>
-                                <option value="Vendredi 17:00-18:00">Vendredi 17:00 - 18:00</option>
-                            </select>
-                        </div>
-
-
-
-
-                    </div>
-                    <div class="mb-3">
-                        <button type="submit" class="btn btn-primary">Ajouter l'emploi du temps</button>
-                    </div>
-
-                </form>
-
-            </div>
-        </div>
-    </div>
-    <script>
-        function loadModules() {
-            var Profid = document.getElementById("classSelect").value;
-            fetch('/Modules/GetProfByClasse?id=' + Profid)
-                .then(res => res.json())
-                .then(data => {
-                    var select = document.getElementById("profselect");
-                    console.log(data);
-                    select.innerHTML = '<option value="">-- S�lectionnez un professeur --</option>';
-                    data.forEach(m => {
-                        select.innerHTML += `<option value="${m.id_professeur}">${m.nom} ${m.prenom} ${m.matiere}</option>`;
-                    });
-                });
-        }
-    </script>*@
-
-@{
+﻿@{
     ViewData["Title"] = "Gestion des emplois du temps";
     var classes = ViewBag.Classes as List<Classes> ?? new List<Classes>();
     var utilisateurs = ViewBag.Utilisateurs as List<Utilisateurs> ?? new List<Utilisateurs>();
@@ -160,13 +17,13 @@
         <div class="col-md-3">
             <div class="card shadow-sm">
                 <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0">�l�ments � placer</h5>
+                    <h5 class="mb-0">Éléments à placer</h5>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
                         <label for="classSelect" class="form-label">Classe :</label>
                         <select id="classSelect" class="form-select" onchange="loadModules()">
-                            <option value="">-- S�lectionnez --</option>
+                            <option value="">-- Sélectionnez --</option>
                             @foreach (var classe in classes)
                             {
                             <option value="@classe.Id_classe">@classe.Nom_classe</option>
@@ -177,11 +34,11 @@
                     <div class="mb-3">
                         <label for="theme_module" class="form-label">Cours :</label>
                         <select id="theme_module" class="form-select">
-                            <option value="">-- S�lectionnez --</option>
-                            <option value="mathematiques">Math�matiques</option>
-                            <option value="francais">Fran�ais</option>
+                            <option value="">-- Sélectionnez --</option>
+                            <option value="mathematiques">Mathématiques</option>
+                            <option value="francais">Français</option>
                             <option value="histoire">Histoire</option>
-                            <option value="geographie">G�ographie</option>
+                            <option value="geographie">Géographie</option>
                             <option value="anglais">Anglais</option>
                             <option value="physique">Physique</option>
                             <option value="chimie">Chimie</option>
@@ -193,14 +50,21 @@
                     <div class="mb-3">
                         <label for="profselect" class="form-label">Professeur :</label>
                         <select id="profselect" class="form-select">
-                            <option value="">-- S�lectionnez --</option>
+                            <option value="">-- Sélectionnez --</option>
                         </select>
                     </div>
 
                     <div class="d-grid gap-2">
-                        <button id="addCourseBtn" class="btn btn-outline-primary">
-                            <i class="bi bi-plus-circle"></i> Cr�er un cours
+                        <button id="addCourseBtn" class="btn btn-outline-primary" onclick="prepareCourse()">
+                            <i class="bi bi-plus-circle"></i> Créer un cours
                         </button>
+                    </div>
+
+                    <!-- Zone de dépôt temporaire -->
+                    <div id="tempDropZone" class="mt-3 p-2 border rounded"
+                         ondragover="allowDrop(event)"
+                         ondrop="drop(event)">
+                        <p class="text-muted small">Glissez les cours ici pour les supprimer</p>
                     </div>
                 </div>
             </div>
@@ -233,7 +97,7 @@
                                         {
                                     <td class="timetable-slot" data-day="@day" data-hour="@($"{h:00}:00")"
                                         ondragover="allowDrop(event)" ondrop="drop(event)">
-                                        <!-- Les cours seront ajout�s ici par drag & drop -->
+                                        <!-- Les cours seront ajoutés ici par drag & drop -->
                                     </td>
                                         }
                                 </tr>
@@ -279,6 +143,7 @@
             cursor: pointer;
             transition: all 0.2s;
             position: relative;
+            min-height: 60px;
         }
 
             .timetable-slot:hover {
@@ -298,98 +163,202 @@
             margin: 2px 0;
             font-size: 0.85rem;
             cursor: move;
+            position: relative;
         }
 
             .course-item:hover {
                 background-color: #cfe2ff;
             }
+
+        #tempDropZone {
+            min-height: 50px;
+            background-color: #f8f9fa;
+        }
+
+            #tempDropZone.drag-over {
+                background-color: #ffeaea;
+                border-color: #ff6b6b;
+            }
+
+        /* Styles pour les créneaux sélectionnables */
+        .selectable-slot {
+            background-color: #e8f5e9 !important;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .selectable-slot:hover {
+            background-color: #c8e6c9 !important;
+            box-shadow: 0 0 0 2px #4caf50;
+        }
+
+        .flash-animation {
+            animation: flash 1s;
+        }
+
+        @*@keyframes flash {
+            0% { background-color: #e8f5e9; }
+            50% { background-color: #4caf50; }
+            100% { background-color: #e8f5e9; }
+        }*@
     </style>
 }
 
 @section Scripts {
     <script>
+        // Variable pour stocker les infos du cours à placer
+        let pendingCourse = null;
+
         // Chargement des professeurs
         function loadModules() {
             var classId = document.getElementById("classSelect").value;
+            if (!classId) return;
+
             fetch('/Modules/GetProfByClasse?id=' + classId)
                 .then(res => res.json())
                 .then(data => {
                     var select = document.getElementById("profselect");
-                    select.innerHTML = '<option value="">-- S�lectionnez --</option>';
+                    select.innerHTML = '<option value="">-- Sélectionnez --</option>';
                     data.forEach(m => {
                         select.innerHTML += `<option value="${m.id_professeur}">${m.nom} ${m.prenom} (${m.matiere})</option>`;
                     });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
                 });
         }
 
+        function prepareCourse() {
+            var classSelect = document.getElementById("classSelect");
+            var themeSelect = document.getElementById("theme_module");
+            var profSelect = document.getElementById("profselect");
+
+            if (!classSelect.value || !themeSelect.value || !profSelect.value) {
+                alert("Veuillez sélectionner une classe, un cours et un professeur");
+                return;
+            }
+
+            // Stocker les infos du cours à placer
+            pendingCourse = {
+                theme: themeSelect.options[themeSelect.selectedIndex].text,
+                prof: profSelect.options[profSelect.selectedIndex].text,
+                themeValue: themeSelect.value,
+                profValue: profSelect.value
+            };
+
+            // Activer le mode sélection de créneau
+            alert("Cliquez maintenant sur le créneau horaire où vous voulez placer ce cours");
+
+            // Ajouter un style aux créneaux pour indiquer qu'ils sont sélectionnables
+            const slots = document.querySelectorAll('.timetable-slot');
+            slots.forEach(slot => {
+                slot.classList.add('selectable-slot');
+                slot.onclick = function () {
+                    if (pendingCourse) {
+                        placeCourse(this);
+                    }
+                };
+            });
+        }
+
+        function placeCourse(slot) {
+            if (!pendingCourse) return;
+
+            // Vérifier si le créneau est déjà occupé
+            if (slot.querySelector('.course-item')) {
+                if (!confirm("Ce créneau est déjà occupé. Remplacer le cours existant ?")) {
+                    return;
+                }
+                slot.innerHTML = ''; // Vider le créneau
+            }
+
+            // Créer l'élément du cours
+            const courseId = 'course-' + Date.now();
+            const courseElement = document.createElement("div");
+            courseElement.id = courseId;
+            courseElement.className = "course-item";
+            courseElement.draggable = true;
+            courseElement.ondragstart = drag;
+
+            courseElement.innerHTML = `
+                    <strong>${pendingCourse.theme}</strong>
+                    <div>${pendingCourse.prof}</div>
+                    <button class="btn btn-sm btn-outline-danger float-end" onclick="removeCourse('${courseId}')">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                `;
+
+            slot.appendChild(courseElement);
+
+            // Réinitialiser le mode sélection
+            resetSelectionMode();
+        }
+
+        function resetSelectionMode() {
+            pendingCourse = null;
+            const slots = document.querySelectorAll('.timetable-slot');
+            slots.forEach(slot => {
+                slot.classList.remove('selectable-slot');
+                slot.onclick = null;
+            });
+        }
 
         function allowDrop(ev) {
             ev.preventDefault();
+            if (ev.target.id === 'tempDropZone') {
+                ev.target.classList.add('drag-over');
+            }
         }
 
         function drag(ev) {
             ev.dataTransfer.setData("text", ev.target.id);
+            ev.dataTransfer.effectAllowed = "move";
         }
 
         function drop(ev) {
             ev.preventDefault();
+
+            // Retirer le style de drag-over
+            if (ev.target.id === 'tempDropZone') {
+                ev.target.classList.remove('drag-over');
+            }
+
             var data = ev.dataTransfer.getData("text");
             var draggedElement = document.getElementById(data);
 
+            if (!draggedElement) return;
 
+            // Si on dépose dans la zone de suppression
+            if (ev.target.id === 'tempDropZone') {
+                draggedElement.remove();
+                return;
+            }
+
+            // Si c'est un cours existant qu'on déplace
             if (draggedElement.classList.contains('course-item')) {
-
-                ev.target.appendChild(draggedElement);
-            } else {
-
-                var classSelect = document.getElementById("classSelect");
-                var themeSelect = document.getElementById("theme_module");
-                var profSelect = document.getElementById("profselect");
-
-                if (classSelect.value && themeSelect.value && profSelect.value) {
-                    var courseId = 'course-' + Date.now();
-                    var courseElement = document.createElement("div");
-                    courseElement.id = courseId;
-                    courseElement.className = "course-item";
-                    courseElement.draggable = true;
-                    courseElement.ondragstart = drag;
-
-                    var profText = profSelect.options[profSelect.selectedIndex].text;
-                    courseElement.innerHTML = `
-                            <strong>${themeSelect.options[themeSelect.selectedIndex].text}</strong>
-                            <div>${profText}</div>
-                            <button class="btn btn-sm btn-outline-danger float-end" onclick="removeCourse('${courseId}')">
-                                <i class="bi bi-trash"></i>
-                            </button>
-                        `;
-
-                    ev.target.appendChild(courseElement);
-                } else {
-                    alert("Veuillez s�lectionner une classe, un cours et un professeur");
+                // Vérifier si la case est vide ou non
+                if (ev.target.classList.contains('timetable-slot')) {
+                    // Vider la case avant d'ajouter le cours
+                    ev.target.innerHTML = '';
+                    ev.target.appendChild(draggedElement);
+                } else if (ev.target.closest('.timetable-slot')) {
+                    // Si on dépose sur un élément à l'intérieur de la case
+                    var slot = ev.target.closest('.timetable-slot');
+                    slot.innerHTML = '';
+                    slot.appendChild(draggedElement);
                 }
+                return;
             }
         }
 
         function removeCourse(courseId) {
-            document.getElementById(courseId).remove();
+            var courseElement = document.getElementById(courseId);
+            if (courseElement && confirm("Supprimer ce cours ?")) {
+                courseElement.remove();
+            }
         }
 
-        // Gestion de l'enregistrement
-        document.getElementById('addCourseBtn').addEventListener('click', function () {
-            var emptySlot = document.querySelector('.timetable-slot');
-            if (emptySlot) {
-                var event = { target: emptySlot };
-                drop(event);
-            }
-        });
-
         document.getElementById('saveTimetableBtn').addEventListener('click', function () {
-            var modal = new bootstrap.Modal(document.getElementById('confirmModal'));
-            modal.show();
-        });
-
-        document.getElementById('confirmSaveBtn').addEventListener('click', function () {
-            
             var timetableData = [];
             var slots = document.querySelectorAll('.timetable-slot');
 
@@ -398,12 +367,14 @@
                 if (courses.length > 0) {
                     var day = slot.dataset.day;
                     var hour = slot.dataset.hour;
+                    var classId = document.getElementById("classSelect").value;
 
                     courses.forEach(course => {
                         var courseName = course.querySelector('strong').textContent;
                         var professor = course.querySelector('div').textContent;
 
                         timetableData.push({
+                            classId: classId,
                             day: day,
                             hour: hour,
                             course: courseName,
@@ -413,24 +384,42 @@
                 }
             });
 
-            fetch('/Modules/SaveTimetable', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(timetableData)
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        location.reload();
-                    } else {
-                        alert("Erreur lors de l'enregistrement");
-                    }
-                });
+            if (timetableData.length === 0) {
+                alert("Aucun cours à enregistrer");
+                return;
+            }
 
-            var modal = bootstrap.Modal.getInstance(document.getElementById('confirmModal'));
-            modal.hide();
+            var modal = new bootstrap.Modal(document.getElementById('confirmModal'));
+            modal.show();
+
+            document.getElementById('confirmSaveBtn').onclick = function () {
+                fetch('/Modules/SaveTimetable', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(timetableData)
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            window.location.reload();
+                        } else {
+                            alert("Erreur lors de l'enregistrement: " + (data.message || ''));
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert("Une erreur est survenue lors de l'enregistrement");
+                    });
+
+                modal.hide();
+            };
         });
     </script>
 }
