@@ -283,9 +283,7 @@
             courseElement.innerHTML = `
                     <strong>${pendingCourse.theme}</strong>
                     <div>${pendingCourse.prof}</div>
-                    <button class="btn btn-sm btn-outline-danger float-end" onclick="removeCourse('${courseId}')">
-                        <i class="bi bi-trash"></i>
-                    </button>
+                    
                 `;
 
             slot.appendChild(courseElement);
@@ -348,13 +346,6 @@
                     slot.appendChild(draggedElement);
                 }
                 return;
-            }
-        }
-
-        function removeCourse(courseId) {
-            var courseElement = document.getElementById(courseId);
-            if (courseElement && confirm("Supprimer ce cours ?")) {
-                courseElement.remove();
             }
         }
 
