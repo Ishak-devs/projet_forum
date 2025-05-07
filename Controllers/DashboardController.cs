@@ -54,7 +54,7 @@ namespace Forum.Controllers
                 .Select(c => new
                 {
                     Classe = c,
-                    ProfPrincipal = contextget.Utilisateurs.FirstOrDefault(u => u.Id == c.ProfPrincipalId)
+                    ProfPrincipal = contextget.Utilisateurs.FirstOrDefault(u => u.Id == c.ProfesseurPrincipalId)
                 })
                 .ToList();
 

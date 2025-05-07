@@ -103,8 +103,16 @@
                                                 @nombre_etudiant étudiants
                                             </td>
 
+                                            <td>
+                                                @foreach (var item in ViewBag.ClassesAvecProfs)
+{
+    <p>Classe : @item.Classe.Nom</p>
+    <p>Prof Principal : @item.ProfPrincipal?.Nom @item.ProfPrincipal?.Prenom</p>
+}
 
-                                          
+                                            </td>
+
+
 
                                             <td>
                                                 <a href="#" class="btn btn-sm btn-outline-primary">
