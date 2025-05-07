@@ -50,19 +50,25 @@ namespace Forum.Controllers
 
         public IActionResult Admin()
         {
-            var classes = contextget.Classes.ToList();
+            var classes = contextget.Classes
+                .Select(c => new
+                {
+                    Classe = c,
+                    ProfPrincipal = contextget.Utilisateurs.FirstOrDefault(u => u.Id == c.ProfPrincipalId)
+                })
+                .ToList();
 
-             var effectifsParClasse = contextget.Utilisateurs
-            .Where(u => u.Role == "Etudiant" && u.Id_classe != null)
-            .GroupBy(u => u.Id_classe)
-            .ToDictionary(groupe_eleve => groupe_eleve.Key, groupe_eleve => groupe_eleve.Count());
+            var effectifsParClasse = contextget.Utilisateurs
+                .Where(u => u.Role == "Etudiant" && u.Id_classe != null)
+                .GroupBy(u => u.Id_classe)
+                .ToDictionary(g => g.Key, g => g.Count());
 
             ViewBag.EffectifsParClasse = effectifsParClasse;
+            ViewBag.ClassesAvecProfs = classes;
 
-
-            return View(classes);
-
+            return View();
         }
+
 
 
         public IActionResult Schoolspace()
