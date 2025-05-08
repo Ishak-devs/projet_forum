@@ -58,6 +58,7 @@ namespace Forum.Controllers
                 {
                     contextget.SaveChanges();
                     HttpContext.Session.SetInt32("UserId", newUtilisateur.Id_utilisateur);
+                    HttpContext.Session.SetString("UserRole", newUtilisateur.Role);
 
 
                     // Redirection après succès
