@@ -9,10 +9,12 @@ namespace Forum.Controllers
     public class ModulesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<ModulesController> _logger;
 
-        public ModulesController(ApplicationDbContext context)
+        public ModulesController(ApplicationDbContext context, ILogger<ModulesController> logger)
         {
             _context = context;
+            _logger = logger;
         }
         public async Task<IActionResult> Index()
         {
@@ -73,7 +75,7 @@ namespace Forum.Controllers
             }
             catch (DbUpdateException ex)
             {
-                ModelState.AddModelError("", "Erreur d'enregistrement : " + ex.Message);
+                _logger.LogError(ex, "Erreur DbUpdateException lors de la sauvegarde");
                 return View();
             }
 
