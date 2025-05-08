@@ -122,14 +122,27 @@
                                             <span class="badge bg-primary bg-opacity-10 text-primary">@nombre_etudiant élèves</span>
                                         </td>
                                         <td>
-                                            @foreach (var item in ViewBag.prof_principal)
+
+                                            @foreach (var item in ViewBag.prof_principal ?? Enumerable.Empty<dynamic>())
                                             {
-                                                if (item.Classe.Id_classe == classe.Id_classe)
+                                                if (item?.Classe?.Id_classe != null &&
+                                                classe?.Id_classe != null &&
+                                                item.Classe.Id_classe == classe.Id_classe)
                                                 {
-                                            <span class="d-inline-block">
-                                                <i class="fas fa-chalkboard-teacher text-muted me-1"></i>
-                                                 @item.ProfPrincipal?.Nom @item.ProfPrincipal?.Prenom
-                                            </span>
+                                                    @if (item.ProfPrincipal != null)
+                                                    {
+                                                        <span class="d-inline-block">
+                                                            <i class="fas fa-chalkboard-teacher text-muted me-1"></i>
+                                                            @item.ProfPrincipal.Nom @item.ProfPrincipal.Prenom
+                                                        </span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="d-inline-block text-muted">
+                                                            <i class="fas fa-chalkboard-teacher me-1"></i>
+                                                            Professeur non attribué
+                                                        </span>
+                                                    }
                                                 }
                                             }
                                         </td>

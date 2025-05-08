@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Forum.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Forum.Controllers
 {
@@ -54,8 +55,10 @@ namespace Forum.Controllers
             var classes = _context.Classes.ToList();
 
 
+
             var Prof_principal = classes.Select(c => new
             {
+
                 Classe = c,
                 ProfPrincipal = _context.Utilisateurs
                     .FirstOrDefault(u => u.Id_utilisateur == c.ProfesseurPrincipalId)
