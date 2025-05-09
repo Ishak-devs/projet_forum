@@ -39,6 +39,8 @@ namespace Forum.Controllers
         [HttpGet]
         public async Task<IActionResult> Ajouter_emplois_du_temps()
         {
+            _logger.LogDebug("POST reçu - classId: {classId}, theme: {theme}, horaire: {horaire}",
+            classId, theme_module, horaire);
             var userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null)
             {
