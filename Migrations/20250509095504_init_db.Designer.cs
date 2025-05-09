@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250507082309_init_db")]
+    [Migration("20250509095504_init_db")]
     partial class init_db
     {
         /// <inheritdoc />
@@ -90,6 +90,12 @@ namespace Forum.Migrations
                     b.Property<DateTime>("Date_evaluation")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("Id_module")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id_utilisateur")
+                        .HasColumnType("int");
+
                     b.Property<decimal?>("Note_evaluation")
                         .HasColumnType("decimal(65,30)");
 
@@ -98,6 +104,10 @@ namespace Forum.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id_evaluation");
+
+                    b.HasIndex("Id_module");
+
+                    b.HasIndex("Id_utilisateur");
 
                     b.ToTable("Evaluations");
                 });
@@ -221,6 +231,25 @@ namespace Forum.Migrations
                         .HasForeignKey("ProfesseurPrincipalId");
 
                     b.Navigation("ProfesseurPrincipal");
+                });
+
+            modelBuilder.Entity("Forum.Models.Evaluations", b =>
+                {
+                    b.HasOne("Forum.Models.Modules", "Module")
+                        .WithMany()
+                        .HasForeignKey("Id_module")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Forum.Models.Utilisateurs", "User")
+                        .WithMany()
+                        .HasForeignKey("Id_utilisateur")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Module");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Forum.Models.Messages", b =>

@@ -7,10 +7,10 @@
 
 <h2>Inscription d’un utilisateur</h2>
 
-@if (TempData["SuccessMessage"] != null)
+@if (Viewbag.SuccessMessage != null)
 {
     <div class="alert alert-success">
-        @TempData["SuccessMessage"]
+        @Viewbag.SuccessMessage
     </div>
 }
 

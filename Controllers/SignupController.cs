@@ -127,8 +127,9 @@ namespace Forum.Controllers
             try
             {
                 contextget.SaveChanges();
-                TempData["SuccessMessage"] = "Utilisateur inscrit avec succès !";
+                ViewBag.SuccessMessage = "Utilisateur inscrit avec succès !";
                 return RedirectToAction("Inscrire_utilisateur");
+                
             }
             catch (DbUpdateException ex)
             {

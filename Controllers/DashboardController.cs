@@ -29,6 +29,7 @@ namespace Forum.Controllers
 
         }
 
+
         public IActionResult Eleve()
         {
             var eleveId = HttpContext.Session.GetInt32("Etudiant");
@@ -53,8 +54,6 @@ namespace Forum.Controllers
         {
 
             var classes = _context.Classes.ToList();
-
-
 
             var Prof_principal = classes.Select(c => new
             {

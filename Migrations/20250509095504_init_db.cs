@@ -38,23 +38,6 @@ namespace Forum.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Evaluations",
-                columns: table => new
-                {
-                    Id_evaluation = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Date_evaluation = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Theme_evaluation = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Note_evaluation = table.Column<decimal>(type: "decimal(65,30)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Evaluations", x => x.Id_evaluation);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "Classes",
                 columns: table => new
                 {
@@ -134,6 +117,37 @@ namespace Forum.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Evaluations",
+                columns: table => new
+                {
+                    Id_evaluation = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Date_evaluation = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Theme_evaluation = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Note_evaluation = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
+                    Id_utilisateur = table.Column<int>(type: "int", nullable: false),
+                    Id_module = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Evaluations", x => x.Id_evaluation);
+                    table.ForeignKey(
+                        name: "FK_Evaluations_Modules_Id_module",
+                        column: x => x.Id_module,
+                        principalTable: "Modules",
+                        principalColumn: "Id_module",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Evaluations_Utilisateurs_Id_utilisateur",
+                        column: x => x.Id_utilisateur,
+                        principalTable: "Utilisateurs",
+                        principalColumn: "Id_utilisateur",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "Messages",
                 columns: table => new
                 {
@@ -167,6 +181,16 @@ namespace Forum.Migrations
                 name: "IX_Classes_ProfesseurPrincipalId",
                 table: "Classes",
                 column: "ProfesseurPrincipalId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Evaluations_Id_module",
+                table: "Evaluations",
+                column: "Id_module");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Evaluations_Id_utilisateur",
+                table: "Evaluations",
+                column: "Id_utilisateur");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Messages_Id_classe",
