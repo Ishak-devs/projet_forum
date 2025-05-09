@@ -53,34 +53,32 @@ namespace Forum.Controllers
             return View();
         }
 
-
         [HttpPost]
         public IActionResult Ajouter_emplois_du_temps(int classId, string theme_module, string horaire)
         {
-            
-            var module = new Modules
-            {
-                Id_classe = classId,
-                Theme_module = theme_module,
-                Horaire = horaire
-               
-            };
-
             try
             {
+                var module = new Modules
+                {
+                    Id_classe = classId,
+                    Theme_module = theme_module,
+                    Horaire = horaire
+                };
+
                 _context.Modules.Add(module);
                 _context.SaveChanges();
 
+                _logger.LogInformation("Module ajouté avec succès: {Theme} pour la classe {ClassId}", theme_module, classId);
                 TempData["SuccessMessage"] = "Ajout réussie !";
             }
-            catch (DbUpdateException ex)
+            catch (Exception ex)
             {
-                _logger.LogError(ex, "Erreur DbUpdateException lors de la sauvegarde");
-                return View();
+                _logger.LogError(ex, "Erreur lors de l'ajout du module. ClassId: {ClassId}, Theme: {Theme}, Horaire: {Horaire}",
+                    classId, theme_module, horaire);
+                TempData["ErrorMessage"] = "Erreur lors de l'ajout du module";
             }
 
-            return RedirectToAction("Ajouter_emplois_du_temps");  
+            return RedirectToAction("Ajouter_emplois_du_temps");
         }
-
     }
 }
