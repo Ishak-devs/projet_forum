@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Forum.Migrations
 {
     /// <inheritdoc />
-    public partial class init_db : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,6 +34,23 @@ namespace Forum.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Etablissements", x => x.Id_etablissement);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Alerte",
+                columns: table => new
+                {
+                    Id_alerte = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Message = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Id_utilisateur = table.Column<int>(type: "int", nullable: false),
+                    Id_classe = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Alerte", x => x.Id_alerte);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -178,6 +195,16 @@ namespace Forum.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Alerte_Id_classe",
+                table: "Alerte",
+                column: "Id_classe");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Alerte_Id_utilisateur",
+                table: "Alerte",
+                column: "Id_utilisateur");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Classes_ProfesseurPrincipalId",
                 table: "Classes",
                 column: "ProfesseurPrincipalId");
@@ -218,6 +245,22 @@ namespace Forum.Migrations
                 column: "Id_etablissement");
 
             migrationBuilder.AddForeignKey(
+                name: "FK_Alerte_Classes_Id_classe",
+                table: "Alerte",
+                column: "Id_classe",
+                principalTable: "Classes",
+                principalColumn: "Id_classe",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Alerte_Utilisateurs_Id_utilisateur",
+                table: "Alerte",
+                column: "Id_utilisateur",
+                principalTable: "Utilisateurs",
+                principalColumn: "Id_utilisateur",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
                 name: "FK_Classes_Utilisateurs_ProfesseurPrincipalId",
                 table: "Classes",
                 column: "ProfesseurPrincipalId",
@@ -229,8 +272,11 @@ namespace Forum.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Classes_Utilisateurs_ProfesseurPrincipalId",
-                table: "Classes");
+                name: "FK_Utilisateurs_Classes_Id_classe",
+                table: "Utilisateurs");
+
+            migrationBuilder.DropTable(
+                name: "Alerte");
 
             migrationBuilder.DropTable(
                 name: "Evaluations");
@@ -242,10 +288,10 @@ namespace Forum.Migrations
                 name: "Modules");
 
             migrationBuilder.DropTable(
-                name: "Utilisateurs");
+                name: "Classes");
 
             migrationBuilder.DropTable(
-                name: "Classes");
+                name: "Utilisateurs");
 
             migrationBuilder.DropTable(
                 name: "Etablissements");

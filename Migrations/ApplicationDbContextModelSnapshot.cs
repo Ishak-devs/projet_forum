@@ -21,6 +21,34 @@ namespace Forum.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
+            modelBuilder.Entity("Forum.Models.Alertes", b =>
+                {
+                    b.Property<int>("Id_alerte")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_alerte"));
+
+                    b.Property<int>("Id_classe")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id_utilisateur")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("Id_alerte");
+
+                    b.HasIndex("Id_classe");
+
+                    b.HasIndex("Id_utilisateur");
+
+                    b.ToTable("Alerte");
+                });
+
             modelBuilder.Entity("Forum.Models.Classes", b =>
                 {
                     b.Property<int>("Id_classe")
@@ -219,6 +247,25 @@ namespace Forum.Migrations
                     b.HasIndex("Id_etablissement");
 
                     b.ToTable("Utilisateurs");
+                });
+
+            modelBuilder.Entity("Forum.Models.Alertes", b =>
+                {
+                    b.HasOne("Forum.Models.Classes", "Classe")
+                        .WithMany()
+                        .HasForeignKey("Id_classe")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Forum.Models.Utilisateurs", "User")
+                        .WithMany()
+                        .HasForeignKey("Id_utilisateur")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Classe");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Forum.Models.Classes", b =>
