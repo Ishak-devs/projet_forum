@@ -16,7 +16,6 @@
 <form id="etablissementForm" method="post" asp-controller="Signup" asp-action="Etablissement">
 
 
-
     <div class="form-group">
         <label asp-for="Region"></label>
         <select asp-for="Region" class="form-control" required>
@@ -97,7 +96,7 @@
                 $('#etablissements').html('<option value="">Chargement...</option>');
                 etablissementsData = {};
 
-                let apiUrl = `https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-annuaire-education&rows=50&refine.type_etablissement=${encodeURIComponent(typeEtablissement)}`;
+                let apiUrl = `https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-annuaire-education&rows=500&refine.type_etablissement=${encodeURIComponent(typeEtablissement)}`;
 
                 if (region) {
                     apiUrl += `&refine.region=${encodeURIComponent(region)}`;
