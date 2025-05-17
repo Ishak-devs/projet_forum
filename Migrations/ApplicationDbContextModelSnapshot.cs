@@ -21,6 +21,37 @@ namespace Forum.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
+            modelBuilder.Entity("Forum.Models.Alertes", b =>
+                {
+                    b.Property<int>("Id_alerte")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_alerte"));
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Id_promo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id_utilisateur")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id_alerte");
+
+                    b.HasIndex("Id_promo");
+
+                    b.HasIndex("Id_utilisateur");
+
+                    b.ToTable("Alertes");
+                });
+
             modelBuilder.Entity("Forum.Models.Classes", b =>
                 {
                     b.Property<int>("Id_classe")
@@ -221,35 +252,23 @@ namespace Forum.Migrations
                     b.ToTable("Utilisateurs");
                 });
 
-            modelBuilder.Entity("WebApplication2.Models.Alertes", b =>
+            modelBuilder.Entity("Forum.Models.Alertes", b =>
                 {
-                    b.Property<int>("Id_alerte")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.HasOne("Forum.Models.Classes", "Classe")
+                        .WithMany()
+                        .HasForeignKey("Id_promo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_alerte"));
+                    b.HasOne("Forum.Models.Utilisateurs", "User")
+                        .WithMany()
+                        .HasForeignKey("Id_utilisateur")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Navigation("Classe");
 
-                    b.Property<int>("Id_promo")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id_utilisateur")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id_alerte");
-
-                    b.HasIndex("Id_promo");
-
-                    b.HasIndex("Id_utilisateur");
-
-                    b.ToTable("Alerte");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Forum.Models.Classes", b =>
@@ -323,25 +342,6 @@ namespace Forum.Migrations
                     b.Navigation("Classes");
 
                     b.Navigation("Etablissements");
-                });
-
-            modelBuilder.Entity("WebApplication2.Models.Alertes", b =>
-                {
-                    b.HasOne("Forum.Models.Classes", "Classe")
-                        .WithMany()
-                        .HasForeignKey("Id_promo")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Forum.Models.Utilisateurs", "User")
-                        .WithMany()
-                        .HasForeignKey("Id_utilisateur")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Classe");
-
-                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

@@ -38,7 +38,7 @@ namespace Forum.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Alerte",
+                name: "Alertes",
                 columns: table => new
                 {
                     Id_alerte = table.Column<int>(type: "int", nullable: false)
@@ -52,7 +52,7 @@ namespace Forum.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Alerte", x => x.Id_alerte);
+                    table.PrimaryKey("PK_Alertes", x => x.Id_alerte);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -197,13 +197,13 @@ namespace Forum.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Alerte_Id_promo",
-                table: "Alerte",
+                name: "IX_Alertes_Id_promo",
+                table: "Alertes",
                 column: "Id_promo");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Alerte_Id_utilisateur",
-                table: "Alerte",
+                name: "IX_Alertes_Id_utilisateur",
+                table: "Alertes",
                 column: "Id_utilisateur");
 
             migrationBuilder.CreateIndex(
@@ -247,16 +247,16 @@ namespace Forum.Migrations
                 column: "Id_etablissement");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Alerte_Classes_Id_promo",
-                table: "Alerte",
+                name: "FK_Alertes_Classes_Id_promo",
+                table: "Alertes",
                 column: "Id_promo",
                 principalTable: "Classes",
                 principalColumn: "Id_classe",
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Alerte_Utilisateurs_Id_utilisateur",
-                table: "Alerte",
+                name: "FK_Alertes_Utilisateurs_Id_utilisateur",
+                table: "Alertes",
                 column: "Id_utilisateur",
                 principalTable: "Utilisateurs",
                 principalColumn: "Id_utilisateur",
@@ -278,7 +278,7 @@ namespace Forum.Migrations
                 table: "Utilisateurs");
 
             migrationBuilder.DropTable(
-                name: "Alerte");
+                name: "Alertes");
 
             migrationBuilder.DropTable(
                 name: "Evaluations");

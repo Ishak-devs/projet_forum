@@ -99,14 +99,14 @@ namespace Forum.Controllers
 
             return RedirectToAction("Index");
         }
-        // Méthode pour afficher le formulaire d'ajout d'alerte
+
         public IActionResult AjouterAlerte()
         {
             var classes = _context.Classes.ToList();
             return View(classes);
         }
 
-        // Méthode POST pour traiter l'ajout d'alerte
+
         [HttpPost]
         public IActionResult AjouterAlerte(string message, string category, int? id_promo, bool pourTous = false)
         {
