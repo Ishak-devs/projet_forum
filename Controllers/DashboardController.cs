@@ -65,7 +65,7 @@ namespace Forum.Controllers
 
             var effectifsParClasse = _context.Utilisateurs
                 .Where(u => u.Role == "Etudiant" && u.Id_classe != null)
-                .GroupBy(u => u.Id_classe)
+                .GroupBy(u => u.Id_classe.Value)
                 .ToDictionary(g => g.Key, g => g.Count());
 
             ViewBag.EffectifsParClasse = effectifsParClasse;
@@ -96,7 +96,64 @@ namespace Forum.Controllers
                 }
             }
 
+
             return RedirectToAction("Index");
+        }
+        // Méthode pour afficher le formulaire d'ajout d'alerte
+        public IActionResult AjouterAlerte()
+        {
+            var classes = _context.Classes.ToList();
+            return View(classes);
+        }
+
+        // Méthode POST pour traiter l'ajout d'alerte
+        [HttpPost]
+        public IActionResult AjouterAlerte(string message, string category, int? id_promo, bool pourTous = false)
+        {
+            try
+            {
+
+                var userId = HttpContext.Session.GetInt32("UserId");
+                if (!userId.HasValue)
+                {
+                    TempData["ErrorMessage"] = "Vous devez être connecté pour envoyer une alerte.";
+                    return RedirectToAction("Login", "Account");
+                }
+
+
+                var nouvelleAlerte = new Alertes
+                {
+                    Id_utilisateur = userId.Value,
+                    Message = message,
+                    Category = category,
+                    Id_promo = id_promo.Value
+                };
+
+
+                _context.Alertes.Add(nouvelleAlerte);
+                _context.SaveChanges();
+
+                TempData["SuccessMessage"] = "L'alerte a été envoyée avec succès.";
+                return RedirectToAction("Admin");
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"Erreur lors de l'envoi de l'alerte: {ex.Message}");
+                TempData["ErrorMessage"] = "Une erreur est survenue lors de l'envoi de l'alerte.";
+                return RedirectToAction("AjouterAlerte");
+            }
+        }
+
+        public IActionResult VoirAlertes()
+        {
+            var alertes = _context.Alertes
+                .Include(a => a.User) 
+                .Include(a => a.Classe) 
+                .OrderByDescending(a => a.Id_alerte) 
+                .ToList();
+
+            return View(alertes);
         }
 
     }

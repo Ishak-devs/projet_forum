@@ -2,7 +2,8 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Forum.Models;
 
-namespace WebApplication2.Models
+
+namespace Forum.Models
 {
     public class Alertes
     {
