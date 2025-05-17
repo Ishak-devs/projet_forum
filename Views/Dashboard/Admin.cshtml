@@ -3,150 +3,150 @@
     ViewData["Title"] = "Administration - Gestion Établissement Scolaire";
     }
 
-    <div class="container-fluid py-4">
-        <div class="row mb-4">
-            <div class="col-12">
-                <div class="d-flex align-items-center mb-3">
-                    <i class="fas fa-university fa-2x text-primary me-3"></i>
-                    <div>
-                        <h1 class="h2 fw-bold text-dark mb-0">Gestion de l'Établissement Scolaire</h1>
-                        <p class="text-muted mb-0">Tableau de bord administratif</p>
-                    </div>
-                </div>
+               <div class="container-fluid py-4">
+                   <div class="row mb-4">
+                       <div class="col-12">
+                           <div class="d-flex align-items-center mb-3">
+                               <i class="fas fa-university fa-2x text-primary me-3"></i>
+                               <div>
+                                   <h1 class="h2 fw-bold text-dark mb-0">Gestion de l'Établissement Scolaire</h1>
+                                   <p class="text-muted mb-0">Tableau de bord administratif</p>
+                               </div>
+                           </div>
 
-                @if (TempData["NomEtablissementCree"] != null)
+                           @if (TempData["NomEtablissementCree"] != null)
             {
-                <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                    <i class="fas fa-check-circle me-2"></i>
-                    <strong>École @TempData["NomEtablissementCree"]</strong> - Gestion administrative
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+                           <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                               <i class="fas fa-check-circle me-2"></i>
+                               <strong>École @TempData["NomEtablissementCree"]</strong> - Gestion administrative
+                               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                           </div>
             }
-            </div>
-        </div>
+                       </div>
+                   </div>
 
-        <!-- Cartes d'actions rapides -->
-        <div class="row g-4 mb-4">
-            <div class="col-md-4">
-                <div class="card border-primary h-100">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-3">
-                            <div class="bg-primary bg-opacity-10 p-3 rounded me-3">
-                                <i class="fas fa-users fa-2x text-primary"></i>
-                            </div>
-                            <h5 class="card-title mb-0">Gestion des Promotions</h5>
-                        </div>
-                        <p class="card-text text-muted">Créez et gérez les promotions de l'établissement pour l'année scolaire en cours.</p>
-                        <a href="@Url.Action("Ajouterclasse", "Classe")" class="btn btn-outline-primary stretched-link">
-                            <i class="fas fa-plus-circle me-1"></i> Ajouter une promotion
-                        </a>
-                    </div>
-                </div>
-            </div>
+                   <!-- Cartes d'actions rapides -->
+                   <div class="row g-4 mb-4">
+                       <div class="col-md-4">
+                           <div class="card border-primary h-100">
+                               <div class="card-body">
+                                   <div class="d-flex align-items-center mb-3">
+                                       <div class="bg-primary bg-opacity-10 p-3 rounded me-3">
+                                           <i class="fas fa-users fa-2x text-primary"></i>
+                                       </div>
+                                       <h5 class="card-title mb-0">Gestion des Promotions</h5>
+                                   </div>
+                                   <p class="card-text text-muted">Créez et gérez les promotions de l'établissement pour l'année scolaire en cours.</p>
+                                   <a href="@Url.Action("Ajouterclasse", "Classe")" class="btn btn-outline-primary stretched-link">
+                                       <i class="fas fa-plus-circle me-1"></i> Ajouter une promotion
+                                   </a>
+                               </div>
+                           </div>
+                       </div>
 
-            <div class="col-md-4">
-                <div class="card border-warning h-100">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-3">
-                            <div class="bg-warning bg-opacity-10 p-3 rounded me-3">
-                                <i class="fas fa-calendar-alt fa-2x text-warning"></i>
-                            </div>
-                            <h5 class="card-title mb-0">Emplois du temps</h5>
-                        </div>
-                        <p class="card-text text-muted">Planifiez et organisez les emplois du temps des classes et enseignants.</p>
-                        <a href="@Url.Action("Ajouter_emplois_du_temps", "Modules")" class="btn btn-outline-warning stretched-link">
-                            <i class="fas fa-clock me-1"></i> Gérer les plannings
-                        </a>
-                    </div>
-                </div>
-            </div>
+                       <div class="col-md-4">
+                           <div class="card border-warning h-100">
+                               <div class="card-body">
+                                   <div class="d-flex align-items-center mb-3">
+                                       <div class="bg-warning bg-opacity-10 p-3 rounded me-3">
+                                           <i class="fas fa-calendar-alt fa-2x text-warning"></i>
+                                       </div>
+                                       <h5 class="card-title mb-0">Emplois du temps</h5>
+                                   </div>
+                                   <p class="card-text text-muted">Planifiez et organisez les emplois du temps des classes et enseignants.</p>
+                                   <a href="@Url.Action("Ajouter_emplois_du_temps", "Modules")" class="btn btn-outline-warning stretched-link">
+                                       <i class="fas fa-clock me-1"></i> Gérer les plannings
+                                   </a>
+                               </div>
+                           </div>
+                       </div>
 
-            <div class="col-md-4">
-                <div class="card border-success h-100">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-3">
-                            <div class="bg-success bg-opacity-10 p-3 rounded me-3">
-                                <i class="fas fa-user-tie fa-2x text-success"></i>
-                            </div>
-                            <h5 class="card-title mb-0">Gestion des Utilisateurs</h5>
-                        </div>
-                        <p class="card-text text-muted">Enregistrez et gérez les comptes des élèves, enseignants et personnels.</p>
-                        <a href="@Url.Action("Inscrire_utilisateur", "Signup")" class="btn btn-outline-success stretched-link">
-                            <i class="fas fa-user-plus me-1"></i> Inscrire un utilisateur
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+                       <div class="col-md-4">
+                           <div class="card border-success h-100">
+                               <div class="card-body">
+                                   <div class="d-flex align-items-center mb-3">
+                                       <div class="bg-success bg-opacity-10 p-3 rounded me-3">
+                                           <i class="fas fa-user-tie fa-2x text-success"></i>
+                                       </div>
+                                       <h5 class="card-title mb-0">Gestion des Utilisateurs</h5>
+                                   </div>
+                                   <p class="card-text text-muted">Enregistrez et gérez les comptes des élèves, enseignants et personnels.</p>
+                                   <a href="@Url.Action("Inscrire_utilisateur", "Signup")" class="btn btn-outline-success stretched-link">
+                                       <i class="fas fa-user-plus me-1"></i> Inscrire un utilisateur
+                                   </a>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
 
-        <!-- Tableau des promotions -->
-        <div class="row mb-4">
-            <div class="col-12">
-                <div class="card shadow-sm border-0">
-                    <div class="card-header bg-white border-bottom py-3">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">
-                                <i class="fas fa-list-ol text-primary me-2"></i>Promotions Actives
-                            </h5>
-                            @*<div>
+                   <!-- Tableau des promotions -->
+                   <div class="row mb-4">
+                       <div class="col-12">
+                           <div class="card shadow-sm border-0">
+                               <div class="card-header bg-white border-bottom py-3">
+                                   <div class="d-flex justify-content-between align-items-center">
+                                       <h5 class="mb-0">
+                                           <i class="fas fa-list-ol text-primary me-2"></i>Promotions Actives
+                                       </h5>
+                                       @*<div>
                                 <a href="@Url.Action("Liste_classe", "Dashboard")" class="btn btn-sm btn-outline-secondary">
                                     <i class="fas fa-eye me-1"></i> Voir toutes les promotions
                                 </a>
                             </div>*@
-                        </div>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="table-responsive">
-                            <table class="table table-hover align-middle mb-0">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th class="ps-4">Promotion</th>
-                                        <th>Effectif</th>
-                                        <th>Professeur principal</th>
-                                       
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var classe in Model)
+                                   </div>
+                               </div>
+                               <div class="card-body p-0">
+                                   <div class="table-responsive">
+                                       <table class="table table-hover align-middle mb-0">
+                                           <thead class="table-light">
+                                               <tr>
+                                                   <th class="ps-4">Promotion</th>
+                                                   <th>Effectif</th>
+                                                   <th>Professeur principal</th>
+
+                                               </tr>
+                                           </thead>
+                                           <tbody>
+                                               @foreach (var classe in Model)
                                 {
-                                    <tr>
-                                        <td class="ps-4 fw-semibold">@classe.Nom_classe</td>
-                                        <td>
-                                            @{
+                                               <tr>
+                                                   <td class="ps-4 fw-semibold">@classe.Nom_classe</td>
+                                                   <td>
+                                                       @{
                                                 int nombre_etudiant = 0;
                                                 if (ViewBag.EffectifsParClasse != null && ViewBag.EffectifsParClasse.ContainsKey(classe.Id_classe))
                                                 {
                                                     nombre_etudiant = ViewBag.EffectifsParClasse[classe.Id_classe];
                                                 }
-                                            }
-                                            <span class="badge bg-primary bg-opacity-10 text-primary">@nombre_etudiant élèves</span>
-                                        </td>
-                                        <td>
+                                                       }
+                                                       <span class="badge bg-primary bg-opacity-10 text-primary">@nombre_etudiant élèves</span>
+                                                   </td>
+                                                   <td>
 
-                                            @foreach (var item in ViewBag.prof_principal ?? Enumerable.Empty<dynamic>())
+                                                       @foreach (var item in ViewBag.prof_principal ?? Enumerable.Empty<dynamic>())
                                             {
                                                 if (item?.Classe?.Id_classe != null &&
                                                 classe?.Id_classe != null &&
                                                 item.Classe.Id_classe == classe.Id_classe)
                                                 {
-                                                    @if (item.ProfPrincipal != null)
+                                                       @if (item.ProfPrincipal != null)
                                                     {
-                                                        <span class="d-inline-block">
-                                                            <i class="fas fa-chalkboard-teacher text-muted me-1"></i>
-                                                            @item.ProfPrincipal.Nom @item.ProfPrincipal.Prenom
-                                                        </span>
+                                                       <span class="d-inline-block">
+                                                           <i class="fas fa-chalkboard-teacher text-muted me-1"></i>
+                                                           @item.ProfPrincipal.Nom @item.ProfPrincipal.Prenom
+                                                       </span>
                                                     }
                                                     else
                                                     {
-                                                        <span class="d-inline-block text-muted">
-                                                            <i class="fas fa-chalkboard-teacher me-1"></i>
-                                                            Professeur non attribué
-                                                        </span>
+                                                       <span class="d-inline-block text-muted">
+                                                           <i class="fas fa-chalkboard-teacher me-1"></i>
+                                                           Professeur non attribué
+                                                       </span>
                                                     }
                                                 }
                                             }
-                                        </td>
-                                        @*<td class="text-end pe-4">
+                                                   </td>
+                                                   @*<td class="text-end pe-4">
                                             <div class="btn-group btn-group-sm" role="group">
                                                 <a href="#" class="btn btn-outline-secondary" title="Modifier">
                                                     <i class="fas fa-edit"></i>
@@ -156,137 +156,175 @@
                                                 </a>
                                             </div>
                                         </td>*@
-                                    </tr>
+                                               </tr>
                                 }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                           </tbody>
+                                       </table>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
 
-        <!-- Statistiques -->
-        <div class="row">
-            <div class="col-12">
-                <div class="card shadow-sm border-0">
-                    <div class="card-header bg-white border-bottom py-3">
-                        <h5 class="mb-0">
-                            <i class="fas fa-chart-line text-primary me-2"></i>Statistiques de l'établissement
-                        </h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <canvas id="statsChart" height="250"></canvas>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="d-flex flex-column h-100 justify-content-center">
-                                    <div class="mb-4">
-                                        <h6 class="text-uppercase text-muted mb-3">Effectifs totaux</h6>
-                                        <div class="d-flex align-items-center">
-                                            <div class="bg-primary bg-opacity-10 p-2 rounded me-3">
-                                                <i class="fas fa-users text-primary"></i>
-                                            </div>
-                                            <div>
-                                                <h3 class="mb-0">120</h3>
-                                                <small class="text-muted">Élèves inscrits</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-4">
-                                        <h6 class="text-uppercase text-muted mb-3">Personnel enseignant</h6>
-                                        <div class="d-flex align-items-center">
-                                            <div class="bg-warning bg-opacity-10 p-2 rounded me-3">
-                                                <i class="fas fa-chalkboard-teacher text-warning"></i>
-                                            </div>
-                                            <div>
-                                                <h3 class="mb-0">15</h3>
-                                                <small class="text-muted">Enseignants</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h6 class="text-uppercase text-muted mb-3">Promotions actives</h6>
-                                        <div class="d-flex align-items-center">
-                                            <div class="bg-success bg-opacity-10 p-2 rounded me-3">
-                                                <i class="fas fa-graduation-cap text-success"></i>
-                                            </div>
-                                            <div>
-                                                <h3 class="mb-0">@Model.Count</h3>
-                                                <small class="text-muted">Promotions</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                   <!-- Remplacez toute la section Statistiques par ce code -->
+                   <!-- Section Alerte aux élèves -->
+                   <div class="row">
+                       <div class="col-12">
+                           <div class="card shadow-sm border-0">
+                               <div class="card-header bg-white border-bottom py-3">
+                                   <h5 class="mb-0">
+                                       <i class="fas fa-bell text-warning me-2"></i>Envoyer une alerte aux promotions
+                                   </h5>
+                               </div>
+                               <div class="card-body">
+                                   <div class="row">
+                                       <div class="col-md-8">
+                                           <form id="alertForm">
+                                               <div class="mb-3">
+                                                   <label for="promotionSelect" class="form-label">Sélectionner une promotion</label>
+                                                   <select class="form-select" id="promotionSelect" required>
+                                                       <option value="" selected disabled>Choisir une promotion...</option>
+                                                       @foreach (var classe in Model)
+                                    {
+                                                       <option value="@classe.Id_classe">@classe.Nom_classe</option>
+                                    }
+                                                       <option value="all">Toutes les promotions</option>
+                                                   </select>
+                                               </div>
 
-    @section Scripts {
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script>
-        // Graphique avec Chart.js
-        document.addEventListener('DOMContentLoaded', function() {
-            const ctx = document.getElementById('statsChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Élèves', 'Enseignants', 'Promotions', 'Salles', 'Cours'],
-                    datasets: [{
-                        label: 'Statistiques',
-                        data: [120, 15, @Model.Count, 8, 32],
-                        backgroundColor: [
-                            'rgba(13, 110, 253, 0.7)',
-                            'rgba(255, 193, 7, 0.7)',
-                            'rgba(25, 135, 84, 0.7)',
-                            'rgba(111, 66, 193, 0.7)',
-                            'rgba(214, 51, 132, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgba(13, 110, 253, 1)',
-                            'rgba(255, 193, 7, 1)',
-                            'rgba(25, 135, 84, 1)',
-                            'rgba(111, 66, 193, 1)',
-                            'rgba(214, 51, 132, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            backgroundColor: '#fff',
-                            titleColor: '#000',
-                            bodyColor: '#000',
-                            borderColor: '#ddd',
-                            borderWidth: 1,
-                            padding: 12
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: {
-                                color: 'rgba(0, 0, 0, 0.05)'
-                            }
-                        },
-                        x: {
-                            grid: {
-                                display: false
-                            }
-                        }
-                    }
-                }
-            });
-        });
-        </script>
-    }
+                                               <div class="mb-3">
+                                                   <label for="alertType" class="form-label">Type d'alerte</label>
+                                                   <select class="form-select" id="alertType" required>
+                                                       <option value="" selected disabled>Sélectionner un type...</option>
+                                                       <option value="info">Information générale</option>
+                                                       <option value="warning">Avertissement important</option>
+                                                       <option value="danger">Urgence</option>
+                                                       <option value="success">Bonne nouvelle</option>
+                                                   </select>
+                                               </div>
+
+                                               <div class="mb-3">
+                                                   <label for="alertTitle" class="form-label">Titre de l'alerte</label>
+                                                   <input type="text" class="form-control" id="alertTitle" placeholder="Titre court et clair" required>
+                                               </div>
+
+                                               <div class="mb-3">
+                                                   <label for="alertMessage" class="form-label">Message</label>
+                                                   <textarea class="form-control" id="alertMessage" rows="4" placeholder="Détails de l'alerte..." required></textarea>
+                                               </div>
+
+                                               <div class="d-flex justify-content-between align-items-center">
+                                                   <div class="form-check">
+                                                       <input class="form-check-input" type="checkbox" id="sendEmail">
+                                                       <label class="form-check-label" for="sendEmail">
+                                                           Envoyer également par email
+                                                       </label>
+                                                   </div>
+                                                   <button type="submit" class="btn btn-warning">
+                                                       <i class="fas fa-paper-plane me-1"></i> Envoyer l'alerte
+                                                   </button>
+                                               </div>
+                                           </form>
+                                       </div>
+
+                                       <div class="col-md-4">
+                                           <div class="alert alert-info">
+                                               <h5 class="alert-heading"><i class="fas fa-info-circle me-2"></i>Comment envoyer une alerte ?</h5>
+                                               <hr>
+                                               <p class="mb-2">1. Sélectionnez la promotion concernée</p>
+                                               <p class="mb-2">2. Choisissez le type d'alerte approprié</p>
+                                               <p class="mb-2">3. Rédigez un titre clair et un message détaillé</p>
+                                               <p class="mb-0">Les alertes seront visibles sur le tableau de bord des élèves concernés.</p>
+                                           </div>
+
+                                           <div class="card border-0 shadow-sm mt-3">
+                                               <div class="card-header bg-white">
+                                                   <h6 class="mb-0"><i class="fas fa-history me-2"></i>Alertes récentes</h6>
+                                               </div>
+                                               <div class="card-body p-0">
+                                                   <div class="list-group list-group-flush">
+                                                       <div class="list-group-item border-0 py-3">
+                                                           <div class="d-flex align-items-center">
+                                                               <span class="badge bg-info me-2">Info</span>
+                                                               <small class="text-muted ms-auto">Aujourd'hui, 10:15</small>
+                                                           </div>
+                                                           <p class="mb-0 fw-semibold mt-1">Réunion parents-professeurs</p>
+                                                       </div>
+                                                       <div class="list-group-item border-0 py-3">
+                                                           <div class="d-flex align-items-center">
+                                                               <span class="badge bg-warning me-2">Important</span>
+                                                               <small class="text-muted ms-auto">Hier, 14:30</small>
+                                                           </div>
+                                                           <p class="mb-0 fw-semibold mt-1">Changement emploi du temps</p>
+                                                       </div>
+                                                       <div class="list-group-item border-0 py-3">
+                                                           <div class="d-flex align-items-center">
+                                                               <span class="badge bg-success me-2">Nouveauté</span>
+                                                               <small class="text-muted ms-auto">Lundi, 09:00</small>
+                                                           </div>
+                                                           <p class="mb-0 fw-semibold mt-1">Nouveau club scolaire disponible</p>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+
+                   @section Scripts {
+                       <script>
+                           document.addEventListener('DOMContentLoaded', function () {
+
+                               const alertForm = document.getElementById('alertForm');
+
+                               alertForm.addEventListener('submit', function (e) {
+                                   e.preventDefault();
+
+
+                                   const promotion = document.getElementById('promotionSelect').value;
+                                   const alertType = document.getElementById('alertType').value;
+                                   const title = document.getElementById('alertTitle').value;
+                                   const message = document.getElementById('alertMessage').value;
+                                   const sendEmail = document.getElementById('sendEmail').checked;
+
+
+                                   console.log('Alerte à envoyer:', {
+                                       promotion,
+                                       alertType,
+                                       title,
+                                       message,
+                                       sendEmail
+                                   });
+
+
+                                   const toast = document.createElement('div');
+                                   toast.className = 'position-fixed bottom-0 end-0 p-3';
+                                   toast.style.zIndex = '11';
+                                   toast.innerHTML = `
+                                           <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                                               <div class="toast-header bg-success text-white">
+                                                   <strong class="me-auto">Succès</strong>
+                                                   <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                                               </div>
+                                               <div class="toast-body">
+                                                   Votre alerte a bien été envoyée aux élèves concernés.
+                                               </div>
+                                           </div>
+                                       `;
+
+                                   document.body.appendChild(toast);
+
+
+                                   setTimeout(() => {
+                                       toast.remove();
+                                   }, 5000);
+
+           
+                                   alertForm.reset();
+                               });
+                           });
+                       </script>
+                   }
