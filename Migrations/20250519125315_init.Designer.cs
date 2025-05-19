@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250519125108_init")]
+    [Migration("20250519125315_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -44,10 +44,6 @@ namespace Forum.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<string>("Titre")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("TypeAlerte")
                         .IsRequired()
                         .HasColumnType("longtext");
 

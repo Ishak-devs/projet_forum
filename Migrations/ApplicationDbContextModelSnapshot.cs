@@ -44,10 +44,6 @@ namespace Forum.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("TypeAlerte")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.HasKey("Id_alerte");
 
                     b.HasIndex("Id_classe");

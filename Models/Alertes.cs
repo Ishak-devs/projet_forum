@@ -16,7 +16,6 @@ namespace Forum.Models
 
         public int Id_alerte { get; set; }
 
-        public string TypeAlerte { get; set; }
         public string Titre { get; set; }
 
         [StringLength(100)]
