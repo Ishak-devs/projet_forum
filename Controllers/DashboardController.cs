@@ -8,10 +8,12 @@ namespace Forum.Controllers
     public class DashboardController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<DashboardController> _logger;
 
-        public DashboardController(ApplicationDbContext context)
+        public DashboardController(ApplicationDbContext context, ILogger<DashboardController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public IActionResult Index()
@@ -28,6 +30,7 @@ namespace Forum.Controllers
             return new EmptyResult();
 
         }
+
 
 
         public IActionResult Eleve()
@@ -95,7 +98,7 @@ namespace Forum.Controllers
                     ViewBag.ProfPrenom = professeur.Prenom;
                 }
             }
-
+            
 
             return RedirectToAction("Index");
         }
@@ -108,43 +111,44 @@ namespace Forum.Controllers
 
 
         [HttpPost]
-        public IActionResult AjouterAlerte(string message, string category, int? id_promo, bool pourTous = false)
+        public IActionResult AjouterAlerte(string message, string alertType, int? Id_classe)
         {
+
+
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (!userId.HasValue)
+            {
+                TempData["ErrorMessage"] = "Vous devez être connecté pour envoyer une alerte.";
+                return RedirectToAction("Login", "Account");
+            }
+
+
+            var nouvelleAlerte = new Alertes
+            {
+                Id_utilisateur = userId.Value,
+                Message = message,
+                Titre = alertType,
+                Id_classe = Id_classe.Value
+            };
+
             try
             {
-
-                var userId = HttpContext.Session.GetInt32("UserId");
-                if (!userId.HasValue)
-                {
-                    TempData["ErrorMessage"] = "Vous devez être connecté pour envoyer une alerte.";
-                    return RedirectToAction("Login", "Account");
-                }
-
-
-                var nouvelleAlerte = new Alertes
-                {
-                    Id_utilisateur = userId.Value,
-                    Message = message,
-                    Category = category,
-                    Id_promo = id_promo.Value
-                };
-
-
                 _context.Alertes.Add(nouvelleAlerte);
                 _context.SaveChanges();
 
                 TempData["SuccessMessage"] = "L'alerte a été envoyée avec succès.";
                 return RedirectToAction("Admin");
             }
+
             catch (Exception ex)
             {
-
-                Console.WriteLine($"Erreur lors de l'envoi de l'alerte: {ex.Message}");
+                _logger.LogError(ex, "Erreur lors de l'envoi de l'alerte.");
                 TempData["ErrorMessage"] = "Une erreur est survenue lors de l'envoi de l'alerte.";
-                return RedirectToAction("AjouterAlerte");
+                return RedirectToAction("Admin");
             }
+        
         }
-
+        
         public IActionResult VoirAlertes()
         {
             var alertes = _context.Alertes
@@ -155,6 +159,5 @@ namespace Forum.Controllers
 
             return View(alertes);
         }
-
     }
 }

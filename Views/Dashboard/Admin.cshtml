@@ -294,162 +294,118 @@
                    </script>
 
                    <!-- Section Alerte aux élèves -->
-                   <div class="row">
-                       <div class="col-12">
-                           <div class="card shadow-sm border-0">
-                               <div class="card-header bg-white border-bottom py-3">
-                                   <h5 class="mb-0">
-                                       <i class="fas fa-bell text-warning me-2"></i>Envoyer une alerte aux promotions
-                                   </h5>
-                               </div>
-                               <div class="card-body">
-                                   <div class="row">
-                                       <div class="col-md-8">
-                                           <form id="alertForm">
-                                               <div class="mb-3">
-                                                   <label for="promotionSelect" class="form-label">Sélectionner une promotion</label>
-                                                   <select class="form-select" id="promotionSelect" required>
-                                                       <option value="" selected disabled>Choisir une promotion...</option>
-                                                       @foreach (var classe in Model)
-                                    {
-                                                       <option value="@classe.Id_classe">@classe.Nom_classe</option>
-                                    }
-                                                       <option value="all">Toutes les promotions</option>
-                                                   </select>
-                                               </div>
+                   <div class="col-md-8">
+                       <form id="alertForm" asp-action="AjouterAlerte" asp-controller="Dashboard" method="post">
+                           @Html.AntiForgeryToken()
 
-                                               <div class="mb-3">
-                                                   <label for="alertType" class="form-label">Type d'alerte</label>
-                                                   <select class="form-select" id="alertType" required>
-                                                       <option value="" selected disabled>Sélectionner un type...</option>
-                                                       <option value="info">Information générale</option>
-                                                       <option value="warning">Avertissement important</option>
-                                                       <option value="danger">Urgence</option>
-                                                       <option value="success">Evenement</option>
-                                                   </select>
-                                               </div>
-
-                                               <div class="mb-3">
-                                                   <label for="alertTitle" class="form-label">Titre de l'alerte</label>
-                                                   <input type="text" class="form-control" id="alertTitle" placeholder="Titre court et clair" required>
-                                               </div>
-
-                                               <div class="mb-3">
-                                                   <label for="alertMessage" class="form-label">Message</label>
-                                                   <textarea class="form-control" id="alertMessage" rows="4" placeholder="Détails de l'alerte..." required></textarea>
-                                               </div>
-
-                                               <div class="d-flex justify-content-between align-items-center">
-                                                   <div class="form-check">
-                                                       <input class="form-check-input" type="checkbox" id="sendEmail">
-                                                       <label class="form-check-label" for="sendEmail">
-                                                           Envoyer également par email
-                                                       </label>
-                                                   </div>
-                                                   <button type="submit" class="btn btn-warning">
-                                                       <i class="fas fa-paper-plane me-1"></i> Envoyer l'alerte
-                                                   </button>
-                                               </div>
-                                           </form>
-                                       </div>
-
-                                       <div class="col-md-4">
-                                           <div class="alert alert-info">
-                                               <h5 class="alert-heading"><i class="fas fa-info-circle me-2"></i>Comment envoyer une alerte ?</h5>
-                                               <hr>
-                                               <p class="mb-2">1. Sélectionnez la promotion concernée</p>
-                                               <p class="mb-2">2. Choisissez le type d'alerte approprié</p>
-                                               <p class="mb-2">3. Rédigez un titre clair et un message détaillé</p>
-                                               <p class="mb-0">Les alertes seront visibles sur le tableau de bord des élèves concernés.</p>
-                                           </div>
-
-                                           <div class="card border-0 shadow-sm mt-3">
-                                               <div class="card-header bg-white">
-                                                   <h6 class="mb-0"><i class="fas fa-history me-2"></i>Alertes récentes</h6>
-                                               </div>
-                                               <div class="card-body p-0">
-                                                   <div class="list-group list-group-flush">
-                                                       <div class="list-group-item border-0 py-3">
-                                                           <div class="d-flex align-items-center">
-                                                               <span class="badge bg-info me-2">Info</span>
-                                                               <small class="text-muted ms-auto">Aujourd'hui, 10:15</small>
-                                                           </div>
-                                                           <p class="mb-0 fw-semibold mt-1">Réunion parents-professeurs</p>
-                                                       </div>
-                                                       <div class="list-group-item border-0 py-3">
-                                                           <div class="d-flex align-items-center">
-                                                               <span class="badge bg-warning me-2">Important</span>
-                                                               <small class="text-muted ms-auto">Hier, 14:30</small>
-                                                           </div>
-                                                           <p class="mb-0 fw-semibold mt-1">Changement emploi du temps</p>
-                                                       </div>
-                                                       <div class="list-group-item border-0 py-3">
-                                                           <div class="d-flex align-items-center">
-                                                               <span class="badge bg-success me-2">Nouveauté</span>
-                                                               <small class="text-muted ms-auto">Lundi, 09:00</small>
-                                                           </div>
-                                                           <p class="mb-0 fw-semibold mt-1">Nouveau club scolaire disponible</p>
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                           </div>
-                                       </div>
-                                   </div>
-                               </div>
+                           <div class="mb-3">
+                               <label for="promotionSelect" class="form-label">Sélectionner une promotion</label>
+                               <select class="form-select" id="promotionSelect" name="Id_classe" required>
+                                   <option value="" selected disabled>Choisir une promotion...</option>
+                                   @foreach (var classe in Model)
+                {
+                                   <option value="@classe.Id_classe">@classe.Nom_classe</option>
+                }
+                               </select>
                            </div>
-                       </div>
+
+                           <div class="mb-3">
+                               <label for="alertType" class="form-label">Titre de l'alerte</label>
+                               <input type="text" class="form-control" id="alertType" name="alertType" placeholder="Titre court et clair" required>
+                           </div>
+
+                           <div class="mb-3">
+                               <label for="alertMessage" class="form-label">Message</label>
+                               <textarea class="form-control" id="alertMessage" name="message" rows="4" placeholder="Détails de l'alerte..." required></textarea>
+                           </div>
+
+                           <div class="d-flex justify-content-end">
+                               <button type="submit" class="btn btn-warning">
+                                   <i class="fas fa-paper-plane me-1"></i> Envoyer l'alerte
+                               </button>
+                           </div>
+                       </form>
                    </div>
 
                    @section Scripts {
                        <script>
                            document.addEventListener('DOMContentLoaded', function () {
-
                                const alertForm = document.getElementById('alertForm');
 
                                alertForm.addEventListener('submit', function (e) {
                                    e.preventDefault();
 
 
-                                   const promotion = document.getElementById('promotionSelect').value;
-                                   const alertType = document.getElementById('alertType').value;
-                                   const title = document.getElementById('alertTitle').value;
-                                   const message = document.getElementById('alertMessage').value;
-                                   const sendEmail = document.getElementById('sendEmail').checked;
+                                   const submitBtn = alertForm.querySelector('button[type="submit"]');
+                                   submitBtn.disabled = true;
+                                   submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Envoi en cours...';
+
+                                   const formData = new FormData(alertForm);
 
 
-                                   console.log('Alerte à envoyer:', {
-                                       promotion,
-                                       alertType,
-                                       title,
-                                       message,
-                                       sendEmail
-                                   });
+                                   const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+                                   formData.append('__RequestVerificationToken', token);
+
+                                   fetch(alertForm.action, {
+                                       method: 'POST',
+                                       body: formData,
+                                       headers: {
+                                           'Accept': 'application/json',
+                                           'RequestVerificationToken': token
+                                       }
+                                   })
+                                       .then(response => {
+                                           submitBtn.disabled = false;
+                                           submitBtn.innerHTML = '<i class="fas fa-paper-plane me-1"></i> Envoyer l\'alerte';
+
+                                           if (!response.ok) {
+                                               throw new Error(`Erreur HTTP: ${response.status}`);
+                                           }
 
 
-                                   const toast = document.createElement('div');
-                                   toast.className = 'position-fixed bottom-0 end-0 p-3';
-                                   toast.style.zIndex = '11';
-                                   toast.innerHTML = `
-                                                                                         <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                                                                                             <div class="toast-header bg-success text-white">
-                                                                                                 <strong class="me-auto">Succès</strong>
-                                                                                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
-                                                                                             </div>
-                                                                                             <div class="toast-body">
-                                                                                                 Votre alerte a bien été envoyée aux élèves concernés.
-                                                                                             </div>
-                                                                                         </div>
-                                                                                     `;
+                                           if (response.redirected) {
+                                               window.location.href = response.url;
+                                               return;
+                                           }
 
-                                   document.body.appendChild(toast);
+                                           return response.json();
+                                       })
+                                       .then(data => {
+                                           if (data) {
+                                               showToast('success', data.message || 'Alerte envoyée avec succès');
+                                           }
+                                       })
+                                       .catch(error => {
+                                           console.error('Erreur:', error);
+                                           showToast('danger', 'Erreur réseau: ' + error.message);
+                                           submitBtn.disabled = false;
+                                           submitBtn.innerHTML = '<i class="fas fa-paper-plane me-1"></i> Envoyer l\'alerte';
+                                       });
 
+                                   function showToast(type, message) {
+                                       const toastContainer = document.createElement('div');
+                                       toastContainer.className = 'position-fixed bottom-0 end-0 p-3';
+                                       toastContainer.style.zIndex = '11';
 
-                                   setTimeout(() => {
-                                       toast.remove();
-                                   }, 5000);
+                                       const toastHtml = `
+                                               <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                                                   <div class="toast-header bg-${type} text-white">
+                                                       <strong class="me-auto">${type === 'success' ? 'Succès' : 'Erreur'}</strong>
+                                                       <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                                                   </div>
+                                                   <div class="toast-body">
+                                                       ${message}
+                                                   </div>
+                                               </div>
+                                           `;
 
+                                       toastContainer.innerHTML = toastHtml;
+                                       document.body.appendChild(toastContainer);
 
-                                   alertForm.reset();
+                                       setTimeout(() => {
+                                           toastContainer.remove();
+                                       }, 5000);
+                                   }
                                });
                            });
                        </script>
