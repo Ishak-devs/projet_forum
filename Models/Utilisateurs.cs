@@ -39,5 +39,27 @@ namespace Forum.Models
         [StringLength(30)]
         public string? Section { get; set; }
 
+
+        //public string AccederEspacePersonnel()
+        //{
+
+        //    if (Role == "Admini")
+        //    {
+        //        return "/Admin/Dashboard";
+        //    }
+        //    else if (Role == "Professeur")
+        //    {
+        //        return "/Professeur/EspacePersonnel";
+        //    }
+        //    else if (Role == "Etudiant")
+        //    {
+        //        return "/Eleve/EspacePersonnel";
+        //    }
+        //    else
+        //    {
+        //        return "/Connexion";
+        //    }
+        //}
+
     }
 }
