@@ -75,8 +75,8 @@ namespace Forum.Controllers
                 var modules = timetableData.Select(t => new Modules
                 {
                     Id_classe = t.ClassId,
-                    Theme_module = $"{t.Course} ({t.Day} {t.Hour})",
-                    Horaire = $"{t.Day} {t.Hour}",
+                    Theme_module = $"{t.Course})",
+                    Horaire = $"{t.Day} {t.Hour} {t.HourEnd}",
                 }).ToList();
 
                 await _context.Modules.AddRangeAsync(modules);

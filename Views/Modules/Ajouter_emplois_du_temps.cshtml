@@ -363,6 +363,7 @@
                 if (courses.length > 0) {
                     var day = slot.dataset.day;
                     var hour = slot.dataset.hour;
+                    var hourEnd = getNextHour(hour);
                     var classId = document.getElementById("classSelect").value;
 
                     courses.forEach(course => {
@@ -373,12 +374,20 @@
                             classId: classId,
                             day: day,
                             hour: hour,
+                            hourEnd: hourEnd,
                             course: courseName,
                             professor: professor
                         });
                     });
                 }
             });
+
+                    function getNextHour(hourStr) {
+            var parts = hourStr.split(':');
+            var h = parseInt(parts[0]) + 1;
+            return (h < 10 ? '0' + h : h) + ':00';
+        }
+
 
             if (timetableData.length === 0) {
                 document.getElementById("message_erreur").textContent = "Aucun cours à enregistrer";
