@@ -2,236 +2,62 @@
     ViewData["Title"] = "Forum Éducatif";
     if (TempData["Prof_not_connect"] != null)
     {
-        <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
-            @TempData["Prof_not_connect"]
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+        <p class="text-danger">@TempData["Prof_not_connect"]</p>
     }
+
 }
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"]</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
 
-        .hero-section {
-            background-color: #f8f9fa;
-            padding: 4rem 0;
-        }
+<body class="bg-light">
 
-        .login-card {
-            transition: transform 0.2s;
-            border: 1px solid rgba(0,0,0,0.1);
-        }
+    <div class="container py-5">
 
-            .login-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            }
-
-        .feature-icon {
-            font-size: 2rem;
-            color: #0d6efd;
-            margin-bottom: 1rem;
-        }
-
-        .btn-cta {
-            padding: 0.75rem 1.5rem;
-            font-weight: 500;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Header -->
-    <header class="hero-section">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold mb-3">Forum Éducatif</h1>
-                    <p class="lead mb-4">Plateforme de communication pour la communauté éducative</p>
-                    <div class="d-flex gap-3">
-                        <a href="#login" class="btn btn-primary btn-cta">
-                            <i class="fas fa-sign-in-alt me-2"></i>Connexion
-                        </a>
-                        <a href="#features" class="btn btn-outline-secondary btn-cta">
-                            En savoir plus
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-6 d-none d-lg-block">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3976/3976626.png" alt="Éducation" class="img-fluid">
+        <div class="row align-items-center py-5">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold text-primary mb-4">Bienvenue sur notre plateforme éducative</h1>
+                <p class="lead mb-4">Un espace collaboratif pour échanger, partager et apprendre ensemble dans un environnement convivial.</p>
+                <div class="d-grid gap-2 d-sm-flex">
                 </div>
             </div>
         </div>
-    </header>
 
-    <!-- Login Section -->
-    <section id="login" class="py-5 bg-white">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold">Accès à la plateforme</h2>
-                <p class="text-muted">Sélectionnez votre profil pour vous connecter</p>
+        <div id="features" class="row g-4 py-5">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3 mx-auto">
+                            <i class="fas fa-comments fa-2x"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Échangez facilement</h3>
+                        <p class="text-muted">Discutez avec vos professeurs et camarades dans un espace dédié à chaque classe.</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="row g-4 justify-content-center">
-                <!-- Student -->
-                <div class="col-md-4">
-                    <div class="card login-card h-100">
-                        <div class="card-body text-center p-4">
-                            <div class="mb-3">
-                                <i class="fas fa-user-graduate feature-icon"></i>
-                            </div>
-                            <h4 class="card-title mb-3">Élève</h4>
-                            <p class="card-text text-muted mb-4">
-                                Accédez à vos cours, devoirs et messages.
-                            </p>
-                            <a href="/Eleve/Login" class="btn btn-outline-primary w-100">
-                                Se connecter
-                            </a>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-success bg-opacity-10 text-success rounded-circle p-3 mb-3 mx-auto">
+                            <i class="fas fa-file-upload fa-2x"></i>
                         </div>
+                        <h3 class="h4 mb-3">Partage de ressources</h3>
+                        <p class="text-muted">Déposez et consultez des documents pédagogiques en quelques clics.</p>
                     </div>
                 </div>
+            </div>
 
-                <!-- Teacher -->
-                <div class="col-md-4">
-                    <div class="card login-card h-100">
-                        <div class="card-body text-center p-4">
-                            <div class="mb-3">
-                                <i class="fas fa-chalkboard-teacher feature-icon"></i>
-                            </div>
-                            <h4 class="card-title mb-3">Enseignant</h4>
-                            <p class="card-text text-muted mb-4">
-                                Gérez vos classes et communiquez avec vos élèves.
-                            </p>
-                            <a href="/Professeur/Login" class="btn btn-outline-success w-100">
-                                Se connecter
-                            </a>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-info bg-opacity-10 text-info rounded-circle p-3 mb-3 mx-auto">
+                            <i class="fas fa-users fa-2x"></i>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Admin -->
-                <div class="col-md-4">
-                    <div class="card login-card h-100">
-                        <div class="card-body text-center p-4">
-                            <div class="mb-3">
-                                <i class="fas fa-user-cog feature-icon"></i>
-                            </div>
-                            <h4 class="card-title mb-3">Administrateur</h4>
-                            <p class="card-text text-muted mb-4">
-                                Administrez la plateforme et gérez les utilisateurs.
-                            </p>
-                            <a href="/Admin/Login" class="btn btn-outline-dark w-100">
-                                Se connecter
-                            </a>
-                        </div>
+                        <h3 class="h4 mb-3">Collaboration</h3>
+                        <p class="text-muted">Travaillez ensemble sur des projets et bénéficiez d'un suivi personnalisé.</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="py-5 bg-light">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold">Fonctionnalités</h2>
-                <p class="text-muted">Les outils à votre disposition</p>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 bg-white p-4">
-                        <div class="feature-icon">
-                            <i class="fas fa-comments"></i>
-                        </div>
-                        <h4>Communication</h4>
-                        <p class="text-muted">
-                            Messagerie instantanée entre tous les membres de la communauté éducative.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 bg-white p-4">
-                        <div class="feature-icon">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                        <h4>Organisation</h4>
-                        <p class="text-muted">
-                            Emploi du temps partagé et notifications pour les changements importants.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 bg-white p-4">
-                        <div class="feature-icon">
-                            <i class="fas fa-file-upload"></i>
-                        </div>
-                        <h4>Ressources</h4>
-                        <p class="text-muted">
-                            Partage de documents et supports de cours en quelques clics.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h5>Forum Éducatif</h5>
-                    <p class="text-muted">Plateforme de communication pour établissements scolaires.</p>
-                </div>
-                <div class="col-md-3">
-                    <h5>Liens</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white">Accueil</a></li>
-                        <li><a href="#features" class="text-white">Fonctionnalités</a></li>
-                        <li><a href="#login" class="text-white">Connexion</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h5>Contact</h5>
-                    <ul class="list-unstyled text-muted">
-                        <li><i class="fas fa-envelope me-2"></i> contact@forumeducatif.fr</li>
-                        <li><i class="fas fa-phone me-2"></i> +33 1 23 45 67 89</li>
-                    </ul>
-                </div>
-            </div>
-            <hr class="my-4">
-            <div class="text-center text-muted">
-                <small>© 2023 Forum Éducatif. Tous droits réservés.</small>
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+    </div>
 </body>
 </html>
