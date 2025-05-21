@@ -31,8 +31,6 @@ namespace Forum.Controllers
 
         }
 
-
-
         public IActionResult Eleve()
         {
             var eleveId = HttpContext.Session.GetInt32("Etudiant");
