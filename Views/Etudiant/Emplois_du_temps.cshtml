@@ -1,0 +1,21 @@
+﻿@model List<Forum.Models.Modules>
+
+<h2>Mon Emploi du Temps</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Thème</th>
+            <th>Horaire</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var module in Model)
+        {
+            <tr>
+                <td>@module.Theme_module</td>
+                <td>@module.Horaire</td>
+            </tr>
+        }
+    </tbody>
+</table>
