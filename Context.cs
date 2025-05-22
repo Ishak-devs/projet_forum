@@ -19,6 +19,8 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<Notes> Notes { get; set; }
 
+    public DbSet<Devoirs> Devoirs { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

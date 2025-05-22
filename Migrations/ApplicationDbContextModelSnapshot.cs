@@ -76,6 +76,39 @@ namespace Forum.Migrations
                     b.ToTable("Classes");
                 });
 
+            modelBuilder.Entity("Forum.Models.Devoirs", b =>
+                {
+                    b.Property<int>("Id_devoir")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_devoir"));
+
+                    b.Property<DateTime>("Date_devoir")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("FichierPath")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Id_module")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id_utilisateur")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Intitulé")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id_devoir");
+
+                    b.HasIndex("Id_module");
+
+                    b.HasIndex("Id_utilisateur");
+
+                    b.ToTable("Devoirs");
+                });
+
             modelBuilder.Entity("Forum.Models.Etablissements", b =>
                 {
                     b.Property<int>("Id_etablissement")
@@ -308,6 +341,25 @@ namespace Forum.Migrations
                         .HasForeignKey("ProfesseurPrincipalId");
 
                     b.Navigation("ProfesseurPrincipal");
+                });
+
+            modelBuilder.Entity("Forum.Models.Devoirs", b =>
+                {
+                    b.HasOne("Forum.Models.Modules", "Modules")
+                        .WithMany()
+                        .HasForeignKey("Id_module")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Forum.Models.Utilisateurs", "Utilisateurs")
+                        .WithMany()
+                        .HasForeignKey("Id_utilisateur")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Modules");
+
+                    b.Navigation("Utilisateurs");
                 });
 
             modelBuilder.Entity("Forum.Models.Evaluations", b =>

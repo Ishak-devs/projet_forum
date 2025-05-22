@@ -1,0 +1,36 @@
+﻿@model List<Forum.Models.Devoirs>
+
+<h2>Mes Devoirs par Module</h2>
+
+@foreach (var moduleGroup in Model.GroupBy(d => d.Modules?.Theme_module))
+{
+    <h4 class="mt-4 text-primary">@moduleGroup.Key</h4>
+    <table class="table table-bordered">
+        <thead class="table-warning">
+            <tr>
+                <th>Intitulé</th>
+                <th>Date</th>
+                <th>Rendre</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var devoir in moduleGroup)
+            {
+                <tr>
+                    <td>@devoir.Intitulé</td>
+                    <td>@devoir.Date_devoir.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        <form asp-action="RendreDevoir" asp-controller="Etudiant" enctype="multipart/form-data" method="post">
+                            <input type="hidden" name="Id_devoir" value="@devoir.Id_devoir" />
+
+                            <div class="input-group">
+                                <input type="file" name="fichier" class="form-control" required />
+                                <button type="submit" class="btn btn-success">Envoyer</button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

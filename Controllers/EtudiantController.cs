@@ -47,6 +47,45 @@ namespace Forum.Controllers
 
             return View(notes);
         }
+        public async Task<IActionResult> MesDevoirs()
+        {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+                return RedirectToAction("Index", "Authentification");
+
+            var devoirs = await _context.Devoirs
+                .Include(d => d.Modules)
+                .Where(d => d.Id_utilisateur == userId)
+                .OrderBy(d => d.Modules.Theme_module)
+                .ThenBy(d => d.Date_devoir)
+                .ToListAsync();
+
+            return View(devoirs);
+        }
+        [HttpPost]
+        public async Task<IActionResult> RendreDevoir(int Id_devoir, IFormFile fichier)
+        {
+            if (fichier == null || fichier.Length == 0)
+                return BadRequest("Fichier manquant.");
+
+            var devoir = await _context.Devoirs.FindAsync(Id_devoir);
+            if (devoir == null)
+                return NotFound();
+
+            var fileName = Path.GetFileName(fichier.FileName);
+            var filePath = Path.Combine("wwwroot/uploads", fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await fichier.CopyToAsync(stream);
+            }
+
+            devoir.FichierPath = "/uploads/" + fileName;
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("MesDevoirs");
+        }
+
 
     }
 
