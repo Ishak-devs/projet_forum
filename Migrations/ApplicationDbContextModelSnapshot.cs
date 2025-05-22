@@ -212,6 +212,9 @@ namespace Forum.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_module"));
 
+                    b.Property<double>("Coefficient")
+                        .HasColumnType("double");
+
                     b.Property<string>("Horaire")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -247,8 +250,8 @@ namespace Forum.Migrations
                     b.Property<int>("Id_utilisateur")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Note")
-                        .HasColumnType("decimal(65,30)");
+                    b.Property<double>("Note")
+                        .HasColumnType("double");
 
                     b.HasKey("Id_note");
 

@@ -9,7 +9,7 @@ namespace Forum.Models
         [Key]
         public int Id_note { get; set; }
 
-        public decimal Note { get; set; }
+        public double Note { get; set; }
 
         public DateTime Date_note { get; set; } = DateTime.Now;
 

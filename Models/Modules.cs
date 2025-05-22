@@ -10,6 +10,7 @@ namespace Forum.Models
         public int Id_module { get; set; }
 
         public string Theme_module { get; set; }
+        public double Coefficient { get; set; }
 
         public string Horaire { get; set; }
 
