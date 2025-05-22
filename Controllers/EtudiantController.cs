@@ -32,6 +32,22 @@ namespace Forum.Controllers
 
             return View(modules);
         }
+
+        public async Task<IActionResult> MesNotes()
+        {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+
+            if (userId == null)
+                return RedirectToAction("Index", "Authentification");
+
+            var notes = await _context.Notes
+                .Include(n => n.Modules)
+                .Where(n => n.Id_utilisateur == userId)
+                .ToListAsync();
+
+            return View(notes);
+        }
+
     }
 
 }

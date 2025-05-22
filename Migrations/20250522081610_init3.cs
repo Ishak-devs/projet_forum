@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Forum.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class init3 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -136,6 +136,27 @@ namespace Forum.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Notes",
+                columns: table => new
+                {
+                    Id_note = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Date_note = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Id_module = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Notes", x => x.Id_note);
+                    table.ForeignKey(
+                        name: "FK_Notes_Modules_Id_module",
+                        column: x => x.Id_module,
+                        principalTable: "Modules",
+                        principalColumn: "Id_module",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "Evaluations",
                 columns: table => new
                 {
@@ -237,6 +258,11 @@ namespace Forum.Migrations
                 column: "Id_classe");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Notes_Id_module",
+                table: "Notes",
+                column: "Id_module");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Utilisateurs_Id_classe",
                 table: "Utilisateurs",
                 column: "Id_classe");
@@ -285,6 +311,9 @@ namespace Forum.Migrations
 
             migrationBuilder.DropTable(
                 name: "Messages");
+
+            migrationBuilder.DropTable(
+                name: "Notes");
 
             migrationBuilder.DropTable(
                 name: "Modules");

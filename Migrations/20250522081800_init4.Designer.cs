@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250519125315_init")]
-    partial class init
+    [Migration("20250522081800_init4")]
+    partial class init4
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -200,6 +200,35 @@ namespace Forum.Migrations
                     b.ToTable("Modules");
                 });
 
+            modelBuilder.Entity("Forum.Models.Notes", b =>
+                {
+                    b.Property<int>("Id_note")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_note"));
+
+                    b.Property<DateTime>("Date_note")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("Id_module")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id_utilisateur")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Note")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.HasKey("Id_note");
+
+                    b.HasIndex("Id_module");
+
+                    b.HasIndex("Id_utilisateur");
+
+                    b.ToTable("Notes");
+                });
+
             modelBuilder.Entity("Forum.Models.Utilisateurs", b =>
                 {
                     b.Property<int>("Id_utilisateur")
@@ -331,6 +360,25 @@ namespace Forum.Migrations
                         .IsRequired();
 
                     b.Navigation("Classes");
+                });
+
+            modelBuilder.Entity("Forum.Models.Notes", b =>
+                {
+                    b.HasOne("Forum.Models.Modules", "Modules")
+                        .WithMany()
+                        .HasForeignKey("Id_module")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Forum.Models.Utilisateurs", "Utilisateurs")
+                        .WithMany()
+                        .HasForeignKey("Id_utilisateur")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Modules");
+
+                    b.Navigation("Utilisateurs");
                 });
 
             modelBuilder.Entity("Forum.Models.Utilisateurs", b =>

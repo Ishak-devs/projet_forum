@@ -1,0 +1,23 @@
+﻿@model List<Forum.Models.Notes>
+
+<h2>Mes Notes</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Module</th>
+            <th>Note</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var note in Model)
+        {
+            <tr>
+                <td>@note.Modules.Theme_module</td>
+                <td>@note.Note.ToString("0.##")</td>
+                <td>@note.Date_note.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>
