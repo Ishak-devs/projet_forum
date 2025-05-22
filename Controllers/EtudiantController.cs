@@ -12,6 +12,32 @@ namespace Forum.Controllers
         {
             _context = context;
         }
+        public async Task<IActionResult> EspacePerso()
+        {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null) return RedirectToAction("Index", "Authentification");
+
+            var etudiant = await _context.Utilisateurs
+                .Include(e => e.Classes)
+                .FirstOrDefaultAsync(e => e.Id_utilisateur == userId);
+
+            var notes = await _context.Notes
+                .Include(n => n.Modules)
+                .Where(n => n.Id_utilisateur == userId)
+                .OrderByDescending(n => n.Date_note)
+                .Take(3)
+                .ToListAsync();
+
+            float moyenne = (float)(notes.Any() ? notes.Average(n => n.Note) : 0);
+            
+
+            ViewBag.Moyenne = moyenne;
+            ViewBag.Classe = etudiant?.Classes?.Nom_classe ?? "Classe inconnue";
+            ViewBag.Notes = notes;
+
+            return View();
+        }
+
 
         public async Task<IActionResult> Emplois_du_temps()
         {
