@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Forum.Models;
+﻿using Forum.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace Forum.Controllers
@@ -80,6 +81,25 @@ namespace Forum.Controllers
             return RedirectToAction("SaisirNotes");
         }
 
+        public IActionResult EmploiDuTemps()
+        {
+            var profId = HttpContext.Session.GetInt32("UserId");
+
+            if (!profId.HasValue)
+                return RedirectToAction("Index", "Authentification");
+
+            var professeur = _context.Utilisateurs.FirstOrDefault(u => u.Id_utilisateur == profId.Value);
+
+            if (professeur == null || professeur.Id_classe == null)
+                return RedirectToAction("Index");
+
+            var edt = _context.Modules
+                .Where(m => m.Id_classe == professeur.Id_classe)
+                .Include(m => m.Classes)
+                .ToList();
+
+            return View(edt);
+        }
 
     }
 }
