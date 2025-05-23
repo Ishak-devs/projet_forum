@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Saisir une Note";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4 text-primary">
+        <i class="fas fa-pen-fancy me-2"></i>Saisir une Note
+    </h2>
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success">@TempData["Message"]</div>
+    }
+
+    <form method="post" asp-action="SaisirNotes">
+        <div class="mb-3">
+            <label class="form-label">Élève</label>
+            <select name="Id_utilisateur" class="form-select" required>
+                <option value="">-- Sélectionnez un élève --</option>
+                @foreach (var eleve in ViewBag.Eleves)
+                {
+                    <option value="@eleve.Id_utilisateur">@eleve.Prenom @eleve.Nom</option>
+                }
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Module</label>
+            <select name="Id_module" class="form-select" required>
+                <option value="">-- Sélectionnez un module --</option>
+                @foreach (var module in ViewBag.Modules)
+                {
+                    <option value="@module.Id_module">@module.Theme_module</option>
+                }
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Note</label>
+            <input type="number" step="0.01" min="0" max="20" name="Note" class="form-control" required />
+        </div>
+
+        <button type="submit" class="btn btn-success">
+            <i class="fas fa-save me-1"></i> Enregistrer la note
+        </button>
+    </form>
+</div>
