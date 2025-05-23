@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250522083458_init6")]
-    partial class init6
+    [Migration("20250523081325_m1")]
+    partial class m1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -89,6 +89,9 @@ namespace Forum.Migrations
 
                     b.Property<DateTime>("Date_devoir")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("FichierPath")
+                        .HasColumnType("longtext");
 
                     b.Property<int>("Id_module")
                         .HasColumnType("int");
@@ -212,6 +215,9 @@ namespace Forum.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_module"));
 
+                    b.Property<double>("Coefficient")
+                        .HasColumnType("double");
+
                     b.Property<string>("Horaire")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -247,8 +253,8 @@ namespace Forum.Migrations
                     b.Property<int>("Id_utilisateur")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Note")
-                        .HasColumnType("decimal(65,30)");
+                    b.Property<double>("Note")
+                        .HasColumnType("double");
 
                     b.HasKey("Id_note");
 

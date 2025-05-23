@@ -3,7 +3,13 @@
 }
 
 <div class="container-fluid py-4">
-    <!-- En-tête personnalisé -->
+    <div class="text-end mt-3">
+        <a href="@Url.Action("Logout", "Authentification")" class="btn btn-outline-danger">
+            <i class="fas fa-sign-out-alt"></i> Déconnexion
+        </a>
+    </div>
+
+
     <div class="row mb-4">
         <div class="col-12">
             <div class="d-flex justify-content-between align-items-center">
