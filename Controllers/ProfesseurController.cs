@@ -1,36 +1,41 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Forum.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
+using System.Linq;
 
 namespace Forum.Controllers
 {
     public class ProfesseurController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly ILogger<DashboardController> _logger;
 
-        public ProfesseurController(ApplicationDbContext context, ILogger<DashboardController> logger)
+        public ProfesseurController(ApplicationDbContext context)
         {
             _context = context;
-            _logger = logger;
+        }
+
+        public IActionResult Index()
+        {
+            return View();
         }
 
         public IActionResult MesClasses()
         {
-            var profId = HttpContext.Session.GetInt32("Professeur");
+            var profId = HttpContext.Session.GetInt32("UserId");
 
             if (!profId.HasValue)
                 return RedirectToAction("Index", "Authentification");
 
-            var mesClasses = _context.Classes
-                .Where(c => c.ProfesseurPrincipalId == profId.Value)
+            var professeur = _context.Utilisateurs.FirstOrDefault(u => u.Id_utilisateur == profId.Value);
+
+            if (professeur == null || !professeur.Id_classe.HasValue)
+                return View(new List<Classes>()); // retourne une liste vide
+
+            var classe = _context.Classes
+                .Where(c => c.Id_classe == professeur.Id_classe.Value)
                 .ToList();
 
-            return View(mesClasses);
+            return View(classe);
         }
-     
-
-
     }
 }
