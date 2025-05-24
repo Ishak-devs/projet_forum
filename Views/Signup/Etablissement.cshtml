@@ -112,7 +112,6 @@
                 $('#etablissements').html('<option value="">Chargement...</option>');
                 etablissementsData = {};
 
-                // URL de base sans filtre région (nous filtrerons côté client)
                 let apiUrl = `https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-annuaire-education&rows=1000&refine.type_etablissement=${encodeURIComponent(typeEtablissement)}`;
 
                 $.ajax({
