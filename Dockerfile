@@ -14,4 +14,4 @@ COPY --from=build /app/out .
 # Exposer le port (ex: 5000)
 EXPOSE 5000
 
-ENTRYPOINT ["dotnet", "classe_space.dll"]
+ENTRYPOINT ["dotnet", "Forum.dll"]
