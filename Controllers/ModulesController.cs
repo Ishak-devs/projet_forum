@@ -35,53 +35,61 @@ namespace Forum.Controllers
 
             return Json(modules);
         }
-
         [HttpGet]
         public async Task<IActionResult> Ajouter_emplois_du_temps()
         {
-           
             var userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null)
             {
                 return RedirectToAction("Index", "Authentification");
             }
+
             var classes = await _context.Classes.ToListAsync();
-         
+            var utilisateurs = await _context.Utilisateurs
+                .Where(u => u.Role == "Professeur")
+                .ToListAsync();
 
             ViewBag.Classes = classes;
-
+            ViewBag.Utilisateurs = utilisateurs;
 
             return View();
         }
 
         [HttpPost]
-        public IActionResult Ajouter_emplois_du_temps(int classId, string theme_module, string horaire)
+        public async Task<IActionResult> Ajouter_emplois_du_temps([FromBody] List<EmploiDuTempsData> timetableData)
         {
-            _logger.LogDebug("POST reçu - classId: {classId}, theme: {theme}, horaire: {horaire}",
-            classId, theme_module, horaire);
             try
             {
-                var module = new Modules
+                var userId = HttpContext.Session.GetInt32("UserId");
+                if (userId == null)
                 {
-                    Id_classe = classId,
-                    Theme_module = theme_module,
-                    Horaire = horaire
-                };
+                    return Json(new { success = false, message = "Non authentifié" });
+                }
 
-                _context.Modules.Add(module);
-                _context.SaveChanges();
+                if (timetableData == null || !timetableData.Any())
+                {
+                    return Json(new { success = false, message = "Aucune donnée reçue" });
+                }
 
-                _logger.LogInformation("Module ajouté avec succès: {Theme} pour la classe {ClassId}", theme_module, classId);
-                TempData["SuccessMessage"] = "Ajout réussie !";
+
+                var modules = timetableData.Select(t => new Modules
+                {
+                    Id_classe = t.ClassId,
+                    Theme_module = $"{t.Course})",
+                    Horaire = $"{t.Day} {t.Hour} {t.HourEnd}",
+                }).ToList();
+
+                await _context.Modules.AddRangeAsync(modules);
+                await _context.SaveChangesAsync();
+
+                _logger.LogInformation("Emploi du temps enregistré avec {Count} cours", modules.Count);
+                return Json(new { success = true, message = "Emploi du temps enregistré avec succès" });
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Erreur lors de l'ajout du module. ClassId: {ClassId}, Theme: {Theme}, Horaire: {Horaire}",
-                    classId, theme_module, horaire);
-                TempData["ErrorMessage"] = "Erreur lors de l'ajout du module";
+                _logger.LogError(ex, "Erreur lors de l'enregistrement de l'emploi du temps");
+                return Json(new { success = false, message = $"Erreur: {ex.Message}" });
             }
-
-            return RedirectToAction("Ajouter_emplois_du_temps");
         }
     }
 }

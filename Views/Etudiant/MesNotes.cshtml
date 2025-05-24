@@ -1,0 +1,208 @@
+﻿@model List<Forum.Models.Notes>
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h3 mb-0">
+            <i class="bi bi-clipboard2-data-fill text-primary me-2"></i>Mes Notes
+        </h2>
+        @if (Model.Any())
+        {
+            <div>
+                <span class="badge bg-primary bg-opacity-10 text-primary py-2 px-3 me-2">
+                    Moyenne: <strong>@Model.Average(n => n.Note).ToString("0.00")/20</strong>
+                </span>
+                <span class="badge bg-success bg-opacity-10 text-success py-2 px-3">
+                    <i class="bi bi-check-circle me-1"></i>@Model.Count(n => n.Note >= 10) Validé(s)
+                </span>
+            </div>
+        }
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-4 w-40">Module</th>
+                                <th class="text-center">Note</th>
+                                <th>Date</th>
+                                <th class="text-center">Statut</th>
+                                <th class="text-end pe-4">Graphique</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var note in Model.OrderByDescending(n => n.Date_note))
+                            {
+                                <tr>
+                                    <td class="ps-4">
+                                        <div class="d-flex align-items-center">
+                                            <div class="bg-primary bg-opacity-10 rounded-circle p-2 me-3">
+                                                <i class="bi bi-journal-text text-primary"></i>
+                                            </div>
+                                            <div>
+                                                <strong>@note.Modules.Theme_module</strong>
+                                                <div class="text-muted small">Coefficient: @note.Modules.Coefficient</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge @GetNoteBadgeClass(note.Note) py-2 px-3 fs-6">
+                                            <strong>@note.Note.ToString("0.00")</strong>/20
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="text-muted">@note.Date_note.ToString("dd MMM yyyy")</span>
+                                    </td>
+                                    <td class="text-center">
+                                        @if (note.Note >= 10)
+                                        {
+                                            <i class="bi bi-check-circle-fill text-success fs-5" title="Validé"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="bi bi-exclamation-circle-fill text-danger fs-5" title="Non validé"></i>
+                                        }
+                                    </td>
+                                    <td class="pe-4">
+                                        <div class="progress" style="height: 8px;">
+                                            <div class="progress-bar @GetNoteProgressBarClass(note.Note)" 
+                                                 role="progressbar" 
+                                                 style="width: @(note.Note * 5)%" 
+                                                 aria-valuenow="@note.Note" 
+                                                 aria-valuemin="0" 
+                                                 aria-valuemax="20">
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0"><i class="bi bi-graph-up me-2"></i>Répartition des notes</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="notesChart" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0"><i class="bi bi-filter-square me-2"></i>Statistiques</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <div class="p-3 bg-primary bg-opacity-10 rounded text-center">
+                                    <div class="h4 mb-1 text-primary">@Model.Max(n => n.Note).ToString("0.00")</div>
+                                    <div class="small text-muted">Meilleure note</div>
+                                </div>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <div class="p-3 bg-info bg-opacity-10 rounded text-center">
+                                    <div class="h4 mb-1 text-info">@Model.Min(n => n.Note).ToString("0.00")</div>
+                                    <div class="small text-muted">Plus basse note</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-3 bg-success bg-opacity-10 rounded text-center">
+                                    <div class="h4 mb-1 text-success">@Model.Count(n => n.Note >= 10)</div>
+                                    <div class="small text-muted">Modules validés</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-3 bg-warning bg-opacity-10 rounded text-center">
+                                    <div class="h4 mb-1 text-warning">@Model.Count(n => n.Note < 10)</div>
+                                    <div class="small text-muted">Modules à repasser</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="card shadow-sm border-0">
+            <div class="card-body text-center py-5">
+                <i class="bi bi-journal-x text-muted fs-1"></i>
+                <h3 class="h5 mt-3">Aucune note disponible</h3>
+                <p class="text-muted mb-0">Vos notes apparaîtront ici après évaluation</p>
+            </div>
+        </div>
+    }
+</div>
+
+@functions {
+    public string GetNoteBadgeClass(double note)
+    {
+        if (note >= 16) return "bg-success bg-opacity-10 text-success";
+        if (note >= 12) return "bg-info bg-opacity-10 text-info";
+        if (note >= 10) return "bg-primary bg-opacity-10 text-primary";
+        if (note >= 8) return "bg-warning bg-opacity-10 text-warning";
+        return "bg-danger bg-opacity-10 text-danger";
+    }
+
+    public string GetNoteProgressBarClass(double note)
+    {
+        if (note >= 16) return "bg-success";
+        if (note >= 12) return "bg-info";
+        if (note >= 10) return "bg-primary";
+        if (note >= 8) return "bg-warning";
+        return "bg-danger";
+    }
+}
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('notesChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Excellent (16-20)', 'Très bien (12-16)', 'Passable (10-12)', 'Insuffisant (8-10)', 'Echec (0-8)'],
+                        datasets: [{
+                            data: [
+                                @Model.Count(n => n.Note >= 16),
+                                @Model.Count(n => n.Note >= 12 && n.Note < 16),
+                                @Model.Count(n => n.Note >= 10 && n.Note < 12),
+                                @Model.Count(n => n.Note >= 8 && n.Note < 10),
+                                @Model.Count(n => n.Note < 8)
+                            ],
+                            backgroundColor: [
+                                '#28a745',
+                                '#17a2b8',
+                                '#007bff',
+                                '#ffc107',
+                                '#dc3545'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+}

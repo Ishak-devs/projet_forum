@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Espace Élève";
+}
+
+<div class="container-fluid py-4">
+    <div class="text-end mt-3">
+        <a href="@Url.Action("Logout", "Authentification")" class="btn btn-outline-danger">
+            <i class="fas fa-sign-out-alt"></i> Déconnexion
+        </a>
+    </div>
+
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="display-5 fw-bold text-primary">
+                        <i class="fas fa-user-graduate me-2"></i>Mon Espace Personnel
+                    </h1>
+                  
+                </div>
+                <div>
+                    <span class="badge rounded-pill bg-success fs-6">
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-4">
+       
+        <div class="col-md-4">
+            <div class="card border-info shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-chart-line fa-3x text-info mb-3"></i>
+                    <h5 class="card-title">Mes Notes</h5>
+                    <p class="card-text">Consultez vos résultats par matière.</p>
+                    <a href="@Url.Action("MesNotes", "Etudiant")" class="btn btn-info stretched-link text-white">
+                        <i class="fas fa-book-open me-1"></i> Accéder
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-4">
+            <div class="card border-primary shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-calendar-alt fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Mon Emploi du Temps</h5>
+                    <p class="card-text">Visualisez votre planning hebdomadaire.</p>
+                    <a href="@Url.Action("Emplois_du_temps", "Etudiant")" class="btn btn-primary stretched-link">
+                        <i class="fas fa-clock me-1"></i> Voir
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card border-warning shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-tasks fa-3x text-warning mb-3"></i>
+                    <h5 class="card-title">Mes Devoirs</h5>
+                    <p class="card-text">Liste des travaux à rendre.</p>
+                    <a href="@Url.Action("MesDevoirs", "Etudiant")" class="btn btn-warning stretched-link text-white">
+                        <i class="fas fa-clipboard-list me-1"></i> Voir la liste
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+>
+
+      
+
+       
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px)';
+                card.style.transition = 'all 0.3s ease';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'none';
+            });
+        });
+    </script>
+}

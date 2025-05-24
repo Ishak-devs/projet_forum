@@ -15,8 +15,6 @@
 }
 <form id="etablissementForm" method="post" asp-controller="Signup" asp-action="Etablissement">
 
-
-
     <div class="form-group">
         <label asp-for="Region"></label>
         <select asp-for="Region" class="form-control" required>
@@ -96,8 +94,15 @@
                 $('#loader').show();
                 $('#etablissements').html('<option value="">Chargement...</option>');
                 etablissementsData = {};
+
+                let apiUrl = `https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-annuaire-education&rows=500&refine.type_etablissement=${encodeURIComponent(typeEtablissement)}`;
+
+                if (region) {
+                    apiUrl += `&refine.region=${encodeURIComponent(region)}`;
+                }
+
                 $.ajax({
-                    url: `https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-annuaire-education&rows=50&refine.region=${encodeURIComponent(region)}&refine.type_etablissement=${encodeURIComponent(typeEtablissement)}`,
+                    url: apiUrl,
                     method: 'GET',
                     success: function (data) {
                         $('#etablissements').empty();
@@ -106,21 +111,20 @@
                         } else {
                             $('#etablissements').append('<option value="">-- Sélectionnez --</option>');
                             data.records.forEach(function (record) {
-                                const id = record.recordid;
-                                const nom = record.fields.nom_etablissement || 'Établissement sans nom';
-                                const academie = record.fields.libelle_academie || '';
-                                const code_postal = record.fields.code_postal || '';
+                                if (record.fields) {
+                                    const nom = record.fields.nom_etablissement || 'Établissement sans nom';
+                                    const academie = record.fields.libelle_academie || '';
+                                    const code_postal = record.fields.code_postal || '';
 
+                                    etablissementsData[nom] = {
+                                        libelle_academie: academie,
+                                        codePostal: code_postal
+                                    };
 
-                                etablissementsData[nom] = {
-                                    libelle_academie: academie,
-                                    codePostal: code_postal
-                                };
-
-
-                                $('#etablissements').append(
-                                    `<option value="${nom}">${nom}</option>`
-                                );
+                                    $('#etablissements').append(
+                                        `<option value="${nom}">${nom}</option>`
+                                    );
+                                }
                             });
                         }
                     },

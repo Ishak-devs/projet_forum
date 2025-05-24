@@ -1,0 +1,30 @@
+﻿@model List<Forum.Models.Modules>
+@{
+    ViewData["Title"] = "Emploi du Temps";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4 text-success">
+        <i class="fas fa-calendar-alt me-2"></i>Emploi du Temps de la classe @Model.FirstOrDefault()?.Classes.Nom_classe
+    </h2>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-success">
+            <tr>
+                <th>Module</th>
+                <th>Horaire</th>
+                <th>Coefficient</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var module in Model)
+            {
+                <tr>
+                    <td>@module.Theme_module</td>
+                    <td>@module.Horaire</td>
+                    <td>@module.Coefficient</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

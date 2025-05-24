@@ -12,7 +12,14 @@ public class ApplicationDbContext : DbContext
     
     public DbSet<Messages> Messages { get; set; }
     public DbSet<Evaluations> Evaluations { get; set; }
+
+    public DbSet<Alertes> Alerte { get; set; }
+
     public DbSet<Alertes> Alertes { get; set; }
+
+    public DbSet<Notes> Notes { get; set; }
+
+    public DbSet<Devoirs> Devoirs { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

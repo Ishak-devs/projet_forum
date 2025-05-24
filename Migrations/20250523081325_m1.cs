@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Forum.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class m1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -43,12 +43,12 @@ namespace Forum.Migrations
                 {
                     Id_alerte = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Id_utilisateur = table.Column<int>(type: "int", nullable: false),
-                    Id_promo = table.Column<int>(type: "int", nullable: false),
-                    Message = table.Column<string>(type: "longtext", nullable: false)
+                    Titre = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Category = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    Message = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Id_utilisateur = table.Column<int>(type: "int", nullable: false),
+                    Id_classe = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -80,6 +80,7 @@ namespace Forum.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Theme_module = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    Coefficient = table.Column<double>(type: "double", nullable: false),
                     Horaire = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Id_classe = table.Column<int>(type: "int", nullable: false)
@@ -132,6 +133,38 @@ namespace Forum.Migrations
                         column: x => x.Id_etablissement,
                         principalTable: "Etablissements",
                         principalColumn: "Id_etablissement");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Devoirs",
+                columns: table => new
+                {
+                    Id_devoir = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Intitulé = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Date_devoir = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    FichierPath = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Id_module = table.Column<int>(type: "int", nullable: false),
+                    Id_utilisateur = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Devoirs", x => x.Id_devoir);
+                    table.ForeignKey(
+                        name: "FK_Devoirs_Modules_Id_module",
+                        column: x => x.Id_module,
+                        principalTable: "Modules",
+                        principalColumn: "Id_module",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Devoirs_Utilisateurs_Id_utilisateur",
+                        column: x => x.Id_utilisateur,
+                        principalTable: "Utilisateurs",
+                        principalColumn: "Id_utilisateur",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -196,10 +229,39 @@ namespace Forum.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
+            migrationBuilder.CreateTable(
+                name: "Notes",
+                columns: table => new
+                {
+                    Id_note = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Note = table.Column<double>(type: "double", nullable: false),
+                    Date_note = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Id_module = table.Column<int>(type: "int", nullable: false),
+                    Id_utilisateur = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Notes", x => x.Id_note);
+                    table.ForeignKey(
+                        name: "FK_Notes_Modules_Id_module",
+                        column: x => x.Id_module,
+                        principalTable: "Modules",
+                        principalColumn: "Id_module",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Notes_Utilisateurs_Id_utilisateur",
+                        column: x => x.Id_utilisateur,
+                        principalTable: "Utilisateurs",
+                        principalColumn: "Id_utilisateur",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
             migrationBuilder.CreateIndex(
-                name: "IX_Alertes_Id_promo",
+                name: "IX_Alertes_Id_classe",
                 table: "Alertes",
-                column: "Id_promo");
+                column: "Id_classe");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Alertes_Id_utilisateur",
@@ -210,6 +272,16 @@ namespace Forum.Migrations
                 name: "IX_Classes_ProfesseurPrincipalId",
                 table: "Classes",
                 column: "ProfesseurPrincipalId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Devoirs_Id_module",
+                table: "Devoirs",
+                column: "Id_module");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Devoirs_Id_utilisateur",
+                table: "Devoirs",
+                column: "Id_utilisateur");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Evaluations_Id_module",
@@ -237,6 +309,16 @@ namespace Forum.Migrations
                 column: "Id_classe");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Notes_Id_module",
+                table: "Notes",
+                column: "Id_module");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Notes_Id_utilisateur",
+                table: "Notes",
+                column: "Id_utilisateur");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Utilisateurs_Id_classe",
                 table: "Utilisateurs",
                 column: "Id_classe");
@@ -247,9 +329,9 @@ namespace Forum.Migrations
                 column: "Id_etablissement");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Alertes_Classes_Id_promo",
+                name: "FK_Alertes_Classes_Id_classe",
                 table: "Alertes",
-                column: "Id_promo",
+                column: "Id_classe",
                 principalTable: "Classes",
                 principalColumn: "Id_classe",
                 onDelete: ReferentialAction.Cascade);
@@ -281,10 +363,16 @@ namespace Forum.Migrations
                 name: "Alertes");
 
             migrationBuilder.DropTable(
+                name: "Devoirs");
+
+            migrationBuilder.DropTable(
                 name: "Evaluations");
 
             migrationBuilder.DropTable(
                 name: "Messages");
+
+            migrationBuilder.DropTable(
+                name: "Notes");
 
             migrationBuilder.DropTable(
                 name: "Modules");
