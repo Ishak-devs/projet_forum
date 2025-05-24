@@ -58,7 +58,7 @@ namespace Forum.Controllers
                         else if (utilisateur.Role == "Professeur")
                             return RedirectToAction("Professeur", "Dashboard");
                         else
-                            return RedirectToAction("Eleve", "Dashboard");
+                            return RedirectToAction("Etudiant", "Dashboard");
                     }
                 }
 
