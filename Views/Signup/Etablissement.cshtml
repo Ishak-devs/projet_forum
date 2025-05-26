@@ -82,6 +82,23 @@
         $(document).ready(function () {
             let etablissementsData = {};
 
+            // Mapping complet des régions avec leurs codes et variantes
+            const regionMappings = {
+                "Île-de-France": ["11", "ile-de-france", "ile de france"],
+                "Auvergne-Rhône-Alpes": ["84", "auvergne-rhone-alpes"],
+                "Bourgogne-Franche-Comté": ["27", "bourgogne-franche-comte"],
+                "Bretagne": ["53", "bretagne"],
+                "Centre-Val de Loire": ["24", "centre-val de loire"],
+                "Corse": ["94", "corse"],
+                "Grand Est": ["44", "grand est"],
+                "Hauts-de-France": ["32", "hauts-de-france"],
+                "Normandie": ["28", "normandie"],
+                "Nouvelle-Aquitaine": ["75", "nouvelle-aquitaine"],
+                "Occitanie": ["76", "occitanie"],
+                "Pays de la Loire": ["52", "pays de la loire"],
+                "Provence-Alpes-Côte d'Azur": ["93", "paca", "provence-alpes-cote d'azur"]
+            };
+
             $('#Region, #type_etablissement').change(function () {
                 const region = $('#Region').val();
                 const typeEtablissement = $('#type_etablissement').val();
@@ -95,23 +112,29 @@
                 $('#etablissements').html('<option value="">Chargement...</option>');
                 etablissementsData = {};
 
-                let apiUrl = `https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-annuaire-education&rows=500&refine.type_etablissement=${encodeURIComponent(typeEtablissement)}`;
-
-                if (region) {
-                    apiUrl += `&refine.region=${encodeURIComponent(region)}`;
-                }
+                let apiUrl = `https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-annuaire-education&rows=1000&refine.type_etablissement=${encodeURIComponent(typeEtablissement)}`;
 
                 $.ajax({
                     url: apiUrl,
                     method: 'GET',
                     success: function (data) {
-                        $('#etablissements').empty();
-                        if (data.nhits === 0) {
-                            $('#etablissements').append('<option value="">Aucun établissement trouvé</option>');
-                        } else {
-                            $('#etablissements').append('<option value="">-- Sélectionnez --</option>');
-                            data.records.forEach(function (record) {
-                                if (record.fields) {
+                        $('#etablissements').empty().append('<option value="">-- Sélectionnez --</option>');
+                        let found = false;
+                        const targetRegionKeys = regionMappings[region] || [region.toLowerCase()];
+
+                        data.records.forEach(function (record) {
+                            if (record.fields) {
+                                // Vérification sur plusieurs champs possibles
+                                const recordRegion = (record.fields.region || '').toString().toLowerCase().trim();
+                                const recordCodeRegion = (record.fields.code_region || '').toString().trim();
+
+                                // Vérifie si l'un des champs correspond à l'une de nos clés
+                                const regionMatch = targetRegionKeys.some(key =>
+                                    recordRegion.includes(key.toLowerCase()) ||
+                                    recordCodeRegion === key
+                                );
+
+                                if (regionMatch) {
                                     const nom = record.fields.nom_etablissement || 'Établissement sans nom';
                                     const academie = record.fields.libelle_academie || '';
                                     const code_postal = record.fields.code_postal || '';
@@ -121,11 +144,15 @@
                                         codePostal: code_postal
                                     };
 
-                                    $('#etablissements').append(
-                                        `<option value="${nom}">${nom}</option>`
-                                    );
+                                    $('#etablissements').append(`<option value="${nom}">${nom}</option>`);
+                                    found = true;
                                 }
-                            });
+                            }
+                        });
+
+                        if (!found) {
+                            $('#etablissements').html('<option value="">Aucun établissement trouvé pour ' + region + '</option>');
+                            console.warn("Aucun établissement trouvé pour:", region, "Données inspectées:", data.records);
                         }
                     },
                     error: function (xhr, status, error) {
