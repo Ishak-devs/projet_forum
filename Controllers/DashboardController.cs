@@ -31,25 +31,35 @@ namespace Forum.Controllers
 
         }
 
-        public IActionResult Eleve()
+        public async Task<IActionResult> Etudiant()
         {
-            var eleveId = HttpContext.Session.GetInt32("Etudiant");
+            int? userId = HttpContext.Session.GetInt32("UserId");
 
-            if (eleveId.HasValue)
-            {
-                var eleve = _context.Utilisateurs
-                    .FirstOrDefault(p => p.Id_utilisateur == eleveId.Value);
+            if (userId == null)
+                return RedirectToAction("Index", "Authentification");
 
-                if (eleve != null)
-                {
-                    ViewBag.SessionEleve_id = eleveId;
-                    ViewBag.EleveNom = eleve.Nom;
-                    ViewBag.ElevePrenom = eleve.Prenom;
-                }
-            }
+            var etudiant = await _context.Utilisateurs
+                .Include(e => e.Classes)
+                .FirstOrDefaultAsync(e => e.Id_utilisateur == userId);
+
+            var notes = await _context.Notes
+                .Include(n => n.Modules)
+                .Where(n => n.Id_utilisateur == userId)
+                .OrderByDescending(n => n.Date_note)
+                .Take(3)
+                .ToListAsync();
+
+            float moyenne = (float)(notes.Any() ? notes.Average(n => n.Note) : 0);
+
+            ViewBag.Moyenne = moyenne;
+            ViewBag.Classe = etudiant?.Classes?.Nom_classe ?? "Classe inconnue";
+            ViewBag.Notes = notes;
+            ViewBag.EleveNom = etudiant?.Nom;
+            ViewBag.ElevePrenom = etudiant?.Prenom;
 
             return View();
         }
+
 
         public IActionResult Admin()
         {
