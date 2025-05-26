@@ -31,11 +31,7 @@ namespace Forum.Controllers
 
         }
 
-<<<<<<< HEAD
         public async Task<IActionResult> Etudiant()
-=======
-        public IActionResult Etudiant()
->>>>>>> ba59d891f7047b3877a83ef2fb46be19de3beecf
         {
             int? userId = HttpContext.Session.GetInt32("UserId");
 
