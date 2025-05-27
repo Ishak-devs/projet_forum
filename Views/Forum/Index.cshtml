@@ -9,6 +9,8 @@
 
     <!-- Champ caché pour stocker le nom de l'utilisateur -->
     <input type="hidden" id="currentUserName" value="@Context.Session.GetString("UserName")" />
+    <input type="hidden" id="currentClassId" value="@Context.Session.GetInt32("ClassId")" />
+
 
     <div id="messagesContainer" class="border rounded p-3 bg-light" style="height: 400px; overflow-y: scroll;">
         <!-- Messages will appear here -->
