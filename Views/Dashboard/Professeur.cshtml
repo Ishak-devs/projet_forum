@@ -1,5 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Espace Professeur";
+    var profNomComplet = $"{ViewBag.ProfPrenom} {ViewBag.ProfNom}";
+    var classes = ViewBag.Classes as List<Classes>;
+    var alertes = ViewBag.Alertes as List<Alertes>;
 }
 
 <div class="container-fluid py-4">
@@ -14,25 +17,23 @@
             <h1 class="display-5 fw-bold text-dark">
                 <i class="fas fa-chalkboard-teacher me-2"></i>Espace Professeur
             </h1>
-            <p class="lead">Bienvenue, <strong>@User.Identity.Name</strong>.</p>
+            <p class="lead">Bienvenue, <strong>@profNomComplet</strong>.</p>
         </div>
     </div>
 
     <div class="row g-4 mb-4">
-
         <div class="col-md-4">
             <div class="card border-primary shadow-sm h-100">
                 <div class="card-body text-center">
                     <i class="fas fa-users-class fa-3x text-primary mb-3"></i>
                     <h5 class="card-title">Mes Classes</h5>
-                    <p class="card-text">Accédez à la liste de vos classes et élèves.</p>
+                    <p class="card-text">@(classes?.Count ?? 0) classe(s) à votre charge</p>
                     <a href="@Url.Action("MesClasses", "Professeur")" class="btn btn-primary stretched-link">
                         <i class="fas fa-list-ul me-1"></i> Voir mes classes
                     </a>
                 </div>
             </div>
         </div>
-
 
         <div class="col-md-4">
             <div class="card border-warning shadow-sm h-100">
@@ -61,97 +62,91 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-12">
-            <div class="card shadow">
-                <div class="card-header bg-dark text-white">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">
-                            <i class="fas fa-user-graduate me-2"></i>Élèves de la classe <span class="badge bg-light text-dark">Terminale A</span>
-                        </h5>
-                        <a href="#" class="btn btn-sm btn-outline-light">
-                            <i class="fas fa-file-export me-1"></i> Exporter (.csv)
-                        </a>
+    @if (classes != null && classes.Any())
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-header bg-dark text-white">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">
+                                <i class="fas fa-users me-2"></i>Vos Classes
+                            </h5>
+                            <a href="#" class="btn btn-sm btn-outline-light">
+                                <i class="fas fa-file-export me-1"></i> Exporter
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Nom</th>
-                                    <th>Prénom</th>
-                                    <th>Moyenne</th>
-                                    <th>Dernière note</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                               
-                                <tr>
-                                    <td>Dupont</td>
-                                    <td>Jean</td>
-                                    <td>14.5</td>
-                                    <td>15 <span class="badge bg-success">+1.5</span></td>
-                                    <td>
-                                        <a href="#" class="btn btn-sm btn-outline-primary">
-                                            <i class="fas fa-eye"></i> Profil
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Martin</td>
-                                    <td>Sophie</td>
-                                    <td>12.0</td>
-                                    <td>11 <span class="badge bg-danger">-1.0</span></td>
-                                    <td>
-                                        <a href="#" class="btn btn-sm btn-outline-primary">
-                                            <i class="fas fa-eye"></i> Profil
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Nom de la classe</th>
+                                        <th>Niveau</th>
+                                        <th>Nombre d'élèves</th>
+                                        <th>Année scolaire</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var classe in classes)
+                                    {
+                                        <tr>
+                                            <td>@classe.Nom_classe</td>
+                                            <td>@classe.ProfesseurPrincipal</td>
+                                            <td>
+                                                <a href="@Url.Action("DetailsClasse", "Professeur", new { id = classe.Id_classe })"
+                                                   class="btn btn-sm btn-outline-primary">
+                                                    <i class="fas fa-eye"></i> Détails
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
+    }
 
     <div class="row mt-4">
         <div class="col-md-6">
             <div class="card shadow">
                 <div class="card-header bg-info text-white">
                     <h5 class="mb-0">
-                        <i class="fas fa-bell me-2"></i>Prochains Cours (Aujourd'hui)
+                        <i class="fas fa-bell me-2"></i>Vos Prochains Cours
                     </h5>
                 </div>
                 <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div>
-                                <strong>9h00 - 10h30</strong><br>
-                                <span class="text-muted">Terminale A - Mathématiques</span>
-                            </div>
-                            <a href="#" class="btn btn-sm btn-outline-info">
-                                <i class="fas fa-clipboard-check"></i> Fiche de cours
-                            </a>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div>
-                                <strong>14h00 - 15h30</strong><br>
-                                <span class="text-muted">Première B - Physique</span>
-                            </div>
-                            <a href="#" class="btn btn-sm btn-outline-info">
-                                <i class="fas fa-clipboard-check"></i> Fiche de cours
-                            </a>
-                        </li>
-                    </ul>
+                    @if (classes != null && classes.Any())
+                    {
+                        <ul class="list-group list-group-flush">
+                            @foreach (var classe in classes.Take(2))
+                            {
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>@DateTime.Today.AddHours(8).ToString("HH:mm") - @DateTime.Today.AddHours(9).ToString("HH:mm")</strong><br>
+                                        <span class="text-muted">@classe.Nom_classe - Mathématiques (Salle @(new Random().Next(100, 300)))</span>
+                                    </div>
+                                    <a href="#" class="btn btn-sm btn-outline-info">
+                                        <i class="fas fa-clipboard-check"></i> Préparer
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning">
+                            Aucun cours prévu aujourd'hui.
+                        </div>
+                    }
                 </div>
             </div>
         </div>
-
 
         <div class="col-md-6">
             <div class="card shadow">
@@ -161,23 +156,30 @@
                     </h5>
                 </div>
                 <div class="card-body">
-                    <div class="alert alert-warning">
-                        <i class="fas fa-user-clock me-2"></i>
-                        <strong>3 élèves</strong> en retard ce matin (Terminale A).
-                    </div>
-                    <div class="alert alert-light">
-                        <i class="fas fa-user-slash me-2"></i>
-                        <strong>1 absence</strong> non justifiée (Martin Sophie).
-                    </div>
+                    @if (alertes != null && alertes.Any())
+                    {
+                        foreach (var alerte in alertes.Take(3))
+                        {
+                            <div class="alert @(alerte.Titre == "Haute" ? "alert-danger" : alerte.Titre == "Moyenne" ? "alert-warning" : "alert-light")">
+                                <i class="fas @(alerte.Message == "Absence" ? "fa-user-slash" : alerte.Message == "Retard" ? "fa-user-clock" : "fa-info-circle") me-2"></i>
+                                <strong>@alerte.Titre</strong> - @alerte.Message
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="alert alert-success">
+                            <i class="fas fa-check-circle me-2"></i>
+                            Aucune alerte en ce moment.
+                        </div>
+                    }
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
 @section Scripts {
-
     <script>
         $(document).ready(function() {
             $('[data-bs-toggle="tooltip"]').tooltip();

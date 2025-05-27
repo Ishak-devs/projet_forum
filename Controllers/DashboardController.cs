@@ -68,19 +68,28 @@ namespace Forum.Controllers
 
             var Prof_principal = classes.Select(c => new
             {
-
                 Classe = c,
                 ProfPrincipal = _context.Utilisateurs
                     .FirstOrDefault(u => u.Id_utilisateur == c.ProfesseurPrincipalId)
             }).ToList();
+
 
             var effectifsParClasse = _context.Utilisateurs
                 .Where(u => u.Role == "Etudiant" && u.Id_classe != null)
                 .GroupBy(u => u.Id_classe.Value)
                 .ToDictionary(g => g.Key, g => g.Count());
 
+
+            var alertes = _context.Alertes
+                .Include(a => a.Classe)  
+                .Include(a => a.User)     
+                .OrderByDescending(a => a.Id_alerte)
+                .Take(5) 
+                .ToList();
+
             ViewBag.EffectifsParClasse = effectifsParClasse;
             ViewBag.prof_principal = Prof_principal;
+            ViewBag.Alertes = alertes;
 
             return View(classes);
         }
@@ -104,12 +113,25 @@ namespace Forum.Controllers
                     ViewBag.SessionProf_id = profId;
                     ViewBag.ProfNom = professeur.Nom;
                     ViewBag.ProfPrenom = professeur.Prenom;
+
+                    var classes = _context.Classes
+                        .Where(c => c.ProfesseurPrincipalId == profId.Value)
+                        .ToList();
+
+                    var alertes = _context.Alertes
+                        .Where(a => a.Id_utilisateur == profId.Value)
+                        .ToList();
+
+                    ViewBag.Classes = classes;
+                    ViewBag.Alertes = alertes;
+
+                    return View("Professeur");
                 }
             }
-            
 
             return RedirectToAction("Index");
         }
+
 
         public IActionResult AjouterAlerte()
         {

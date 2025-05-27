@@ -25,13 +25,20 @@ namespace Forum.Controllers
             }
 
             var classes = await contextget.Classes.ToListAsync();
-            var Utilisateurs = await contextget.Utilisateurs.ToListAsync();
+            var utilisateurs = await contextget.Utilisateurs.ToListAsync();
+
+            var utilisateur = utilisateurs.FirstOrDefault(u => u.Id_utilisateur == userId);
+            if (utilisateur != null && utilisateur.Id_classe != null)
+            {
+                HttpContext.Session.SetInt32("ClassId", (int)utilisateur.Id_classe);
+            }
+
 
             ViewBag.Classes = classes;
-            ViewBag.Users = Utilisateurs;
+            ViewBag.Users = utilisateurs;
 
             return View();
-        }
 
-    }
+
+        }
     }
