@@ -61,7 +61,7 @@ namespace Forum.Controllers
         }
 
 
-        public IActionResult Admin()
+        public async Task<IActionResult> AdminAsync()
         {
 
             var classes = _context.Classes.ToList();
@@ -74,10 +74,9 @@ namespace Forum.Controllers
             }).ToList();
 
 
-            var effectifsParClasse = _context.Utilisateurs
-                .Where(u => u.Role == "Etudiant" && u.Id_classe != null)
-                .GroupBy(u => u.Id_classe.Value)
-                .ToDictionary(g => g.Key, g => g.Count());
+            var effectifs = await _context.EffectifParClasse
+                .FromSqlRaw("CALL GetEffectifsParClasse()")
+                .ToListAsync();
 
 
             var alertes = _context.Alertes
@@ -87,7 +86,7 @@ namespace Forum.Controllers
                 .Take(5) 
                 .ToList();
 
-            ViewBag.EffectifsParClasse = effectifsParClasse;
+            ViewBag.EffectifsParClasse = effectifs;
             ViewBag.prof_principal = Prof_principal;
             ViewBag.Alertes = alertes;
 
