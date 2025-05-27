@@ -82,8 +82,7 @@
             console.log("SignalR Connected.");
 
             // Rejoindre le groupe et charger les messages
-            const classId = 1; 
-            await connection.invoke("JoinChatGroup", classId);
+            const classId = parseInt(document.getElementById("currentClassId").value);
         } catch (err) {
             console.log(err);
             setTimeout(startConnection, 5000);
@@ -121,7 +120,11 @@
         const message = document.getElementById("messageInput").value.trim();
         if (!message) return;
 
-        const classId = 1; 
+               const classId = parseInt(document.getElementById("currentClassId").value);
+    await connection.invoke("SendMessage", message, classId);
+
+
+
 
         try {
             await connection.invoke("SendMessage", message, classId);
