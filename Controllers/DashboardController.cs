@@ -100,7 +100,7 @@ namespace Forum.Controllers
 
         public IActionResult Professeur()
         {
-            var profId = HttpContext.Session.GetInt32("Professeur");
+            var profId = HttpContext.Session.GetInt32("UserId");
 
             if (profId.HasValue)
             {
