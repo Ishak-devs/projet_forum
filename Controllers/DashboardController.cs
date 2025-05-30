@@ -73,10 +73,10 @@ namespace Forum.Controllers
                     .FirstOrDefault(u => u.Id_utilisateur == c.ProfesseurPrincipalId)
             }).ToList();
 
-
-            var effectifs = await _context.EffectifParClasse
-                .FromSqlRaw("CALL GetEffectifsParClasse()")
-                .ToListAsync();
+            var effectifs = _context.Utilisateurs
+                     .Where(u => u.Role == "Etudiant" && u.Id_classe != null)
+                     .GroupBy(u => u.Id_classe.Value)
+                     .ToDictionary(g => g.Key, g => g.Count());
 
 
             var alertes = _context.Alertes
