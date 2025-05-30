@@ -66,12 +66,7 @@ namespace Forum.Controllers
 
             var classes = _context.Classes.ToList();
 
-            var Prof_principal = classes.Select(c => new
-            {
-                Classe = c,
-                ProfPrincipal = _context.Utilisateurs
-                    .FirstOrDefault(u => u.Id_utilisateur == c.ProfesseurPrincipalId)
-            }).ToList();
+          
 
             var effectifs = _context.Utilisateurs
                      .Where(u => u.Role == "Etudiant" && u.Id_classe != null)
@@ -87,7 +82,6 @@ namespace Forum.Controllers
                 .ToList();
 
             ViewBag.EffectifsParClasse = effectifs;
-            ViewBag.prof_principal = Prof_principal;
             ViewBag.Alertes = alertes;
 
             return View(classes);
@@ -105,7 +99,8 @@ namespace Forum.Controllers
             if (profId.HasValue)
             {
                 var professeur = _context.Utilisateurs
-                    .Include(u => u.Classes) 
+                    .Include(u => u.Classes)
+                        .ThenInclude(c => c.Utilisateurs) // récupère les utilisateurs de la classe
                     .FirstOrDefault(u => u.Id_utilisateur == profId.Value);
 
                 if (professeur != null)
@@ -116,11 +111,17 @@ namespace Forum.Controllers
 
                     var classe = professeur.Classes;
 
+                    // récupère uniquement les étudiants de la classe
+                    var eleves = classe?.Utilisateurs
+                        .Where(u => u.Role == "Etudiant")
+                        .ToList();
+
                     var alertes = _context.Alertes
                         .Where(a => a.Id_utilisateur == profId.Value)
                         .ToList();
 
                     ViewBag.Classe = classe;
+                    ViewBag.Eleves = eleves;
                     ViewBag.Alertes = alertes;
 
                     return View("Professeur");
@@ -129,6 +130,8 @@ namespace Forum.Controllers
 
             return RedirectToAction("Index");
         }
+
+
 
 
 

@@ -85,7 +85,6 @@ namespace Forum.Controllers
                     var Nouvelle_Classe = new Classes
                     {
                         Nom_classe = Nom_classe,
-                        ProfesseurPrincipalId = ProfesseurPrincipalId
                     };
 
                     _context.Classes.Add(Nouvelle_Classe);

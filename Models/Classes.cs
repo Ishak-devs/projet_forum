@@ -11,10 +11,7 @@ namespace Forum.Models
         [StringLength(100)]
         public string Nom_classe { get; set; }
 
-        [ForeignKey("ProfesseurPrincipal")]
-        public int? ProfesseurPrincipalId { get; set; }
-
-        public virtual Utilisateurs? ProfesseurPrincipal { get; set; }
+        public virtual ICollection<Utilisateurs> Utilisateurs { get; set; }
 
 
 

@@ -118,17 +118,7 @@
                                 </div>
                                 <div>
                                     <h4 class="mb-1">@ViewBag.Classe?.Nom_classe</h4>
-                                   @{
-    var currentYear = DateTime.Now.Year;
-    var nextYear = currentYear + 1;
-    if (DateTime.Now.Month < 8) 
-    {
-        currentYear -= 1;
-        nextYear -= 1;
-    }
-}
-<span class="badge bg-light text-dark">Année scolaire @currentYear - @nextYear</span>
-
+                                    <span class="badge bg-light text-dark">Année scolaire 2023-2024</span>
                                 </div>
                             </div>
                             
@@ -152,8 +142,8 @@
                                             <i class="fas fa-book fa-lg text-muted"></i>
                                         </div>
                                         <div>
-                                            <h6 class="mb-0">Alertes</h6>
-                                            <p class="text-muted small mb-0">Envoyez des alertes</p>
+                                            <h6 class="mb-0">Programme</h6>
+                                            <p class="text-muted small mb-0">Matières enseignées</p>
                                         </div>
                                     </div>
                                 </div>
@@ -209,8 +199,8 @@
                                     </div>
                                 }
                             </div>
-                            <a href="#" class="btn btn-outline-dark btn-sm mt-2 w-100">
-                                Voir toutes les alertes
+                            <a href="@Url.Action("Alertes", "Professeur")" class="btn btn-outline-dark btn-sm mt-2 w-100">
+                                <i class="fas fa-list me-1"></i> Voir toutes les alertes
                             </a>
                         }
                         else
