@@ -311,52 +311,47 @@
             </div>
 
             <!-- Right Column - Prochains Cours & Alertes -->
-            <div class="col-lg-4">
-                <!-- Prochains Cours Card -->
-                <div class="card shadow-sm border-0 mb-4">
-                    <div class="card-header bg-white py-3 border-bottom">
-                        <h5 class="mb-0">
-                            <i class="fas fa-calendar-day text-info me-2"></i>
-                            <span class="text-gradient">Prochains Cours</span>
-                        </h5>
-                    </div>
-                    <div class="card-body p-0">
-                        @if (classes != null && classes.Any())
-                        {
-                            <div class="list-group list-group-flush">
-                                @foreach (var classe in classes.Take(2))
-                                {
-                                    <div class="list-group-item border-0 py-3">
-                                        <div class="d-flex align-items-center">
-                                            <div class="time-badge bg-info bg-opacity-10 text-info rounded p-2 me-3 text-center">
-                                                <span class="d-block fw-bold">@DateTime.Today.AddHours(8).ToString("HH:mm")</span>
-                                                <small>@DateTime.Today.AddHours(9).ToString("HH:mm")</small>
-                                            </div>
-                                            <div>
-                                                <h6 class="mb-1">@classe.Nom_classe</h6>
-                                                <small class="text-muted">Mathématiques • Salle @(new Random().Next(100, 300))</small>
-                                            </div>
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white py-3 border-bottom">
+                    <h5 class="mb-0">
+                        <i class="fas fa-bell text-danger me-2"></i>
+                        <span class="text-gradient">Alertes Récentes</span>
+                    </h5>
+                </div>
+                <div class="card-body p-0">
+                    @if (alertes != null && alertes.Any())
+                    {
+                        <div class="list-group list-group-flush">
+                            @foreach (var alerte in alertes.Take(3))
+                            {
+                                <div class="list-group-item border-0 py-3">
+                                    <div class="d-flex">
+                                        <div class="alert-icon me-3">
+                                            <i class="fas @(alerte.Message == "Absence" ? "fa-user-slash text-danger" : alerte.Message == "Retard" ? "fa-user-clock text-warning" : "fa-info-circle text-info") fa-lg"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-1">@alerte.Titre</h6>
+                                            <p class="small mb-0 text-muted">@alerte.Message</p>
+                                            <small class="text-muted">@DateTime.Now.ToString("dd/MM/yyyy HH:mm")</small>
                                         </div>
                                     </div>
-                                }
-                                <div class="list-group-item border-0 py-3 bg-light">
-                                    <a href="#" class="btn btn-sm btn-outline-info rounded-pill w-100">
-                                        <i class="fas fa-calendar-week me-1"></i> Voir la semaine
-                                    </a>
                                 </div>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="text-center py-4">
-                                <i class="fas fa-calendar-times fa-2x text-muted mb-3"></i>
-                                <h6 class="fw-light">Aucun cours prévu</h6>
-                                <p class="text-muted small">Votre emploi du temps semble libre</p>
-                            </div>
-                        }
-                    </div>
-                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-4">
+                            <i class="fas fa-check-circle fa-2x text-success mb-3"></i>
+                            <h6 class="fw-light">Tout va bien !</h6>
+                            <p class="text-muted small">Aucune alerte en ce moment</p>
 
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 
 
         <div class="row mt-5">
