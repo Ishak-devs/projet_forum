@@ -16,5 +16,7 @@ namespace Forum.Models
 
         public virtual Utilisateurs? ProfesseurPrincipal { get; set; }
 
+
+
     }
 }

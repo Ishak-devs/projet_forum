@@ -105,7 +105,8 @@ namespace Forum.Controllers
             if (profId.HasValue)
             {
                 var professeur = _context.Utilisateurs
-                    .FirstOrDefault(p => p.Id_utilisateur == profId.Value);
+                    .Include(u => u.Classes) 
+                    .FirstOrDefault(u => u.Id_utilisateur == profId.Value);
 
                 if (professeur != null)
                 {
@@ -113,15 +114,13 @@ namespace Forum.Controllers
                     ViewBag.ProfNom = professeur.Nom;
                     ViewBag.ProfPrenom = professeur.Prenom;
 
-                    var classes = _context.Classes
-                        .Where(c => c.ProfesseurPrincipalId == profId.Value)
-                        .ToList();
+                    var classe = professeur.Classes;
 
                     var alertes = _context.Alertes
                         .Where(a => a.Id_utilisateur == profId.Value)
                         .ToList();
 
-                    ViewBag.Classes = classes;
+                    ViewBag.Classe = classe;
                     ViewBag.Alertes = alertes;
 
                     return View("Professeur");
@@ -130,6 +129,8 @@ namespace Forum.Controllers
 
             return RedirectToAction("Index");
         }
+
+
 
 
         public IActionResult AjouterAlerte()
