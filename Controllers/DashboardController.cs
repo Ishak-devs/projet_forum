@@ -131,8 +131,8 @@ namespace Forum.Controllers
 
             try
             {
-                _context.Alertes.Add(nouvelleAlerte);
-                _context.SaveChanges();
+                _context.Alertes.Add(nouvelleAlerte); //add on db
+                _context.SaveChanges(); //save on db
 
                 TempData["SuccessMessage"] = "L'alerte a été envoyée avec succès.";
                 return RedirectToAction("Admin");
