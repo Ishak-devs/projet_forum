@@ -13,7 +13,8 @@
     @TempData["Message"]
 </div>
 }
-<form id="etablissementForm" method="post" asp-controller="Signup" asp-action="Etablissement">
+
+<form method="post" asp-controller="Signup" asp-action="Etablissement">
 
     <div class="form-group">
         <label asp-for="Region"></label>
@@ -39,141 +40,25 @@
             <option value="Mayotte">Mayotte</option>
         </select>
         <span asp-validation-for="Region" class="text-danger"></span>
-
-        <select asp-for="type_etablissement" id="type_etablissement" class="form-control" required>
-            <option value="">-- Choisir un type --</option>
-            <option value="Ecole">Ecole</option>
-            <option value="Collège">Collège</option>
-            <option value="Lycée">Lycée</option>
-            <option value="EREA">EREA</option>
-        </select>
-
-
-        <label for="etablissements">Établissements disponibles</label>
-        <select id="etablissements" asp-for="nom_etablissement" class="form-control">
-            <option value="">-- Choisir un établissement --</option>
-        </select>
     </div>
 
-    <div id="loader" class="text-center" style="display:none;">
-        <div class="spinner-border text-primary" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-        <p>Chargement en cours...</p>
+    <div class="form-group">
+        <label asp-for="nom_etablissement">Nom de l'établissement</label>
+        <input asp-for="nom_etablissement" class="form-control" required />
+        <span asp-validation-for="nom_etablissement" class="text-danger"></span>
     </div>
 
-    <div>
+    <div class="form-group">
         <label asp-for="academie">Académie</label>
-        <input type="text" id="academie" asp-for="academie" class="form-control" readonly>
+        <input asp-for="academie" class="form-control" required />
+        <span asp-validation-for="academie" class="text-danger"></span>
     </div>
 
-    <div>
+    <div class="form-group">
         <label asp-for="code_postal">Code postal</label>
-        <input type="number" id="code_postal" asp-for="code_postal" class="form-control" readonly>
+        <input asp-for="code_postal" class="form-control" type="number" required />
+        <span asp-validation-for="code_postal" class="text-danger"></span>
     </div>
-
 
     <input type="submit" class="btn btn-primary" value="Valider">
 </form>
-
-@section Scripts {
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            let etablissementsData = {};
-
-            const regionMappings = {
-                "Île-de-France": ["11", "ile-de-france", "ile de france"],
-                "Auvergne-Rhône-Alpes": ["84", "auvergne-rhone-alpes"],
-                "Bourgogne-Franche-Comté": ["27", "bourgogne-franche-comte"],
-                "Bretagne": ["53", "bretagne"],
-                "Centre-Val de Loire": ["24", "centre-val de loire"],
-                "Corse": ["94", "corse"],
-                "Grand Est": ["44", "grand est"],
-                "Hauts-de-France": ["32", "hauts-de-france"],
-                "Normandie": ["28", "normandie"],
-                "Nouvelle-Aquitaine": ["75", "nouvelle-aquitaine"],
-                "Occitanie": ["76", "occitanie"],
-                "Pays de la Loire": ["52", "pays de la loire"],
-                "Provence-Alpes-Côte d'Azur": ["93", "paca", "provence-alpes-cote d'azur"]
-            };
-
-            $('#Region, #type_etablissement').change(function () {
-                const region = $('#Region').val();
-                const typeEtablissement = $('#type_etablissement').val();
-
-                if (!region || !typeEtablissement) {
-                    $('#etablissements').html('<option value="">-- Sélectionnez région et type --</option>');
-                    return;
-                }
-
-                $('#loader').show();
-                $('#etablissements').html('<option value="">Chargement...</option>');
-                etablissementsData = {};
-
-                let apiUrl = `https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-annuaire-education&rows=1000&refine.type_etablissement=${encodeURIComponent(typeEtablissement)}`;
-
-                $.ajax({
-                    url: apiUrl,
-                    method: 'GET',
-                    success: function (data) {
-                        $('#etablissements').empty().append('<option value="">-- Sélectionnez --</option>');
-                        let found = false;
-                        const targetRegionKeys = regionMappings[region] || [region.toLowerCase()];
-
-                        data.records.forEach(function (record) {
-                            if (record.fields) {
-
-                                const recordRegion = (record.fields.region || '').toString().toLowerCase().trim();
-                                const recordCodeRegion = (record.fields.code_region || '').toString().trim();
-
-                                const regionMatch = targetRegionKeys.some(key =>
-                                    recordRegion.includes(key.toLowerCase()) ||
-                                    recordCodeRegion === key
-                                );
-
-                                if (regionMatch) {
-                                    const nom = record.fields.nom_etablissement || 'Établissement sans nom';
-                                    const academie = record.fields.libelle_academie || '';
-                                    const code_postal = record.fields.code_postal || '';
-
-                                    etablissementsData[nom] = {
-                                        libelle_academie: academie,
-                                        codePostal: code_postal
-                                    };
-
-                                    $('#etablissements').append(`<option value="${nom}">${nom}</option>`);
-                                    found = true;
-                                }
-                            }
-                        });
-
-                        if (!found) {
-                            $('#etablissements').html('<option value="">Aucun établissement trouvé pour ' + region + '</option>');
-                            console.warn("Aucun établissement trouvé pour:", region, "Données inspectées:", data.records);
-                        }
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("Erreur AJAX:", status, error);
-                        $('#etablissements').html('<option value="">Erreur de connexion</option>');
-                    },
-                    complete: function () {
-                        $('#loader').hide();
-                    }
-                });
-            });
-
-            $('#etablissements').change(function () {
-                const selectedNom = $(this).val();
-                const data = etablissementsData[selectedNom];
-
-                if (data) {
-                    $('#academie').val(data.libelle_academie);
-                    $('#code_postal').val(data.codePostal);
-                } else {
-                    $('#academie, #code_postal').val('');
-                }
-            });
-        });
-    </script>
-}
