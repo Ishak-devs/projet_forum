@@ -128,7 +128,8 @@ namespace Forum.Controllers
                 }
             }
 
-            return RedirectToAction("Index");
+
+            return View();
         }
 
 
