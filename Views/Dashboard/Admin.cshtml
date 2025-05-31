@@ -3,6 +3,7 @@
     ViewData["Title"] = "Administration - Gestion Établissement Scolaire";
     }
 
+
                <div class="container-fluid py-4">
     <div class="text-end mt-3">
         <a href="@Url.Action("Logout", "Authentification")" class="btn btn-outline-danger">
@@ -85,115 +86,52 @@
                        </div>
                    </div>
 
-                   <!-- Section "Événements Scolaires" - Version améliorée -->
-                   <div class="row mb-4">
-                       <div class="col-12">
-                           <div class="card shadow-sm border-0 overflow-hidden">
-                               <div class="card-header bg-white border-bottom py-3">
-                                   <div class="d-flex justify-content-between align-items-center">
-                                       <h5 class="mb-0">
-                                           <i class="fas fa-calendar-check text-primary me-2"></i>Événements Scolaires
-                                       </h5>
-                                       <a href="@Url.Action("AjouterEvenement", "Administration")" class="btn btn-sm btn-primary">
-                                           <i class="fas fa-plus me-1"></i> Ajouter un événement
-                                       </a>
-                                   </div>
-                               </div>
-
-                               <div class="card-body p-0">
-                                   <!-- Bannière événementielle -->
-                                   <div class="position-relative">
-                                       <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=400&q=80"
-                                            class="img-fluid w-100"
-                                            alt="Événements scolaires"
-                                            style="object-fit: cover; height: 250px;">
-                                       <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
-                                            style="background: rgba(0, 82, 204, 0.4);">
-                                           <div class="container text-white px-4">
-                                               <h2 class="display-5 fw-bold mb-3">Vie Scolaire</h2>
-                                               <p class="lead mb-0" style="max-width: 600px;">
-                                                   Découvrez les prochains événements et activités de notre établissement.
-                                               </p>
-                                           </div>
-                                       </div>
-                                   </div>
-
-                                   <!-- Liste des événements à venir -->
-                                   <div class="p-4">
-                                       <h5 class="mb-3"><i class="fas fa-calendar-day text-primary me-2"></i>Prochains Événements</h5>
-
-                                       <div class="row g-4">
-                                           <!-- Événement 1 -->
-                                           <div class="col-md-6 col-lg-4">
-                                               <div class="card h-100 border-start border-4 border-primary">
-                                                   <div class="card-body">
-                                                       <div class="d-flex align-items-start mb-3">
-                                                           <div class="bg-primary text-white rounded-2 p-3 me-3 text-center" style="width: 60px;">
-                                                               <div class="fw-bold">15</div>
-                                                               <div class="small">JUIN</div>
-                                                           </div>
-                                                           <div>
-                                                               <h5 class="card-title mb-1">Journée Portes Ouvertes</h5>
-                                                               <p class="text-muted small mb-2"><i class="fas fa-clock me-1"></i> 09:00 - 17:00</p>
-                                                               <p class="card-text">Découverte de l'établissement pour les futurs élèves et leurs parents.</p>
-                                                           </div>
-                                                       </div>
-                                                       <div class="d-flex justify-content-between align-items-center">
-                                                           <span class="badge bg-primary bg-opacity-10 text-primary">Tous publics</span>
-                                                           <a href="#" class="btn btn-sm btn-outline-primary">Détails</a>
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                           </div>
-
-                                           <!-- Événement 2 -->
-                                           <div class="col-md-6 col-lg-4">
-                                               <div class="card h-100 border-start border-4 border-success">
-                                                   <div class="card-body">
-                                                       <div class="d-flex align-items-start mb-3">
-                                                           <div class="bg-success text-white rounded-2 p-3 me-3 text-center" style="width: 60px;">
-                                                               <div class="fw-bold">22</div>
-                                                               <div class="small">JUIN</div>
-                                                           </div>
-                                                           <div>
-                                                               <h5 class="card-title mb-1">Spectacle de Fin d'Année</h5>
-                                                               <p class="text-muted small mb-2"><i class="fas fa-clock me-1"></i> 18:30 - 21:00</p>
-                                                               <p class="card-text">Présentation des talents des élèves : théâtre, musique et danse.</p>
-                                                           </div>
-                                                       </div>
-                                                       <div class="d-flex justify-content-between align-items-center">
-                                                           <span class="badge bg-success bg-opacity-10 text-success">Culturel</span>
-                                                           <a href="#" class="btn btn-sm btn-outline-success">Détails</a>
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                           </div>
-
-                                           <!-- Événement 3 -->
-                                           <div class="col-md-6 col-lg-4">
-                                               <div class="card h-100 border-start border-4 border-warning">
-                                                   <div class="card-body">
-                                                       <div class="d-flex align-items-start mb-3">
-                                                           <div class="bg-warning text-white rounded-2 p-3 me-3 text-center" style="width: 60px;">
-                                                               <div class="fw-bold">28</div>
-                                                               <div class="small">JUIN</div>
-                                                           </div>
-                                                           <div>
-                                                               <h5 class="card-title mb-1">Remise des Diplômes</h5>
-                                                               <p class="text-muted small mb-2"><i class="fas fa-clock me-1"></i> 14:00 - 16:30</p>
-                                                               <p class="card-text">Cérémonie officielle de remise des diplômes aux élèves de terminale.</p>
-                                                           </div>
-                                                       </div>
-                                                       <div class="d-flex justify-content-between align-items-center">
-                                                           <span class="badge bg-warning bg-opacity-10 text-warning">Cérémonie</span>
-                                                           <a href="#" class="btn btn-sm btn-outline-warning">Détails</a>
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                           </div>
-                                       </div>
-                                   </div>
-
+    <!-- Section Alertes Récentes -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white border-bottom py-3">
+                    <h5 class="mb-0">
+                        <i class="fas fa-exclamation-triangle text-warning me-2"></i>Alertes Récentes
+                    </h5>
+                </div>
+                <div class="card-body">
+                    @if (ViewBag.Alertes != null && ViewBag.Alertes.Count > 0)
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Classe</th>
+                                        <th>Titre</th>
+                                        <th>Message</th>
+                                        <th>Émetteur</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var alerte in ViewBag.Alertes)
+                                    {
+                                        <tr>
+                                            <td>@alerte.Classe?.Nom_classe</td>
+                                            <td>@alerte.Titre</td>
+                                            <td>@alerte.Message</td>
+                                            <td>@alerte.User?.Nom @alerte.User?.Prenom</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info">
+                            Aucune alerte récente à afficher.
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
                                    <!-- Calendrier des événements -->
                                    <div class="p-4 bg-light">
                                        <h5 class="mb-3"><i class="fas fa-calendar-alt text-primary me-2"></i>Calendrier des Événements</h5>

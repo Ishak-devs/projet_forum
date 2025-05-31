@@ -1,186 +1,223 @@
 ﻿@{
     ViewData["Title"] = "Espace Professeur";
+    var profNomComplet = $"{ViewBag.ProfPrenom} {ViewBag.ProfNom}";
+    var classes = ViewBag.Classes as List<Classes>;
+    var alertes = ViewBag.Alertes as List<Alertes>;
 }
 
-<div class="container-fluid py-4">
-    <div class="text-end mt-3">
-        <a href="@Url.Action("Logout", "Authentification")" class="btn btn-outline-danger">
-            <i class="fas fa-sign-out-alt"></i> Déconnexion
-        </a>
-    </div>
-
-    <div class="row mb-4">
-        <div class="col-12">
-            <h1 class="display-5 fw-bold text-dark">
-                <i class="fas fa-chalkboard-teacher me-2"></i>Espace Professeur
-            </h1>
-            <p class="lead">Bienvenue, <strong>@User.Identity.Name</strong>.</p>
-        </div>
-    </div>
-
-    <div class="row g-4 mb-4">
-
-        <div class="col-md-4">
-            <div class="card border-primary shadow-sm h-100">
-                <div class="card-body text-center">
-                    <i class="fas fa-users-class fa-3x text-primary mb-3"></i>
-                    <h5 class="card-title">Mes Classes</h5>
-                    <p class="card-text">Accédez à la liste de vos classes et élèves.</p>
-                    <a href="@Url.Action("MesClasses", "Professeur")" class="btn btn-primary stretched-link">
-                        <i class="fas fa-list-ul me-1"></i> Voir mes classes
-                    </a>
-                </div>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .card-hover:hover {
+            transform: translateY(-2px);
+            transition: transform 0.2s ease;
+        }
+        .divider {
+            height: 1px;
+            background-color: rgba(0,0,0,0.1);
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container py-4">
+        <!-- Header Section -->
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <div>
+                <h1 class="h3 fw-bold text-dark mb-1">
+                    <i class="fas fa-chalkboard-teacher text-muted me-2"></i>Espace Professeur
+                </h1>
+                <p class="text-muted mb-0">Bienvenue, @profNomComplet</p>
             </div>
+            <a href="@Url.Action("Logout", "Authentification")" class="btn btn-outline-secondary btn-sm">
+                <i class="fas fa-sign-out-alt me-1"></i> Déconnexion
+            </a>
         </div>
 
-
-        <div class="col-md-4">
-            <div class="card border-warning shadow-sm h-100">
-                <div class="card-body text-center">
-                    <i class="fas fa-edit fa-3x text-warning mb-3"></i>
-                    <h5 class="card-title">Saisir les Notes</h5>
-                    <p class="card-text">Renseignez les notes des élèves.</p>
-                    <a href="@Url.Action("SaisirNotes", "Professeur")" class="btn btn-warning stretched-link text-white">
-                        <i class="fas fa-pen-fancy me-1"></i> Commencer
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card border-success shadow-sm h-100">
-                <div class="card-body text-center">
-                    <i class="fas fa-calendar-alt fa-3x text-success mb-3"></i>
-                    <h5 class="card-title">Emploi du Temps</h5>
-                    <p class="card-text">Consultez votre planning hebdomadaire.</p>
-                    <a href="@Url.Action("EmploiDuTemps", "Professeur")" class="btn btn-success stretched-link">
-                        <i class="fas fa-clock me-1"></i> Voir l'EDT
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12">
-            <div class="card shadow">
-                <div class="card-header bg-dark text-white">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">
-                            <i class="fas fa-user-graduate me-2"></i>Élèves de la classe <span class="badge bg-light text-dark">Terminale A</span>
-                        </h5>
-                        <a href="#" class="btn btn-sm btn-outline-light">
-                            <i class="fas fa-file-export me-1"></i> Exporter (.csv)
+        <!-- Quick Actions Section -->
+        <div class="row g-3 mb-5">
+            <div class="col-md-4">
+                <div class="card card-hover h-100 border">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-light p-3 rounded me-3">
+                                <i class="fas fa-users text-dark fa-lg"></i>
+                            </div>
+                            <h5 class="mb-0">Ma Classe</h5>
+                        </div>
+                        <p class="text-muted small">Gestion des élèves et de la classe</p>
+                        <a href="@Url.Action("MesClasses", "Professeur")" class="btn btn-outline-dark btn-sm stretched-link">
+                            Accéder <i class="fas fa-arrow-right ms-1"></i>
                         </a>
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Nom</th>
-                                    <th>Prénom</th>
-                                    <th>Moyenne</th>
-                                    <th>Dernière note</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                               
-                                <tr>
-                                    <td>Dupont</td>
-                                    <td>Jean</td>
-                                    <td>14.5</td>
-                                    <td>15 <span class="badge bg-success">+1.5</span></td>
-                                    <td>
-                                        <a href="#" class="btn btn-sm btn-outline-primary">
-                                            <i class="fas fa-eye"></i> Profil
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Martin</td>
-                                    <td>Sophie</td>
-                                    <td>12.0</td>
-                                    <td>11 <span class="badge bg-danger">-1.0</span></td>
-                                    <td>
-                                        <a href="#" class="btn btn-sm btn-outline-primary">
-                                            <i class="fas fa-eye"></i> Profil
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card card-hover h-100 border">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-light p-3 rounded me-3">
+                                <i class="fas fa-edit text-dark fa-lg"></i>
+                            </div>
+                            <h5 class="mb-0">Saisir notes</h5>
+                        </div>
+                        <p class="text-muted small">Enregistrement des évaluations</p>
+                        <a href="@Url.Action("SaisirNotes", "Professeur")" class="btn btn-outline-dark btn-sm stretched-link">
+                            Commencer <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card card-hover h-100 border">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-light p-3 rounded me-3">
+                                <i class="fas fa-calendar-alt text-dark fa-lg"></i>
+                            </div>
+                            <h5 class="mb-0">Emploi du temps</h5>
+                        </div>
+                        <p class="text-muted small">Consultation du planning</p>
+                        <a href="@Url.Action("EmploiDuTemps", "Professeur")" class="btn btn-outline-dark btn-sm stretched-link">
+                            Voir EDT <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Section -->
+        <div class="row">
+            <!-- Ma Classe Section -->
+            <div class="col-lg-8 mb-4">
+                <div class="card border">
+                    <div class="card-header bg-white border-bottom">
+                        <h5 class="mb-0">
+                            <i class="fas fa-users me-2"></i>
+                            Ma Classe
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        @if (ViewBag.Classe != null)
+                        {
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="bg-light p-3 rounded me-3">
+                                    <i class="fas fa-door-open fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h4 class="mb-1">@ViewBag.Classe?.Nom_classe</h4>
+                                    <span class="badge bg-light text-dark">Année scolaire 2023-2024</span>
+                                </div>
+                            </div>
+                            
+                            <div class="divider"></div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="me-3">
+                                            <i class="fas fa-user-graduate fa-lg text-muted"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0">Liste des élèves</h6>
+                                            <p class="text-muted small mb-0">Gestion complète des élèves</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="me-3">
+                                            <i class="fas fa-book fa-lg text-muted"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0">Programme</h6>
+                                            <p class="text-muted small mb-0">Matières enseignées</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="divider"></div>
+                            
+                            <div class="text-end">
+                                <a href="@Url.Action("MesClasses", "Professeur")" class="btn btn-dark">
+                                    <i class="fas fa-arrow-right me-1"></i> Gérer ma classe
+                                </a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="text-center py-4">
+                                <i class="fas fa-door-open fa-3x text-muted mb-3"></i>
+                                <h5 class="fw-light">Aucune classe assignée</h5>
+                                <p class="text-muted">Contactez l'administration pour plus d'informations</p>
+                                <a href="#" class="btn btn-outline-dark">Demander une classe</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alertes Section -->
+            <div class="col-lg-4">
+                <div class="card border">
+                    <div class="card-header bg-white border-bottom">
+                        <h5 class="mb-0">
+                            <i class="fas fa-bell me-2"></i>
+                            Alertes
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        @if (alertes != null && alertes.Any())
+                        {
+                            <div class="list-group list-group-flush">
+                                @foreach (var alerte in alertes.Take(3))
+                                {
+                                    <div class="list-group-item border-0 px-0 py-3">
+                                        <div class="d-flex">
+                                            <div class="me-3">
+                                                <i class="fas @(alerte.Message == "Absence" ? "fa-user-slash text-danger" : alerte.Message == "Retard" ? "fa-user-clock text-warning" : "fa-info-circle text-primary") fa-lg"></i>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-1">@alerte.Titre</h6>
+                                                <p class="small mb-0 text-muted">@alerte.Message</p>
+                                                <small class="text-muted">@DateTime.Now.ToString("dd/MM/yyyy")</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <a href="@Url.Action("Alertes", "Professeur")" class="btn btn-outline-dark btn-sm mt-2 w-100">
+                                <i class="fas fa-list me-1"></i> Voir toutes les alertes
+                            </a>
+                        }
+                        else
+                        {
+                            <div class="text-center py-3">
+                                <i class="fas fa-check-circle fa-2x text-success mb-3"></i>
+                                <h6 class="fw-light">Aucune alerte</h6>
+                                <p class="text-muted small">Tout est à jour</p>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <div class="card shadow">
-                <div class="card-header bg-info text-white">
-                    <h5 class="mb-0">
-                        <i class="fas fa-bell me-2"></i>Prochains Cours (Aujourd'hui)
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div>
-                                <strong>9h00 - 10h30</strong><br>
-                                <span class="text-muted">Terminale A - Mathématiques</span>
-                            </div>
-                            <a href="#" class="btn btn-sm btn-outline-info">
-                                <i class="fas fa-clipboard-check"></i> Fiche de cours
-                            </a>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div>
-                                <strong>14h00 - 15h30</strong><br>
-                                <span class="text-muted">Première B - Physique</span>
-                            </div>
-                            <a href="#" class="btn btn-sm btn-outline-info">
-                                <i class="fas fa-clipboard-check"></i> Fiche de cours
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md-6">
-            <div class="card shadow">
-                <div class="card-header bg-danger text-white">
-                    <h5 class="mb-0">
-                        <i class="fas fa-exclamation-triangle me-2"></i>Alertes
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <div class="alert alert-warning">
-                        <i class="fas fa-user-clock me-2"></i>
-                        <strong>3 élèves</strong> en retard ce matin (Terminale A).
-                    </div>
-                    <div class="alert alert-light">
-                        <i class="fas fa-user-slash me-2"></i>
-                        <strong>1 absence</strong> non justifiée (Martin Sophie).
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-@section Scripts {
-
-    <script>
-        $(document).ready(function() {
-            $('[data-bs-toggle="tooltip"]').tooltip();
-        });
-    </script>
-}
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

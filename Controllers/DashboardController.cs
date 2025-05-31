@@ -31,46 +31,58 @@ namespace Forum.Controllers
 
         }
 
-        public IActionResult Etudiant()
+        public async Task<IActionResult> Etudiant()
         {
-            var eleveId = HttpContext.Session.GetInt32("Etudiant");
+            int? userId = HttpContext.Session.GetInt32("UserId");
 
-            if (eleveId.HasValue)
-            {
-                var eleve = _context.Utilisateurs
-                    .FirstOrDefault(p => p.Id_utilisateur == eleveId.Value);
+            if (userId == null)
+                return RedirectToAction("Index", "Authentification");
 
-                if (eleve != null)
-                {
-                    ViewBag.SessionEleve_id = eleveId;
-                    ViewBag.EleveNom = eleve.Nom;
-                    ViewBag.ElevePrenom = eleve.Prenom;
-                }
-            }
+            var etudiant = await _context.Utilisateurs
+                .Include(e => e.Classes)
+                .FirstOrDefaultAsync(e => e.Id_utilisateur == userId);
+
+            var notes = await _context.Notes
+                .Include(n => n.Modules)
+                .Where(n => n.Id_utilisateur == userId)
+                .OrderByDescending(n => n.Date_note)
+                .Take(3)
+                .ToListAsync();
+
+            float moyenne = (float)(notes.Any() ? notes.Average(n => n.Note) : 0);
+
+            ViewBag.Moyenne = moyenne;
+            ViewBag.Classe = etudiant?.Classes?.Nom_classe ?? "Classe inconnue";
+            ViewBag.Notes = notes;
+            ViewBag.EleveNom = etudiant?.Nom;
+            ViewBag.ElevePrenom = etudiant?.Prenom;
 
             return View();
         }
 
-        public IActionResult Admin()
+
+        public async Task<IActionResult> AdminAsync()
         {
 
             var classes = _context.Classes.ToList();
 
-            var Prof_principal = classes.Select(c => new
-            {
+          
 
-                Classe = c,
-                ProfPrincipal = _context.Utilisateurs
-                    .FirstOrDefault(u => u.Id_utilisateur == c.ProfesseurPrincipalId)
-            }).ToList();
+            var effectifs = _context.Utilisateurs
+                     .Where(u => u.Role == "Etudiant" && u.Id_classe != null)
+                     .GroupBy(u => u.Id_classe.Value)
+                     .ToDictionary(g => g.Key, g => g.Count());
 
-            var effectifsParClasse = _context.Utilisateurs
-                .Where(u => u.Role == "Etudiant" && u.Id_classe != null)
-                .GroupBy(u => u.Id_classe.Value)
-                .ToDictionary(g => g.Key, g => g.Count());
 
-            ViewBag.EffectifsParClasse = effectifsParClasse;
-            ViewBag.prof_principal = Prof_principal;
+            var alertes = _context.Alertes
+                .Include(a => a.Classe)  
+                .Include(a => a.User)     
+                .OrderByDescending(a => a.Id_alerte)
+                .Take(5) 
+                .ToList();
+
+            ViewBag.EffectifsParClasse = effectifs;
+            ViewBag.Alertes = alertes;
 
             return View(classes);
         }
@@ -82,24 +94,47 @@ namespace Forum.Controllers
 
         public IActionResult Professeur()
         {
-            var profId = HttpContext.Session.GetInt32("Professeur");
+            var profId = HttpContext.Session.GetInt32("UserId");
 
             if (profId.HasValue)
             {
                 var professeur = _context.Utilisateurs
-                    .FirstOrDefault(p => p.Id_utilisateur == profId.Value);
+                    .Include(u => u.Classes)
+                        .ThenInclude(c => c.Utilisateurs) // récupère les utilisateurs de la classe
+                    .FirstOrDefault(u => u.Id_utilisateur == profId.Value);
 
                 if (professeur != null)
                 {
                     ViewBag.SessionProf_id = profId;
                     ViewBag.ProfNom = professeur.Nom;
                     ViewBag.ProfPrenom = professeur.Prenom;
+
+                    var classe = professeur.Classes;
+
+                    // récupère uniquement les étudiants de la classe
+                    var eleves = classe?.Utilisateurs
+                        .Where(u => u.Role == "Etudiant")
+                        .ToList();
+
+                    var alertes = _context.Alertes
+                        .Where(a => a.Id_utilisateur == profId.Value)
+                        .ToList();
+
+                    ViewBag.Classe = classe;
+                    ViewBag.Eleves = eleves;
+                    ViewBag.Alertes = alertes;
+
+                    return View("Professeur");
                 }
             }
-            
 
             return RedirectToAction("Index");
         }
+
+
+
+
+
 
         public IActionResult AjouterAlerte()
         {

@@ -9,7 +9,6 @@
         </a>
     </div>
 
-
     <div class="row mb-4">
         <div class="col-12">
             <div class="d-flex justify-content-between align-items-center">
@@ -17,18 +16,123 @@
                     <h1 class="display-5 fw-bold text-primary">
                         <i class="fas fa-user-graduate me-2"></i>Mon Espace Personnel
                     </h1>
-                  
+                    <p class="lead text-muted">Bienvenue, @User.Identity.Name</p>
                 </div>
                 <div>
                     <span class="badge rounded-pill bg-success fs-6">
+                        @ViewBag.Classe
                     </span>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Section Statistiques -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-chart-pie me-2"></i>Mes Statistiques</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="bg-info bg-opacity-10 p-3 rounded me-3">
+                                    <i class="fas fa-star fa-2x text-info"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Moyenne Générale</h6>
+                                    <h3 class="mb-0">@ViewBag.Moyenne.ToString("0.00")/20</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="bg-warning bg-opacity-10 p-3 rounded me-3">
+                                    <i class="fas fa-clipboard-check fa-2x text-warning"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Dernières Notes</h6>
+                                    <h3 class="mb-0">@ViewBag.Notes.Count</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0"><i class="fas fa-bell me-2"></i>Dernières Notes</h5>
+                </div>
+                <div class="card-body">
+                    @if (ViewBag.Notes != null && ViewBag.Notes.Count > 0)
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Matière</th>
+                                        <th>Note</th>
+                                        <th>Date</th>
+                                        <th>Appréciation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var note in ViewBag.Notes)
+                                    {
+                                        <tr>
+                                            <td>@note.Modules?.Theme_module</td>
+                                            <td>
+                                                <span class="badge @(note.Note >= 10 ? "bg-success" : "bg-danger")">
+                                                    @note.Note.ToString("0.00")
+                                                </span>
+                                            </td>
+                                            <td>@note.Date_note.ToString("dd/MM/yyyy")</td>
+                                            <td>
+                                                @if (note.Note >= 16)
+                                                {
+                                                    <span class="text-success">Excellent</span>
+                                                }
+                                                else if (note.Note >= 14)
+                                                {
+                                                    <span class="text-primary">Très bien</span>
+                                                }
+                                                else if (note.Note >= 12)
+                                                {
+                                                    <span class="text-info">Bien</span>
+                                                }
+                                                else if (note.Note >= 10)
+                                                {
+                                                    <span class="text-warning">Passable</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-danger">Insuffisant</span>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info mb-0">
+                            <i class="fas fa-info-circle me-2"></i>Aucune note disponible pour le moment.
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Accès Rapide -->
     <div class="row g-4 mb-4">
-       
         <div class="col-md-4">
             <div class="card border-info shadow-sm h-100">
                 <div class="card-body text-center">
@@ -41,7 +145,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="col-md-4">
             <div class="card border-primary shadow-sm h-100">
@@ -69,15 +172,30 @@
             </div>
         </div>
     </div>
->
 
-      
+    <!-- Graphique de performance -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>Évolution de mes notes</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="performanceChart" height="100"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@{
+    var notes = ViewBag.Notes as IEnumerable<Notes> ?? new List<Notes>();
+}
 
-       
+</div>
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-
+        // Animation des cartes
         document.querySelectorAll('.card').forEach(card => {
             card.addEventListener('mouseenter', () => {
                 card.style.transform = 'translateY(-5px)';
@@ -86,6 +204,48 @@
             card.addEventListener('mouseleave', () => {
                 card.style.transform = 'none';
             });
+        });
+
+        // Graphique de performance
+        const ctx = document.getElementById('performanceChart').getContext('2d');
+        const performanceChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: @Html.Raw(Json.Serialize(notes.Select(n => n.Date_note.ToString("dd/MM")))),
+                datasets: [{
+                    label: 'Notes',
+                    data: @Html.Raw(Json.Serialize(notes.Select(n => n.Note))),
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 2,
+                    tension: 0.1,
+                    fill: true
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 20,
+                        ticks: {
+                            stepSize: 2
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y.toFixed(2) + '/20';
+                            }
+                        }
+                    }
+                }
+            }
         });
     </script>
 }

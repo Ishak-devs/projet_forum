@@ -4,31 +4,33 @@
 }
 
 <div class="container py-4">
-    <h2 class="mb-4">Mes Classes</h2>
+    <h2 class="mb-4">Ma Classe</h2>
 
     @if (Model != null && Model.Any())
     {
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Nom de la classe</th>
-                    <th>Niveau</th>
-                    <th>Année scolaire</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var classe in Model)
-                {
-                    <tr>
-                        <td>@classe.Nom_classe</td>
-                        <td>
-                            <a class="btn btn-sm btn-primary" href="#">Voir</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        foreach (var classe in Model)
+        {
+            <div class="card mb-3">
+                <div class="card-header">
+                    <strong>@classe.Nom_classe</strong>
+                </div>
+                <div class="card-body">
+                    @if (classe.Utilisateurs != null && classe.Utilisateurs.Any(u => u.Role == "Etudiant"))
+                    {
+                        <ul class="list-group">
+                            @foreach (var eleve in classe.Utilisateurs.Where(u => u.Role == "Etudiant"))
+                            {
+                                <li class="list-group-item">@eleve.Prenom @eleve.Nom</li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning">Aucun étudiant inscrit dans cette classe.</div>
+                    }
+                </div>
+            </div>
+        }
     }
     else
     {

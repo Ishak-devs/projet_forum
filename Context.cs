@@ -20,9 +20,16 @@ public class ApplicationDbContext : DbContext
     public DbSet<Notes> Notes { get; set; }
 
     public DbSet<Devoirs> Devoirs { get; set; }
+    public DbSet<EffectifParClasse> EffectifParClasse { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<EffectifParClasse>(entity =>
+        {
+            entity.HasNoKey();  
+            entity.ToView(null);
+        });
     }
 }

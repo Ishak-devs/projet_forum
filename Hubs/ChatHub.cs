@@ -1,6 +1,4 @@
-﻿
-
-using Forum.Models;
+﻿using Forum.Models;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,89 +15,76 @@ namespace Forum.Hubs
             _context = context;
             _httpContextAccessor = httpContextAccessor;
             _logger = logger;
-            _logger.LogInformation("ChatHub instancié !");
         }
 
-        public async Task SendMessage(string message, int Classid)
+        public async Task SendMessage(string message, int classId)
         {
-            _logger.LogInformation("SendMessage appelé avec message : {Message}, Classid : {Classid}", message, Classid);
-            var userId = _httpContextAccessor.HttpContext?.Session.GetInt32("UserId");
-
-            var user = await _context.Utilisateurs.FindAsync(userId);
-            if (user == null) return;
-
-            var promoExists = await _context.Classes.AnyAsync(p => p.Id_classe == Classid);
-            if (!promoExists) return;
-
-            var chatMessage = new Messages
+            try
             {
-                Id_utilisateur = user.Id_utilisateur,
-                Message = message,
-                Id_classe = Classid,
-                Date_message = DateTime.Now
-            };
+                var userId = _httpContextAccessor.HttpContext?.Session.GetInt32("UserId");
+                if (userId == null) return;
 
-            _context.Messages.Add(chatMessage);
-            await _context.SaveChangesAsync();
+                var user = await _context.Utilisateurs.FindAsync(userId);
+                if (user == null) return;
 
-            await Clients.Group(Classid.ToString())
-                .SendAsync("ReceiveMessage", user.Prenom, message, chatMessage.Date_message);
+                var newMessage = new Messages
+                {
+                    Id_utilisateur = user.Id_utilisateur,
+                    Message = message,
+                    Id_classe = classId,
+                    Date_message = DateTime.Now
+                };
+
+                _context.Messages.Add(newMessage);
+                await _context.SaveChangesAsync();
+
+                await Clients.Group(classId.ToString())
+                    .SendAsync("ReceiveMessage", user.Prenom, message, newMessage.Date_message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error in SendMessage: {ex.Message}");
+                throw;
+            }
         }
 
-
-        public async Task LoadMessages(int classId)
+        public async Task LoadInitialMessages(int classId)
         {
-            var messages = _context.Messages
+            var messages = await _context.Messages
                 .Where(m => m.Id_classe == classId)
                 .OrderBy(m => m.Date_message)
-                .ToList();
+                .Select(m => new
+                {
+                    SenderName = _context.Utilisateurs
+                        .Where(u => u.Id_utilisateur == m.Id_utilisateur)
+                        .Select(u => u.Prenom)
+                        .FirstOrDefault(),
+                    Message = m.Message,
+                    DateMessage = m.Date_message
+                })
+                .ToListAsync();
 
             await Clients.Caller.SendAsync("MessagesLoaded", messages);
         }
 
-
-        public Task Message_send_and_echo_to_client(int Classid)
+        public async Task JoinChatGroup(int classId)
         {
-            try
-            {
-                _logger.LogInformation($"Chargement des messages pour la promo {Classid}...");
-
-                var messages = _context.Messages
-                    .Where(m => m.Id_classe == Classid)
-                    .OrderBy(m => m.Date_message)
-                    .Select(m => new
-                    {
-                        SenderName = _context.Utilisateurs
-                            .Where(u => u.Id_utilisateur == m.Id_utilisateur)
-                            .Select(u => u.Prenom)
-                            .FirstOrDefault(),
-                        m.Message,
-                        m.Date_message
-                    })
-                    .ToList();
-
-                _logger.LogInformation($"Messages chargés : {messages.Count}");
-                return Clients.Caller.SendAsync("MessagesLoaded", messages);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError($"Erreur lors du chargement des messages: {e.Message}");
-                throw;
-            }
+            await Groups.AddToGroupAsync(Context.ConnectionId, classId.ToString());
+            await LoadInitialMessages(classId);
         }
+
         public override async Task OnConnectedAsync()
         {
             var userId = _httpContextAccessor.HttpContext?.Session.GetInt32("UserId");
             if (userId.HasValue)
             {
                 var user = await _context.Utilisateurs.FindAsync(userId.Value);
-                if (user != null && user.Id_classe.HasValue)
+                if (user?.Id_classe != null)
                 {
                     await Groups.AddToGroupAsync(Context.ConnectionId, user.Id_classe.Value.ToString());
                 }
             }
             await base.OnConnectedAsync();
         }
-
     }
 }

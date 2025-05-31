@@ -1,5 +1,4 @@
 @model Forum.Models.Messages
-
 @{
     ViewData["Title"] = "Chat";
     Layout = "_Layout";
@@ -7,6 +6,11 @@
 
 <div class="container mt-4">
     <h2 class="mb-4">Chat de la Promo</h2>
+
+    <!-- Champ caché pour stocker le nom de l'utilisateur -->
+    <input type="hidden" id="currentUserName" value="@Context.Session.GetString("UserName")" />
+    <input type="hidden" id="currentClassId" value="@Context.Session.GetInt32("ClassId")" />
+
 
     <div id="messagesContainer" class="border rounded p-3 bg-light" style="height: 400px; overflow-y: scroll;">
         <!-- Messages will appear here -->
@@ -23,125 +27,120 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.9/signalr.min.js"></script>
 
-
-
 <script>
     const connection = new signalR.HubConnectionBuilder()
         .withUrl("/chatHub")
         .configureLogging(signalR.LogLevel.Information)
         .build();
 
+    // Fonction pour ajouter un message à l'interface
     function addMessageToUI(senderName, message, dateMessage, isCurrentUser = false) {
         const messageElement = document.createElement("div");
         messageElement.classList.add("d-flex", "mb-3");
 
-        if (isCurrentUser) {
-            messageElement.classList.add("justify-content-end");
-            messageElement.innerHTML = `
-                <div class="card bg-primary text-white" style="max-width: 75%;">
-                    <div class="card-body p-2">
-                        <div class="d-flex justify-content-between align-items-center mb-1">
-                            <strong class="card-title">${senderName || "Vous"}</strong>
-                            <small class="text-white-50">${formatDate(dateMessage)}</small>
-                        </div>
-                        <p class="card-text mb-0">${message || ""}</p>
-                    </div>
-                </div>`;
-        } else {
-            messageElement.classList.add("justify-content-start");
-            messageElement.innerHTML = `
-                <div class="card bg-light" style="max-width: 75%;">
-                    <div class="card-body p-2">
-                        <div class="d-flex justify-content-between align-items-center mb-1">
-                            <strong class="card-title text-primary">${senderName || "Anonyme"}</strong>
-                            <small class="text-muted">${formatDate(dateMessage)}</small>
-                        </div>
-                        <p class="card-text mb-0">${message || ""}</p>
-                    </div>
-                </div>`;
-        }
+        const messageClass = isCurrentUser ? "bg-primary text-white" : "bg-light";
+        const alignClass = isCurrentUser ? "justify-content-end" : "justify-content-start";
+        const nameDisplay = isCurrentUser ? "Vous" : senderName || "Anonyme";
 
-        const messagesContainer = document.getElementById("messagesContainer");
-        messagesContainer.appendChild(messageElement);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        messageElement.classList.add(alignClass);
+        messageElement.innerHTML = `
+            <div class="card ${messageClass}" style="max-width: 75%;">
+                <div class="card-body p-2">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <strong>${nameDisplay}</strong>
+                        <small class="${isCurrentUser ? 'text-white-50' : 'text-muted'}">
+                            ${formatDate(dateMessage)}
+                        </small>
+                    </div>
+                    <p class="card-text mb-0">${message || ""}</p>
+                </div>
+            </div>`;
+
+        const container = document.getElementById("messagesContainer");
+        container.appendChild(messageElement);
+        container.scrollTop = container.scrollHeight;
     }
 
-    function formatDate(dateMessage) {
+    function formatDate(dateString) {
         try {
-            const date = new Date(dateMessage);
-            if (isNaN(date.getTime())) throw new Error("Invalid date");
+            const date = new Date(dateString);
             return date.toLocaleString('fr-FR', {
                 hour: '2-digit',
                 minute: '2-digit',
                 day: '2-digit',
-                month: '2-digit',
-                year: 'numeric'
+                month: '2-digit'
             });
-        } catch (e) {
+        } catch {
             return "à l'instant";
         }
     }
 
-    connection.start()
-        .then(function () {
-            console.log("Connexion réussie au ChatHub!");
-            const classId = 1;
-            return connection.invoke("Message_send_and_echo_to_client", classId);
-        })
-        .catch(function (err) {
-            console.error("Erreur de connexion SignalR: ", err.toString());
-        });
+    // Gestion de la connexion
+    async function startConnection() {
+        try {
+            await connection.start();
+            console.log("SignalR Connected.");
 
-    connection.on("MessagesLoaded", function (messages) {
-        console.log("Messages reçus:", messages);
-
-        if (!Array.isArray(messages)) {
-            console.error("Les messages ne sont pas un tableau:", messages);
-            return;
+            // Rejoindre le groupe et charger les messages
+            const classId = parseInt(document.getElementById("currentClassId").value);
+        } catch (err) {
+            console.log(err);
+            setTimeout(startConnection, 5000);
         }
+    }
 
+    // Événements SignalR
+    connection.on("ReceiveMessage", (senderName, message, dateMessage) => {
+        const currentUser = document.getElementById("currentUserName").value;
+        addMessageToUI(senderName, message, dateMessage, senderName === currentUser);
+    });
+
+    connection.on("MessagesLoaded", (messages) => {
         const container = document.getElementById("messagesContainer");
         container.innerHTML = "";
 
+        const currentUser = document.getElementById("currentUserName").value;
+
         messages.forEach(msg => {
-            if (msg) {
-                const isCurrentUser = msg.SenderName === "Vous" || msg.senderName === "Vous";
-                addMessageToUI(
-                    msg.SenderName || msg.senderName,
-                    msg.Message || msg.message,
-                    msg.Date_message || msg.dateMessage || msg.date,
-                    isCurrentUser
-                );
-            }
+            addMessageToUI(
+                msg.SenderName,
+                msg.Message,
+                msg.DateMessage || msg.dateMessage,
+                msg.SenderName === currentUser
+            );
         });
     });
 
-    connection.on("ReceiveMessage", function (senderName, message, dateMessage) {
-        addMessageToUI(senderName, message, dateMessage, senderName === "Vous");
+    connection.onclose(async () => {
+        await startConnection();
     });
 
-    document.getElementById("sendMessageBtn").addEventListener("click", function () {
-        const message = document.getElementById("messageInput").value;
-        const classId = 1;
+    // Envoi de message
+    document.getElementById("sendMessageBtn").addEventListener("click", async () => {
+        const message = document.getElementById("messageInput").value.trim();
+        if (!message) return;
 
-        if (message.trim() !== "") {
-            addMessageToUI("Vous", message, new Date(), true);
+               const classId = parseInt(document.getElementById("currentClassId").value);
 
-            connection.invoke("SendMessage", message, classId)
-                .then(() => {
-                    document.getElementById("messageInput").value = "";
-                })
-                .catch(err => {
-                    console.error("Erreur lors de l'envoi:", err.toString());
-                });
+
+
+
+        try {
+            await connection.invoke("SendMessage", message, classId);
+            document.getElementById("messageInput").value = "";
+        } catch (err) {
+            console.error("Error sending message:", err);
         }
     });
 
-
-    document.getElementById("messageInput").addEventListener("keypress", function (e) {
+    // Envoi avec la touche Entrée
+    document.getElementById("messageInput").addEventListener("keypress", (e) => {
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
             document.getElementById("sendMessageBtn").click();
         }
     });
+
+    // Démarrer la connexion
+    startConnection();
 </script>

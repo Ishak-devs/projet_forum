@@ -29,7 +29,7 @@ namespace Forum.Controllers
         //        .ToListAsync();
 
         //    float moyenne = (float)(notes.Any() ? notes.Average(n => n.Note) : 0);
-            
+
 
         //    ViewBag.Moyenne = moyenne;
         //    ViewBag.Classe = etudiant?.Classes?.Nom_classe ?? "Classe inconnue";
@@ -38,30 +38,30 @@ namespace Forum.Controllers
         //    return View();
         //}
 
-        public async Task<IActionResult> EspacePerso()
-        {
-            int? userId = HttpContext.Session.GetInt32("UserId");
-            if (userId == null) return RedirectToAction("Index", "Authentification");
+        //public async Task<IActionResult> Etudiant()
+        //{
+        //    int? userId = HttpContext.Session.GetInt32("UserId");
+        //    if (userId == null) return RedirectToAction("Index", "Authentification");
 
-            var etudiant = await _context.Utilisateurs
-                .Include(e => e.Classes)
-                .FirstOrDefaultAsync(e => e.Id_utilisateur == userId);
+        //    var etudiant = await _context.Utilisateurs
+        //        .Include(e => e.Classes)
+        //        .FirstOrDefaultAsync(e => e.Id_utilisateur == userId);
 
-            var notes = await _context.Notes
-                .Include(n => n.Modules) // Ensure Modules are loaded
-                .Where(n => n.Id_utilisateur == userId)
-                .OrderByDescending(n => n.Date_note)
-                .Take(3)
-                .ToListAsync();
+        //    var notes = await _context.Notes
+        //        .Include(n => n.Modules) // Ensure Modules are loaded
+        //        .Where(n => n.Id_utilisateur == userId)
+        //        .OrderByDescending(n => n.Date_note)
+        //        .Take(3)
+        //        .ToListAsync();
 
-            float moyenne = (float)(notes.Any() ? notes.Average(n => n.Note) : 0);
+        //    float moyenne = (float)(notes.Any() ? notes.Average(n => n.Note) : 0);
 
-            ViewBag.Moyenne = moyenne;
-            ViewBag.Classe = etudiant?.Classes?.Nom_classe ?? "Classe inconnue";
-            ViewBag.Notes = notes;
+        //    ViewBag.Moyenne = moyenne;
+        //    ViewBag.Classe = etudiant?.Classes?.Nom_classe ?? "Classe inconnue";
+        //    ViewBag.Notes = notes;
 
-            return View();
-        }
+        //    return View();
+        //}
 
 
         public async Task<IActionResult> Emplois_du_temps()

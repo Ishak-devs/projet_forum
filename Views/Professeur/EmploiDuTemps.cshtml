@@ -8,23 +8,32 @@
         <i class="fas fa-calendar-alt me-2"></i>Emploi du Temps de la classe @Model.FirstOrDefault()?.Classes.Nom_classe
     </h2>
 
-    <table class="table table-bordered table-striped">
-        <thead class="table-success">
-            <tr>
-                <th>Module</th>
-                <th>Horaire</th>
-                <th>Coefficient</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var module in Model)
-            {
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning">
+            Aucun emploi du temps n'a été enregistré pour cette classe.
+        </div>
+    }
+    else
+    {
+        <table class="table table-bordered table-striped">
+            <thead class="table-success">
                 <tr>
-                    <td>@module.Theme_module</td>
-                    <td>@module.Horaire</td>
-                    <td>@module.Coefficient</td>
+                    <th>Module</th>
+                    <th>Horaire</th>
+                    <th>Coefficient</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var module in Model)
+                {
+                    <tr>
+                        <td>@module.Theme_module</td>
+                        <td>@module.Horaire</td>
+                        <td>@module.Coefficient</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
 </div>
