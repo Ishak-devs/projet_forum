@@ -12,26 +12,26 @@ namespace Forum.Models
 {
     public class Alertes
     {
-        [Key]
+            [Key]
+            public int Id_alerte { get; set; }
 
-        public int Id_alerte { get; set; }
+            public string Titre { get; set; }
 
-        public string Titre { get; set; }
+            [StringLength(100)]
+            public string Message { get; set; }
 
-        [StringLength(100)]
-        public string Message { get; set; }
+            [ForeignKey("User")]
+            public int Id_utilisateur { get; set; }
 
-        [ForeignKey("User")]
-        public int Id_utilisateur { get; set; }
+            [ForeignKey("Classe")]
+            public int Id_classe { get; set; }
 
-        [ForeignKey("Classe")]
+            public virtual Utilisateurs User { get; set; }
+            public virtual Classes Classe { get; set; }
 
-        public int Id_classe { get; set; }
-
-        public virtual Utilisateurs User { get; set; }
-        public virtual Classes Classe { get; set; }
+        public DateTime date_alerte { get; set; } = DateTime.Now;
+    }
 
 
 
     }
-}
