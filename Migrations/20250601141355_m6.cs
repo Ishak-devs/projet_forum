@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Forum.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class m6 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,13 +16,26 @@ namespace Forum.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Classes",
+                columns: table => new
+                {
+                    Id_classe = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nom_classe = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Classes", x => x.Id_classe);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "Etablissements",
                 columns: table => new
                 {
                     Id_etablissement = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    type_etablissement = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     code_postal = table.Column<int>(type: "int", nullable: false),
                     Region = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -34,41 +47,6 @@ namespace Forum.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Etablissements", x => x.Id_etablissement);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Alertes",
-                columns: table => new
-                {
-                    Id_alerte = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Titre = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Message = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Id_utilisateur = table.Column<int>(type: "int", nullable: false),
-                    Id_classe = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Alertes", x => x.Id_alerte);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Classes",
-                columns: table => new
-                {
-                    Id_classe = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nom_classe = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ProfesseurPrincipalId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Classes", x => x.Id_classe);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -133,6 +111,38 @@ namespace Forum.Migrations
                         column: x => x.Id_etablissement,
                         principalTable: "Etablissements",
                         principalColumn: "Id_etablissement");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Alertes",
+                columns: table => new
+                {
+                    Id_alerte = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Titre = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Message = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Id_utilisateur = table.Column<int>(type: "int", nullable: false),
+                    Id_classe = table.Column<int>(type: "int", nullable: false),
+                    date_alerte = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Alertes", x => x.Id_alerte);
+                    table.ForeignKey(
+                        name: "FK_Alertes_Classes_Id_classe",
+                        column: x => x.Id_classe,
+                        principalTable: "Classes",
+                        principalColumn: "Id_classe",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Alertes_Utilisateurs_Id_utilisateur",
+                        column: x => x.Id_utilisateur,
+                        principalTable: "Utilisateurs",
+                        principalColumn: "Id_utilisateur",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -269,11 +279,6 @@ namespace Forum.Migrations
                 column: "Id_utilisateur");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Classes_ProfesseurPrincipalId",
-                table: "Classes",
-                column: "ProfesseurPrincipalId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Devoirs_Id_module",
                 table: "Devoirs",
                 column: "Id_module");
@@ -327,38 +332,11 @@ namespace Forum.Migrations
                 name: "IX_Utilisateurs_Id_etablissement",
                 table: "Utilisateurs",
                 column: "Id_etablissement");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Alertes_Classes_Id_classe",
-                table: "Alertes",
-                column: "Id_classe",
-                principalTable: "Classes",
-                principalColumn: "Id_classe",
-                onDelete: ReferentialAction.Cascade);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Alertes_Utilisateurs_Id_utilisateur",
-                table: "Alertes",
-                column: "Id_utilisateur",
-                principalTable: "Utilisateurs",
-                principalColumn: "Id_utilisateur",
-                onDelete: ReferentialAction.Cascade);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Classes_Utilisateurs_ProfesseurPrincipalId",
-                table: "Classes",
-                column: "ProfesseurPrincipalId",
-                principalTable: "Utilisateurs",
-                principalColumn: "Id_utilisateur");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Utilisateurs_Classes_Id_classe",
-                table: "Utilisateurs");
-
             migrationBuilder.DropTable(
                 name: "Alertes");
 
@@ -378,10 +356,10 @@ namespace Forum.Migrations
                 name: "Modules");
 
             migrationBuilder.DropTable(
-                name: "Classes");
+                name: "Utilisateurs");
 
             migrationBuilder.DropTable(
-                name: "Utilisateurs");
+                name: "Classes");
 
             migrationBuilder.DropTable(
                 name: "Etablissements");

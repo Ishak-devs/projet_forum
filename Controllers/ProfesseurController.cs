@@ -90,10 +90,6 @@ namespace Forum.Controllers
 
             var professeur = _context.Utilisateurs.FirstOrDefault(u => u.Id_utilisateur == profId.Value);
 
-            if (professeur == null || professeur.Id_classe == null)
-                TempData["Message"] = "Professeur non trouvé ou non connecté.";
-            return RedirectToAction("Professeur", "Dashboard");
-
 
             var edt = _context.Modules
                 .Where(m => m.Id_classe == professeur.Id_classe)

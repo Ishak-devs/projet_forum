@@ -44,6 +44,9 @@ namespace Forum.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<DateTime>("date_alerte")
+                        .HasColumnType("datetime(6)");
+
                     b.HasKey("Id_alerte");
 
                     b.HasIndex("Id_classe");
@@ -66,12 +69,7 @@ namespace Forum.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
-                    b.Property<int?>("ProfesseurPrincipalId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id_classe");
-
-                    b.HasIndex("ProfesseurPrincipalId");
 
                     b.ToTable("Classes");
                 });
@@ -109,6 +107,19 @@ namespace Forum.Migrations
                     b.ToTable("Devoirs");
                 });
 
+            modelBuilder.Entity("Forum.Models.EffectifParClasse", b =>
+                {
+                    b.Property<int>("Effectif")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id_classe")
+                        .HasColumnType("int");
+
+                    b.ToTable((string)null);
+
+                    b.ToView(null, (string)null);
+                });
+
             modelBuilder.Entity("Forum.Models.Etablissements", b =>
                 {
                     b.Property<int>("Id_etablissement")
@@ -129,10 +140,6 @@ namespace Forum.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("nom_etablissement")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("type_etablissement")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -337,15 +344,6 @@ namespace Forum.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Forum.Models.Classes", b =>
-                {
-                    b.HasOne("Forum.Models.Utilisateurs", "ProfesseurPrincipal")
-                        .WithMany()
-                        .HasForeignKey("ProfesseurPrincipalId");
-
-                    b.Navigation("ProfesseurPrincipal");
-                });
-
             modelBuilder.Entity("Forum.Models.Devoirs", b =>
                 {
                     b.HasOne("Forum.Models.Modules", "Modules")
@@ -436,7 +434,7 @@ namespace Forum.Migrations
             modelBuilder.Entity("Forum.Models.Utilisateurs", b =>
                 {
                     b.HasOne("Forum.Models.Classes", "Classes")
-                        .WithMany()
+                        .WithMany("Utilisateurs")
                         .HasForeignKey("Id_classe");
 
                     b.HasOne("Forum.Models.Etablissements", "Etablissements")
@@ -446,6 +444,11 @@ namespace Forum.Migrations
                     b.Navigation("Classes");
 
                     b.Navigation("Etablissements");
+                });
+
+            modelBuilder.Entity("Forum.Models.Classes", b =>
+                {
+                    b.Navigation("Utilisateurs");
                 });
 #pragma warning restore 612, 618
         }

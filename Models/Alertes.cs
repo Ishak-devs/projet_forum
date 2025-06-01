@@ -24,10 +24,10 @@ namespace Forum.Models
             public int Id_utilisateur { get; set; }
 
             [ForeignKey("Classe")]
-            public int Id_classe { get; set; }
+            public int? Id_classe { get; set; }
 
             public virtual Utilisateurs User { get; set; }
-            public virtual Classes Classe { get; set; }
+            public virtual Classes? Classe { get; set; }
 
         public DateTime date_alerte { get; set; } = DateTime.Now;
     }

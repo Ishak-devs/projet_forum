@@ -118,6 +118,7 @@ namespace Forum.Controllers
 
                     var alertes = _context.Alertes
                         .Where(a => a.Id_utilisateur == profId.Value)
+                        .OrderByDescending(a => a.date_alerte)
                         .ToList();
 
                     ViewBag.Classe = classe;

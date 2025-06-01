@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250530082217_m48")]
-    partial class m48
+    [Migration("20250601141355_m6")]
+    partial class m6
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,21 +23,6 @@ namespace Forum.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
-
-            modelBuilder.Entity("ClasseProf", b =>
-                {
-                    b.Property<int>("ClasseId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProfId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ClasseId", "ProfId");
-
-                    b.HasIndex("ProfId");
-
-                    b.ToTable("ClasseProf");
-                });
 
             modelBuilder.Entity("Forum.Models.Alertes", b =>
                 {
@@ -62,6 +47,9 @@ namespace Forum.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<DateTime>("date_alerte")
+                        .HasColumnType("datetime(6)");
+
                     b.HasKey("Id_alerte");
 
                     b.HasIndex("Id_classe");
@@ -84,12 +72,7 @@ namespace Forum.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
-                    b.Property<int?>("ProfesseurPrincipalId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id_classe");
-
-                    b.HasIndex("ProfesseurPrincipalId");
 
                     b.ToTable("Classes");
                 });
@@ -160,10 +143,6 @@ namespace Forum.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("nom_etablissement")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("type_etablissement")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -349,25 +328,6 @@ namespace Forum.Migrations
                     b.ToTable("Utilisateurs");
                 });
 
-            modelBuilder.Entity("ClasseProf", b =>
-                {
-                    b.HasOne("Forum.Models.Classes", "Classe")
-                        .WithMany()
-                        .HasForeignKey("ClasseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Forum.Models.Utilisateurs", "Prof")
-                        .WithMany()
-                        .HasForeignKey("ProfId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Classe");
-
-                    b.Navigation("Prof");
-                });
-
             modelBuilder.Entity("Forum.Models.Alertes", b =>
                 {
                     b.HasOne("Forum.Models.Classes", "Classe")
@@ -385,15 +345,6 @@ namespace Forum.Migrations
                     b.Navigation("Classe");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Forum.Models.Classes", b =>
-                {
-                    b.HasOne("Forum.Models.Utilisateurs", "ProfesseurPrincipal")
-                        .WithMany()
-                        .HasForeignKey("ProfesseurPrincipalId");
-
-                    b.Navigation("ProfesseurPrincipal");
                 });
 
             modelBuilder.Entity("Forum.Models.Devoirs", b =>
@@ -486,7 +437,7 @@ namespace Forum.Migrations
             modelBuilder.Entity("Forum.Models.Utilisateurs", b =>
                 {
                     b.HasOne("Forum.Models.Classes", "Classes")
-                        .WithMany()
+                        .WithMany("Utilisateurs")
                         .HasForeignKey("Id_classe");
 
                     b.HasOne("Forum.Models.Etablissements", "Etablissements")
@@ -496,6 +447,11 @@ namespace Forum.Migrations
                     b.Navigation("Classes");
 
                     b.Navigation("Etablissements");
+                });
+
+            modelBuilder.Entity("Forum.Models.Classes", b =>
+                {
+                    b.Navigation("Utilisateurs");
                 });
 #pragma warning restore 612, 618
         }
