@@ -83,6 +83,7 @@
 
             // Rejoindre le groupe et charger les messages
             const classId = parseInt(document.getElementById("currentClassId").value);
+              await connection.invoke("LoadMessages", classId);
         } catch (err) {
             console.log(err);
             setTimeout(startConnection, 5000);
