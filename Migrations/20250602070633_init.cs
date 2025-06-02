@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Forum.Migrations
 {
     /// <inheritdoc />
-    public partial class m6 : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -125,7 +125,7 @@ namespace Forum.Migrations
                     Message = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Id_utilisateur = table.Column<int>(type: "int", nullable: false),
-                    Id_classe = table.Column<int>(type: "int", nullable: false),
+                    Id_classe = table.Column<int>(type: "int", nullable: true),
                     date_alerte = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
@@ -135,8 +135,7 @@ namespace Forum.Migrations
                         name: "FK_Alertes_Classes_Id_classe",
                         column: x => x.Id_classe,
                         principalTable: "Classes",
-                        principalColumn: "Id_classe",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id_classe");
                     table.ForeignKey(
                         name: "FK_Alertes_Utilisateurs_Id_utilisateur",
                         column: x => x.Id_utilisateur,

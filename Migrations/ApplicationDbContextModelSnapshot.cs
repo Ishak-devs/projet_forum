@@ -29,7 +29,7 @@ namespace Forum.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_alerte"));
 
-                    b.Property<int>("Id_classe")
+                    b.Property<int?>("Id_classe")
                         .HasColumnType("int");
 
                     b.Property<int>("Id_utilisateur")
@@ -329,9 +329,7 @@ namespace Forum.Migrations
                 {
                     b.HasOne("Forum.Models.Classes", "Classe")
                         .WithMany()
-                        .HasForeignKey("Id_classe")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Id_classe");
 
                     b.HasOne("Forum.Models.Utilisateurs", "User")
                         .WithMany()
