@@ -33,7 +33,7 @@
 
                     <div class="mb-3">
                         <label for="theme_module" class="form-label">Cours :</label>
-                        <input type="text" id="theme_module" name="theme_module"/>
+                        <input type="text" id="courseInput" name="theme_module" class="form-control" />
                     </div>
 
                     <div class="mb-3">
@@ -225,7 +225,7 @@
 
         function prepareCourse() {
             var classSelect = document.getElementById("classSelect");
-            var themeSelect = document.getElementById("theme_module");
+            var courseInput = document.getElementById("courseInput");
             var profSelect = document.getElementById("profselect");
 
         console.log("Classe:", classSelect.value);
