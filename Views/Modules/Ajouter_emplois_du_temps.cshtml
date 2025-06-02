@@ -32,8 +32,9 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="theme_module" class="form-label">Cours :</label>
-                        <input type="text" id="theme_module" name="theme_module"/>                    </div>
+                        <label for="theme_module" id="theme_module" class="form-label">Cours :</label>
+                        <input type="text" id="theme_module" name="theme_module"/>
+                    </div>
 
                     <div class="mb-3">
                         <label for="profselect" class="form-label">Professeur :</label>
@@ -234,7 +235,7 @@
 
             // Stocker les infos du cours à placer
             pendingCourse = {
-                theme: themeSelect.options[themeSelect.selectedIndex].text,
+                theme: themeSelect.value
                 prof: profSelect.options[profSelect.selectedIndex].text,
                 themeValue: themeSelect.value,
                 profValue: profSelect.value
