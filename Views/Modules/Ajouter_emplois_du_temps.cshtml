@@ -212,11 +212,16 @@
             fetch('/Modules/GetProfByClasse?id=' + classId)
                 .then(res => res.json())
                 .then(data => {
+
                     var select = document.getElementById("profselect");
-                    select.innerHTML = '<option value="">-- Sélectionnez --</option>';
-                    data.forEach(m => {
-                        select.innerHTML += `<option value="${m.id_professeur}">${m.nom} ${m.prenom} (${m.matiere})</option>`;
-                    });
+
+                           select.innerHTML = '<option value="">-- Sélectionnez --</option>';
+        data.forEach(m => {
+            console.log("Professeur m :", m);
+            select.innerHTML += `<option value="${m.id_utilisateur}">${m.nom} ${m.prenom} (${m.matiere})</option>`;
+        });
+        console.log("Contenu de profselect.value :", profselect.value);
+
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -241,9 +246,8 @@
 
             pendingCourse = {
                 theme: courseInput.value,
-                prof: profSelect.options[profSelect.selectedIndex].text,
                 themeValue: courseInput.value,
-                profValue: profSelect.value
+                Profid: profSelect.value
             };
 
             document.getElementById("message_confirm").textContent = "Choisissez maintenant le creneaux";
@@ -263,7 +267,7 @@
         function placeCourse(slot) {
             if (!pendingCourse) return;
         console.log("Cours:", pendingCourse.theme);
-        console.log("Professeur:", pendingCourse.prof);
+        console.log("Professeur:", pendingCourse.Profid);
 
 
             // Vérifier si le créneau est déjà occupé
@@ -284,7 +288,7 @@
 
             courseElement.innerHTML = `
                     <strong>${pendingCourse.theme}</strong>
-                    <div>${pendingCourse.prof}</div>
+                    <div>${pendingCourse.Profid}</div>
                     
                 `;
 
@@ -373,7 +377,8 @@
                             hour: hour,
                             hourEnd: hourEnd,
                             course: courseName,
-                            professor: professor
+                            professor: professor,
+                            professorId: courseData.Profid
                         });
                     });
                 }

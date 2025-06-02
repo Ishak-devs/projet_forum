@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250602070633_init")]
+    [Migration("20250602075230_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -232,6 +232,9 @@ namespace Forum.Migrations
                     b.Property<int>("Id_classe")
                         .HasColumnType("int");
 
+                    b.Property<int>("Id_utilisateur")
+                        .HasColumnType("int");
+
                     b.Property<string>("Theme_module")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -239,6 +242,8 @@ namespace Forum.Migrations
                     b.HasKey("Id_module");
 
                     b.HasIndex("Id_classe");
+
+                    b.HasIndex("Id_utilisateur");
 
                     b.ToTable("Modules");
                 });
@@ -410,7 +415,15 @@ namespace Forum.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Forum.Models.Utilisateurs", "Utilisateurs")
+                        .WithMany()
+                        .HasForeignKey("Id_utilisateur")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Classes");
+
+                    b.Navigation("Utilisateurs");
                 });
 
             modelBuilder.Entity("Forum.Models.Notes", b =>
