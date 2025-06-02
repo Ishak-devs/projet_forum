@@ -32,7 +32,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="theme_module" id="theme_module" class="form-label">Cours :</label>
+                        <label for="theme_module" class="form-label">Cours :</label>
                         <input type="text" id="theme_module" name="theme_module"/>
                     </div>
 
@@ -47,6 +47,7 @@
                         <button id="addCourseBtn" class="btn btn-outline-primary" onclick="prepareCourse()">
                             <i class="bi bi-plus-circle"></i> Créer un cours
                         </button>
+
                     </div>
 
                     <p id="message_confirm" class="text-success"></p>
@@ -227,13 +228,17 @@
             var themeSelect = document.getElementById("theme_module");
             var profSelect = document.getElementById("profselect");
 
+        console.log("Classe:", classSelect.value);
+        console.log("Cours:", themeSelect.value);
+        console.log("Professeur:", profSelect.value);
+
+
             if (!classSelect.value || !themeSelect.value || !profSelect.value) {
                 document.getElementById("message_erreur").textContent = "Veuillez sélectionner une classe, un cours et un professeur";
 
                 return;
             }
 
-            // Stocker les infos du cours à placer
             pendingCourse = {
                 theme: themeSelect.value,
                 prof: profSelect.options[profSelect.selectedIndex].text,
@@ -257,6 +262,9 @@
 
         function placeCourse(slot) {
             if (!pendingCourse) return;
+        console.log("Cours:", pendingCourse.theme);
+        console.log("Professeur:", pendingCourse.prof);
+
 
             // Vérifier si le créneau est déjà occupé
             if (slot.querySelector('.course-item')) {
