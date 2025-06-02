@@ -78,6 +78,7 @@ namespace Forum.Controllers
                     Theme_module = $"{t.Course}",
                     Horaire = $"{t.Day} {t.Hour} {t.HourEnd}",
                     Id_utilisateur = t.ProfId,
+
                 }).ToList();
 
                 await _context.Modules.AddRangeAsync(modules);

@@ -235,10 +235,10 @@
 
         console.log("Classe:", classSelect.value);
         console.log("Cours:", courseInput.value);
-        console.log("Professeur:", profSelect.value);
+        console.log("Professeur:", profselect.value);
 
 
-            if (!classSelect.value || !courseInput.value || !profSelect.value) {
+            if (!classSelect.value || !courseInput.value || !profselect.value) {
                 document.getElementById("message_erreur").textContent = "Veuillez sélectionner une classe, un cours et un professeur";
 
                 return;
@@ -247,7 +247,7 @@
             pendingCourse = {
                 theme: courseInput.value,
                 themeValue: courseInput.value,
-                Profid: profSelect.value
+                Profid: profselect.value
             };
 
             document.getElementById("message_confirm").textContent = "Choisissez maintenant le creneaux";
@@ -369,7 +369,8 @@
 
                     courses.forEach(course => {
                         var courseName = course.querySelector('strong').textContent;
-                        var professor = course.querySelector('div').textContent;
+                        var Profid = course.querySelector('div').textContent;
+
 
                         timetableData.push({
                             classId: classId,
@@ -377,8 +378,7 @@
                             hour: hour,
                             hourEnd: hourEnd,
                             course: courseName,
-                            professor: professor,
-                            professorId: courseData.Profid
+                            Profid: Profid
                         });
                     });
                 }
