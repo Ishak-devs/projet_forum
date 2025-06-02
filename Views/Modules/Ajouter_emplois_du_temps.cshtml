@@ -229,20 +229,20 @@
             var profSelect = document.getElementById("profselect");
 
         console.log("Classe:", classSelect.value);
-        console.log("Cours:", themeSelect.value);
+        console.log("Cours:", courseInput.value);
         console.log("Professeur:", profSelect.value);
 
 
-            if (!classSelect.value || !themeSelect.value || !profSelect.value) {
+            if (!classSelect.value || !courseInput.value || !profSelect.value) {
                 document.getElementById("message_erreur").textContent = "Veuillez sélectionner une classe, un cours et un professeur";
 
                 return;
             }
 
             pendingCourse = {
-                theme: themeSelect.value,
+                theme: courseInput.value,
                 prof: profSelect.options[profSelect.selectedIndex].text,
-                themeValue: themeSelect.value,
+                themeValue: courseInput.value,
                 profValue: profSelect.value
             };
 
