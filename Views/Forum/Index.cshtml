@@ -75,18 +75,82 @@
         }
     }
 
+    // Sauvegarder les messages dans le localStorage
+    function saveMessages(messages) {
+        try {
+            localStorage.setItem('forum_messages', JSON.stringify(messages));
+        } catch (e) {
+            console.error("Erreur lors de la sauvegarde des messages:", e);
+            // Gestion du quota de stockage dépassé
+            if (e.name === 'QuotaExceededError') {
+                localStorage.removeItem('forum_messages');
+            }
+        }
+    }
+
+    // Charger les messages sauvegardés
+    function loadSavedMessages() {
+        try {
+            const saved = localStorage.getItem('forum_messages');
+            return saved ? JSON.parse(saved) : [];
+        } catch (e) {
+            console.error("Erreur lors du chargement des messages:", e);
+            return [];
+        }
+    }
+
     // Gestion de la connexion
     async function startConnection() {
         try {
             await connection.start();
             console.log("SignalR Connected.");
 
-            // Rejoindre le groupe et charger les messages
+            // Afficher d'abord les messages sauvegardés
+            displaySavedMessages();
+
+            // Charger les nouveaux messages depuis le serveur
             const classId = parseInt(document.getElementById("currentClassId").value);
-              await connection.invoke("LoadInitialMessages", classId);
+            await connection.invoke("LoadInitialMessages", classId);
         } catch (err) {
             console.log(err);
             setTimeout(startConnection, 5000);
+        }
+    }
+
+    // Afficher les messages sauvegardés
+    function displaySavedMessages() {
+        const savedMessages = loadSavedMessages();
+        const currentUser = document.getElementById("currentUserName").value;
+
+        if (savedMessages && savedMessages.length > 0) {
+            const container = document.getElementById("messagesContainer");
+            container.innerHTML = ""; // Nettoyer avant d'afficher
+
+            savedMessages.forEach(msg => {
+                addMessageToUI(
+                    msg.SenderName || msg.senderName,
+                    msg.Message || msg.message,
+                    msg.DateMessage || msg.dateMessage,
+                    (msg.SenderName || msg.senderName) === currentUser
+                );
+            });
+        }
+    }
+
+    // Gestion du nom d'utilisateur
+    function initUserSession() {
+        const currentUserName = document.getElementById("currentUserName").value;
+        if (currentUserName) {
+            try {
+                localStorage.setItem('forum_username', currentUserName);
+            } catch (e) {
+                console.error("Erreur lors de la sauvegarde du nom d'utilisateur:", e);
+            }
+        } else {
+            const savedName = localStorage.getItem('forum_username');
+            if (savedName) {
+                document.getElementById("currentUserName").value = savedName;
+            }
         }
     }
 
@@ -94,26 +158,72 @@
     connection.on("ReceiveMessage", (senderName, message, dateMessage) => {
         const currentUser = document.getElementById("currentUserName").value;
         addMessageToUI(senderName, message, dateMessage, senderName === currentUser);
+
+        // Mettre à jour le localStorage avec le nouveau message
+        const savedMessages = loadSavedMessages();
+        savedMessages.push({
+            SenderName: senderName,
+            Message: message,
+            DateMessage: dateMessage
+        });
+        saveMessages(savedMessages);
     });
 
-    connection.on("MessagesLoaded", (messages) => {
+    connection.on("MessagesLoaded", (serverMessages) => {
+        const currentUser = document.getElementById("currentUserName").value;
+        const savedMessages = loadSavedMessages();
+
+        // Fusionner les messages sans doublons
+        const uniqueMessages = mergeMessages(savedMessages, serverMessages);
+
+        // Sauvegarder la version fusionnée
+        saveMessages(uniqueMessages);
+
+        // Afficher les messages
         const container = document.getElementById("messagesContainer");
         container.innerHTML = "";
 
-        const currentUser = document.getElementById("currentUserName").value;
-
-        messages.forEach(msg => {
+        uniqueMessages.forEach(msg => {
             addMessageToUI(
-                msg.SenderName,
-                msg.Message,
+                msg.SenderName || msg.senderName,
+                msg.Message || msg.message,
                 msg.DateMessage || msg.dateMessage,
-                msg.SenderName === currentUser
+                (msg.SenderName || msg.senderName) === currentUser
             );
         });
     });
 
+    // Fusionner les messages locaux et serveur sans doublons
+    function mergeMessages(localMessages, serverMessages) {
+        const allMessages = [...localMessages, ...serverMessages];
+        const uniqueMessages = [];
+        const seen = new Set();
+
+        allMessages.forEach(msg => {
+            const identifier = `${msg.SenderName || msg.senderName}_${msg.Message || msg.message}_${msg.DateMessage || msg.dateMessage}`;
+            if (!seen.has(identifier)) {
+                seen.add(identifier);
+                uniqueMessages.push(msg);
+            }
+        });
+
+        // Trier par date
+        return uniqueMessages.sort((a, b) => {
+            const dateA = new Date(a.DateMessage || a.dateMessage);
+            const dateB = new Date(b.DateMessage || b.dateMessage);
+            return dateA - dateB;
+        });
+    }
+
     connection.onclose(async () => {
         await startConnection();
+    });
+
+    // Initialisation au chargement de la page
+    document.addEventListener("DOMContentLoaded", () => {
+        initUserSession();
+        displaySavedMessages();
+        startConnection();
     });
 
     // Envoi de message
@@ -121,10 +231,7 @@
         const message = document.getElementById("messageInput").value.trim();
         if (!message) return;
 
-               const classId = parseInt(document.getElementById("currentClassId").value);
-
-
-
+        const classId = parseInt(document.getElementById("currentClassId").value);
 
         try {
             await connection.invoke("SendMessage", message, classId);
@@ -141,7 +248,4 @@
             document.getElementById("sendMessageBtn").click();
         }
     });
-
-    // Démarrer la connexion
-    startConnection();
 </script>
