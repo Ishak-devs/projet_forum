@@ -8,10 +8,8 @@
     <h2 class="mb-4">Chat de la Promo</h2>
 
     <!-- Champ caché pour stocker le nom de l'utilisateur -->
-    <input type="hidden" id="currentUserName" value="@Context.Session.GetString("UserName")" />
+    <input type="hidden" id="currentUserName" value="@Context.Session.GetString("Username")" />
     <input type="hidden" id="currentClassId" value="@Context.Session.GetInt32("ClassId")" />
-
-    @Context.Session.GetString("UserName")
 
 
     <div id="messagesContainer" class="border rounded p-3 bg-light" style="height: 400px; overflow-y: scroll;">
@@ -26,5 +24,15 @@
         <button id="sendMessageBtn" class="btn btn-primary">Envoyer</button>
     </div>
 </div>
+
+@foreach (var classe in ViewBag.Classes)
+{
+    <p>@classe.Nom_classe</p>
+}
+
+@foreach (var user in ViewBag.Users)
+{
+    <p>@user.Prenom</p>
+}
 
     <script src="~/js/site.js"></script>

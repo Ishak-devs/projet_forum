@@ -34,7 +34,7 @@ namespace Forum.Controllers
             }
 
             ViewBag.Classes = classes;
-            ViewBag.Users = utilisateurs;
+            ViewBag.Users = utilisateurs.Distinct().ToList();
 
             return View();
         }
