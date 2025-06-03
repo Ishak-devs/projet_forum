@@ -19,9 +19,13 @@
                     <p class="lead text-muted">Bienvenue, @User.Identity.Name</p>
                 </div>
                 <div>
-                    <span class="badge rounded-pill bg-success fs-6">
-                        @ViewBag.Classe
-                    </span>
+                    @if (ViewBag.Classe != null)
+                    {
+                        <span class="badge rounded-pill bg-success fs-6">
+                            @ViewBag.Classe
+                        </span>
+                    }
+
                 </div>
             </div>
         </div>

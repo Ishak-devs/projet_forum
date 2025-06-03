@@ -34,7 +34,6 @@ namespace Forum.Controllers
             }
 
             ViewBag.Classes = classes;
-            ViewBag.Users = utilisateurs.GroupBy(u => u.Id_utilisateur).Select(g => g.First()).ToList();
 
             return View();
         }
