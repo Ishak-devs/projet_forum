@@ -50,6 +50,7 @@ namespace Forum.Controllers
                     {
                         HttpContext.Session.SetString("UserRole", utilisateur.Role);
                         HttpContext.Session.SetInt32("UserId", utilisateur.Id_utilisateur);
+                        HttpContext.Session.SetString("Username", utilisateur.Prenom);
 
                         ModelState.Clear();
 
