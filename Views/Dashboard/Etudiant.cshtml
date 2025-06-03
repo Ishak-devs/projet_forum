@@ -47,19 +47,26 @@
                                 </div>
                                 <div>
                                     <h6 class="mb-0">Moyenne Générale</h6>
-                                    <h3 class="mb-0">@ViewBag.Moyenne.ToString("0.00")/20</h3>
+                                    @if (ViewBag.Moyenne != null)
+                                    {
+                                        <h3 class="mb-0">@ViewBag.Moyenne.ToString("0.00")/20</h3>
+                                    }
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="bg-warning bg-opacity-10 p-3 rounded me-3">
-                                    <i class="fas fa-clipboard-check fa-2x text-warning"></i>
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="bg-warning bg-opacity-10 p-3 rounded me-3">
+                                        <i class="fas fa-clipboard-check fa-2x text-warning"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0">Dernières Notes</h6>
+                                        @if (ViewBag.Notes != null)
+                                        {
+                                            <h3 class="mb-0">@ViewBag.Notes.Count</h3>
+                                        }
+                                    </div>
                                 </div>
-                                <div>
-                                    <h6 class="mb-0">Dernières Notes</h6>
-                                    <h3 class="mb-0">@ViewBag.Notes.Count</h3>
-                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
