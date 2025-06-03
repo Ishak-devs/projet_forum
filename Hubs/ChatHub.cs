@@ -67,12 +67,6 @@ namespace Forum.Hubs
             await Clients.Caller.SendAsync("MessagesLoaded", messages);
         }
 
-        public async Task JoinChatGroup(int classId)
-        {
-            await Groups.AddToGroupAsync(Context.ConnectionId, classId.ToString());
-            await LoadInitialMessages(classId);
-        }
-
         public override async Task OnConnectedAsync()
         {
             var userId = _httpContextAccessor.HttpContext?.Session.GetInt32("UserId");

@@ -33,13 +33,10 @@ namespace Forum.Controllers
                 HttpContext.Session.SetInt32("ClassId", (int)utilisateur.Id_classe);
             }
 
-
             ViewBag.Classes = classes;
             ViewBag.Users = utilisateurs;
 
             return View();
-
-
         }
     }
 }
