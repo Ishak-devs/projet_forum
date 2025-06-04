@@ -101,7 +101,7 @@ namespace Forum.Controllers
             }
 
             var eleves = contextget.Utilisateurs
-                .Where(u => u.Id_etablissement == utilisateurConnecte.Id_etablissement && u.Role == "Eleve")
+                .Where(u => u.Id_etablissement == utilisateurConnecte.Id_etablissement && u.Role == "Etudiant")
                 .ToList();
 
             ViewBag.ListeEleves = eleves;

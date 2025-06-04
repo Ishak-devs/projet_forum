@@ -29,6 +29,18 @@
     </div>
 }
 
+@if (ViewBag.ListeEleves != null)
+{
+    <h4>Élèves de l'établissement :</h4>
+    <ul>
+        @foreach (var eleve in ViewBag.ListeEleves)
+        {
+            <li>@eleve.Prenom @eleve.Nom - @eleve.Email</li>
+        }
+    </ul>
+}
+
+
 <form method="post">
     <div class="form-group">
         <label asp-for="Nom">Nom</label>
