@@ -26,6 +26,25 @@ namespace Forum.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> GetEmploiDuTempsParClasse(int classeId)
+        {
+            var modules = await _context.Modules
+                .Include(m => m.Utilisateurs)
+                .Where(m => m.Id_classe == classeId)
+                .Select(m => new
+                {
+                    m.Id_module,
+                    m.Theme_module,
+                    m.Horaire,
+                    Professeur = m.Utilisateurs.Prenom + " " + m.Utilisateurs.Nom
+                })
+                .ToListAsync();
+
+            return Json(modules);
+        }
+
+
+        [HttpGet]
         public async Task<IActionResult> GetProfByClasse(int id)
         {
             var modules = await _context.Utilisateurs

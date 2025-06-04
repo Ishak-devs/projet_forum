@@ -30,6 +30,7 @@ namespace Forum.Controllers
 
             return View();
         }
+
         [HttpPost]
         public ActionResult Index(Utilisateurs modele)
         {
@@ -87,8 +88,27 @@ namespace Forum.Controllers
         [HttpGet]
         public IActionResult Inscrire_utilisateur()
         {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var utilisateurConnecte = contextget.Utilisateurs.Find(userId);
+            if (utilisateurConnecte == null || utilisateurConnecte.Id_etablissement == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var eleves = contextget.Utilisateurs
+                .Where(u => u.Id_etablissement == utilisateurConnecte.Id_etablissement && u.Role == "Eleve")
+                .ToList();
+
+            ViewBag.ListeEleves = eleves;
+
             return View();
         }
+
 
         [HttpPost]
         public IActionResult Inscrire_utilisateur(Utilisateurs modele)
