@@ -109,6 +109,22 @@ namespace Forum.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult SupprimerUtilisateur(int id)
+        {
+            var utilisateur = contextget.Utilisateurs.Find(id);
+            if (utilisateur == null)
+            {
+                return NotFound();
+            }
+
+            contextget.Utilisateurs.Remove(utilisateur);
+            contextget.SaveChanges();
+
+            TempData["SuccessMessage"] = "Utilisateur supprimé avec succès.";
+            return RedirectToAction("Inscrire_utilisateur");
+        }
+
 
         [HttpPost]
         public IActionResult Inscrire_utilisateur(Utilisateurs modele)
