@@ -1,132 +1,270 @@
 ﻿@model Forum.Models.Messages
 @{
-    ViewData["Title"] = "Chat";
+    ViewData["Title"] = "Chat de la Promo";
     Layout = "_Layout";
 }
 
-<div class="container mt-4">
-    <h2 class="mb-4">Chat de la Promo</h2>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
 
-    <!-- Champ cach� pour stocker le nom de l'utilisateur -->
-    <input type="hidden" id="currentUserName" value="@Context.Session.GetString("UserName")" />
-    <input type="hidden" id="currentClassId" value="@Context.Session.GetInt32("ClassId")" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <style>
+        .card-hover:hover {
+            transform: translateY(-2px);
+            transition: transform 0.2s ease;
+        }
 
-    <div id="messagesContainer" class="border rounded p-3 bg-light" style="height: 400px; overflow-y: scroll;">
-        <!-- Messages will appear here -->
+        .divider {
+            height: 1px;
+            background-color: rgba(0,0,0,0.1);
+            margin: 1rem 0;
+        }
+
+        .message-card {
+            max-width: 75%;
+            border-radius: 10px;
+        }
+
+        .current-user-message {
+            background-color: #0d6efd;
+            color: white;
+            border-radius: 10px 10px 0 10px;
+        }
+
+        .other-user-message {
+            background-color: #f8f9fa;
+            border-radius: 10px 10px 10px 0;
+        }
+
+        #messagesContainer {
+            scrollbar-width: thin;
+            scrollbar-color: #dee2e6 #f8f9fa;
+        }
+
+            #messagesContainer::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            #messagesContainer::-webkit-scrollbar-track {
+                background: #f8f9fa;
+            }
+
+            #messagesContainer::-webkit-scrollbar-thumb {
+                background-color: #dee2e6;
+                border-radius: 20px;
+            }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container py-4">
+        <!-- Header Section -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h1 class="h3 fw-bold text-dark mb-1">
+                    <i class="fas fa-comments text-muted me-2"></i>Chat de la Promo
+                </h1>
+                <p class="text-muted mb-0">Échangez avec votre promotion</p>
+            </div>
+            <a href="@Url.Action("Index", "Professeur")" class="btn btn-outline-secondary btn-sm">
+                <i class="fas fa-arrow-left me-1"></i> Retour
+            </a>
+        </div>
+
+        <!-- Champ caché pour stocker le nom de l'utilisateur -->
+        <input type="hidden" id="currentUserName" value="@Context.Session.GetString("UserName")" />
+        <input type="hidden" id="currentClassId" value="@Context.Session.GetInt32("ClassId")" />
+
+        <!-- Messages Container -->
+        <div class="card border mb-4">
+            <div class="card-header bg-white border-bottom">
+                <h5 class="mb-0">
+                    <i class="fas fa-comment-dots me-2"></i>
+                    Messages
+                </h5>
+            </div>
+            <div id="messagesContainer" class="card-body p-3" style="height: 400px; overflow-y: auto;">
+                <!-- Messages will appear here -->
+            </div>
+        </div>
+
+        <!-- Message Input -->
+        <div class="card border">
+            <div class="card-body">
+                <div class="form-group mb-3">
+                    <textarea id="messageInput" class="form-control" placeholder="Écrire un message..." rows="3"></textarea>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <small class="text-muted align-self-center">
+                        <i class="fas fa-info-circle me-1"></i>Appuyez sur Entrée pour envoyer
+                    </small>
+                    <button id="sendMessageBtn" class="btn btn-primary">
+                        <i class="fas fa-paper-plane me-1"></i> Envoyer
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="form-group mt-3">
-        <textarea id="messageInput" class="form-control" placeholder="�crire un message..." rows="3"></textarea>
-    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SignalR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.9/signalr.min.js"></script>
 
-    <div class="d-flex justify-content-between mt-2">
-        <button id="sendMessageBtn" class="btn btn-primary">Envoyer</button>
-    </div>
-</div>
+    <script>
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/chatHub")
+            .configureLogging(signalR.LogLevel.Information)
+            .build();
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.9/signalr.min.js"></script>
+        // Fonction pour ajouter un message à l'interface
+        function addMessageToUI(senderName, message, dateMessage, isCurrentUser = false) {
+            const messageElement = document.createElement("div");
+            messageElement.classList.add("d-flex", "mb-3");
 
-<script>
-    const connection = new signalR.HubConnectionBuilder()
-        .withUrl("/chatHub")
-        .configureLogging(signalR.LogLevel.Information)
-        .build();
+            const messageClass = isCurrentUser ? "current-user-message" : "other-user-message";
+            const alignClass = isCurrentUser ? "justify-content-end" : "justify-content-start";
+            const nameDisplay = isCurrentUser ? "Vous" : senderName || "Anonyme";
 
-    // Fonction pour ajouter un message � l'interface
-    function addMessageToUI(senderName, message, dateMessage, isCurrentUser = false) {
-        const messageElement = document.createElement("div");
-        messageElement.classList.add("d-flex", "mb-3");
-
-        const messageClass = isCurrentUser ? "bg-primary text-white" : "bg-light";
-        const alignClass = isCurrentUser ? "justify-content-end" : "justify-content-start";
-        const nameDisplay = isCurrentUser ? "Vous" : senderName || "Anonyme";
-
-        messageElement.classList.add(alignClass);
-        messageElement.innerHTML = `
-            <div class="card ${messageClass}" style="max-width: 75%;">
-                <div class="card-body p-2">
-                    <div class="d-flex justify-content-between align-items-center mb-1">
+            messageElement.classList.add(alignClass);
+            messageElement.innerHTML = `
+                <div class="message-card ${messageClass} p-3">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
                         <strong>${nameDisplay}</strong>
                         <small class="${isCurrentUser ? 'text-white-50' : 'text-muted'}">
                             ${formatDate(dateMessage)}
                         </small>
                     </div>
-                    <p class="card-text mb-0">${message || ""}</p>
-                </div>
-            </div>`;
+                    <p class="mb-0">${message || ""}</p>
+                </div>`;
 
-        const container = document.getElementById("messagesContainer");
-        container.appendChild(messageElement);
-        container.scrollTop = container.scrollHeight;
-    }
-
-    function formatDate(dateString) {
-        try {
-            const date = new Date(dateString);
-            return date.toLocaleString('fr-FR', {
-                hour: '2-digit',
-                minute: '2-digit',
-                day: '2-digit',
-                month: '2-digit'
-            });
-        } catch {
-            return "� l'instant";
+            const container = document.getElementById("messagesContainer");
+            container.appendChild(messageElement);
+            container.scrollTop = container.scrollHeight;
         }
-    }
 
-    // Sauvegarder les messages dans le localStorage
-    function saveMessages(messages) {
-        try {
-            localStorage.setItem('forum_messages', JSON.stringify(messages));
-        } catch (e) {
-            console.error("Erreur lors de la sauvegarde des messages:", e);
-            // Gestion du quota de stockage d�pass�
-            if (e.name === 'QuotaExceededError') {
-                localStorage.removeItem('forum_messages');
+        function formatDate(dateString) {
+            try {
+                const date = new Date(dateString);
+                return date.toLocaleString('fr-FR', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    day: '2-digit',
+                    month: '2-digit'
+                });
+            } catch {
+                return "à l'instant";
             }
         }
-    }
 
-    // Charger les messages sauvegard�s
-    function loadSavedMessages() {
-        try {
-            const saved = localStorage.getItem('forum_messages');
-            return saved ? JSON.parse(saved) : [];
-        } catch (e) {
-            console.error("Erreur lors du chargement des messages:", e);
-            return [];
+        // Sauvegarder les messages dans le localStorage
+        function saveMessages(messages) {
+            try {
+                localStorage.setItem('forum_messages', JSON.stringify(messages));
+            } catch (e) {
+                console.error("Erreur lors de la sauvegarde des messages:", e);
+                if (e.name === 'QuotaExceededError') {
+                    localStorage.removeItem('forum_messages');
+                }
+            }
         }
-    }
 
-    // Gestion de la connexion
-    async function startConnection() {
-        try {
-            await connection.start();
-            console.log("SignalR Connected.");
-
-            // Afficher d'abord les messages sauvegard�s
-            displaySavedMessages();
-
-            // Charger les nouveaux messages depuis le serveur
-            const classId = parseInt(document.getElementById("currentClassId").value);
-            await connection.invoke("LoadInitialMessages", classId);
-        } catch (err) {
-            console.log(err);
-            setTimeout(startConnection, 5000);
+        // Charger les messages sauvegardés
+        function loadSavedMessages() {
+            try {
+                const saved = localStorage.getItem('forum_messages');
+                return saved ? JSON.parse(saved) : [];
+            } catch (e) {
+                console.error("Erreur lors du chargement des messages:", e);
+                return [];
+            }
         }
-    }
 
-    // Afficher les messages sauvegard�s
-    function displaySavedMessages() {
-        const savedMessages = loadSavedMessages();
-        const currentUser = document.getElementById("currentUserName").value;
+        // Gestion de la connexion
+        async function startConnection() {
+            try {
+                await connection.start();
+                console.log("SignalR Connected.");
 
-        if (savedMessages && savedMessages.length > 0) {
+                displaySavedMessages();
+
+                const classId = parseInt(document.getElementById("currentClassId").value);
+                await connection.invoke("LoadInitialMessages", classId);
+            } catch (err) {
+                console.log(err);
+                setTimeout(startConnection, 5000);
+            }
+        }
+
+        // Afficher les messages sauvegardés
+        function displaySavedMessages() {
+            const savedMessages = loadSavedMessages();
+            const currentUser = document.getElementById("currentUserName").value;
+
+            if (savedMessages && savedMessages.length > 0) {
+                const container = document.getElementById("messagesContainer");
+                container.innerHTML = "";
+
+                savedMessages.forEach(msg => {
+                    addMessageToUI(
+                        msg.SenderName || msg.senderName,
+                        msg.Message || msg.message,
+                        msg.DateMessage || msg.dateMessage,
+                        (msg.SenderName || msg.senderName) === currentUser
+                    );
+                });
+            }
+        }
+
+        // Gestion du nom d'utilisateur
+        function initUserSession() {
+            const currentUserName = document.getElementById("currentUserName").value;
+            if (currentUserName) {
+                try {
+                    localStorage.setItem('forum_username', currentUserName);
+                } catch (e) {
+                    console.error("Erreur lors de la sauvegarde du nom d'utilisateur:", e);
+                }
+            } else {
+                const savedName = localStorage.getItem('forum_username');
+                if (savedName) {
+                    document.getElementById("currentUserName").value = savedName;
+                }
+            }
+        }
+
+        // Événements SignalR
+        connection.on("ReceiveMessage", (senderName, message, dateMessage) => {
+            const currentUser = document.getElementById("currentUserName").value;
+            addMessageToUI(senderName, message, dateMessage, senderName === currentUser);
+
+            const savedMessages = loadSavedMessages();
+            savedMessages.push({
+                SenderName: senderName,
+                Message: message,
+                DateMessage: dateMessage
+            });
+            saveMessages(savedMessages);
+        });
+
+        connection.on("MessagesLoaded", (serverMessages) => {
+            const currentUser = document.getElementById("currentUserName").value;
+            const savedMessages = loadSavedMessages();
+
+            const uniqueMessages = mergeMessages(savedMessages, serverMessages);
+            saveMessages(uniqueMessages);
+
             const container = document.getElementById("messagesContainer");
-            container.innerHTML = ""; // Nettoyer avant d'afficher
+            container.innerHTML = "";
 
-            savedMessages.forEach(msg => {
+            uniqueMessages.forEach(msg => {
                 addMessageToUI(
                     msg.SenderName || msg.senderName,
                     msg.Message || msg.message,
@@ -134,118 +272,62 @@
                     (msg.SenderName || msg.senderName) === currentUser
                 );
             });
-        }
-    }
+        });
 
-    // Gestion du nom d'utilisateur
-    function initUserSession() {
-        const currentUserName = document.getElementById("currentUserName").value;
-        if (currentUserName) {
+        // Fusionner les messages locaux et serveur sans doublons
+        function mergeMessages(localMessages, serverMessages) {
+            const allMessages = [...localMessages, ...serverMessages];
+            const uniqueMessages = [];
+            const seen = new Set();
+
+            allMessages.forEach(msg => {
+                const identifier = `${msg.SenderName || msg.senderName}_${msg.Message || msg.message}_${msg.DateMessage || msg.dateMessage}`;
+                if (!seen.has(identifier)) {
+                    seen.add(identifier);
+                    uniqueMessages.push(msg);
+                }
+            });
+
+            return uniqueMessages.sort((a, b) => {
+                const dateA = new Date(a.DateMessage || a.dateMessage);
+                const dateB = new Date(b.DateMessage || b.dateMessage);
+                return dateA - dateB;
+            });
+        }
+
+        connection.onclose(async () => {
+            await startConnection();
+        });
+
+        // Initialisation au chargement de la page
+        document.addEventListener("DOMContentLoaded", () => {
+            initUserSession();
+            displaySavedMessages();
+            startConnection();
+        });
+
+        // Envoi de message
+        document.getElementById("sendMessageBtn").addEventListener("click", async () => {
+            const message = document.getElementById("messageInput").value.trim();
+            if (!message) return;
+
+            const classId = parseInt(document.getElementById("currentClassId").value);
+
             try {
-                localStorage.setItem('forum_username', currentUserName);
-            } catch (e) {
-                console.error("Erreur lors de la sauvegarde du nom d'utilisateur:", e);
-            }
-        } else {
-            const savedName = localStorage.getItem('forum_username');
-            if (savedName) {
-                document.getElementById("currentUserName").value = savedName;
-            }
-        }
-    }
-
-    // �v�nements SignalR
-    connection.on("ReceiveMessage", (senderName, message, dateMessage) => {
-        const currentUser = document.getElementById("currentUserName").value;
-        addMessageToUI(senderName, message, dateMessage, senderName === currentUser);
-
-        // Mettre � jour le localStorage avec le nouveau message
-        const savedMessages = loadSavedMessages();
-        savedMessages.push({
-            SenderName: senderName,
-            Message: message,
-            DateMessage: dateMessage
-        });
-        saveMessages(savedMessages);
-    });
-
-    connection.on("MessagesLoaded", (serverMessages) => {
-        const currentUser = document.getElementById("currentUserName").value;
-        const savedMessages = loadSavedMessages();
-
-        // Fusionner les messages sans doublons
-        const uniqueMessages = mergeMessages(savedMessages, serverMessages);
-
-        // Sauvegarder la version fusionn�e
-        saveMessages(uniqueMessages);
-
-        // Afficher les messages
-        const container = document.getElementById("messagesContainer");
-        container.innerHTML = "";
-
-        uniqueMessages.forEach(msg => {
-            addMessageToUI(
-                msg.SenderName || msg.senderName,
-                msg.Message || msg.message,
-                msg.DateMessage || msg.dateMessage,
-                (msg.SenderName || msg.senderName) === currentUser
-            );
-        });
-    });
-
-    // Fusionner les messages locaux et serveur sans doublons
-    function mergeMessages(localMessages, serverMessages) {
-        const allMessages = [...localMessages, ...serverMessages];
-        const uniqueMessages = [];
-        const seen = new Set();
-
-        allMessages.forEach(msg => {
-            const identifier = `${msg.SenderName || msg.senderName}_${msg.Message || msg.message}_${msg.DateMessage || msg.dateMessage}`;
-            if (!seen.has(identifier)) {
-                seen.add(identifier);
-                uniqueMessages.push(msg);
+                await connection.invoke("SendMessage", message, classId);
+                document.getElementById("messageInput").value = "";
+            } catch (err) {
+                console.error("Error sending message:", err);
             }
         });
 
-        // Trier par date
-        return uniqueMessages.sort((a, b) => {
-            const dateA = new Date(a.DateMessage || a.dateMessage);
-            const dateB = new Date(b.DateMessage || b.dateMessage);
-            return dateA - dateB;
+        // Envoi avec la touche Entrée
+        document.getElementById("messageInput").addEventListener("keypress", (e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                document.getElementById("sendMessageBtn").click();
+            }
         });
-    }
-
-    connection.onclose(async () => {
-        await startConnection();
-    });
-
-    // Initialisation au chargement de la page
-    document.addEventListener("DOMContentLoaded", () => {
-        initUserSession();
-        displaySavedMessages();
-        startConnection();
-    });
-
-    // Envoi de message
-    document.getElementById("sendMessageBtn").addEventListener("click", async () => {
-        const message = document.getElementById("messageInput").value.trim();
-        if (!message) return;
-
-        const classId = parseInt(document.getElementById("currentClassId").value);
-
-        try {
-            await connection.invoke("SendMessage", message, classId);
-            document.getElementById("messageInput").value = "";
-        } catch (err) {
-            console.error("Error sending message:", err);
-        }
-    });
-
-    // Envoi avec la touche Entr�e
-    document.getElementById("messageInput").addEventListener("keypress", (e) => {
-        if (e.key === "Enter" && !e.shiftKey) {
-            e.preventDefault();
-            document.getElementById("sendMessageBtn").click();
-        }
-    });
-</script>
+    </script>
+</body>
+</html>
