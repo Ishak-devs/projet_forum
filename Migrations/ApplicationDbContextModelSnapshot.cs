@@ -64,12 +64,17 @@ namespace Forum.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_classe"));
 
+                    b.Property<int?>("Id_etablissement")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nom_classe")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
                     b.HasKey("Id_classe");
+
+                    b.HasIndex("Id_etablissement");
 
                     b.ToTable("Classes");
                 });
@@ -219,9 +224,6 @@ namespace Forum.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_module"));
 
-                    b.Property<double>("Coefficient")
-                        .HasColumnType("double");
-
                     b.Property<string>("Horaire")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -345,6 +347,15 @@ namespace Forum.Migrations
                     b.Navigation("Classe");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Forum.Models.Classes", b =>
+                {
+                    b.HasOne("Forum.Models.Etablissements", "Etablissement")
+                        .WithMany()
+                        .HasForeignKey("Id_etablissement");
+
+                    b.Navigation("Etablissement");
                 });
 
             modelBuilder.Entity("Forum.Models.Devoirs", b =>

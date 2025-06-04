@@ -60,6 +60,28 @@ namespace Forum.Controllers
             return View();
         }
 
+
+        [HttpGet]
+        public async Task<IActionResult> ListeParEtablissement()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+                return RedirectToAction("Index", "Authentification");
+
+            var admin = await _context.Utilisateurs.FindAsync(userId);
+            if (admin == null || admin.Id_etablissement == null)
+                return RedirectToAction("Index", "Dashboard");
+
+            var classes = await _context.Classes
+                .Where(c => c.Id_etablissement == admin.Id_etablissement)
+                .ToListAsync();
+
+            ViewBag.Classes = classes;
+            return View();
+        }
+
+
+
         [HttpPost]
         public IActionResult Ajouterclasse(string Nom_classe, List<int> selectedEleves, List<int> selectedProfs, int? ProfesseurPrincipalId)
         {
@@ -85,6 +107,7 @@ namespace Forum.Controllers
                     var Nouvelle_Classe = new Classes
                     {
                         Nom_classe = Nom_classe,
+                        Id_etablissement = admin.Id_etablissement
                     };
 
                     _context.Classes.Add(Nouvelle_Classe);

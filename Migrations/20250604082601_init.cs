@@ -16,21 +16,6 @@ namespace Forum.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Classes",
-                columns: table => new
-                {
-                    Id_classe = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nom_classe = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Classes", x => x.Id_classe);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "Etablissements",
                 columns: table => new
                 {
@@ -47,6 +32,27 @@ namespace Forum.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Etablissements", x => x.Id_etablissement);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Classes",
+                columns: table => new
+                {
+                    Id_classe = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nom_classe = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Id_etablissement = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Classes", x => x.Id_classe);
+                    table.ForeignKey(
+                        name: "FK_Classes_Etablissements_Id_etablissement",
+                        column: x => x.Id_etablissement,
+                        principalTable: "Etablissements",
+                        principalColumn: "Id_etablissement");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -158,7 +164,6 @@ namespace Forum.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Theme_module = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Coefficient = table.Column<double>(type: "double", nullable: false),
                     Horaire = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Id_utilisateur = table.Column<int>(type: "int", nullable: false),
@@ -283,6 +288,11 @@ namespace Forum.Migrations
                 name: "IX_Alertes_Id_utilisateur",
                 table: "Alertes",
                 column: "Id_utilisateur");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Classes_Id_etablissement",
+                table: "Classes",
+                column: "Id_etablissement");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Devoirs_Id_module",

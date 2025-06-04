@@ -11,6 +11,25 @@
     @TempData["SuccessMessage"]
 </div>
 }
+@{
+    ViewData["Title"] = "Mes classes";
+    var classes = ViewBag.Classes as List<Forum.Models.Classes> ?? new List<Forum.Models.Classes>();
+}
+
+<h3>Classes de votre établissement :</h3>
+@if (!classes.Any())
+{
+    <p>Aucune classe trouvée.</p>
+}
+else
+{
+    <ul>
+        @foreach (var c in classes)
+        {
+            <li>@c.Nom_classe</li>
+        }
+    </ul>
+}
 
 <div class="container py-5">
     <div class="row justify-content-center">
@@ -110,7 +129,6 @@
                                                 <th>Nom</th>
                                                 <th>Prénom</th>
                                                 <th>Matière</th>
-                                                <th>Professeur principale ?</th>
                                             </tr>
                                         </thead>
                                         <tbody>

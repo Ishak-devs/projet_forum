@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250602075230_init")]
+    [Migration("20250604082601_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -67,12 +67,17 @@ namespace Forum.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_classe"));
 
+                    b.Property<int?>("Id_etablissement")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nom_classe")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
                     b.HasKey("Id_classe");
+
+                    b.HasIndex("Id_etablissement");
 
                     b.ToTable("Classes");
                 });
@@ -222,9 +227,6 @@ namespace Forum.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_module"));
 
-                    b.Property<double>("Coefficient")
-                        .HasColumnType("double");
-
                     b.Property<string>("Horaire")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -348,6 +350,15 @@ namespace Forum.Migrations
                     b.Navigation("Classe");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Forum.Models.Classes", b =>
+                {
+                    b.HasOne("Forum.Models.Etablissements", "Etablissement")
+                        .WithMany()
+                        .HasForeignKey("Id_etablissement");
+
+                    b.Navigation("Etablissement");
                 });
 
             modelBuilder.Entity("Forum.Models.Devoirs", b =>
