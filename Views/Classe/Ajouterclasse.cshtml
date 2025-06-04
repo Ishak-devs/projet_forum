@@ -10,37 +10,28 @@
 <div class="alert alert-success">
     @TempData["SuccessMessage"]
 </div>
-
 }
-@{
-    ViewData["Title"] = "Liste des classes";
-    var classes = ViewBag.Classes as List<Forum.Models.Classes>;
-}
-
-<h2>Liste des classes de votre établissement</h2>
-
-@if (classes != null && classes.Any())
-{
-    <table class="table table-bordered">
-        <thead>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nom de la classe</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var classe in ViewBag.Classes)
+        {
             <tr>
-                <th>Nom de la classe</th>
+                <td>@classe.Nom_classe</td>
+                <td>
+                    <form asp-action="SupprimerClasse" method="post" asp-controller="Classe" asp-route-id="@classe.Id_classe" onsubmit="return confirm('Supprimer cette classe ?');">
+                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                    </form>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var classe in classes)
-            {
-                <tr>
-                    <td>@classe.Nom_classe</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <p>Aucune classe trouvée pour votre établissement.</p>
-}
+        }
+    </tbody>
+</table>
 
 
 <div class="container py-5">
@@ -197,7 +188,7 @@ else
     </div>
 </div>
 
-@section Scripts {
+@* @section Scripts {
     
     <script>
         document.querySelector("form").addEventListener("submit", function (e) {
@@ -221,4 +212,4 @@ else
             });
         });
     </script>
-}
+} *@

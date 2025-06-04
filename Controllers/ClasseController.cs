@@ -59,7 +59,30 @@ namespace Forum.Controllers
 
             return View();
         }
- 
+
+        [HttpPost]
+        public async Task<IActionResult> SupprimerClasse(int id)
+        {
+            var classe = await _context.Classes.FindAsync(id);
+            if (classe == null)
+            {
+                TempData["ErrorMessage"] = "Classe non trouvée.";
+                return RedirectToAction("Ajouterclasse");
+            }
+
+            // On enlève les liens avec les utilisateurs
+            var utilisateurs = _context.Utilisateurs.Where(u => u.Id_classe == id);
+            foreach (var user in utilisateurs)
+            {
+                user.Id_classe = null;
+            }
+
+            _context.Classes.Remove(classe);
+            await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "Classe supprimée avec succès.";
+            return RedirectToAction("Ajouterclasse");
+        }
 
 
         [HttpPost]
