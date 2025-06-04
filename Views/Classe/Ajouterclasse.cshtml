@@ -188,28 +188,3 @@
     </div>
 </div>
 
-@* @section Scripts {
-    
-    <script>
-        document.querySelector("form").addEventListener("submit", function (e) {
-            const eleves = document.querySelectorAll('input[name="selectedEleves"]:checked').length;
-            const profs = document.querySelectorAll('input[name="selectedProfs"]:checked').length;
-
-            if (eleves === 0 || profs === 0) {
-                e.preventDefault();
-                alert("Sélectionnez au moins un élève et un professeur.");
-            }
-        });
-    
-   
-        $(document).ready(function () {
-            $('#selectAllEleves').change(function () {
-                $('input[name="selectedEleves"]').prop('checked', this.checked);
-            });
-
-            $('#selectAllProfs').change(function () {
-                $('input[name="selectedProfs"]').prop('checked', this.checked);
-            });
-        });
-    </script>
-} *@

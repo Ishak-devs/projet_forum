@@ -54,15 +54,6 @@
 <body class="bg-light">
     <div class="container py-5">
         <div class="auth-container">
-            <!-- Message d'alerte -->
-            @if (TempData["Message"] != null)
-            {
-                <div class="alert alert-@(TempData["MessageType"] ?? "success") alert-dismissible fade show mb-4">
-                    <i class="fas @((TempData["MessageType"]?.ToString() == "danger" ? "fa-exclamation-circle" : "fa-check-circle") me-2"></i>
-                    @TempData["Message"]
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            }
 
             <div class="auth-card card p-4">
                 <!-- Header -->
