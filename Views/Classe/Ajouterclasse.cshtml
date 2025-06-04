@@ -10,26 +10,38 @@
 <div class="alert alert-success">
     @TempData["SuccessMessage"]
 </div>
+
 }
 @{
-    ViewData["Title"] = "Mes classes";
-    var classes = ViewBag.Classes as List<Forum.Models.Classes> ?? new List<Forum.Models.Classes>();
+    ViewData["Title"] = "Liste des classes";
+    var classes = ViewBag.Classes as List<Forum.Models.Classes>;
 }
 
-<h3>Classes de votre établissement :</h3>
-@if (!classes.Any())
+<h2>Liste des classes de votre établissement</h2>
+
+@if (classes != null && classes.Any())
 {
-    <p>Aucune classe trouvée.</p>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nom de la classe</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var classe in classes)
+            {
+                <tr>
+                    <td>@classe.Nom_classe</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 else
 {
-    <ul>
-        @foreach (var c in classes)
-        {
-            <li>@c.Nom_classe</li>
-        }
-    </ul>
+    <p>Aucune classe trouvée pour votre établissement.</p>
 }
+
 
 <div class="container py-5">
     <div class="row justify-content-center">

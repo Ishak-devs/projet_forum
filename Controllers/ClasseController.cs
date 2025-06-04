@@ -23,20 +23,15 @@ namespace Forum.Controllers
         }
 
         [HttpGet]
-        public IActionResult Ajouterclasse()
+        public async Task<IActionResult> Ajouterclasse()
         {
-
             var userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null)
-            {
                 return RedirectToAction("Index", "Authentification");
-            }
 
-
-
-            var admin = _context.Utilisateurs
+            var admin = await _context.Utilisateurs
                 .Include(u => u.Etablissements)
-                .FirstOrDefault(u => u.Id_utilisateur == userId);
+                .FirstOrDefaultAsync(u => u.Id_utilisateur == userId);
 
             if (admin == null || admin.Id_etablissement == null)
             {
@@ -44,42 +39,27 @@ namespace Forum.Controllers
                 return RedirectToAction("Index", "Dashboard");
             }
 
-            var utilisateursEtablissement = _context.Utilisateurs
+            var utilisateursEtablissement = await _context.Utilisateurs
                 .Where(u => u.Id_etablissement == admin.Id_etablissement)
-                .ToList();
+                .ToListAsync();
 
-            var Etudiant = utilisateursEtablissement.Where(u => u.Role == "Etudiant").ToList();
+            var etudiants = utilisateursEtablissement.Where(u => u.Role == "Etudiant").ToList();
             var professeurs = utilisateursEtablissement.Where(u => u.Role == "Professeur").ToList();
 
-            ViewBag.Etudiant = Etudiant;
+            ViewBag.Etudiant = etudiants;
             ViewBag.Professeurs = professeurs;
+            ViewBag.Roles = new SelectList(new List<string> { "Etudiant", "Professeur" });
 
-            var roles = new List<string> { "Etudiant", "Professeur" };
-            ViewBag.Roles = new SelectList(roles);
-
-            return View();
-        }
-
-
-        [HttpGet]
-        public async Task<IActionResult> ListeParEtablissement()
-        {
-            var userId = HttpContext.Session.GetInt32("UserId");
-            if (userId == null)
-                return RedirectToAction("Index", "Authentification");
-
-            var admin = await _context.Utilisateurs.FindAsync(userId);
-            if (admin == null || admin.Id_etablissement == null)
-                return RedirectToAction("Index", "Dashboard");
 
             var classes = await _context.Classes
                 .Where(c => c.Id_etablissement == admin.Id_etablissement)
                 .ToListAsync();
 
             ViewBag.Classes = classes;
+
             return View();
         }
-
+ 
 
 
         [HttpPost]
