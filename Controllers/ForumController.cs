@@ -18,10 +18,18 @@ namespace Forum.Controllers
         public async Task<IActionResult> Index()
         {
             int? userId = HttpContext.Session.GetInt32("UserId");
+            string userRole = HttpContext.Session.GetString("UserRole");
 
             if (userId == null)
             {
                 return RedirectToAction("Index", "Authentification");
+            }
+
+
+            if (userRole == "admin")
+            {
+                return NotFound();
+
             }
 
             var classes = await contextget.Classes.ToListAsync();
@@ -32,14 +40,17 @@ namespace Forum.Controllers
             {
                 HttpContext.Session.SetInt32("ClassId", (int)utilisateur.Id_classe);
             }
-
+            else
+            {
+                // Pas de classe => pas d’accès
+                return RedirectToAction("Index", "Home");
+            }
 
             ViewBag.Classes = classes;
             ViewBag.Users = utilisateurs;
 
             return View();
-
-
         }
+
     }
 }
