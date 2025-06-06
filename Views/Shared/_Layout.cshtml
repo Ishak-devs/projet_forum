@@ -52,7 +52,8 @@
                         else
                         {
                             @if (HttpContextAccessor.HttpContext?.Session.GetString("UserId") != null &&
-                                                    HttpContextAccessor.HttpContext?.Session.GetString("UserHasForumAccess") == "true")
+                                                    HttpContextAccessor.HttpContext?.Session.GetString("UserHasForumAccess") == "true" &&
+                                                    HttpContextAccessor.HttpContext?.Session.GetString("UserRole") != "Admin")
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Forum" asp-action="Index">Forum</a>
