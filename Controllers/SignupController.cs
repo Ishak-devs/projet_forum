@@ -62,13 +62,14 @@ namespace Forum.Controllers
                     HttpContext.Session.SetString("UserRole", newUtilisateur.Role);
 
 
-                    // Redirection après succès
-                    ViewBag.SuccessMessage = "Inscription réussie !";
+                    TempData["SuccessMessage"] = "Inscription réussie !";
                     return RedirectToAction("Etablissement", "Signup");
+
                 }
                 catch (DbUpdateException ex)
                 {
                     ModelState.AddModelError("", "Erreur d'enregistrement : " + ex.Message);
+                    TempData["ErrorMessage"] = "Une erreur se présente dans le formulaire";
                     return View(modele);
                 }
             }

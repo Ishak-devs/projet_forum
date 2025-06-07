@@ -5,12 +5,24 @@
 
 }
 
-@if (ViewBag.SuccessMessage != null)
+@if (TempData["SuccessMessage"] != null)
 {
 <div class="alert alert-success">
-    @ViewBag.SuccessMessage
+    @TempData["SuccessMessage"]
 </div>
+    TempData.Remove("SuccessMessage"); // Supprime le bon message (SuccessMessage)
 }
+
+@if (TempData["ErrorMessage"] != null)
+{
+<div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
+    @TempData["ErrorMessage"]
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+    TempData.Remove("ErrorMessage"); // Supprime ErrorMessage après affichage
+}
+
+
 <table class="table">
     <thead>
         <tr>
@@ -21,14 +33,14 @@
     <tbody>
         @foreach (var classe in ViewBag.Classes)
         {
-            <tr>
-                <td>@classe.Nom_classe</td>
-                <td>
-                    <form asp-action="SupprimerClasse" method="post" asp-controller="Classe" asp-route-id="@classe.Id_classe" onsubmit="return confirm('Supprimer cette classe ?');">
-                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-                    </form>
-                </td>
-            </tr>
+        <tr>
+            <td>@classe.Nom_classe</td>
+            <td>
+                <form asp-action="SupprimerClasse" method="post" asp-controller="Classe" asp-route-id="@classe.Id_classe" onsubmit="return confirm('Supprimer cette classe ?');">
+                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                </form>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
@@ -145,7 +157,7 @@
                                                 <td>@prof.Nom</td>
                                                 <td>@prof.Prenom</td>
                                                 <td>@prof.Matiere</td>
-                                               
+
 
                                             </tr>
                                                 }
