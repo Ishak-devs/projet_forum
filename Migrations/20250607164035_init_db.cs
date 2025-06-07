@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Forum.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class init_db : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

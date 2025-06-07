@@ -63,7 +63,7 @@ namespace Forum.Controllers
 
 
                     // Redirection après succès
-                    TempData["SuccessMessage"] = "Inscription réussie !";
+                    ViewBag.SuccessMessage = "Inscription réussie !";
                     return RedirectToAction("Etablissement", "Signup");
                 }
                 catch (DbUpdateException ex)
