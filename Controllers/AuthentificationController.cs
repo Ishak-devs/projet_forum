@@ -50,6 +50,12 @@ namespace Forum.Controllers
                     {
                         HttpContext.Session.SetString("UserRole", utilisateur.Role);
                         HttpContext.Session.SetInt32("UserId", utilisateur.Id_utilisateur);
+                        HttpContext.Session.SetString("Username", utilisateur.Prenom);
+
+                        // Vérifie s'il a une classe
+                        bool hasForumAccess = utilisateur.Role == "Admin" || utilisateur.Id_classe != null;
+                        HttpContext.Session.SetString("UserHasForumAccess", hasForumAccess ? "true" : "false");
+
 
                         ModelState.Clear();
 
@@ -60,11 +66,15 @@ namespace Forum.Controllers
                         else
                             return RedirectToAction("Etudiant", "Dashboard");
                     }
+
+                    ViewBag.MessageError = "Email ou mot de passe incorrect.";
                 }
 
-                ViewBag.MessageError = "Email ou mot de passe incorrect.";
+                // Si l'utilisateur n'existe pas ou mot de passe incorrect
+                return View(modele);
             }
 
+            // Si ModelState invalide
             return View(modele);
         }
     }

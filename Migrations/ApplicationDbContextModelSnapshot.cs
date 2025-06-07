@@ -29,7 +29,7 @@ namespace Forum.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_alerte"));
 
-                    b.Property<int>("Id_classe")
+                    b.Property<int?>("Id_classe")
                         .HasColumnType("int");
 
                     b.Property<int>("Id_utilisateur")
@@ -64,12 +64,17 @@ namespace Forum.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_classe"));
 
+                    b.Property<int?>("Id_etablissement")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nom_classe")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
                     b.HasKey("Id_classe");
+
+                    b.HasIndex("Id_etablissement");
 
                     b.ToTable("Classes");
                 });
@@ -219,14 +224,14 @@ namespace Forum.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_module"));
 
-                    b.Property<double>("Coefficient")
-                        .HasColumnType("double");
-
                     b.Property<string>("Horaire")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("Id_classe")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id_utilisateur")
                         .HasColumnType("int");
 
                     b.Property<string>("Theme_module")
@@ -236,6 +241,8 @@ namespace Forum.Migrations
                     b.HasKey("Id_module");
 
                     b.HasIndex("Id_classe");
+
+                    b.HasIndex("Id_utilisateur");
 
                     b.ToTable("Modules");
                 });
@@ -329,9 +336,7 @@ namespace Forum.Migrations
                 {
                     b.HasOne("Forum.Models.Classes", "Classe")
                         .WithMany()
-                        .HasForeignKey("Id_classe")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Id_classe");
 
                     b.HasOne("Forum.Models.Utilisateurs", "User")
                         .WithMany()
@@ -342,6 +347,15 @@ namespace Forum.Migrations
                     b.Navigation("Classe");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Forum.Models.Classes", b =>
+                {
+                    b.HasOne("Forum.Models.Etablissements", "Etablissement")
+                        .WithMany()
+                        .HasForeignKey("Id_etablissement");
+
+                    b.Navigation("Etablissement");
                 });
 
             modelBuilder.Entity("Forum.Models.Devoirs", b =>
@@ -409,7 +423,15 @@ namespace Forum.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Forum.Models.Utilisateurs", "Utilisateurs")
+                        .WithMany()
+                        .HasForeignKey("Id_utilisateur")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Classes");
+
+                    b.Navigation("Utilisateurs");
                 });
 
             modelBuilder.Entity("Forum.Models.Notes", b =>

@@ -51,9 +51,15 @@
                         }
                         else
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Forum" asp-action="Index">Forum</a>
-                            </li>
+                            @if (HttpContextAccessor.HttpContext?.Session.GetString("UserId") != null &&
+                                                    HttpContextAccessor.HttpContext?.Session.GetString("UserHasForumAccess") == "true" &&
+                                                    HttpContextAccessor.HttpContext?.Session.GetString("UserRole") != "Admin")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Forum" asp-action="Index">Forum</a>
+                                </li>
+                            }
+
                              <li class="nav-item"> 
                                  @if (HttpContextAccessor.HttpContext?.Session.GetString("UserId") != null) 
                                  { 
@@ -117,7 +123,6 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/mdb-ui-kit/dist/js/mdb.umd.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

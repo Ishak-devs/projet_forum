@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250601151437_m5")]
-    partial class m5
+    [Migration("20250604082601_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,12 +67,17 @@ namespace Forum.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_classe"));
 
+                    b.Property<int?>("Id_etablissement")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nom_classe")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
                     b.HasKey("Id_classe");
+
+                    b.HasIndex("Id_etablissement");
 
                     b.ToTable("Classes");
                 });
@@ -222,9 +227,6 @@ namespace Forum.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_module"));
 
-                    b.Property<double>("Coefficient")
-                        .HasColumnType("double");
-
                     b.Property<string>("Horaire")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -232,7 +234,7 @@ namespace Forum.Migrations
                     b.Property<int>("Id_classe")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id_professeur")
+                    b.Property<int>("Id_utilisateur")
                         .HasColumnType("int");
 
                     b.Property<string>("Theme_module")
@@ -243,7 +245,7 @@ namespace Forum.Migrations
 
                     b.HasIndex("Id_classe");
 
-                    b.HasIndex("Id_professeur");
+                    b.HasIndex("Id_utilisateur");
 
                     b.ToTable("Modules");
                 });
@@ -350,6 +352,15 @@ namespace Forum.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Forum.Models.Classes", b =>
+                {
+                    b.HasOne("Forum.Models.Etablissements", "Etablissement")
+                        .WithMany()
+                        .HasForeignKey("Id_etablissement");
+
+                    b.Navigation("Etablissement");
+                });
+
             modelBuilder.Entity("Forum.Models.Devoirs", b =>
                 {
                     b.HasOne("Forum.Models.Modules", "Modules")
@@ -417,7 +428,7 @@ namespace Forum.Migrations
 
                     b.HasOne("Forum.Models.Utilisateurs", "Utilisateurs")
                         .WithMany()
-                        .HasForeignKey("Id_professeur")
+                        .HasForeignKey("Id_utilisateur")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

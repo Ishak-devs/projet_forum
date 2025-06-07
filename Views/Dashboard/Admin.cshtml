@@ -1,250 +1,192 @@
 ﻿@model List<Forum.Models.Classes>
-    @{
+@{
     ViewData["Title"] = "Administration - Gestion Établissement Scolaire";
-    }
+}
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
 
-               <div class="container-fluid py-4">
-    <div class="text-end mt-3">
-        <a href="@Url.Action("Logout", "Authentification")" class="btn btn-outline-danger">
-            <i class="fas fa-sign-out-alt"></i> Déconnexion
-        </a>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .card-hover:hover {
+            transform: translateY(-2px);
+            transition: transform 0.2s ease;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: rgba(0,0,0,0.1);
+            margin: 1rem 0;
+        }
+
+        .admin-card-icon {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container py-4">
+        <!-- Header Section -->
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <div>
+                <h1 class="h3 fw-bold text-dark mb-1">
+                    <i class="fas fa-university text-muted me-2"></i>Gestion Établissement
+                </h1>
+                <p class="text-muted mb-0">Tableau de bord administratif</p>
+            </div>
+            <a href="@Url.Action("Logout", "Authentification")" class="btn btn-outline-secondary btn-sm">
+                <i class="fas fa-sign-out-alt me-1"></i> Déconnexion
+            </a>
+        </div>
+
+        @if (TempData["NomEtablissementCree"] != null)
+        {
+            <div class="alert alert-primary alert-dismissible fade show mb-4" role="alert">
+                <i class="fas fa-check-circle me-2"></i>
+                <strong>École @TempData["NomEtablissementCree"]</strong> - Gestion administrative
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        <!-- Quick Actions Section -->
+        <div class="row g-3 mb-5">
+            <div class="col-md-4">
+                <div class="card card-hover h-100 border">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-light p-3 rounded me-3">
+                                <i class="fas fa-users admin-card-icon text-primary"></i>
+                            </div>
+                            <h5 class="mb-0">Gestion des Promotions</h5>
+                        </div>
+                        <p class="text-muted small">Créez et gérez les promotions</p>
+                        <a href="@Url.Action("Ajouterclasse", "Classe")" class="btn btn-outline-dark btn-sm stretched-link">
+                            Accéder <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card card-hover h-100 border">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-light p-3 rounded me-3">
+                                <i class="fas fa-calendar-alt admin-card-icon text-warning"></i>
+                            </div>
+                            <h5 class="mb-0">Emplois du temps</h5>
+                        </div>
+                        <p class="text-muted small">Planifiez les plannings</p>
+                        <a href="@Url.Action("Ajouter_emplois_du_temps", "Modules")" class="btn btn-outline-dark btn-sm stretched-link">
+                            Gérer <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card card-hover h-100 border">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-light p-3 rounded me-3">
+                                <i class="fas fa-user-tie admin-card-icon text-success"></i>
+                            </div>
+                            <h5 class="mb-0">Gestion Utilisateurs</h5>
+                        </div>
+                        <p class="text-muted small">Enregistrez les comptes</p>
+                        <a href="@Url.Action("Inscrire_utilisateur", "Signup")" class="btn btn-outline-dark btn-sm stretched-link">
+                            Inscrire <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Section -->
+        <div class="row">
+            <!-- Alerte Section -->
+            <div class="col-lg-8 mb-4">
+                <div class="card border">
+                    <div class="card-header bg-white border-bottom">
+                        <h5 class="mb-0">
+                            <i class="fas fa-bell me-2"></i>
+                            Envoyer une alerte
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="alertForm" asp-action="AjouterAlerte" asp-controller="Dashboard" method="post">
+                            @Html.AntiForgeryToken()
+
+                            <div class="mb-3">
+                                <label for="promotionSelect" class="form-label">Promotion</label>
+                                <select class="form-select" id="promotionSelect" name="Id_classe" required>
+                                    <option value="" selected disabled>Choisir une promotion...</option>
+                                    @foreach (var classe in Model)
+                                    {
+                                        <option value="@classe.Id_classe">@classe.Nom_classe</option>
+                                    }
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="alertType" class="form-label">Titre de l'alerte</label>
+                                <input type="text" class="form-control" id="alertType" name="alertType" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="alertMessage" class="form-label">Message</label>
+                                <textarea class="form-control" id="alertMessage" name="message" rows="3" required></textarea>
+                            </div>
+
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-warning">
+                                    <i class="fas fa-paper-plane me-1"></i> Envoyer
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-                   <div class="row mb-4">
-                       <div class="col-12">
-                           <div class="d-flex align-items-center mb-3">
-                               <i class="fas fa-university fa-2x text-primary me-3"></i>
-                               <div>
-                                   <h1 class="h2 fw-bold text-dark mb-0">Gestion de l'Établissement Scolaire</h1>
-                                   <p class="text-muted mb-0">Tableau de bord administratif</p>
-                               </div>
-                           </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-                           @if (TempData["NomEtablissementCree"] != null)
-            {
-                           <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                               <i class="fas fa-check-circle me-2"></i>
-                               <strong>École @TempData["NomEtablissementCree"]</strong> - Gestion administrative
-                               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                           </div>
+    <script>
+        // Script pour la gestion du formulaire d'alerte
+        document.addEventListener('DOMContentLoaded', function () {
+            const alertForm = document.getElementById('alertForm');
+
+            if (alertForm) {
+                alertForm.addEventListener('submit', function(e) {
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Envoi...';
+
+                    // Vous pouvez ajouter ici la logique AJAX si nécessaire
+                });
             }
-                       </div>
-                   </div>
 
-                   <!-- Cartes d'actions rapides -->
-                   <div class="row g-4 mb-4">
-                       <div class="col-md-4">
-                           <div class="card border-primary h-100">
-                               <div class="card-body">
-                                   <div class="d-flex align-items-center mb-3">
-                                       <div class="bg-primary bg-opacity-10 p-3 rounded me-3">
-                                           <i class="fas fa-users fa-2x text-primary"></i>
-                                       </div>
-                                       <h5 class="card-title mb-0">Gestion des Promotions</h5>
-                                   </div>
-                                   <p class="card-text text-muted">Créez et gérez les promotions de l'établissement pour l'année scolaire en cours.</p>
-                                   <a href="@Url.Action("Ajouterclasse", "Classe")" class="btn btn-outline-primary stretched-link">
-                                       <i class="fas fa-plus-circle me-1"></i> Ajouter une promotion
-                                   </a>
-                               </div>
-                           </div>
-                       </div>
-
-                       <div class="col-md-4">
-                           <div class="card border-warning h-100">
-                               <div class="card-body">
-                                   <div class="d-flex align-items-center mb-3">
-                                       <div class="bg-warning bg-opacity-10 p-3 rounded me-3">
-                                           <i class="fas fa-calendar-alt fa-2x text-warning"></i>
-                                       </div>
-                                       <h5 class="card-title mb-0">Emplois du temps</h5>
-                                   </div>
-                                   <p class="card-text text-muted">Planifiez et organisez les emplois du temps des classes et enseignants.</p>
-                                   <a href="@Url.Action("Ajouter_emplois_du_temps", "Modules")" class="btn btn-outline-warning stretched-link">
-                                       <i class="fas fa-clock me-1"></i> Gérer les plannings
-                                   </a>
-                               </div>
-                           </div>
-                       </div>
-
-                       <div class="col-md-4">
-                           <div class="card border-success h-100">
-                               <div class="card-body">
-                                   <div class="d-flex align-items-center mb-3">
-                                       <div class="bg-success bg-opacity-10 p-3 rounded me-3">
-                                           <i class="fas fa-user-tie fa-2x text-success"></i>
-                                       </div>
-                                       <h5 class="card-title mb-0">Gestion des Utilisateurs</h5>
-                                   </div>
-                                   <p class="card-text text-muted">Enregistrez et gérez les comptes des élèves, enseignants et personnels.</p>
-                                   <a href="@Url.Action("Inscrire_utilisateur", "Signup")" class="btn btn-outline-success stretched-link">
-                                       <i class="fas fa-user-plus me-1"></i> Inscrire un utilisateur
-                                   </a>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-                 
-
-                   <style>
-                       .event-card {
-                           transition: transform 0.3s ease, box-shadow 0.3s ease;
-                       }
-
-                           .event-card:hover {
-                               transform: translateY(-5px);
-                               box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-                           }
-
-                       .calendar-event {
-                           cursor: pointer;
-                       }
-
-                           .calendar-event:hover {
-                               background-color: #f8f9fa;
-                           }
-                   </style>
-
-                   <script>
-                       // Script pour la gestion des événements
-                       document.addEventListener('DOMContentLoaded', function () {
-                           // Ajouter un effet au survol des cartes d'événements
-                           const eventCards = document.querySelectorAll('.card');
-                           eventCards.forEach(card => {
-                               card.addEventListener('mouseenter', function () {
-                                   this.classList.add('shadow-sm');
-                               });
-                               card.addEventListener('mouseleave', function () {
-                                   this.classList.remove('shadow-sm');
-                               });
-                           });
-
-
-                           const calendarRows = document.querySelectorAll('.calendar-event');
-                           calendarRows.forEach(row => {
-                               row.addEventListener('click', function () {
-
-                                   console.log('Événement sélectionné:', this.cells[1].textContent);
-                               });
-                           });
-                       });
-                   </script>
-
-                   <!-- Section Alerte aux élèves -->
-                   <div class="col-md-8">
-                       <form id="alertForm" asp-action="AjouterAlerte" asp-controller="Dashboard" method="post">
-                           @Html.AntiForgeryToken()
-
-                           <div class="mb-3">
-                               <label for="promotionSelect" class="form-label">Sélectionner une promotion</label>
-                               <select class="form-select" id="promotionSelect" name="Id_classe" required>
-                                   <option value="" selected disabled>Choisir une promotion...</option>
-                                   @foreach (var classe in Model)
-                {
-                                   <option value="@classe.Id_classe">@classe.Nom_classe</option>
-                }
-                               </select>
-                           </div>
-
-                           <div class="mb-3">
-                               <label for="alertType" class="form-label">Titre de l'alerte</label>
-                               <input type="text" class="form-control" id="alertType" name="alertType" placeholder="Titre court et clair" required>
-                           </div>
-
-                           <div class="mb-3">
-                               <label for="alertMessage" class="form-label">Message</label>
-                               <textarea class="form-control" id="alertMessage" name="message" rows="4" placeholder="Détails de l'alerte..." required></textarea>
-                           </div>
-
-                           <div class="d-flex justify-content-end">
-                               <button type="submit" class="btn btn-warning">
-                                   <i class="fas fa-paper-plane me-1"></i> Envoyer l'alerte
-                               </button>
-                           </div>
-                       </form>
-                   </div>
-
-                   @section Scripts {
-                       <script>
-                           document.addEventListener('DOMContentLoaded', function () {
-                               const alertForm = document.getElementById('alertForm');
-
-                               alertForm.addEventListener('submit', function (e) {
-                                   e.preventDefault();
-
-
-                                   const submitBtn = alertForm.querySelector('button[type="submit"]');
-                                   submitBtn.disabled = true;
-                                   submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Envoi en cours...';
-
-                                   const formData = new FormData(alertForm);
-
-
-                                   const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
-                                   formData.append('__RequestVerificationToken', token);
-
-                                   fetch(alertForm.action, {
-                                       method: 'POST',
-                                       body: formData,
-                                       headers: {
-                                           'Accept': 'application/json',
-                                           'RequestVerificationToken': token
-                                       }
-                                   })
-                                       .then(response => {
-                                           submitBtn.disabled = false;
-                                           submitBtn.innerHTML = '<i class="fas fa-paper-plane me-1"></i> Envoyer l\'alerte';
-
-                                           if (!response.ok) {
-                                               throw new Error(`Erreur HTTP: ${response.status}`);
-                                           }
-
-
-                                           if (response.redirected) {
-                                               window.location.href = response.url;
-                                               return;
-                                           }
-
-                                           return response.json();
-                                       })
-                                       .then(data => {
-                                           if (data) {
-                                               showToast('success', data.message || 'Alerte envoyée avec succès');
-                                           }
-                                       })
-                                       .catch(error => {
-                                           console.error('Erreur:', error);
-                                           showToast('danger', 'Erreur réseau: ' + error.message);
-                                           submitBtn.disabled = false;
-                                           submitBtn.innerHTML = '<i class="fas fa-paper-plane me-1"></i> Envoyer l\'alerte';
-                                       });
-
-                                   function showToast(type, message) {
-                                       const toastContainer = document.createElement('div');
-                                       toastContainer.className = 'position-fixed bottom-0 end-0 p-3';
-                                       toastContainer.style.zIndex = '11';
-
-                                       const toastHtml = `
-                                               <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                                                   <div class="toast-header bg-${type} text-white">
-                                                       <strong class="me-auto">${type === 'success' ? 'Succès' : 'Erreur'}</strong>
-                                                       <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
-                                                   </div>
-                                                   <div class="toast-body">
-                                                       ${message}
-                                                   </div>
-                                               </div>
-                                           `;
-
-                                       toastContainer.innerHTML = toastHtml;
-                                       document.body.appendChild(toastContainer);
-
-                                       setTimeout(() => {
-                                           toastContainer.remove();
-                                       }, 5000);
-                                   }
-                               });
-                           });
-                       </script>
-                   }
+            // Effet hover sur les cartes
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.classList.add('shadow-sm');
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.classList.remove('shadow-sm');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

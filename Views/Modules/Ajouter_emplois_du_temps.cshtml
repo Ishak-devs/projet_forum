@@ -33,7 +33,8 @@
 
                     <div class="mb-3">
                         <label for="theme_module" class="form-label">Cours :</label>
-                                            </div>
+                        <input type="text" id="courseInput" name="theme_module" class="form-control" />
+                    </div>
 
                     <div class="mb-3">
                         <label for="profselect" class="form-label">Professeur :</label>
@@ -46,6 +47,7 @@
                         <button id="addCourseBtn" class="btn btn-outline-primary" onclick="prepareCourse()">
                             <i class="bi bi-plus-circle"></i> Créer un cours
                         </button>
+
                     </div>
 
                     <p id="message_confirm" class="text-success"></p>
@@ -210,11 +212,16 @@
             fetch('/Modules/GetProfByClasse?id=' + classId)
                 .then(res => res.json())
                 .then(data => {
+
                     var select = document.getElementById("profselect");
-                    select.innerHTML = '<option value="">-- Sélectionnez --</option>';
-                    data.forEach(m => {
-                        select.innerHTML += `<option value="${m.id_professeur}">${m.nom} ${m.prenom} (${m.matiere})</option>`;
-                    });
+
+                           select.innerHTML = '<option value="">-- Sélectionnez --</option>';
+        data.forEach(m => {
+            console.log("Professeur m :", m);
+            select.innerHTML += `<option value="${m.id_utilisateur}">${m.nom} ${m.prenom} (${m.matiere})</option>`;
+        });
+        console.log("Contenu de profselect.value :", profselect.value);
+
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -223,21 +230,24 @@
 
         function prepareCourse() {
             var classSelect = document.getElementById("classSelect");
-            var themeSelect = document.getElementById("theme_module");
+            var courseInput = document.getElementById("courseInput");
             var profSelect = document.getElementById("profselect");
 
-            if (!classSelect.value || !themeSelect.value || !profSelect.value) {
+        console.log("Classe:", classSelect.value);
+        console.log("Cours:", courseInput.value);
+        console.log("Professeur:", profselect.value);
+
+
+            if (!classSelect.value || !courseInput.value || !profselect.value) {
                 document.getElementById("message_erreur").textContent = "Veuillez sélectionner une classe, un cours et un professeur";
 
                 return;
             }
 
-            // Stocker les infos du cours à placer
             pendingCourse = {
-                theme: themeSelect.options[themeSelect.selectedIndex].text,
-                prof: profSelect.options[profSelect.selectedIndex].text,
-                themeValue: themeSelect.value,
-                profValue: profSelect.value
+                theme: courseInput.value,
+                themeValue: courseInput.value,
+                Profid: profselect.value
             };
 
             document.getElementById("message_confirm").textContent = "Choisissez maintenant le creneaux";
@@ -256,6 +266,9 @@
 
         function placeCourse(slot) {
             if (!pendingCourse) return;
+        console.log("Cours:", pendingCourse.theme);
+        console.log("Professeur:", pendingCourse.Profid);
+
 
             // Vérifier si le créneau est déjà occupé
             if (slot.querySelector('.course-item')) {
@@ -275,7 +288,7 @@
 
             courseElement.innerHTML = `
                     <strong>${pendingCourse.theme}</strong>
-                    <div>${pendingCourse.prof}</div>
+                    <div>${pendingCourse.Profid}</div>
                     
                 `;
 
@@ -341,7 +354,7 @@
                 return;
             }
         }
-
+        
         document.getElementById('saveTimetableBtn').addEventListener('click', function () {
             var timetableData = [];
             var slots = document.querySelectorAll('.timetable-slot');
@@ -356,7 +369,8 @@
 
                     courses.forEach(course => {
                         var courseName = course.querySelector('strong').textContent;
-                        var professor = course.querySelector('div').textContent;
+                        var Profid = course.querySelector('div').textContent;
+
 
                         timetableData.push({
                             classId: classId,
@@ -364,7 +378,7 @@
                             hour: hour,
                             hourEnd: hourEnd,
                             course: courseName,
-                            professor: professor
+                            Profid: Profid
                         });
                     });
                 }

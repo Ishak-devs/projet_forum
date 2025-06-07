@@ -13,7 +13,9 @@ namespace Forum.Models
 
         public virtual ICollection<Utilisateurs> Utilisateurs { get; set; }
 
+        public int? Id_etablissement { get; set; }
 
-
+        [ForeignKey("Id_etablissement")]
+        public virtual Etablissements Etablissement { get; set; }
     }
 }
