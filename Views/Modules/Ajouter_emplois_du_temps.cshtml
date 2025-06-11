@@ -209,6 +209,16 @@
             var classId = document.getElementById("classSelect").value;
             if (!classId) return;
 
+          fetch('/Modules/GetEmploiDuTempsParClasse?id=' + classId)
+            .then(res => res.json())
+            .then(data => {
+              console.log("Emploi du temps reçu :", data);
+              
+            })
+            .catch(err => console.error(err));
+        
+
+
             fetch('/Modules/GetProfByClasse?id=' + classId)
                 .then(res => res.json())
                 .then(data => {
