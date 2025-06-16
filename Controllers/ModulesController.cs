@@ -26,21 +26,36 @@ namespace Forum.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetEmploiDuTempsParClasse(int classeId)
+        public async Task<IActionResult> GetEmploiDuTempsParClasse(int id)
         {
-            var modules = await _context.Modules
-                .Include(m => m.Utilisateurs)
-                .Where(m => m.Id_classe == classeId)
-                .Select(m => new
-                {
-                    m.Id_module,
-                    m.Theme_module,
-                    m.Horaire,
-                    Professeur = m.Utilisateurs.Prenom + " " + m.Utilisateurs.Nom
-                })
-                .ToListAsync();
+            try
+            {
+                var modules = await _context.Modules
+                    .Include(m => m.Utilisateurs)
+                    .Where(m => m.Id_classe == id)
+                    .ToListAsync();
 
-            return Json(modules);
+                var emploiDuTemps = modules.Select(m =>
+                {
+                    var parts = m.Horaire.Split(' ');
+                    return new
+                    {
+                        jour = parts[0],
+                        heureDebut = parts[1],
+                        heureFin = parts[2],
+                        theme = m.Theme_module,
+                        profId = m.Id_utilisateur,
+                        professeur = m.Utilisateurs.Prenom + " " + m.Utilisateurs.Nom
+                    };
+                }).ToList();
+
+                return Json(emploiDuTemps);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erreur lors de la récupération de l'emploi du temps");
+                return Json(new { error = ex.Message });
+            }
         }
 
 

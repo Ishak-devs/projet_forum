@@ -204,38 +204,54 @@
         // Variable pour stocker les infos du cours à placer
         let pendingCourse = null;
 
-        // Chargement des professeurs
-        function loadModules() {
+                function loadModules() {
             var classId = document.getElementById("classSelect").value;
-            if (!classId) return;
+            if (!classId) {
+                clearTimetable();
+                return;
+            }
 
-          fetch('/Modules/GetEmploiDuTempsParClasse?id=' + classId)
-            .then(res => res.json())
-            .then(data => {
-              console.log("Emploi du temps reçu :", data);
-              
-            })
-            .catch(err => console.error(err));
-        
-
-
+            // Charger les professeurs (votre code existant)
             fetch('/Modules/GetProfByClasse?id=' + classId)
                 .then(res => res.json())
                 .then(data => {
-
                     var select = document.getElementById("profselect");
-
-                           select.innerHTML = '<option value="">-- Sélectionnez --</option>';
-        data.forEach(m => {
-            console.log("Professeur m :", m);
-            select.innerHTML += `<option value="${m.id_utilisateur}">${m.nom} ${m.prenom} (${m.matiere})</option>`;
-        });
-        console.log("Contenu de profselect.value :", profselect.value);
-
-                })
-                .catch(error => {
-                    console.error('Error:', error);
+                    select.innerHTML = '<option value="">-- Sélectionnez --</option>';
+                    data.forEach(m => {
+                        select.innerHTML += `<option value="${m.id_utilisateur}">${m.nom} ${m.prenom} (${m.matiere})</option>`;
+                    });
                 });
+
+            // Charger l'emploi du temps existant
+            fetch('/Modules/GetEmploiDuTempsParClasse?id=' + classId)
+                .then(res => res.json())
+                .then(data => {
+                    clearTimetable(); // Efface le tableau actuel
+
+                    // Remplir le tableau avec les cours existants
+                    data.forEach(course => {
+                        const slot = document.querySelector(`.timetable-slot[data-day="${course.jour}"][data-hour="${course.heureDebut}"]`);
+                        if (slot) {
+                            const courseElement = document.createElement("div");
+                            courseElement.className = "course-item";
+                            courseElement.draggable = true;
+                            courseElement.ondragstart = drag;
+
+                            courseElement.innerHTML = `
+                                <strong>${course.theme}</strong>
+                                <div>${course.profId}</div>
+                                <small>${course.professeur}</small>
+                            `;
+
+                            slot.appendChild(courseElement);
+                        }
+                    });
+                })
+                .catch(err => console.error("Erreur:", err));
+        }
+
+        function clearTimetable() {
+            document.querySelectorAll('.course-item').forEach(item => item.remove());
         }
 
         function prepareCourse() {
@@ -424,6 +440,7 @@
                         return response.json();
                     })
                     .then(data => {
+
                         if (data.success) {
                             window.location.reload();
                         } else {
