@@ -101,11 +101,13 @@ namespace Forum.Controllers
                 return RedirectToAction("Index");
             }
 
-            var eleves = contextget.Utilisateurs
-                .Where(u => u.Id_etablissement == utilisateurConnecte.Id_etablissement && u.Role == "Etudiant")
-                .ToList();
+            var users = contextget.Utilisateurs
+     .Where(u => u.Id_etablissement == utilisateurConnecte.Id_etablissement
+                 && (u.Role == "Etudiant" || u.Role == "Professeur"))
+     .ToList();
 
-            ViewBag.ListeEleves = eleves;
+            ViewBag.Liste_user = users;
+
 
             return View();
         }

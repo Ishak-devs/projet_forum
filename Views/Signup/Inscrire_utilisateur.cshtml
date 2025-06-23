@@ -98,63 +98,51 @@
                 <!-- Messages d'alerte -->
                 @if (ViewBag.SuccessMessage != null)
                 {
-                    <div class="alert alert-success alert-dismissible fade show">
-                        @ViewBag.SuccessMessage
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
+                <div class="alert alert-success alert-dismissible fade show">
+                    @ViewBag.SuccessMessage
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
                 }
 
                 @if (!ViewData.ModelState.IsValid && ViewData.ModelState.Values.Any(v => v.Errors.Count > 0))
                 {
-                    <div class="alert alert-danger alert-dismissible fade show">
-                        <ul class="mb-0">
-                            @foreach (var modelState in ViewData.ModelState.Values)
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <ul class="mb-0">
+                        @foreach (var modelState in ViewData.ModelState.Values)
                             {
                                 foreach (var error in modelState.Errors)
                                 {
-                                    <li>@error.ErrorMessage</li>
+                        <li>@error.ErrorMessage</li>
                                 }
                             }
-                        </ul>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
                 }
 
-                <!-- Liste des élèves -->
-                @if (ViewBag.ListeEleves != null)
+                @if (ViewBag.Liste_user != null)
+{
+                <div class="mb-4">
+                    <h4 class="mb-3"><i class="fas fa-users me-2"></i>Utilisateurs de l'établissement</h4>
+
+                    <form asp-action="SupprimerUtilisateur" method="post" onsubmit="return confirm('Confirmer la suppression ?');">
+                        <select class="form-select mb-3" aria-label="Liste des utilisateurs" name="id" required>
+                            <option value="" disabled selected>-- Sélectionnez un utilisateur --</option>
+                            @foreach (var user in ViewBag.Liste_user)
                 {
-                    <div class="mb-4">
-                        <h4 class="mb-3"><i class="fas fa-users me-2"></i>Élèves de l'établissement</h4>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Nom</th>
-                                        <th>Email</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var eleve in ViewBag.ListeEleves)
-                                    {
-                                        <tr>
-                                            <td>@eleve.Prenom @eleve.Nom</td>
-                                            <td>@eleve.Email</td>
-                                            <td>
-                                                <form asp-action="SupprimerUtilisateur" method="post" onsubmit="return confirm('Confirmer la suppression ?');">
-                                                    <input type="hidden" name="id" value="@eleve.Id_utilisateur" />
-                                                    <button type="submit" class="btn btn-sm btn-danger">
-                                                        <i class="fas fa-trash-alt me-1"></i> Supprimer
-                                                    </button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                            <option value="@user.Id_utilisateur">
+                                @user.Prenom @user.Nom (@user.Email)
+                            </option>
                 }
+                        </select>
+
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash-alt me-1"></i> Supprimer
+                        </button>
+                    </form>
+                </div>
+}
+
 
                 <!-- Formulaire -->
                 <form method="post">
