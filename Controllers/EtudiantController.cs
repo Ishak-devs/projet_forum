@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Forum.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Forum.Controllers
@@ -98,21 +99,53 @@ namespace Forum.Controllers
 
             return View(notes);
         }
+
+
+
         public async Task<IActionResult> MesDevoirs()
         {
             int? userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null)
                 return RedirectToAction("Index", "Authentification");
 
+            var utilisateur = await _context.Utilisateurs
+                .FirstOrDefaultAsync(u => u.Id_utilisateur == userId);
+
+            if (utilisateur == null || utilisateur.Id_classe == null)
+                return View(new List<Devoirs>());
+
             var devoirs = await _context.Devoirs
                 .Include(d => d.Modules)
-                .Where(d => d.Id_utilisateur == userId)
+                .Where(d => d.Id_classe == utilisateur.Id_classe)
                 .OrderBy(d => d.Modules.Theme_module)
                 .ThenBy(d => d.Date_devoir)
                 .ToListAsync();
 
             return View(devoirs);
         }
+
+
+        public async Task<IActionResult> TelechargerFichier(int id)
+        {
+            var devoir = await _context.Devoirs.FindAsync(id);
+
+            if (devoir == null || string.IsNullOrEmpty(devoir.FichierPath))
+                return NotFound();
+
+            var cheminComplet = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", devoir.FichierPath);
+
+            if (!System.IO.File.Exists(cheminComplet))
+                return NotFound();
+
+            var typeMime = "application/octet-stream"; // Tu peux adapter le MIME selon l’extension
+            var nomFichier = Path.GetFileName(cheminComplet);
+            var fileBytes = await System.IO.File.ReadAllBytesAsync(cheminComplet);
+
+            return File(fileBytes, typeMime, nomFichier);
+        }
+
+
+
         [HttpPost]
         public async Task<IActionResult> RendreDevoir(int Id_devoir, IFormFile fichier)
         {

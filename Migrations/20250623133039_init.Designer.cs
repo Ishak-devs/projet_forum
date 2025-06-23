@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250607164035_init_db")]
-    partial class init_db
+    [Migration("20250623133039_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -96,6 +96,9 @@ namespace Forum.Migrations
                     b.Property<string>("FichierPath")
                         .HasColumnType("longtext");
 
+                    b.Property<int>("Id_classe")
+                        .HasColumnType("int");
+
                     b.Property<int>("Id_module")
                         .HasColumnType("int");
 
@@ -107,6 +110,8 @@ namespace Forum.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id_devoir");
+
+                    b.HasIndex("Id_classe");
 
                     b.HasIndex("Id_module");
 
@@ -363,6 +368,12 @@ namespace Forum.Migrations
 
             modelBuilder.Entity("Forum.Models.Devoirs", b =>
                 {
+                    b.HasOne("Forum.Models.Classes", "Classes")
+                        .WithMany()
+                        .HasForeignKey("Id_classe")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Forum.Models.Modules", "Modules")
                         .WithMany()
                         .HasForeignKey("Id_module")
@@ -374,6 +385,8 @@ namespace Forum.Migrations
                         .HasForeignKey("Id_utilisateur")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Classes");
 
                     b.Navigation("Modules");
 

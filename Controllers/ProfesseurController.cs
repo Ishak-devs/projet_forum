@@ -1,6 +1,7 @@
 ﻿using Forum.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
@@ -9,16 +10,107 @@ namespace Forum.Controllers
     public class ProfesseurController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<ProfesseurController> _logger;
 
-        public ProfesseurController(ApplicationDbContext context)
+        public ProfesseurController(ApplicationDbContext context, ILogger<ProfesseurController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public IActionResult Index()
         {
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> AjouterDevoir()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+                return RedirectToAction("Index", "Authentification");
+
+            var professeur = await _context.Utilisateurs
+                .Include(u => u.Classes)
+                .FirstOrDefaultAsync(u => u.Id_utilisateur == userId);
+
+            if (professeur?.Id_classe == null)
+            {
+                TempData["ErrorMessage"] = "Vous n'êtes pas assigné à une classe";
+                return RedirectToAction("Index", "Dashboard");
+            }
+
+            var modules = await _context.Modules
+                .Where(m => m.Id_utilisateur == userId)
+                .ToListAsync();
+
+            ViewBag.Modules = new SelectList(modules, "Id_module", "Theme_module");
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> AjouterDevoir(Devoirs devoir, IFormFile fichier)
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+
+            try
+            {
+                if (string.IsNullOrEmpty(devoir.Intitulé))
+                {
+                    ModelState.AddModelError("Intitulé", "L'intitulé est requis");
+                    return View(devoir);
+                }
+
+                var professeur = await _context.Utilisateurs
+                    .Include(u => u.Classes)
+                    .FirstOrDefaultAsync(u => u.Id_utilisateur == userId);
+
+                if (professeur == null)
+                {
+                    TempData["ErrorMessage"] = "Professeur non trouvé";
+                    return RedirectToAction("Index");
+                }
+
+                devoir.Id_utilisateur = userId ?? 0;
+                devoir.Date_devoir = DateTime.Now;
+                devoir.Id_classe = professeur.Id_classe.Value;
+
+                // Gestion fichier uploadé
+                if (fichier != null && fichier.Length > 0)
+                {
+                    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+
+                    if (!Directory.Exists(uploadsFolder))
+                        Directory.CreateDirectory(uploadsFolder);
+
+                    var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(fichier.FileName);
+                    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await fichier.CopyToAsync(fileStream);
+                    }
+
+                    // Stocker le chemin relatif en base
+                    devoir.FichierPath = Path.Combine("uploads", uniqueFileName).Replace("\\", "/");
+                }
+
+                _context.Devoirs.Add(devoir);
+                await _context.SaveChangesAsync();
+
+                TempData["SuccessMessage"] = "Devoir ajouté avec succès";
+                return RedirectToAction("AjouterDevoir");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erreur ajout devoir");
+                TempData["ErrorMessage"] = "Une erreur est survenue";
+                return View(devoir);
+            }
+        }
+
+
 
         public IActionResult MesClasses()
         {
@@ -30,7 +122,7 @@ namespace Forum.Controllers
             var professeur = _context.Utilisateurs.FirstOrDefault(u => u.Id_utilisateur == profId.Value);
 
             if (professeur == null || !professeur.Id_classe.HasValue)
-                return View(new List<Classes>()); 
+                return View(new List<Classes>());
 
             var classe = _context.Classes
                 .Where(c => c.Id_classe == professeur.Id_classe.Value)

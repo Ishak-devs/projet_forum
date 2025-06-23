@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Forum.Migrations
 {
     /// <inheritdoc />
-    public partial class init_db : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -199,11 +199,18 @@ namespace Forum.Migrations
                     FichierPath = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Id_module = table.Column<int>(type: "int", nullable: false),
-                    Id_utilisateur = table.Column<int>(type: "int", nullable: false)
+                    Id_utilisateur = table.Column<int>(type: "int", nullable: false),
+                    Id_classe = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Devoirs", x => x.Id_devoir);
+                    table.ForeignKey(
+                        name: "FK_Devoirs_Classes_Id_classe",
+                        column: x => x.Id_classe,
+                        principalTable: "Classes",
+                        principalColumn: "Id_classe",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Devoirs_Modules_Id_module",
                         column: x => x.Id_module,
@@ -293,6 +300,11 @@ namespace Forum.Migrations
                 name: "IX_Classes_Id_etablissement",
                 table: "Classes",
                 column: "Id_etablissement");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Devoirs_Id_classe",
+                table: "Devoirs",
+                column: "Id_classe");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Devoirs_Id_module",

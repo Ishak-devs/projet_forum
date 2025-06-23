@@ -1,0 +1,129 @@
+@model Forum.Models.Devoirs
+
+@{
+    ViewData["Title"] = "Ajouter un devoir";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">
+                <i class="fas fa-book me-2"></i>Nouveau devoir
+            </h3>
+        </div>
+        <div class="card-body">
+
+            <form asp-action="AjouterDevoir" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label asp-for="Intitulé" class="form-label">Intitulé du devoir *</label>
+                        <input asp-for="Intitulé" class="form-control" required />
+                        <span asp-validation-for="Intitulé" class="text-danger"></span>
+                        <div class="invalid-feedback">
+                            Veuillez saisir un intitulé.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="Id_module" class="form-label">Module *</label>
+                        <select asp-for="Id_module" asp-items="ViewBag.Modules" class="form-select" required>
+                            <option value="">-- Sélectionnez un module --</option>
+                        </select>
+                        <span asp-validation-for="Id_module" class="text-danger"></span>
+                        <div class="invalid-feedback">
+                            Veuillez sélectionner un module.
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="fichier" class="form-label">Fichier joint (PDF, DOC, ZIP - max 5MB)</label>
+                        <input type="file" name="fichier" class="form-control" accept=".pdf,.doc,.docx,.zip" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="confirmation" required>
+                            <label class="form-check-label" for="confirmation">
+                                Je confirme que ce devoir est prêt à être publié
+                            </label>
+                            <div class="invalid-feedback">
+                                Vous devez confirmer avant de soumettre.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                    <a href="@Url.Action("Index", "Professeur")" class="btn btn-outline-secondary me-md-2">
+                        <i class="fas fa-times me-1"></i> Annuler
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save me-1"></i> Enregistrer le devoir
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            border-bottom: none;
+        }
+
+        .form-control, .form-select {
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .btn {
+            border-radius: 5px;
+            padding: 8px 20px;
+        }
+    </style>
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>// Validation côté client
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+
+        // Vérification de la taille du fichier
+        document.querySelector('input[type="file"]').addEventListener('change', function(e) {
+            if (this.files[0] && this.files[0].size > 5 * 1024 * 1024) {
+                alert('Le fichier est trop volumineux (max 5MB)');
+                this.value = '';
+            }
+        });</script>
+}
