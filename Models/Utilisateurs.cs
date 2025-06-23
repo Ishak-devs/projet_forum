@@ -13,15 +13,22 @@ namespace Forum.Models
         [ForeignKey("Id_classe")]
         public virtual Classes? Classes { get; set; }
 
+        [Required(ErrorMessage = "Le nom est obligatoire")]
+        [MinLength(8, ErrorMessage = "Le nom doit contenir au moins 2 caractères.")]
         [StringLength(70)]
         public string Nom { get; set; }
 
+        [Required(ErrorMessage = "Le prénom est obligatoire")]
+        [MinLength(3, ErrorMessage = "Le prénom doit avoir au moins 2 caractères.")]
         [StringLength(50)]
         public string Prenom { get; set; }
 
+        [Required(ErrorMessage = "L'email est obligatoire")]
         [StringLength(100)]
         public string Email { get; set; }
 
+        [Required(ErrorMessage = "Le mot de passe est obligatoire")]
+        [MinLength(8, ErrorMessage = "Le mot de passe doit contenir au moins 8 caractères.")]
         [StringLength(100)]
         public string Motdepasse { get; set; }
 
@@ -40,26 +47,6 @@ namespace Forum.Models
         public string? Section { get; set; }
 
 
-        //public string AccederEspacePersonnel()
-        //{
-
-        //    if (Role == "Admini")
-        //    {
-        //        return "/Admin/Dashboard";
-        //    }
-        //    else if (Role == "Professeur")
-        //    {
-        //        return "/Professeur/EspacePersonnel";
-        //    }
-        //    else if (Role == "Etudiant")
-        //    {
-        //        return "/Eleve/EspacePersonnel";
-        //    }
-        //    else
-        //    {
-        //        return "/Connexion";
-        //    }
-        //}
 
     }
 }
