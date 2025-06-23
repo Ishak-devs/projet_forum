@@ -14,12 +14,12 @@ namespace Forum.Models
         public virtual Classes? Classes { get; set; }
 
         [Required(ErrorMessage = "Le nom est obligatoire")]
-        [MinLength(8, ErrorMessage = "Le nom doit contenir au moins 2 caractères.")]
+        [MinLength(2, ErrorMessage = "Le nom doit contenir au moins 2 caractères.")]
         [StringLength(70)]
         public string Nom { get; set; }
 
         [Required(ErrorMessage = "Le prénom est obligatoire")]
-        [MinLength(3, ErrorMessage = "Le prénom doit avoir au moins 2 caractères.")]
+        [MinLength(2, ErrorMessage = "Le prénom doit avoir au moins 2 caractères.")]
         [StringLength(50)]
         public string Prenom { get; set; }
 
