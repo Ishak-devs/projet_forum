@@ -117,7 +117,7 @@ namespace Forum.Controllers
                         .ToList();
 
                     var alertes = _context.Alertes
-                        .Where(a => a.Id_utilisateur == profId.Value)
+                        .Where(a => a.Id_classe == classe.Id_classe)
                         .OrderByDescending(a => a.date_alerte)
                         .ToList();
 
