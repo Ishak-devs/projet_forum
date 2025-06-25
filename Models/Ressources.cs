@@ -17,9 +17,9 @@ namespace Forum.Models
 
 
         [ForeignKey("Modules")]
-        public int Id_module { get; set; }
+        public int? Id_module { get; set; }
 
-        public virtual Modules Modules { get; set; }
+        public virtual Modules? Modules { get; set; }
 
         [ForeignKey("Utilisateurs")]
         public int Id_utilisateur { get; set; }
@@ -33,9 +33,9 @@ namespace Forum.Models
 
 
         [ForeignKey("Alertes")]
-        public int Id_alerte { get; set; }
+        public int? Id_alerte { get; set; }
 
-        public virtual Alertes Alertes { get; set; }
+        public virtual Alertes? Alertes { get; set; }
 
     }
 }

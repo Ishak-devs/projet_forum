@@ -76,7 +76,7 @@ namespace Forum.Controllers
                 devoir.Date_devoir = DateTime.Now;
                 devoir.Id_classe = professeur.Id_classe.Value;
 
-                // Gestion fichier uploadé
+
                 if (fichier != null && fichier.Length > 0)
                 {
                     var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
@@ -92,7 +92,7 @@ namespace Forum.Controllers
                         await fichier.CopyToAsync(fileStream);
                     }
 
-                    // Stocker le chemin relatif en base
+
                     devoir.FichierPath = Path.Combine("uploads", uniqueFileName).Replace("\\", "/");
                 }
 
