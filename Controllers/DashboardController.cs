@@ -100,7 +100,7 @@ namespace Forum.Controllers
             {
                 var professeur = _context.Utilisateurs
                     .Include(u => u.Classes)
-                        .ThenInclude(c => c.Utilisateurs) // récupère les utilisateurs de la classe
+                        .ThenInclude(c => c.Utilisateurs)
                     .FirstOrDefault(u => u.Id_utilisateur == profId.Value);
 
                 if (professeur != null)

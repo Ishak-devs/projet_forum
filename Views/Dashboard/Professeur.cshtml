@@ -257,60 +257,32 @@
             </div>
 
             <!-- Alertes Section -->
-            <div class="col-lg-4">
-                <div class="card shadow-sm">
-                    <div class="card-header">
-                        <h5 class="mb-0">
-                            <i class="fas fa-bell me-2 text-gray-500"></i>
-                            Alertes
-                        </h5>
-                    </div>
-                    <div class="card-body p-0">
-                        @if (alertes != null && alertes.Any())
-                        {
-                        <div class="list-group list-group-flush">
-                            @foreach (var alerte in alertes.Take(3))
-                                {
-                            <a href="#" class="list-group-item list-group-item-action alert-item
-                                       @(alerte.Message == "Absence" ? "absence" :
-                                         alerte.Message == "Retard" ? "retard" : "info")
-                                       py-3">
-                                <div class="d-flex align-items-center">
-                                    <div class="me-3">
-                                        <i class="fas @(alerte.Message == "Absence" ? "fa-user-slash text-danger" :
-                                                              alerte.Message == "Retard" ? "fa-user-clock text-warning" :
-                                                              "fa-info-circle text-info") fa-lg"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="mb-1">@alerte.Titre</h6>
-                                        <p class="small mb-0 text-muted">@alerte.Message</p>
-                                        <small class="text-muted">@DateTime.Now.ToString("dd/MM/yyyy")</small>
-                                    </div>
-                                </div>
-                            </a>
-                                }
-                        </div>
-                        <div class="card-footer bg-transparent border-top">
-                            <a href="#" class="btn btn-link btn-sm text-primary">Voir toutes les alertes</a>
-                        </div>
-                        }
-                        else
-                        {
-                        <div class="text-center py-4">
-                            <div class="bg-icon mx-auto mb-3">
-                                <i class="fas fa-check-circle text-success"></i>
-                            </div>
-                            <h6 class="fw-light">Aucune alerte</h6>
-                            <p class="text-muted small">Tout est à jour</p>
-                        </div>
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+            @{
+    var alertes = ViewBag.Alertes as List<Forum.Models.Alertes>;
+            }
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+            <h2>Alertes récentes</h2>
+
+            @if (alertes != null && alertes.Any())
+{
+            <ul>
+                @foreach (var alerte in alertes)
+        {
+                <li>
+                    <strong>@alerte.Titre</strong><br />
+                    @alerte.Message<br />
+                    <small>@alerte.date_alerte.ToString("dd/MM/yyyy HH:mm")</small>
+                </li>
+        }
+            </ul>
+}
+else
+{
+            <p>Aucune alerte disponible.</p>
+}
+
+
+            <!-- Bootstrap JS -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
