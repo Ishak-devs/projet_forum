@@ -8,9 +8,10 @@ namespace Forum.Models
         [Key]
         public int Id_utilisateur { get; set; }
 
-        public int? Id_classe { get; set; }
 
-        [ForeignKey("Id_classe")]
+
+        [ForeignKey("Classes")]
+        public int? Id_classe { get; set; }
         public virtual Classes? Classes { get; set; }
 
         [Required(ErrorMessage = "Le nom est obligatoire")]

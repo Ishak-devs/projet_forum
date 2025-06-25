@@ -11,15 +11,12 @@ public class ApplicationDbContext : DbContext
     public DbSet<Modules> Modules { get; set; }
     
     public DbSet<Messages> Messages { get; set; }
-    public DbSet<Evaluations> Evaluations { get; set; }
-
-    public DbSet<Alertes> Alerte { get; set; }
 
     public DbSet<Alertes> Alertes { get; set; }
 
-    public DbSet<Notes> Notes { get; set; }
+    public DbSet<Evaluations> Evaluations { get; set; }
 
-    public DbSet<Devoirs> Devoirs { get; set; }
+    public DbSet<Ressources> Ressources { get; set; }
     public DbSet<EffectifParClasse> EffectifParClasse { get; set; }
 
 

@@ -92,7 +92,7 @@ namespace Forum.Controllers
             if (userId == null)
                 return RedirectToAction("Index", "Authentification");
 
-            var notes = await _context.Notes
+            var notes = await _context.Evaluations
                 .Include(n => n.Modules)
                 .Where(n => n.Id_utilisateur == userId)
                 .ToListAsync();
@@ -112,9 +112,9 @@ namespace Forum.Controllers
                 .FirstOrDefaultAsync(u => u.Id_utilisateur == userId);
 
             if (utilisateur == null || utilisateur.Id_classe == null)
-                return View(new List<Devoirs>());
+                return View(new List<Ressources>());
 
-            var devoirs = await _context.Devoirs
+            var devoirs = await _context.Ressources
                 .Include(d => d.Modules)
                 .Where(d => d.Id_classe == utilisateur.Id_classe)
                 .OrderBy(d => d.Modules.Theme_module)
@@ -127,7 +127,7 @@ namespace Forum.Controllers
 
         public async Task<IActionResult> TelechargerFichier(int id)
         {
-            var devoir = await _context.Devoirs.FindAsync(id);
+            var devoir = await _context.Ressources.FindAsync(id);
 
             if (devoir == null || string.IsNullOrEmpty(devoir.FichierPath))
                 return NotFound();
@@ -152,7 +152,7 @@ namespace Forum.Controllers
             if (fichier == null || fichier.Length == 0)
                 return BadRequest("Fichier manquant.");
 
-            var devoir = await _context.Devoirs.FindAsync(Id_devoir);
+            var devoir = await _context.Ressources.FindAsync(Id_devoir);
             if (devoir == null)
                 return NotFound();
 

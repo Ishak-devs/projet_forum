@@ -50,7 +50,7 @@ namespace Forum.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> AjouterDevoir(Devoirs devoir, IFormFile fichier)
+        public async Task<IActionResult> AjouterDevoir(Ressources devoir, IFormFile fichier)
         {
             var userId = HttpContext.Session.GetInt32("UserId");
 
@@ -96,7 +96,7 @@ namespace Forum.Controllers
                     devoir.FichierPath = Path.Combine("uploads", uniqueFileName).Replace("\\", "/");
                 }
 
-                _context.Devoirs.Add(devoir);
+                _context.Ressources.Add(devoir);
                 await _context.SaveChangesAsync();
 
                 TempData["SuccessMessage"] = "Devoir ajouté avec succès";
@@ -158,7 +158,7 @@ namespace Forum.Controllers
         [HttpPost]
         public IActionResult SaisirNotes(int Id_utilisateur, int Id_module, double Note)
         {
-            var nouvelleNote = new Notes
+            var nouvelleNote = new Evaluations
             {
                 Id_utilisateur = Id_utilisateur,
                 Id_module = Id_module,
@@ -166,7 +166,7 @@ namespace Forum.Controllers
                 Date_note = DateTime.Now
             };
 
-            _context.Notes.Add(nouvelleNote);
+            _context.Evaluations.Add(nouvelleNote);
             _context.SaveChanges();
 
             TempData["Message"] = "Note enregistrée avec succès !";

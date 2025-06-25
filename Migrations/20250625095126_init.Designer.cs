@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250623133039_init")]
+    [Migration("20250625095126_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -32,7 +32,7 @@ namespace Forum.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_alerte"));
 
-                    b.Property<int?>("Id_classe")
+                    b.Property<int>("Id_classe")
                         .HasColumnType("int");
 
                     b.Property<int>("Id_utilisateur")
@@ -82,44 +82,6 @@ namespace Forum.Migrations
                     b.ToTable("Classes");
                 });
 
-            modelBuilder.Entity("Forum.Models.Devoirs", b =>
-                {
-                    b.Property<int>("Id_devoir")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_devoir"));
-
-                    b.Property<DateTime>("Date_devoir")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("FichierPath")
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("Id_classe")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id_module")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id_utilisateur")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Intitulé")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id_devoir");
-
-                    b.HasIndex("Id_classe");
-
-                    b.HasIndex("Id_module");
-
-                    b.HasIndex("Id_utilisateur");
-
-                    b.ToTable("Devoirs");
-                });
-
             modelBuilder.Entity("Forum.Models.EffectifParClasse", b =>
                 {
                     b.Property<int>("Effectif")
@@ -163,13 +125,13 @@ namespace Forum.Migrations
 
             modelBuilder.Entity("Forum.Models.Evaluations", b =>
                 {
-                    b.Property<int>("Id_evaluation")
+                    b.Property<int>("Id_note")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_evaluation"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_note"));
 
-                    b.Property<DateTime>("Date_evaluation")
+                    b.Property<DateTime>("Date_note")
                         .HasColumnType("datetime(6)");
 
                     b.Property<int>("Id_module")
@@ -178,14 +140,10 @@ namespace Forum.Migrations
                     b.Property<int>("Id_utilisateur")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("Note_evaluation")
-                        .HasColumnType("decimal(65,30)");
+                    b.Property<double>("Note")
+                        .HasColumnType("double");
 
-                    b.Property<string>("Theme_evaluation")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id_evaluation");
+                    b.HasKey("Id_note");
 
                     b.HasIndex("Id_module");
 
@@ -255,16 +213,25 @@ namespace Forum.Migrations
                     b.ToTable("Modules");
                 });
 
-            modelBuilder.Entity("Forum.Models.Notes", b =>
+            modelBuilder.Entity("Forum.Models.Ressources", b =>
                 {
-                    b.Property<int>("Id_note")
+                    b.Property<int>("Id_ressources")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_note"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_ressources"));
 
-                    b.Property<DateTime>("Date_note")
+                    b.Property<DateTime>("Date_devoir")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("FichierPath")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Id_alerte")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id_classe")
+                        .HasColumnType("int");
 
                     b.Property<int>("Id_module")
                         .HasColumnType("int");
@@ -272,16 +239,21 @@ namespace Forum.Migrations
                     b.Property<int>("Id_utilisateur")
                         .HasColumnType("int");
 
-                    b.Property<double>("Note")
-                        .HasColumnType("double");
+                    b.Property<string>("Intitulé")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
-                    b.HasKey("Id_note");
+                    b.HasKey("Id_ressources");
+
+                    b.HasIndex("Id_alerte");
+
+                    b.HasIndex("Id_classe");
 
                     b.HasIndex("Id_module");
 
                     b.HasIndex("Id_utilisateur");
 
-                    b.ToTable("Notes");
+                    b.ToTable("Ressources");
                 });
 
             modelBuilder.Entity("Forum.Models.Utilisateurs", b =>
@@ -342,19 +314,21 @@ namespace Forum.Migrations
 
             modelBuilder.Entity("Forum.Models.Alertes", b =>
                 {
-                    b.HasOne("Forum.Models.Classes", "Classe")
+                    b.HasOne("Forum.Models.Classes", "Classes")
                         .WithMany()
-                        .HasForeignKey("Id_classe");
+                        .HasForeignKey("Id_classe")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("Forum.Models.Utilisateurs", "User")
+                    b.HasOne("Forum.Models.Utilisateurs", "Utilisateurs")
                         .WithMany()
                         .HasForeignKey("Id_utilisateur")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Classe");
+                    b.Navigation("Classes");
 
-                    b.Navigation("User");
+                    b.Navigation("Utilisateurs");
                 });
 
             modelBuilder.Entity("Forum.Models.Classes", b =>
@@ -366,14 +340,8 @@ namespace Forum.Migrations
                     b.Navigation("Etablissement");
                 });
 
-            modelBuilder.Entity("Forum.Models.Devoirs", b =>
+            modelBuilder.Entity("Forum.Models.Evaluations", b =>
                 {
-                    b.HasOne("Forum.Models.Classes", "Classes")
-                        .WithMany()
-                        .HasForeignKey("Id_classe")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Forum.Models.Modules", "Modules")
                         .WithMany()
                         .HasForeignKey("Id_module")
@@ -386,30 +354,9 @@ namespace Forum.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Classes");
-
                     b.Navigation("Modules");
 
                     b.Navigation("Utilisateurs");
-                });
-
-            modelBuilder.Entity("Forum.Models.Evaluations", b =>
-                {
-                    b.HasOne("Forum.Models.Modules", "Module")
-                        .WithMany()
-                        .HasForeignKey("Id_module")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Forum.Models.Utilisateurs", "User")
-                        .WithMany()
-                        .HasForeignKey("Id_utilisateur")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Module");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Forum.Models.Messages", b =>
@@ -450,8 +397,20 @@ namespace Forum.Migrations
                     b.Navigation("Utilisateurs");
                 });
 
-            modelBuilder.Entity("Forum.Models.Notes", b =>
+            modelBuilder.Entity("Forum.Models.Ressources", b =>
                 {
+                    b.HasOne("Forum.Models.Alertes", "Alertes")
+                        .WithMany()
+                        .HasForeignKey("Id_alerte")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Forum.Models.Classes", "Classes")
+                        .WithMany()
+                        .HasForeignKey("Id_classe")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Forum.Models.Modules", "Modules")
                         .WithMany()
                         .HasForeignKey("Id_module")
@@ -463,6 +422,10 @@ namespace Forum.Migrations
                         .HasForeignKey("Id_utilisateur")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Alertes");
+
+                    b.Navigation("Classes");
 
                     b.Navigation("Modules");
 

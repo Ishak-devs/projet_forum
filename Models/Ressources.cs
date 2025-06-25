@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Forum.Models
 {
-    public class Devoirs
+    public class Ressources
     {
         [Key]
-        public int Id_devoir { get; set; }
+        public int Id_ressources { get; set; }
 
         public string Intitulé { get; set; }
 
@@ -30,5 +30,12 @@ namespace Forum.Models
         [ForeignKey("Classes")]
         public int Id_classe { get; set; }
         public virtual Classes Classes { get; set; }
+
+
+        [ForeignKey("Alertes")]
+        public int Id_alerte { get; set; }
+
+        public virtual Alertes Alertes { get; set; }
+
     }
 }

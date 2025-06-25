@@ -20,16 +20,15 @@ namespace Forum.Models
             [StringLength(100)]
             public string Message { get; set; }
 
-            [ForeignKey("User")]
-            public int Id_utilisateur { get; set; }
-
-            [ForeignKey("Classe")]
-            public int? Id_classe { get; set; }
-
-            public virtual Utilisateurs User { get; set; }
-            public virtual Classes? Classe { get; set; }
-
         public DateTime date_alerte { get; set; } = DateTime.Now;
+
+        [ForeignKey("Utilisateurs")]
+        public int Id_utilisateur { get; set; }
+        public virtual Utilisateurs Utilisateurs { get; set; }
+
+        [ForeignKey("Classes")]
+        public int Id_classe { get; set; }
+        public virtual Classes Classes { get; set; }
     }
 
 

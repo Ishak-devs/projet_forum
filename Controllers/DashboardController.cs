@@ -42,7 +42,7 @@ namespace Forum.Controllers
                 .Include(e => e.Classes)
                 .FirstOrDefaultAsync(e => e.Id_utilisateur == userId);
 
-            var notes = await _context.Notes
+            var notes = await _context.Evaluations
                 .Include(n => n.Modules)
                 .Where(n => n.Id_utilisateur == userId)
                 .OrderByDescending(n => n.Date_note)
@@ -75,8 +75,8 @@ namespace Forum.Controllers
 
 
             var alertes = _context.Alertes
-                .Include(a => a.Classe)  
-                .Include(a => a.User)     
+                .Include(a => a.Classes)  
+                .Include(a => a.Utilisateurs)     
                 .OrderByDescending(a => a.Id_alerte)
                 .Take(5) 
                 .ToList();
@@ -187,8 +187,8 @@ namespace Forum.Controllers
         public IActionResult VoirAlertes()
         {
             var alertes = _context.Alertes
-                .Include(a => a.User) 
-                .Include(a => a.Classe) 
+                .Include(a => a.Utilisateurs) 
+                .Include(a => a.Classes) 
                 .OrderByDescending(a => a.Id_alerte) 
                 .ToList();
 

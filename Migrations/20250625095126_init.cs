@@ -105,9 +105,9 @@ namespace Forum.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Message = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    date_alerte = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Id_utilisateur = table.Column<int>(type: "int", nullable: false),
-                    Id_classe = table.Column<int>(type: "int", nullable: true),
-                    date_alerte = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    Id_classe = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -116,7 +116,8 @@ namespace Forum.Migrations
                         name: "FK_Alertes_Classes_Id_classe",
                         column: x => x.Id_classe,
                         principalTable: "Classes",
-                        principalColumn: "Id_classe");
+                        principalColumn: "Id_classe",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Alertes_Utilisateurs_Id_utilisateur",
                         column: x => x.Id_utilisateur,
@@ -188,60 +189,19 @@ namespace Forum.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Devoirs",
-                columns: table => new
-                {
-                    Id_devoir = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Intitulé = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Date_devoir = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    FichierPath = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Id_module = table.Column<int>(type: "int", nullable: false),
-                    Id_utilisateur = table.Column<int>(type: "int", nullable: false),
-                    Id_classe = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Devoirs", x => x.Id_devoir);
-                    table.ForeignKey(
-                        name: "FK_Devoirs_Classes_Id_classe",
-                        column: x => x.Id_classe,
-                        principalTable: "Classes",
-                        principalColumn: "Id_classe",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Devoirs_Modules_Id_module",
-                        column: x => x.Id_module,
-                        principalTable: "Modules",
-                        principalColumn: "Id_module",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Devoirs_Utilisateurs_Id_utilisateur",
-                        column: x => x.Id_utilisateur,
-                        principalTable: "Utilisateurs",
-                        principalColumn: "Id_utilisateur",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "Evaluations",
                 columns: table => new
                 {
-                    Id_evaluation = table.Column<int>(type: "int", nullable: false)
+                    Id_note = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Date_evaluation = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Theme_evaluation = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Note_evaluation = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
-                    Id_utilisateur = table.Column<int>(type: "int", nullable: false),
-                    Id_module = table.Column<int>(type: "int", nullable: false)
+                    Note = table.Column<double>(type: "double", nullable: false),
+                    Date_note = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Id_module = table.Column<int>(type: "int", nullable: false),
+                    Id_utilisateur = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Evaluations", x => x.Id_evaluation);
+                    table.PrimaryKey("PK_Evaluations", x => x.Id_note);
                     table.ForeignKey(
                         name: "FK_Evaluations_Modules_Id_module",
                         column: x => x.Id_module,
@@ -258,27 +218,44 @@ namespace Forum.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Notes",
+                name: "Ressources",
                 columns: table => new
                 {
-                    Id_note = table.Column<int>(type: "int", nullable: false)
+                    Id_ressources = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Note = table.Column<double>(type: "double", nullable: false),
-                    Date_note = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Intitulé = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Date_devoir = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    FichierPath = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Id_module = table.Column<int>(type: "int", nullable: false),
-                    Id_utilisateur = table.Column<int>(type: "int", nullable: false)
+                    Id_utilisateur = table.Column<int>(type: "int", nullable: false),
+                    Id_classe = table.Column<int>(type: "int", nullable: false),
+                    Id_alerte = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Notes", x => x.Id_note);
+                    table.PrimaryKey("PK_Ressources", x => x.Id_ressources);
                     table.ForeignKey(
-                        name: "FK_Notes_Modules_Id_module",
+                        name: "FK_Ressources_Alertes_Id_alerte",
+                        column: x => x.Id_alerte,
+                        principalTable: "Alertes",
+                        principalColumn: "Id_alerte",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Ressources_Classes_Id_classe",
+                        column: x => x.Id_classe,
+                        principalTable: "Classes",
+                        principalColumn: "Id_classe",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Ressources_Modules_Id_module",
                         column: x => x.Id_module,
                         principalTable: "Modules",
                         principalColumn: "Id_module",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Notes_Utilisateurs_Id_utilisateur",
+                        name: "FK_Ressources_Utilisateurs_Id_utilisateur",
                         column: x => x.Id_utilisateur,
                         principalTable: "Utilisateurs",
                         principalColumn: "Id_utilisateur",
@@ -300,21 +277,6 @@ namespace Forum.Migrations
                 name: "IX_Classes_Id_etablissement",
                 table: "Classes",
                 column: "Id_etablissement");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Devoirs_Id_classe",
-                table: "Devoirs",
-                column: "Id_classe");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Devoirs_Id_module",
-                table: "Devoirs",
-                column: "Id_module");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Devoirs_Id_utilisateur",
-                table: "Devoirs",
-                column: "Id_utilisateur");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Evaluations_Id_module",
@@ -347,13 +309,23 @@ namespace Forum.Migrations
                 column: "Id_utilisateur");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Notes_Id_module",
-                table: "Notes",
+                name: "IX_Ressources_Id_alerte",
+                table: "Ressources",
+                column: "Id_alerte");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ressources_Id_classe",
+                table: "Ressources",
+                column: "Id_classe");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ressources_Id_module",
+                table: "Ressources",
                 column: "Id_module");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Notes_Id_utilisateur",
-                table: "Notes",
+                name: "IX_Ressources_Id_utilisateur",
+                table: "Ressources",
                 column: "Id_utilisateur");
 
             migrationBuilder.CreateIndex(
@@ -371,19 +343,16 @@ namespace Forum.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Alertes");
-
-            migrationBuilder.DropTable(
-                name: "Devoirs");
-
-            migrationBuilder.DropTable(
                 name: "Evaluations");
 
             migrationBuilder.DropTable(
                 name: "Messages");
 
             migrationBuilder.DropTable(
-                name: "Notes");
+                name: "Ressources");
+
+            migrationBuilder.DropTable(
+                name: "Alertes");
 
             migrationBuilder.DropTable(
                 name: "Modules");

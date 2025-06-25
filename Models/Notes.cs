@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Forum.Models
 {
-    public class Notes
+    public class Evaluations
     {
         [Key]
         public int Id_note { get; set; }
