@@ -75,14 +75,14 @@ namespace Forum.Controllers
 
 
             var alertes = _context.Alertes
-                .Include(a => a.Classes)  
-                .Include(a => a.Utilisateurs)     
-                .OrderByDescending(a => a.Id_alerte)
-                .Take(5) 
-                .ToList();
+        .Include(a => a.Classes)
+        .OrderByDescending(a => a.Id_alerte)
+        .Take(5)
+        .ToList();
 
             ViewBag.EffectifsParClasse = effectifs;
             ViewBag.Alertes = alertes;
+
 
             return View(classes);
         }
@@ -160,7 +160,7 @@ namespace Forum.Controllers
 
             var nouvelleAlerte = new Alertes
             {
-                Id_utilisateur = userId.Value,
+                //Id_utilisateur = userId.Value,
                 Message = message,
                 Titre = alertType,
                 Id_classe = Id_classe.Value
@@ -187,10 +187,10 @@ namespace Forum.Controllers
         public IActionResult VoirAlertes()
         {
             var alertes = _context.Alertes
-                .Include(a => a.Utilisateurs) 
-                .Include(a => a.Classes) 
-                .OrderByDescending(a => a.Id_alerte) 
-                .ToList();
+     .Include(a => a.Classes) 
+     .OrderByDescending(a => a.Id_alerte) 
+     .ToList(); 
+
 
             return View(alertes);
         }

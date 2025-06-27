@@ -26,22 +26,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label asp-for="Id_module" class="form-label">Module *</label>
-                        <select asp-for="Id_module" asp-items="ViewBag.Modules" class="form-select" required>
-                            <option value="">-- Sélectionnez un module --</option>
-                        </select>
-                        <span asp-validation-for="Id_module" class="text-danger"></span>
-                        <div class="invalid-feedback">
-                            Veuillez sélectionner un module.
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="fichier" class="form-label">Fichier joint (PDF, DOC, ZIP - max 5MB)</label>
-                        <input type="file" name="fichier" class="form-control" accept=".pdf,.doc,.docx,.zip" />
-                    </div>
-                </div>
+              
 
                 <div class="row mb-3">
                     <div class="col-12">

@@ -22,10 +22,6 @@ namespace Forum.Models
 
         public DateTime date_alerte { get; set; } = DateTime.Now;
 
-        [ForeignKey("Utilisateurs")]
-        public int Id_utilisateur { get; set; }
-        public virtual Utilisateurs Utilisateurs { get; set; }
-
         [ForeignKey("Classes")]
         public int Id_classe { get; set; }
         public virtual Classes Classes { get; set; }

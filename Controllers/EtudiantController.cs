@@ -115,11 +115,14 @@ namespace Forum.Controllers
                 return View(new List<Ressources>());
 
             var devoirs = await _context.Ressources
-                .Include(d => d.Modules)
-                .Where(d => d.Id_classe == utilisateur.Id_classe)
-                .OrderBy(d => d.Modules.Theme_module)
-                .ThenBy(d => d.Date_devoir)
+                .Include(r => r.Utilisateurs) 
+                .Where(r => r.Utilisateurs.Id_classe == utilisateur.Id_classe)
+                .OrderBy(r => r.Date_devoir)
                 .ToListAsync();
+
+
+
+
 
             return View(devoirs);
         }

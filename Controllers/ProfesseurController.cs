@@ -40,9 +40,16 @@ namespace Forum.Controllers
                 return RedirectToAction("Index", "Dashboard");
             }
 
+            var classeId = await _context.Utilisateurs
+                .Where(u => u.Id_utilisateur == userId)
+                .Select(u => u.Id_classe)
+                .FirstOrDefaultAsync();
+
+            
             var modules = await _context.Modules
-                .Where(m => m.Id_utilisateur == userId)
+                .Where(m => m.Id_classe == classeId)
                 .ToListAsync();
+
 
             ViewBag.Modules = new SelectList(modules, "Id_module", "Theme_module");
             return View();
@@ -74,7 +81,7 @@ namespace Forum.Controllers
 
                 devoir.Id_utilisateur = userId ?? 0;
                 devoir.Date_devoir = DateTime.Now;
-                devoir.Id_classe = professeur.Id_classe.Value;
+                //devoir.Id_classe = professeur.Id_classe.Value;
 
 
                 if (fichier != null && fichier.Length > 0)

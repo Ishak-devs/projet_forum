@@ -96,14 +96,16 @@ namespace Forum.Controllers
                 }
 
                 var admin = _context.Utilisateurs
-                    .Include(u => u.Etablissements)
-                    .FirstOrDefault(u => u.Id_utilisateur == userId);
+       .Include(u => u.Classes)
+           .ThenInclude(c => c.Etablissement)
+       .FirstOrDefault(u => u.Id_utilisateur == userId && u.Role == "Admin");
 
-                if (admin == null || admin.Id_etablissement == null)
+                if (admin == null || admin.Classes == null || admin.Classes.Etablissement == null)
                 {
-                    TempData["ErrorMessage"] = "Admin ou établissement non trouvé";
+                    TempData["ErrorMessage"] = "Admin, classe ou établissement non trouvé";
                     return RedirectToAction("Index", "Dashboard");
                 }
+
 
                 try
                 {

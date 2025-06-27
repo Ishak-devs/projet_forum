@@ -31,9 +31,9 @@ namespace Forum.Controllers
             try
             {
                 var modules = await _context.Modules
-                    .Include(m => m.Utilisateurs)
-                    .Where(m => m.Id_classe == id)
-                    .ToListAsync();
+    .Where(m => m.Id_classe == id)
+    .ToListAsync();
+
 
                 var emploiDuTemps = modules.Select(m =>
                 {
@@ -44,8 +44,8 @@ namespace Forum.Controllers
                         heureDebut = parts[1],
                         heureFin = parts[2],
                         theme = m.Theme_module,
-                        profId = m.Id_utilisateur,
-                        professeur = m.Utilisateurs.Prenom + " " + m.Utilisateurs.Nom
+                        //profId = m.Id_utilisateur,
+                        //professeur = m.Utilisateurs.Prenom + " " + m.Utilisateurs.Nom
                     };
                 }).ToList();
 
@@ -125,7 +125,7 @@ namespace Forum.Controllers
                     Id_classe = t.ClassId,
                     Theme_module = t.Course,
                     Horaire = $"{t.Day} {t.Hour} {t.HourEnd}",
-                    Id_utilisateur = t.ProfId
+                    //Id_utilisateur = t.ProfId
                 }).ToList();
 
                 await _context.Modules.AddRangeAsync(modules);
