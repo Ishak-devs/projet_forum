@@ -7,7 +7,7 @@ namespace Forum.Models
     public class Evaluations
     {
         [Key]
-        public int Id_note { get; set; }
+        public int Id_evaluation { get; set; }
 
         public double Note { get; set; }
 
