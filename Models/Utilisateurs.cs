@@ -10,9 +10,9 @@ namespace Forum.Models
 
 
 
-        [ForeignKey("Classes")]
+        [ForeignKey("Promos")]
         public int? Id_classe { get; set; }
-        public virtual Classes? Classes { get; set; }
+        public virtual Promos? Classes { get; set; }
 
         [Required(ErrorMessage = "Le nom est obligatoire")]
         [MinLength(2, ErrorMessage = "Le nom doit contenir au moins 2 caractères.")]

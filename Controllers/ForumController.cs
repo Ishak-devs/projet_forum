@@ -32,7 +32,7 @@ namespace Forum.Controllers
 
             }
 
-            var classes = await contextget.Classes.ToListAsync();
+            var classes = await contextget.Promos.ToListAsync();
             var utilisateurs = await contextget.Utilisateurs.ToListAsync();
 
             var utilisateur = utilisateurs.FirstOrDefault(u => u.Id_utilisateur == userId);

@@ -1,4 +1,4 @@
-﻿@model Forum.Models.Classes
+﻿@model Forum.Models.Promos
 
 @{
     ViewData["Title"] = "Créer une nouvelle classe - Administration";
@@ -64,9 +64,9 @@
                         <form asp-action="Ajouterclasse" method="post">
                             <!-- Nom de la promotion -->
                             <div class="mb-4">
-                                <label asp-for="Nom_classe" class="form-label fw-bold">Nom de la classe</label>
-                                <input asp-for="Nom_classe" class="form-control form-control-lg" required />
-                                <span asp-validation-for="Nom_classe" class="text-danger small"></span>
+                                <label asp-for="Nom_promos" class="form-label fw-bold">Nom de la classe</label>
+                                <input asp-for="Nom_promos" class="form-control form-control-lg" required />
+                                <span asp-validation-for="Nom_promos" class="text-danger small"></span>
                             </div>
 
                             <!-- Section Élèves -->

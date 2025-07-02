@@ -6,7 +6,7 @@ public class ApplicationDbContext : DbContext
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
     public DbSet<Utilisateurs> Utilisateurs { get; set; }
-    public DbSet<Classes> Classes { get; set; }
+    public DbSet<Promos> Promos { get; set; }
     public DbSet<Etablissements> Etablissements { get; set; }
     public DbSet<Modules> Modules { get; set; }
     

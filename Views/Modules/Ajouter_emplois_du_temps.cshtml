@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Gestion des emplois du temps";
-    var classes = ViewBag.Classes as List<Classes> ?? new List<Classes>();
+    var classes = ViewBag.Classes as List<Promos> ?? new List<Promos>();
     var utilisateurs = ViewBag.Utilisateurs as List<Utilisateurs> ?? new List<Utilisateurs>();
 }
 
@@ -26,7 +26,7 @@
                             <option value="">-- Sélectionnez --</option>
                             @foreach (var classe in classes)
                             {
-                            <option value="@classe.Id_classe">@classe.Nom_classe</option>
+                            <option value="@classe.Id_promos">@classe.Nom_promos</option>
                             }
                         </select>
                     </div>

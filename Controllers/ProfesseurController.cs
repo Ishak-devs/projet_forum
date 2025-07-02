@@ -129,10 +129,10 @@ namespace Forum.Controllers
             var professeur = _context.Utilisateurs.FirstOrDefault(u => u.Id_utilisateur == profId.Value);
 
             if (professeur == null || !professeur.Id_classe.HasValue)
-                return View(new List<Classes>());
+                return View(new List<Promos>());
 
-            var classe = _context.Classes
-                .Where(c => c.Id_classe == professeur.Id_classe.Value)
+            var classe = _context.Promos
+                .Where(c => c.Id_promos == professeur.Id_classe.Value)
                 .ToList();
 
             return View(classe);
@@ -192,7 +192,7 @@ namespace Forum.Controllers
 
             var edt = _context.Modules
                 .Where(m => m.Id_classe == professeur.Id_classe)
-                .Include(m => m.Classes)
+                .Include(m => m.Promos)
                 .ToList();
 
             return View(edt);

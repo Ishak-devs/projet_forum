@@ -19,7 +19,7 @@ namespace Forum.Controllers
         public IActionResult Index()
         {
 
-            var classes = _context.Classes.ToList();
+            var classes = _context.Promos.ToList();
             string? Role = HttpContext.Session.GetString("UserRole").ToString();
             if (Role == "Admin")
                 return View("Admin", classes);
@@ -52,7 +52,7 @@ namespace Forum.Controllers
             float moyenne = (float)(notes.Any() ? notes.Average(n => n.Note) : 0);
 
             ViewBag.Moyenne = moyenne;
-            ViewBag.Classe = etudiant?.Classes?.Nom_classe ?? "Classe inconnue";
+            ViewBag.Classe = etudiant?.Classes?.Nom_promos ?? "Classe inconnue";
             ViewBag.Notes = notes;
             ViewBag.EleveNom = etudiant?.Nom;
             ViewBag.ElevePrenom = etudiant?.Prenom;
@@ -64,7 +64,7 @@ namespace Forum.Controllers
         public async Task<IActionResult> AdminAsync()
         {
 
-            var classes = _context.Classes.ToList();
+            var classes = _context.Promos.ToList();
 
           
 
@@ -75,7 +75,7 @@ namespace Forum.Controllers
 
 
             var alertes = _context.Alertes
-        .Include(a => a.Classes)
+        .Include(a => a.Promos)
         .OrderByDescending(a => a.Id_alerte)
         .Take(5)
         .ToList();
@@ -117,7 +117,7 @@ namespace Forum.Controllers
                         .ToList();
 
                     var alertes = _context.Alertes
-                        .Where(a => a.Id_classe == classe.Id_classe)
+                        .Where(a => a.Id_classe == classe.Id_promos)
                         .OrderByDescending(a => a.date_alerte)
                         .ToList();
 
@@ -140,7 +140,7 @@ namespace Forum.Controllers
 
         public IActionResult AjouterAlerte()
         {
-            var classes = _context.Classes.ToList();
+            var classes = _context.Promos.ToList();
             return View(classes);
         }
 
@@ -187,7 +187,7 @@ namespace Forum.Controllers
         public IActionResult VoirAlertes()
         {
             var alertes = _context.Alertes
-     .Include(a => a.Classes) 
+     .Include(a => a.Promos) 
      .OrderByDescending(a => a.Id_alerte) 
      .ToList(); 
 

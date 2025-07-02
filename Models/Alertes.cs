@@ -22,9 +22,9 @@ namespace Forum.Models
 
         public DateTime date_alerte { get; set; } = DateTime.Now;
 
-        [ForeignKey("Classes")]
+        [ForeignKey("Promos")]
         public int Id_classe { get; set; }
-        public virtual Classes Classes { get; set; }
+        public virtual Promos Promos { get; set; }
     }
 
 

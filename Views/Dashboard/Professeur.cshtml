@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Espace Professeur";
     var profNomComplet = $"{ViewBag.ProfPrenom} {ViewBag.ProfNom}";
-    var classes = ViewBag.Classes as List<Classes>;
+    var classes = ViewBag.Classes as List<Promos>;
     var alertes = ViewBag.Alertes as List<Alertes>;
 }
 
@@ -257,9 +257,7 @@
             </div>
 
             <!-- Alertes Section -->
-            @{
-    var alertes = ViewBag.Alertes as List<Forum.Models.Alertes>;
-            }
+
 
             <h2>Alertes récentes</h2>
 

@@ -17,7 +17,7 @@ namespace Forum.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var classes = await _context.Classes.ToListAsync();
+            var classes = await _context.Promos.ToListAsync();
             ViewBag.Classes = classes;
             return new EmptyResult();
         }
@@ -51,7 +51,7 @@ namespace Forum.Controllers
             ViewBag.Roles = new SelectList(new List<string> { "Etudiant", "Professeur" });
 
 
-            var classes = await _context.Classes
+            var classes = await _context.Promos
                 .Where(c => c.Id_etablissement == admin.Id_etablissement)
                 .ToListAsync();
 
@@ -63,7 +63,7 @@ namespace Forum.Controllers
         [HttpPost]
         public async Task<IActionResult> SupprimerClasse(int id)
         {
-            var classe = await _context.Classes.FindAsync(id);
+            var classe = await _context.Promos.FindAsync(id);
             if (classe == null)
             {
                 TempData["ErrorMessage"] = "Classe non trouvée.";
@@ -77,7 +77,7 @@ namespace Forum.Controllers
                 user.Id_classe = null;
             }
 
-            _context.Classes.Remove(classe);
+            _context.Promos.Remove(classe);
             await _context.SaveChangesAsync();
 
             TempData["SuccessMessage"] = "Classe supprimée avec succès.";
@@ -109,13 +109,13 @@ namespace Forum.Controllers
 
                 try
                 {
-                    var Nouvelle_Classe = new Classes
+                    var Nouvelle_Classe = new Promos
                     {
-                        Nom_classe = Nom_classe,
+                        Nom_promos = Nom_classe,
                         Id_etablissement = admin.Id_etablissement
                     };
 
-                    _context.Classes.Add(Nouvelle_Classe);
+                    _context.Promos.Add(Nouvelle_Classe);
                     _context.SaveChanges();
 
                     if (selectedEleves != null && selectedEleves.Any())
@@ -126,7 +126,7 @@ namespace Forum.Controllers
 
                             if (eleve != null)
                             {
-                                eleve.Id_classe = Nouvelle_Classe.Id_classe;
+                                eleve.Id_classe = Nouvelle_Classe.Id_promos;
                             }
                         }
                     }
@@ -139,7 +139,7 @@ namespace Forum.Controllers
                             
                             if (prof != null)
                             {
-                                prof.Id_classe = Nouvelle_Classe.Id_classe;
+                                prof.Id_classe = Nouvelle_Classe.Id_promos;
 
                             }
                         }

@@ -18,7 +18,7 @@ namespace Forum.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var classes = await _context.Classes.ToListAsync();
+            var classes = await _context.Promos.ToListAsync();
             ViewBag.Classes = classes;
             var utilisateurs = await _context.Utilisateurs.ToListAsync();
             ViewBag.Utilisateurs = utilisateurs;
@@ -78,7 +78,7 @@ namespace Forum.Controllers
                 return RedirectToAction("Index", "Authentification");
             }
 
-            var classes = await _context.Classes.ToListAsync();
+            var classes = await _context.Promos.ToListAsync();
             var utilisateurs = await _context.Utilisateurs
                 .Where(u => u.Role == "Professeur")
                 .ToListAsync();

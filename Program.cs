@@ -19,7 +19,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddSignalR();
 builder.Services.AddSingleton<PasswordHasher<Utilisateurs>>();
-builder.Services.AddSingleton<PasswordHasher<Classes>>();
+builder.Services.AddSingleton<PasswordHasher<Promos>>();
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

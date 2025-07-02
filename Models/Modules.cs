@@ -13,8 +13,8 @@ namespace Forum.Models
 
         public string Horaire { get; set; }
 
-        [ForeignKey("Classes")]
+        [ForeignKey("Promos")]
         public int Id_classe { get; set; }
-        public virtual Classes Classes { get; set; }
+        public virtual Promos Promos { get; set; }
     }
 }
