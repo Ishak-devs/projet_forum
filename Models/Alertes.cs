@@ -1,9 +1,6 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using Forum.Models;
 
 
@@ -20,16 +17,11 @@ namespace Forum.Models
             [StringLength(100)]
             public string Message { get; set; }
 
-            [ForeignKey("User")]
-            public int Id_utilisateur { get; set; }
-
-            [ForeignKey("Classe")]
-            public int? Id_classe { get; set; }
-
-            public virtual Utilisateurs User { get; set; }
-            public virtual Classes? Classe { get; set; }
-
         public DateTime date_alerte { get; set; } = DateTime.Now;
+
+        [ForeignKey("Promos")]
+        public int Id_classe { get; set; }
+        public virtual Promos Promos { get; set; }
     }
 
 

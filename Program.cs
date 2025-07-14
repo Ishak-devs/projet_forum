@@ -19,7 +19,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddSignalR();
 builder.Services.AddSingleton<PasswordHasher<Utilisateurs>>();
-builder.Services.AddSingleton<PasswordHasher<Classes>>();
+builder.Services.AddSingleton<PasswordHasher<Promos>>();
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -69,6 +69,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-//app.Run();
+app.Run();
 
-app.Run("http://0.0.0.0:5000");
+//app.Run("http://0.0.0.0:5000");

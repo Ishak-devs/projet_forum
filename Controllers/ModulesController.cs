@@ -3,7 +3,6 @@ using Forum.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace Forum.Controllers
 {
     public class ModulesController : Controller
@@ -16,13 +15,14 @@ namespace Forum.Controllers
             _context = context;
             _logger = logger;
         }
+
         public async Task<IActionResult> Index()
         {
-            var classes = await _context.Classes.ToListAsync();
+            var classes = await _context.Promos.ToListAsync();
             ViewBag.Classes = classes;
             var utilisateurs = await _context.Utilisateurs.ToListAsync();
             ViewBag.Utilisateurs = utilisateurs;
-            return new EmptyResult();
+            return View();
         }
 
         [HttpGet]
@@ -31,9 +31,9 @@ namespace Forum.Controllers
             try
             {
                 var modules = await _context.Modules
-                    .Include(m => m.Utilisateurs)
-                    .Where(m => m.Id_classe == id)
-                    .ToListAsync();
+    .Where(m => m.Id_promos == id)
+    .ToListAsync();
+
 
                 var emploiDuTemps = modules.Select(m =>
                 {
@@ -44,8 +44,8 @@ namespace Forum.Controllers
                         heureDebut = parts[1],
                         heureFin = parts[2],
                         theme = m.Theme_module,
-                        profId = m.Id_utilisateur,
-                        professeur = m.Utilisateurs.Prenom + " " + m.Utilisateurs.Nom
+                        //profId = m.Id_utilisateur,
+                        //professeur = m.Utilisateurs.Prenom + " " + m.Utilisateurs.Nom
                     };
                 }).ToList();
 
@@ -58,7 +58,6 @@ namespace Forum.Controllers
             }
         }
 
-
         [HttpGet]
         public async Task<IActionResult> GetProfByClasse(int id)
         {
@@ -69,6 +68,7 @@ namespace Forum.Controllers
 
             return Json(modules);
         }
+
         [HttpGet]
         public async Task<IActionResult> Ajouter_emplois_du_temps()
         {
@@ -78,7 +78,7 @@ namespace Forum.Controllers
                 return RedirectToAction("Index", "Authentification");
             }
 
-            var classes = await _context.Classes.ToListAsync();
+            var classes = await _context.Promos.ToListAsync();
             var utilisateurs = await _context.Utilisateurs
                 .Where(u => u.Role == "Professeur")
                 .ToListAsync();
@@ -92,6 +92,8 @@ namespace Forum.Controllers
         [HttpPost]
         public async Task<IActionResult> Ajouter_emplois_du_temps([FromBody] List<EmploiDuTempsData> timetableData)
         {
+            _logger.LogInformation("POST Ajouter_emplois_du_temps reçu");
+
             try
             {
                 var userId = HttpContext.Session.GetInt32("UserId");
@@ -104,15 +106,26 @@ namespace Forum.Controllers
                 {
                     return Json(new { success = false, message = "Aucune donnée reçue" });
                 }
-                //
 
+                // Supprimer les anciens modules pour cette classe
+                var classId = timetableData.First().ClassId;
+                var existingModules = await _context.Modules
+                    .Where(m => m.Id_promos == classId)
+                    .ToListAsync();
+
+                if (existingModules.Any())
+                {
+                    _context.Modules.RemoveRange(existingModules);
+                    await _context.SaveChangesAsync();
+                }
+
+                // Ajouter les nouveaux modules
                 var modules = timetableData.Select(t => new Modules
                 {
-                    Id_classe = t.ClassId,
-                    Theme_module = $"{t.Course}",
+                    Id_promos = t.ClassId,
+                    Theme_module = t.Course,
                     Horaire = $"{t.Day} {t.Hour} {t.HourEnd}",
-                    Id_utilisateur = t.ProfId,
-
+                    //Id_utilisateur = t.ProfId
                 }).ToList();
 
                 await _context.Modules.AddRangeAsync(modules);
@@ -127,5 +140,15 @@ namespace Forum.Controllers
                 return Json(new { success = false, message = $"Erreur: {ex.Message}" });
             }
         }
+    }
+
+    public class EmploiDuTempsData
+    {
+        public int ClassId { get; set; }
+        public string Day { get; set; }
+        public string Hour { get; set; }
+        public string HourEnd { get; set; }
+        public string Course { get; set; }
+        public int ProfId { get; set; }
     }
 }

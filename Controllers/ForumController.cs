@@ -32,13 +32,13 @@ namespace Forum.Controllers
 
             }
 
-            var classes = await contextget.Classes.ToListAsync();
+            var classes = await contextget.Promos.ToListAsync();
             var utilisateurs = await contextget.Utilisateurs.ToListAsync();
 
             var utilisateur = utilisateurs.FirstOrDefault(u => u.Id_utilisateur == userId);
-            if (utilisateur != null && utilisateur.Id_classe != null)
+            if (utilisateur != null && utilisateur.Id_promos != null)
             {
-                HttpContext.Session.SetInt32("ClassId", (int)utilisateur.Id_classe);
+                HttpContext.Session.SetInt32("ClassId", (int)utilisateur.Id_promos);
             }
             else
             {

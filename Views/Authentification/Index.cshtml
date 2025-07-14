@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Connexion";
     Layout = "_Layout";
+  bool isDisabled =  TempData["erreurnbr"] != null;
 }
 
 <!DOCTYPE html>
@@ -64,39 +65,40 @@
 <body class="bg-light">
     <div class="container py-5">
         <!-- Messages d'alerte -->
+       
         @if (ViewBag.Messagesuccess != null)
         {
-            <div class="alert alert-success alert-dismissible fade show">
-                <i class="fas fa-check-circle me-2"></i> @ViewBag.Messagesuccess
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+        <div class="alert alert-success alert-dismissible fade show">
+            <i class="fas fa-check-circle me-2"></i> @ViewBag.Messagesuccess
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         }
 
         @if (TempData["Prof_not_connect"] != null)
         {
-            <div class="alert alert-warning alert-dismissible fade show">
-                <i class="fas fa-exclamation-triangle me-2"></i> @TempData["Prof_not_connect"]
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+        <div class="alert alert-warning alert-dismissible fade show">
+            <i class="fas fa-exclamation-triangle me-2"></i> @TempData["Prof_not_connect"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         }
 
         @if (ViewBag.MessageError != null)
         {
-            <div class="alert alert-danger alert-dismissible fade show">
-                <i class="fas fa-times-circle me-2"></i> @ViewBag.MessageError
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+        <div class="alert alert-danger alert-dismissible fade show">
+            <i class="fas fa-times-circle me-2"></i> @ViewBag.MessageError
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         }
 
         @if (ViewBag.Message_error_email != null)
         {
-            <div class="alert alert-danger alert-dismissible fade show">
-                <i class="fas fa-envelope me-2"></i> @ViewBag.Message_error_email
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+        <div class="alert alert-danger alert-dismissible fade show">
+            <i class="fas fa-envelope me-2"></i> @ViewBag.Message_error_email
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         }
 
-        <!-- Formulaire de connexion -->
+ <!-- Formulaire de connexion -->
         <div class="auth-container">
             <div class="auth-card card p-4">
                 <!-- Header -->
@@ -110,7 +112,7 @@
                         <label class="form-label fw-medium" asp-for="Email">
                             <i class="fas fa-envelope me-1 text-muted"></i>Email
                         </label>
-                        <input class="form-control" type="email" asp-for="Email" placeholder="votre@email.com" />
+                        <input class="form-control" type="text" asp-for="Email" placeholder="votre@email.com"  disabled="@isDisabled" />
                         <span class="text-danger small">@Html.ValidationMessageFor(e => e.Email)</span>
                     </div>
 
@@ -118,21 +120,16 @@
                         <label class="form-label fw-medium" asp-for="Password">
                             <i class="fas fa-lock me-1 text-muted"></i>Mot de passe
                         </label>
-                        <input class="form-control" type="password" asp-for="Password" placeholder="Votre mot de passe" />
+                        <input class="form-control" type="password" asp-for="Password" placeholder="Votre mot de passe" 
+                        disabled="@isDisabled" />
                         <span class="text-danger small">@Html.ValidationMessageFor(e => e.Password)</span>
                     </div>
 
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="rememberMe">
-                            <label class="form-check-label small text-muted" for="rememberMe">
-                                Se souvenir de moi
-                            </label>
-                        </div>
-                        <a href="#" class="small text-primary">Mot de passe oublié ?</a>
-                    </div>
 
-                    <button class="btn btn-primary w-100 py-2 fw-medium" type="submit">
+
+
+
+                    <button class="btn btn-primary w-100 py-2 fw-medium" type="submit"  disabled="@isDisabled">
                         <i class="fas fa-sign-in-alt me-1"></i> Se connecter
                     </button>
                 </form>
@@ -140,14 +137,12 @@
                 <div class="text-center mt-4 pt-3 border-top">
                     <p class="small text-muted mb-0">
                         Vous n'avez pas de compte ?
-                        <a href="@Url.Action("Register", "Authentification")" class="text-primary fw-medium">S'inscrire</a>
+                        <a href="@Url.Action("Index", "Signup")" class="text-primary fw-medium">S'inscrire</a>
                     </p>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+            <!-- Bootstrap JS -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

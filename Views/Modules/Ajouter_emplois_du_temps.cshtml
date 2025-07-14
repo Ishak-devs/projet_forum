@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Gestion des emplois du temps";
-    var classes = ViewBag.Classes as List<Classes> ?? new List<Classes>();
+    var classes = ViewBag.Classes as List<Promos> ?? new List<Promos>();
     var utilisateurs = ViewBag.Utilisateurs as List<Utilisateurs> ?? new List<Utilisateurs>();
 }
 
@@ -26,7 +26,7 @@
                             <option value="">-- Sélectionnez --</option>
                             @foreach (var classe in classes)
                             {
-                            <option value="@classe.Id_classe">@classe.Nom_classe</option>
+                            <option value="@classe.Id_promos">@classe.Nom_promos</option>
                             }
                         </select>
                     </div>
@@ -47,11 +47,10 @@
                         <button id="addCourseBtn" class="btn btn-outline-primary" onclick="prepareCourse()">
                             <i class="bi bi-plus-circle"></i> Créer un cours
                         </button>
-
                     </div>
 
-                    <p id="message_confirm" class="text-success"></p>
-                    <p id="message_erreur" class="text-danger"></p>
+                    <p id="message_confirm" class="text-success mt-2"></p>
+                    <p id="message_erreur" class="text-danger mt-2"></p>
 
                     <!-- Zone de dépôt temporaire -->
                     <div id="tempDropZone" class="mt-3 p-2 border rounded"
@@ -175,50 +174,39 @@
                 border-color: #ff6b6b;
             }
 
-        /* Styles pour les créneaux sélectionnables */
         .selectable-slot {
             background-color: #e8f5e9 !important;
             cursor: pointer;
             transition: all 0.3s;
         }
 
-        .selectable-slot:hover {
-            background-color: #c8e6c9 !important;
-            box-shadow: 0 0 0 2px #4caf50;
-        }
-
-        .flash-animation {
-            animation: flash 1s;
-        }
-
-        @*@keyframes flash {
-            0% { background-color: #e8f5e9; }
-            50% { background-color: #4caf50; }
-            100% { background-color: #e8f5e9; }
-        }*@
+            .selectable-slot:hover {
+                background-color: #c8e6c9 !important;
+                box-shadow: 0 0 0 2px #4caf50;
+            }
     </style>
 }
 
 @section Scripts {
     <script>
-        // Variable pour stocker les infos du cours à placer
         let pendingCourse = null;
+        let timetableData = [];
 
-                function loadModules() {
+        function loadModules() {
             var classId = document.getElementById("classSelect").value;
             if (!classId) {
                 clearTimetable();
                 return;
             }
 
-            // Charger les professeurs (votre code existant)
+            // Charger les professeurs
             fetch('/Modules/GetProfByClasse?id=' + classId)
                 .then(res => res.json())
                 .then(data => {
                     var select = document.getElementById("profselect");
                     select.innerHTML = '<option value="">-- Sélectionnez --</option>';
                     data.forEach(m => {
-                        select.innerHTML += `<option value="${m.id_utilisateur}">${m.nom} ${m.prenom} (${m.matiere})</option>`;
+                        select.innerHTML += `<option value="${m.id_utilisateur}">${m.prenom} ${m.nom} (${m.matiere})</option>`;
                     });
                 });
 
@@ -226,9 +214,8 @@
             fetch('/Modules/GetEmploiDuTempsParClasse?id=' + classId)
                 .then(res => res.json())
                 .then(data => {
-                    clearTimetable(); // Efface le tableau actuel
+                    clearTimetable();
 
-                    // Remplir le tableau avec les cours existants
                     data.forEach(course => {
                         const slot = document.querySelector(`.timetable-slot[data-day="${course.jour}"][data-hour="${course.heureDebut}"]`);
                         if (slot) {
@@ -238,10 +225,10 @@
                             courseElement.ondragstart = drag;
 
                             courseElement.innerHTML = `
-                                <strong>${course.theme}</strong>
-                                <div>${course.profId}</div>
-                                <small>${course.professeur}</small>
-                            `;
+                                    <strong>${course.theme}</strong>
+                                    <div class="prof-id" style="display:none">${course.profId}</div>
+                                    <small>${course.professeur}</small>
+                                `;
 
                             slot.appendChild(courseElement);
                         }
@@ -259,26 +246,29 @@
             var courseInput = document.getElementById("courseInput");
             var profSelect = document.getElementById("profselect");
 
-        console.log("Classe:", classSelect.value);
-        console.log("Cours:", courseInput.value);
-        console.log("Professeur:", profselect.value);
-
-
-            if (!classSelect.value || !courseInput.value || !profselect.value) {
-                document.getElementById("message_erreur").textContent = "Veuillez sélectionner une classe, un cours et un professeur";
-
+            if (!classSelect.value) {
+                document.getElementById("message_erreur").textContent = "Veuillez sélectionner une classe";
+                return;
+            }
+            if (!courseInput.value) {
+                document.getElementById("message_erreur").textContent = "Veuillez saisir un cours";
+                return;
+            }
+            if (!profSelect.value) {
+                document.getElementById("message_erreur").textContent = "Veuillez sélectionner un professeur";
                 return;
             }
 
+            document.getElementById("message_erreur").textContent = "";
+            document.getElementById("message_confirm").textContent = "Choisissez maintenant le créneau horaire";
+
             pendingCourse = {
                 theme: courseInput.value,
-                themeValue: courseInput.value,
-                Profid: profselect.value
+                Profid: profSelect.value,
+                ProfName: profSelect.options[profSelect.selectedIndex].text
             };
 
-            document.getElementById("message_confirm").textContent = "Choisissez maintenant le creneaux";
-
-            // Ajouter un style aux créneaux pour indiquer qu'ils sont sélectionnables
+            // Activer les créneaux
             const slots = document.querySelectorAll('.timetable-slot');
             slots.forEach(slot => {
                 slot.classList.add('selectable-slot');
@@ -292,36 +282,30 @@
 
         function placeCourse(slot) {
             if (!pendingCourse) return;
-        console.log("Cours:", pendingCourse.theme);
-        console.log("Professeur:", pendingCourse.Profid);
-
 
             // Vérifier si le créneau est déjà occupé
             if (slot.querySelector('.course-item')) {
                 if (!confirm("Ce créneau est déjà occupé. Remplacer le cours existant ?")) {
                     return;
                 }
-                slot.innerHTML = ''; // Vider le créneau
+                slot.innerHTML = '';
             }
 
             // Créer l'élément du cours
-            const courseId = 'course-' + Date.now();
             const courseElement = document.createElement("div");
-            courseElement.id = courseId;
             courseElement.className = "course-item";
             courseElement.draggable = true;
             courseElement.ondragstart = drag;
 
             courseElement.innerHTML = `
                     <strong>${pendingCourse.theme}</strong>
-                    <div>${pendingCourse.Profid}</div>
-                    
+                    <div class="prof-id" style="display:none">${pendingCourse.Profid}</div>
+                    <small>${pendingCourse.ProfName.split('(')[0].trim()}</small>
                 `;
 
             slot.appendChild(courseElement);
-
-            // Réinitialiser le mode sélection
             resetSelectionMode();
+            document.getElementById("message_confirm").textContent = "";
         }
 
         function resetSelectionMode() {
@@ -380,80 +364,67 @@
                 return;
             }
         }
-        
-        document.getElementById('saveTimetableBtn').addEventListener('click', function () {
-            var timetableData = [];
-            var slots = document.querySelectorAll('.timetable-slot');
 
-            slots.forEach(slot => {
-                var courses = slot.querySelectorAll('.course-item');
-                if (courses.length > 0) {
-                    var day = slot.dataset.day;
-                    var hour = slot.dataset.hour;
-                    var hourEnd = getNextHour(hour);
-                    var classId = document.getElementById("classSelect").value;
-
-                    courses.forEach(course => {
-                        var courseName = course.querySelector('strong').textContent;
-                        var Profid = course.querySelector('div').textContent;
-
-
-                        timetableData.push({
-                            classId: classId,
-                            day: day,
-                            hour: hour,
-                            hourEnd: hourEnd,
-                            course: courseName,
-                            Profid: Profid
-                        });
-                    });
-                }
-            });
-
-                    function getNextHour(hourStr) {
+        function getNextHour(hourStr) {
             var parts = hourStr.split(':');
             var h = parseInt(parts[0]) + 1;
             return (h < 10 ? '0' + h : h) + ':00';
         }
 
-
-            if (timetableData.length === 0) {
-                document.getElementById("message_erreur").textContent = "Aucun cours à enregistrer";
+        document.getElementById('saveTimetableBtn').addEventListener('click', function () {
+            var classId = document.getElementById("classSelect").value;
+            if (!classId) {
+                alert("Veuillez sélectionner une classe");
                 return;
             }
 
-            var modal = new bootstrap.Modal(document.getElementById('confirmModal'));
-            modal.show();
+            timetableData = [];
+            var slots = document.querySelectorAll('.timetable-slot');
 
-            document.getElementById('confirmSaveBtn').onclick = function () {
-                fetch('/Modules/Ajouter_emplois_du_temps', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(timetableData)
-                })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
+            slots.forEach(slot => {
+                var course = slot.querySelector('.course-item');
+                if (course) {
+                    var day = slot.dataset.day;
+                    var hour = slot.dataset.hour;
+                    var hourEnd = getNextHour(hour);
 
-                        if (data.success) {
-                            window.location.reload();
-                        } else {
-                            alert("Erreur lors de l'enregistrement: " + (data.message || ''));
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert("Une erreur est survenue lors de l'enregistrement");
+                    timetableData.push({
+                        ClassId: parseInt(classId),
+                        Day: day,
+                        Hour: hour,
+                        HourEnd: hourEnd,
+                        Course: course.querySelector('strong').textContent,
+                        ProfId: parseInt(course.querySelector('.prof-id').textContent)
                     });
+                }
+            });
 
-                modal.hide();
-            };
+            if (timetableData.length === 0) {
+                alert("Aucun cours à enregistrer");
+                return;
+            }
+
+            // Envoyer les données
+            fetch('/Modules/Ajouter_emplois_du_temps', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(timetableData)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Emploi du temps enregistré avec succès");
+                        loadModules(); // Recharger l'emploi du temps
+                    } else {
+                        alert("Erreur: " + (data.message || 'Erreur inconnue'));
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("Erreur lors de l'enregistrement");
+                });
         });
     </script>
 }

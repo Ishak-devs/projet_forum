@@ -3,13 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Forum.Models
 {
-    public class Classes
+    public class Promos
     {
         [Key]
-        public int Id_classe { get; set; }
+        public int Id_promos { get; set; }
 
         [StringLength(100)]
-        public string Nom_classe { get; set; }
+        public string Nom_promos { get; set; }
 
         public virtual ICollection<Utilisateurs> Utilisateurs { get; set; }
 

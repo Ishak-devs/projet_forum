@@ -28,8 +28,11 @@ namespace Forum.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+
             return View();
+
         }
+      
 
         [HttpPost]
         public async Task<IActionResult> Index(LoginViewModel modele)
@@ -47,6 +50,8 @@ namespace Forum.Controllers
                         utilisateur.Motdepasse,
                         modele.Password);
 
+                   
+
                     if (result == PasswordVerificationResult.Success)
                     {
                         HttpContext.Session.SetString("UserRole", utilisateur.Role);
@@ -54,10 +59,11 @@ namespace Forum.Controllers
                         HttpContext.Session.SetString("Username", utilisateur.Prenom);
 
                         // Vérifie s'il a une classe
-                        bool hasForumAccess = utilisateur.Role == "Admin" || utilisateur.Id_classe != null;
+                        bool hasForumAccess = utilisateur.Role == "Admin" || utilisateur.Id_promos != null;
                         HttpContext.Session.SetString("UserHasForumAccess", hasForumAccess ? "true" : "false");
 
                         ModelState.Clear();
+                        HttpContext.Session.Remove("erreur_saisie");
 
                         // Vérifier si c'est un admin sans établissement
                         if (utilisateur.Role == "Admin" && utilisateur.Etablissements == null)
@@ -79,10 +85,19 @@ namespace Forum.Controllers
                     }
 
                     ViewBag.MessageError = "Email ou mot de passe incorrect.";
-                }
+                    int erreur_saisie = HttpContext.Session.GetInt32("erreur_saisie") ?? 0;
+                    erreur_saisie++;
+                    HttpContext.Session.SetInt32("erreur_saisie", erreur_saisie);
 
-                // Si l'utilisateur n'existe pas ou mot de passe incorrect
-                return View(modele);
+                    if (erreur_saisie > 4)
+                    {
+                        TempData["erreurnbr"] = erreur_saisie;
+                        return view();                              
+                    }
+
+
+                    // Si l'utilisateur n'existe pas ou mot de passe incorrect
+                    return View(modele);
             }
 
             // Si ModelState invalide

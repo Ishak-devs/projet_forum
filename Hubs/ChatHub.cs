@@ -73,9 +73,9 @@ namespace Forum.Hubs
             if (userId.HasValue)
             {
                 var user = await _context.Utilisateurs.FindAsync(userId.Value);
-                if (user?.Id_classe != null)
+                if (user?.Id_promos != null)
                 {
-                    await Groups.AddToGroupAsync(Context.ConnectionId, user.Id_classe.Value.ToString());
+                    await Groups.AddToGroupAsync(Context.ConnectionId, user.Id_promos.Value.ToString());
                 }
             }
             await base.OnConnectedAsync();

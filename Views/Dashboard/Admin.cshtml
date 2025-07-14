@@ -1,4 +1,4 @@
-﻿@model List<Forum.Models.Classes>
+﻿@model List<Forum.Models.Promos>
 @{
     ViewData["Title"] = "Administration - Gestion Établissement Scolaire";
 }
@@ -131,7 +131,7 @@
                                     <option value="" selected disabled>Choisir une promotion...</option>
                                     @foreach (var classe in Model)
                                     {
-                                        <option value="@classe.Id_classe">@classe.Nom_classe</option>
+                                        <option value="@classe.Id_promos">@classe.Nom_promos</option>
                                     }
                                 </select>
                             </div>
@@ -172,7 +172,6 @@
                     submitBtn.disabled = true;
                     submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Envoi...';
 
-                    // Vous pouvez ajouter ici la logique AJAX si nécessaire
                 });
             }
 

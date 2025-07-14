@@ -17,7 +17,7 @@ namespace Forum.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var classes = await _context.Classes.ToListAsync();
+            var classes = await _context.Promos.ToListAsync();
             ViewBag.Classes = classes;
             return new EmptyResult();
         }
@@ -51,7 +51,7 @@ namespace Forum.Controllers
             ViewBag.Roles = new SelectList(new List<string> { "Etudiant", "Professeur" });
 
 
-            var classes = await _context.Classes
+            var classes = await _context.Promos
                 .Where(c => c.Id_etablissement == admin.Id_etablissement)
                 .ToListAsync();
 
@@ -63,7 +63,7 @@ namespace Forum.Controllers
         [HttpPost]
         public async Task<IActionResult> SupprimerClasse(int id)
         {
-            var classe = await _context.Classes.FindAsync(id);
+            var classe = await _context.Promos.FindAsync(id);
             if (classe == null)
             {
                 TempData["ErrorMessage"] = "Classe non trouvée.";
@@ -71,13 +71,13 @@ namespace Forum.Controllers
             }
 
             // On enlève les liens avec les utilisateurs
-            var utilisateurs = _context.Utilisateurs.Where(u => u.Id_classe == id);
+            var utilisateurs = _context.Utilisateurs.Where(u => u.Id_promos == id);
             foreach (var user in utilisateurs)
             {
-                user.Id_classe = null;
+                user.Id_promos = null;
             }
 
-            _context.Classes.Remove(classe);
+            _context.Promos.Remove(classe);
             await _context.SaveChangesAsync();
 
             TempData["SuccessMessage"] = "Classe supprimée avec succès.";
@@ -86,7 +86,7 @@ namespace Forum.Controllers
 
 
         [HttpPost]
-        public IActionResult Ajouterclasse(string Nom_classe, List<int> selectedEleves, List<int> selectedProfs, int? ProfesseurPrincipalId)
+        public IActionResult Ajouterclasse(string Nom_promos, List<int> selectedEleves, List<int> selectedProfs, int? ProfesseurPrincipalId)
         {
             {
                 var userId = HttpContext.Session.GetInt32("UserId");
@@ -96,8 +96,7 @@ namespace Forum.Controllers
                 }
 
                 var admin = _context.Utilisateurs
-                    .Include(u => u.Etablissements)
-                    .FirstOrDefault(u => u.Id_utilisateur == userId);
+     .FirstOrDefault(u => u.Id_utilisateur == userId && u.Role == "Admin");
 
                 if (admin == null || admin.Id_etablissement == null)
                 {
@@ -105,15 +104,16 @@ namespace Forum.Controllers
                     return RedirectToAction("Index", "Dashboard");
                 }
 
+
                 try
                 {
-                    var Nouvelle_Classe = new Classes
+                    var Nouvelle_Classe = new Promos
                     {
-                        Nom_classe = Nom_classe,
+                        Nom_promos = Nom_promos,
                         Id_etablissement = admin.Id_etablissement
                     };
 
-                    _context.Classes.Add(Nouvelle_Classe);
+                    _context.Promos.Add(Nouvelle_Classe);
                     _context.SaveChanges();
 
                     if (selectedEleves != null && selectedEleves.Any())
@@ -124,7 +124,7 @@ namespace Forum.Controllers
 
                             if (eleve != null)
                             {
-                                eleve.Id_classe = Nouvelle_Classe.Id_classe;
+                                eleve.Id_promos = Nouvelle_Classe.Id_promos;
                             }
                         }
                     }
@@ -137,7 +137,7 @@ namespace Forum.Controllers
                             
                             if (prof != null)
                             {
-                                prof.Id_classe = Nouvelle_Classe.Id_classe;
+                                prof.Id_promos = Nouvelle_Classe.Id_promos;
 
                             }
                         }
@@ -145,7 +145,7 @@ namespace Forum.Controllers
 
                     _context.SaveChanges();
 
-                    TempData["SuccessMessage"] = $"La promotion {Nom_classe} a été créée avec succès !";
+                    TempData["SuccessMessage"] = $"La promotion {Nom_promos} été créée avec succès !";
                     return RedirectToAction("Ajouterclasse");
                 }
                 catch (Exception ex)

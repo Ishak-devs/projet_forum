@@ -19,7 +19,7 @@ namespace Forum.Controllers
         public IActionResult Index()
         {
 
-            var classes = _context.Classes.ToList();
+            var classes = _context.Promos.ToList();
             string? Role = HttpContext.Session.GetString("UserRole").ToString();
             if (Role == "Admin")
                 return View("Admin", classes);
@@ -39,10 +39,10 @@ namespace Forum.Controllers
                 return RedirectToAction("Index", "Authentification");
 
             var etudiant = await _context.Utilisateurs
-                .Include(e => e.Classes)
+                .Include(e => e.Promos)
                 .FirstOrDefaultAsync(e => e.Id_utilisateur == userId);
 
-            var notes = await _context.Notes
+            var notes = await _context.Evaluations
                 .Include(n => n.Modules)
                 .Where(n => n.Id_utilisateur == userId)
                 .OrderByDescending(n => n.Date_note)
@@ -52,7 +52,7 @@ namespace Forum.Controllers
             float moyenne = (float)(notes.Any() ? notes.Average(n => n.Note) : 0);
 
             ViewBag.Moyenne = moyenne;
-            ViewBag.Classe = etudiant?.Classes?.Nom_classe ?? "Classe inconnue";
+            ViewBag.Classe = etudiant?.Promos?.Nom_promos ?? "Classe inconnue";
             ViewBag.Notes = notes;
             ViewBag.EleveNom = etudiant?.Nom;
             ViewBag.ElevePrenom = etudiant?.Prenom;
@@ -64,25 +64,25 @@ namespace Forum.Controllers
         public async Task<IActionResult> AdminAsync()
         {
 
-            var classes = _context.Classes.ToList();
+            var classes = _context.Promos.ToList();
 
           
 
             var effectifs = _context.Utilisateurs
-                     .Where(u => u.Role == "Etudiant" && u.Id_classe != null)
-                     .GroupBy(u => u.Id_classe.Value)
+                     .Where(u => u.Role == "Etudiant" && u.Id_promos != null)
+                     .GroupBy(u => u.Id_promos.Value)
                      .ToDictionary(g => g.Key, g => g.Count());
 
 
             var alertes = _context.Alertes
-                .Include(a => a.Classe)  
-                .Include(a => a.User)     
-                .OrderByDescending(a => a.Id_alerte)
-                .Take(5) 
-                .ToList();
+        .Include(a => a.Promos)
+        .OrderByDescending(a => a.Id_alerte)
+        .Take(5)
+        .ToList();
 
             ViewBag.EffectifsParClasse = effectifs;
             ViewBag.Alertes = alertes;
+
 
             return View(classes);
         }
@@ -99,8 +99,8 @@ namespace Forum.Controllers
             if (profId.HasValue)
             {
                 var professeur = _context.Utilisateurs
-                    .Include(u => u.Classes)
-                        .ThenInclude(c => c.Utilisateurs) // récupère les utilisateurs de la classe
+                    .Include(u => u.Promos)
+                        .ThenInclude(c => c.Utilisateurs)
                     .FirstOrDefault(u => u.Id_utilisateur == profId.Value);
 
                 if (professeur != null)
@@ -109,21 +109,21 @@ namespace Forum.Controllers
                     ViewBag.ProfNom = professeur.Nom;
                     ViewBag.ProfPrenom = professeur.Prenom;
 
-                    var classe = professeur.Classes;
+                    var classe = professeur.Promos;
 
                     // récupère uniquement les étudiants de la classe
                     var eleves = classe?.Utilisateurs
                         .Where(u => u.Role == "Etudiant")
                         .ToList();
 
-                    var alertes = _context.Alertes
-                        .Where(a => a.Id_utilisateur == profId.Value)
-                        .OrderByDescending(a => a.date_alerte)
-                        .ToList();
+                    //var alertes = _context.Alertes
+                    //    .Where(a => a.Id_classe == classe.Id_promos)
+                    //    .OrderByDescending(a => a.date_alerte)
+                    //    .ToList();
 
                     ViewBag.Classe = classe;
                     ViewBag.Eleves = eleves;
-                    ViewBag.Alertes = alertes;
+                    //ViewBag.Alertes = alertes;
 
                     return View("Professeur");
                 }
@@ -140,7 +140,7 @@ namespace Forum.Controllers
 
         public IActionResult AjouterAlerte()
         {
-            var classes = _context.Classes.ToList();
+            var classes = _context.Promos.ToList();
             return View(classes);
         }
 
@@ -160,7 +160,7 @@ namespace Forum.Controllers
 
             var nouvelleAlerte = new Alertes
             {
-                Id_utilisateur = userId.Value,
+                //Id_utilisateur = userId.Value,
                 Message = message,
                 Titre = alertType,
                 Id_classe = Id_classe.Value
@@ -187,10 +187,10 @@ namespace Forum.Controllers
         public IActionResult VoirAlertes()
         {
             var alertes = _context.Alertes
-                .Include(a => a.User) 
-                .Include(a => a.Classe) 
-                .OrderByDescending(a => a.Id_alerte) 
-                .ToList();
+     .Include(a => a.Promos) 
+     .OrderByDescending(a => a.Id_alerte) 
+     .ToList(); 
+
 
             return View(alertes);
         }

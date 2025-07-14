@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Forum.Models
@@ -8,20 +9,18 @@ namespace Forum.Models
         [Key]
         public int Id_evaluation { get; set; }
 
-        public DateTime Date_evaluation { get; set; }
+        public double Note { get; set; }
 
-        public string Theme_evaluation { get; set; }
+        public DateTime Date_note { get; set; } = DateTime.Now;
 
-        public Decimal? Note_evaluation { get; set; }
+        [ForeignKey("Modules")]
+        public int Id_module { get; set; }
 
-        [ForeignKey("User")]
-        public int Id_utilisateur { get; set; } 
+        public virtual Modules Modules { get; set; }
 
-        [ForeignKey("Module")]
-        public int Id_module { get; set; }  
+        [ForeignKey("Utilisateurs")]
+        public int Id_utilisateur { get; set; }
 
-        public virtual Utilisateurs User { get; set; }
-
-        public virtual Modules Module { get; set; }
+        public virtual Utilisateurs Utilisateurs { get; set; }
     }
 }

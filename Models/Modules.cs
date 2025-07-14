@@ -13,12 +13,8 @@ namespace Forum.Models
 
         public string Horaire { get; set; }
 
-        [ForeignKey("Utilisateurs")]
-        public int Id_utilisateur { get; set; }
-        public virtual Utilisateurs Utilisateurs { get; set; }
-
-        [ForeignKey("Classes")]
-        public int Id_classe { get; set; }
-        public virtual Classes Classes { get; set; }
+        [ForeignKey("Promos")]
+        public int Id_promos { get; set; }
+        public virtual Promos Promos { get; set; }
     }
 }
