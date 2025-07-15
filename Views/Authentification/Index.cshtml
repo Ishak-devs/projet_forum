@@ -2,7 +2,6 @@
 @{
     ViewData["Title"] = "Connexion";
     Layout = "_Layout";
-  bool isDisabled =  TempData["erreurnbr"] != null;
 }
 
 <!DOCTYPE html>
@@ -112,7 +111,7 @@
                         <label class="form-label fw-medium" asp-for="Email">
                             <i class="fas fa-envelope me-1 text-muted"></i>Email
                         </label>
-                        <input class="form-control" type="text" asp-for="Email" placeholder="votre@email.com"  disabled="@isDisabled" />
+                        <input class="form-control" type="text" asp-for="Email" placeholder="votre@email.com" />
                         <span class="text-danger small">@Html.ValidationMessageFor(e => e.Email)</span>
                     </div>
 
@@ -120,8 +119,8 @@
                         <label class="form-label fw-medium" asp-for="Password">
                             <i class="fas fa-lock me-1 text-muted"></i>Mot de passe
                         </label>
-                        <input class="form-control" type="password" asp-for="Password" placeholder="Votre mot de passe" 
-                        disabled="@isDisabled" />
+                        <input class="form-control" type="password" asp-for="Password" placeholder="Votre mot de passe" />
+                       
                         <span class="text-danger small">@Html.ValidationMessageFor(e => e.Password)</span>
                     </div>
 
@@ -129,7 +128,7 @@
 
 
 
-                    <button class="btn btn-primary w-100 py-2 fw-medium" type="submit"  disabled="@isDisabled">
+                    <button class="btn btn-primary w-100 py-2 fw-medium" type="submit">
                         <i class="fas fa-sign-in-alt me-1"></i> Se connecter
                     </button>
                 </form>

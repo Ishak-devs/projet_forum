@@ -12,6 +12,7 @@ namespace Forum.Controllers
     {
         private readonly ApplicationDbContext contextget;
         private readonly PasswordHasher<Utilisateurs> PasswordHasher;
+        private const int MaxLoginAttempts = 5;
 
         public AuthentificationController(ApplicationDbContext context)
         {
@@ -28,15 +29,26 @@ namespace Forum.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            // Vérifier si l'utilisateur a dépassé le nombre maximum de tentatives
+            int erreur_saisie = HttpContext.Session.GetInt32("erreur_saisie") ?? 0;
+            if (erreur_saisie >= MaxLoginAttempts)
+            {
+                return View("ErreurPage");
+            }
 
             return View();
-
         }
-      
 
         [HttpPost]
         public async Task<IActionResult> Index(LoginViewModel modele)
         {
+            // Vérifier d'abord si l'utilisateur n'a pas déjà dépassé le nombre maximum de tentatives
+            int erreur_saisie = HttpContext.Session.GetInt32("erreur_saisie") ?? 0;
+            if (erreur_saisie >= MaxLoginAttempts)
+            {
+                return View("ErreurPage");
+            }
+
             if (ModelState.IsValid)
             {
                 var utilisateur = await contextget.Utilisateurs
@@ -49,8 +61,6 @@ namespace Forum.Controllers
                         utilisateur,
                         utilisateur.Motdepasse,
                         modele.Password);
-
-                   
 
                     if (result == PasswordVerificationResult.Success)
                     {
@@ -85,22 +95,29 @@ namespace Forum.Controllers
                     }
 
                     ViewBag.MessageError = "Email ou mot de passe incorrect.";
-                    int erreur_saisie = HttpContext.Session.GetInt32("erreur_saisie") ?? 0;
                     erreur_saisie++;
                     HttpContext.Session.SetInt32("erreur_saisie", erreur_saisie);
 
-                    if (erreur_saisie > 4)
+                    if (erreur_saisie >= MaxLoginAttempts)
                     {
-                        TempData["erreurnbr"] = erreur_saisie;
-                        return view();                              
+                        return View("ErreurPage");
                     }
+                }
+                else
+                {
+                    ViewBag.MessageError = "Email ou mot de passe incorrect.";
+                    erreur_saisie++;
+                    HttpContext.Session.SetInt32("erreur_saisie", erreur_saisie);
 
+                    if (erreur_saisie >= MaxLoginAttempts)
+                    {
+                        return View("ErreurPage");
+                    }
+                }
 
-                    // Si l'utilisateur n'existe pas ou mot de passe incorrect
-                    return View(modele);
+                return View(modele);
             }
 
-            // Si ModelState invalide
             return View(modele);
         }
     }
