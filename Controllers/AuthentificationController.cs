@@ -77,6 +77,7 @@ namespace Forum.Controllers
 
                         // Vérifier si c'est un admin sans établissement
                         if (utilisateur.Role == "Admin" && utilisateur.Etablissements == null)
+
                         {
                             return RedirectToAction("Etablissement", "Signup");
                         }

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250721125415_init")]
+    [Migration("20250721132836_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -69,6 +69,9 @@ namespace Forum.Migrations
                     b.Property<string>("academie")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int>("code_postal")
+                        .HasColumnType("int");
 
                     b.Property<string>("nom_etablissement")
                         .IsRequired()

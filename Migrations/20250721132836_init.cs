@@ -21,6 +21,7 @@ namespace Forum.Migrations
                 {
                     Id_etablissement = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    code_postal = table.Column<int>(type: "int", nullable: false),
                     Region = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     academie = table.Column<string>(type: "longtext", nullable: false)

@@ -10,7 +10,6 @@ namespace Forum.Models
 
         [Required]
         public int code_postal { get; set; }
-
         [Required]
         public string Region { get; set; }
 

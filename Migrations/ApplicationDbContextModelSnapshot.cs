@@ -67,6 +67,9 @@ namespace Forum.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("code_postal")
+                        .HasColumnType("int");
+
                     b.Property<string>("nom_etablissement")
                         .IsRequired()
                         .HasColumnType("longtext");
