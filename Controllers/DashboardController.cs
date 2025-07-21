@@ -184,6 +184,7 @@ namespace Forum.Controllers
         
         }
         
+
         public IActionResult VoirAlertes()
         {
             var alertes = _context.Alertes

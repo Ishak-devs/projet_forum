@@ -8,8 +8,8 @@ namespace Forum.Models
         [Key]
         public int Id_etablissement { get; set; }
 
-        [Required]
-        public int code_postal { get; set; }
+        //[Required]
+        //public int code_postal { get; set; }
 
         [Required]
         public string Region { get; set; }

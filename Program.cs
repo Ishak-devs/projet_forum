@@ -53,6 +53,10 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseDeveloperExceptionPage();
+//services.AddIdentity<ApplicationUser, IdentityRole>()
+//    .AddEntityFrameworkStores<ApplicationDbContext>()
+//    .AddDefaultTokenProviders();
+
 
 app.MapHub<ChatHub>("/chatHub");
 

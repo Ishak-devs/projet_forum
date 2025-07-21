@@ -149,6 +149,15 @@ namespace Forum.Controllers
                 return View(modele);
             }
 
+            var emailExistant = contextget.Utilisateurs
+       .Any(u => u.Email.ToLower() == modele.Email.ToLower());
+
+            if (emailExistant)
+            {
+                ModelState.AddModelError("Email", "Cet email est déjà utilisé par un autre utilisateur.");
+                return View(modele);
+            }
+
             var nouveau_user = new Utilisateurs
             {
                 Nom = modele.Nom,
@@ -157,7 +166,6 @@ namespace Forum.Controllers
                 Motdepasse = passwordHasher.HashPassword(null, modele.Motdepasse),
                 Role = modele.Role,
                 Id_etablissement = utilisateurConnecte.Id_etablissement,
-                //Section = modele.Section,
                 Matiere = modele.Matiere,
             };
 
@@ -194,7 +202,7 @@ namespace Forum.Controllers
 
             var newEtablissement = new Etablissements
             {
-                code_postal = modele.code_postal,
+                //code_postal = modele.code_postal,
                 academie = modele.academie,
                 nom_etablissement = modele.nom_etablissement,
                 Region = modele.Region,

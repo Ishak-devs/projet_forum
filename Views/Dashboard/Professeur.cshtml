@@ -30,41 +30,56 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        .dashboard-header {
+            background: linear-gradient(135deg, #f8f9fc 0%, #e9ecef 100%);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
         .card-hover {
             transition: all 0.3s ease;
             border: 1px solid #e3e6f0;
-            border-radius: 0.35rem;
+            border-radius: 0.5rem;
+            height: 100%;
         }
 
             .card-hover:hover {
                 transform: translateY(-5px);
-                box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+                box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
             }
 
         .card-header {
-            background-color: #f8f9fc;
+            background-color: white;
             border-bottom: 1px solid #e3e6f0;
+            font-weight: 600;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem 0.5rem 0 0 !important;
         }
 
         .bg-icon {
             background-color: rgba(78, 115, 223, 0.1);
-            width: 3rem;
-            height: 3rem;
+            width: 3.5rem;
+            height: 3.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
         }
 
         .divider {
             height: 1px;
             background-color: rgba(0,0,0,0.1);
-            margin: 1rem 0;
+            margin: 1.5rem 0;
         }
 
         .btn-outline-primary {
             color: var(--primary-color);
             border-color: var(--primary-color);
+            border-radius: 0.375rem;
+            padding: 0.375rem 0.75rem;
         }
 
             .btn-outline-primary:hover {
@@ -73,12 +88,18 @@
             }
 
         .alert-item {
-            border-left: 3px solid;
+            border-left: 4px solid;
             transition: all 0.2s;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            border-radius: 0.5rem;
+            background-color: white;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
         }
 
             .alert-item:hover {
-                background-color: #f8f9fc;
+                transform: translateX(5px);
+                box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
             }
 
         .absence {
@@ -92,21 +113,67 @@
         .info {
             border-left-color: #36b9cc;
         }
+
+        .badge-pill {
+            border-radius: 10rem;
+            padding: 0.35em 0.65em;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .dashboard-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+            .section-title i {
+                margin-right: 0.75rem;
+                color: var(--primary-color);
+            }
+
+        .quick-action-card {
+            text-align: center;
+            padding: 1.5rem 1rem;
+        }
+
+            .quick-action-card h5 {
+                font-size: 1rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+
+        .quick-action-icon {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
     </style>
 </head>
 <body>
     <div class="container py-4">
         <!-- Header Section -->
-        <header class="d-flex justify-content-between align-items-center mb-5">
-            <div>
-                <h1 class="h3 mb-1 text-gray-800">
-                    <i class="fas fa-chalkboard-teacher text-primary me-2"></i>Espace Professeur
-                </h1>
-                <p class="text-muted mb-0">Bienvenue, <span class="fw-bold">@profNomComplet</span></p>
+        <header class="dashboard-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="h3 mb-2">
+                        <i class="fas fa-chalkboard-teacher text-primary me-2"></i>Espace Professeur
+                    </h1>
+                    <p class="mb-0 text-muted">Bienvenue, <span class="fw-bold text-dark">@profNomComplet</span></p>
+                </div>
+                <a href="@Url.Action("Logout", "Authentification")" class="btn btn-outline-secondary">
+                    <i class="fas fa-sign-out-alt me-1"></i> Déconnexion
+                </a>
             </div>
-            <a href="@Url.Action("Logout", "Authentification")" class="btn btn-outline-secondary">
-                <i class="fas fa-sign-out-alt me-1"></i> Déconnexion
-            </a>
         </header>
 
         @if (TempData["Message"] != null)
@@ -118,74 +185,62 @@
         }
 
         <!-- Quick Actions Section -->
-        <section class="mb-5">
-            <h2 class="h5 mb-3 text-gray-800">Actions rapides</h2>
+        <section class="dashboard-section">
+            <h2 class="section-title"><i class="fas fa-bolt"></i>Actions rapides</h2>
             <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card card-hover h-100">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="bg-icon me-3">
-                                    <i class="fas fa-users text-primary"></i>
+                <div class="col-md-3 col-6">
+                    <div class="card card-hover">
+                        <a href="@Url.Action("MesClasses", "Professeur")" class="text-decoration-none text-dark">
+                            <div class="card-body quick-action-card">
+                                <div class="quick-action-icon">
+                                    <i class="fas fa-users"></i>
                                 </div>
-                                <h5 class="mb-0">Ma Classe</h5>
+                                <h5>Ma Classe</h5>
+                                <p class="text-muted small mb-0">Gérer mes élèves</p>
                             </div>
-                            <p class="text-muted small mb-3">Gestion des élèves et de la classe</p>
-                            <a href="@Url.Action("MesClasses", "Professeur")" class="btn btn-outline-primary btn-sm stretched-link">
-                                Accéder <i class="fas fa-arrow-right ms-1"></i>
-                            </a>
-                        </div>
+                        </a>
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="card card-hover h-100">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="bg-icon me-3">
-                                    <i class="fas fa-file-upload text-primary"></i>
+                <div class="col-md-3 col-6">
+                    <div class="card card-hover">
+                        <a href="@Url.Action("AjouterDevoir", "Professeur")" class="text-decoration-none text-dark">
+                            <div class="card-body quick-action-card">
+                                <div class="quick-action-icon">
+                                    <i class="fas fa-file-upload"></i>
                                 </div>
-                                <h5 class="mb-0">Ajouter un document</h5>
+                                <h5>Ressources</h5>
+                                <p class="text-muted small mb-0">Gérer les documents</p>
                             </div>
-                            <p class="text-muted small mb-3">Publier un devoir pour la classe</p>
-                            <a href="@Url.Action("AjouterDevoir", "Professeur")" class="btn btn-outline-primary btn-sm stretched-link">
-                                Ajouter <i class="fas fa-arrow-right ms-1"></i>
-                            </a>
-                        </div>
+                        </a>
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="card card-hover h-100">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="bg-icon me-3">
-                                    <i class="fas fa-edit text-primary"></i>
+                <div class="col-md-3 col-6">
+                    <div class="card card-hover">
+                        <a href="@Url.Action("SaisirNotes", "Professeur")" class="text-decoration-none text-dark">
+                            <div class="card-body quick-action-card">
+                                <div class="quick-action-icon">
+                                    <i class="fas fa-edit"></i>
                                 </div>
-                                <h5 class="mb-0">Saisir notes</h5>
+                                <h5>Saisir notes</h5>
+                                <p class="text-muted small mb-0">Enregistrer évaluations</p>
                             </div>
-                            <p class="text-muted small mb-3">Enregistrement des évaluations</p>
-                            <a href="@Url.Action("SaisirNotes", "Professeur")" class="btn btn-outline-primary btn-sm stretched-link">
-                                Commencer <i class="fas fa-arrow-right ms-1"></i>
-                            </a>
-                        </div>
+                        </a>
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="card card-hover h-100">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="bg-icon me-3">
-                                    <i class="fas fa-calendar-alt text-primary"></i>
+                <div class="col-md-3 col-6">
+                    <div class="card card-hover">
+                        <a href="@Url.Action("EmploiDuTemps", "Professeur")" class="text-decoration-none text-dark">
+                            <div class="card-body quick-action-card">
+                                <div class="quick-action-icon">
+                                    <i class="fas fa-calendar-alt"></i>
                                 </div>
-                                <h5 class="mb-0">Emploi du temps</h5>
+                                <h5>Emploi du temps</h5>
+                                <p class="text-muted small mb-0">Voir planning</p>
                             </div>
-                            <p class="text-muted small mb-3">Consultation du planning</p>
-                            <a href="@Url.Action("EmploiDuTemps", "Professeur")" class="btn btn-outline-primary btn-sm stretched-link">
-                                Voir EDT <i class="fas fa-arrow-right ms-1"></i>
-                            </a>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -193,94 +248,66 @@
 
         <!-- Main Content Section -->
         <div class="row">
-            <!-- Ma Classe Section -->
-            <div class="col-lg-8 mb-4">
-                <div class="card shadow-sm">
-                    <div class="card-header">
-                        <h5 class="mb-0">
-                            <i class="fas fa-users me-2 text-gray-500"></i>
-                            Ma Classe
-                        </h5>
-                    </div>
-                    <div class="card-body">
-                        @if (ViewBag.Classe != null)
-                        {
-                        <div class="d-flex align-items-center mb-4">
-                            <div class="bg-icon me-3">
-                                <i class="fas fa-door-open text-primary"></i>
-                            </div>
-                            <div>
-                                <h4 class="mb-1">@ViewBag.Classe?.Nom_promos</h4>
-                                <span class="badge bg-light text-dark">Année scolaire 2024-2025</span>
-                            </div>
-                        </div>
-
-                        <div class="divider"></div>
-
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <div class="d-flex align-items-center p-3 rounded bg-light">
-                                    <div class="me-3 text-primary">
-                                        <i class="fas fa-user-graduate fa-lg"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="mb-0">Liste des élèves</h6>
-                                        <p class="text-muted small mb-0">Gestion complète des élèves</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <div class="d-flex align-items-center p-3 rounded bg-light">
-                                    <div class="me-3 text-primary">
-                                        <i class="fas fa-book fa-lg"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="mb-0">Programme</h6>
-                                        <p class="text-muted small mb-0">Matières enseignées</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        }
-                        else
-                        {
-                        <div class="text-center py-4">
-                            <div class="bg-icon mx-auto mb-3">
-                                <i class="fas fa-door-open text-primary"></i>
-                            </div>
-                            <h5 class="fw-light">Aucune classe assignée</h5>
-                            <p class="text-muted">Une classe vous sera bientôt assignée</p>
-                        </div>
-                        }
-                    </div>
-                </div>
-            </div>
-
             <!-- Alertes Section -->
+            <div class="col-lg-12">
+                <section class="dashboard-section">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-bell me-2"></i>
+                                Alertes récentes
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            @if (alertes != null && alertes.Any())
+                            {
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="list-group list-group-flush">
+                                        @foreach (var alerte in alertes)
+                                            {
+                                        <div class="alert-item info mb-3">
+                                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                                <strong class="text-dark">@alerte.Titre</strong>
+                                                <small class="text-muted">@alerte.date_alerte.ToString("dd/MM/yyyy à HH:mm")</small>
+                                            </div>
+                                            <p class="mb-0">@alerte.Message</p>
+                                        </div>
+                                            }
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="bg-light p-4 rounded text-center h-100">
+                                        <div class="bg-icon mx-auto mb-3">
+                                            <i class="fas fa-info-circle text-primary"></i>
+                                        </div>
+                                        <h5>Gestion des alertes</h5>
+                                        <p class="text-muted small">Consultez et gérez toutes vos notifications en un seul endroit</p>
+                                        <a href="@Url.Action("Alertes", "Professeur")" class="btn btn-primary btn-sm">
+                                            Voir toutes les alertes
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                            else
+                            {
+                            <div class="text-center py-5">
+                                <div class="bg-icon mx-auto mb-3">
+                                    <i class="fas fa-bell-slash text-muted"></i>
+                                </div>
+                                <h5 class="fw-light">Aucune alerte récente</h5>
+                                <p class="text-muted">Vous serez notifié lorsqu'une nouvelle alerte sera disponible</p>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
 
-
-            <h2>Alertes récentes</h2>
-
-            @if (alertes != null && alertes.Any())
-{
-            <ul>
-                @foreach (var alerte in alertes)
-        {
-                <li>
-                    <strong>@alerte.Titre</strong><br />
-                    @alerte.Message<br />
-                    <small>@alerte.date_alerte.ToString("dd/MM/yyyy HH:mm")</small>
-                </li>
-        }
-            </ul>
-}
-else
-{
-            <p>Aucune alerte disponible.</p>
-}
-
-
-            <!-- Bootstrap JS -->
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

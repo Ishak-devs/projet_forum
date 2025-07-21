@@ -149,6 +149,6 @@ namespace Forum.Controllers
         public string Hour { get; set; }
         public string HourEnd { get; set; }
         public string Course { get; set; }
-        public int ProfId { get; set; }
+        //public int ProfId { get; set; }
     }
 }

@@ -4,13 +4,6 @@
     var utilisateurs = ViewBag.Utilisateurs as List<Utilisateurs> ?? new List<Utilisateurs>();
 }
 
-@if (TempData["SuccessMessage"] != null)
-{
-<div class="alert alert-success alert-dismissible fade show">
-    @TempData["SuccessMessage"]
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-}
 
 <div class="container-fluid mt-4">
     <div class="row">
