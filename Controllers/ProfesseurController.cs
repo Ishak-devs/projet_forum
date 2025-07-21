@@ -119,24 +119,6 @@ namespace Forum.Controllers
 
 
 
-        public IActionResult MesClasses()
-        {
-            var profId = HttpContext.Session.GetInt32("UserId");
-
-            if (!profId.HasValue)
-                return RedirectToAction("Index", "Authentification");
-
-            var professeur = _context.Utilisateurs.FirstOrDefault(u => u.Id_utilisateur == profId.Value);
-
-            if (professeur == null || !professeur.Id_promos.HasValue)
-                return View(new List<Promos>());
-
-            var classe = _context.Promos
-                .Where(c => c.Id_promos == professeur.Id_promos.Value)
-                .ToList();
-
-            return View(classe);
-        }
         [HttpGet]
         public IActionResult SaisirNotes()
         {
