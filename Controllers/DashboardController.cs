@@ -119,6 +119,7 @@ namespace Forum.Controllers
                     var alertes = _context.Alertes
      .Where(a => a.Id_promos == classe.Id_promos)
      .OrderByDescending(a => a.date_alerte)
+     .Take(3)
      .ToList();
 
 
