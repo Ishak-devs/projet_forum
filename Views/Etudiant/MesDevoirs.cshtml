@@ -4,47 +4,48 @@
     ViewData["Title"] = "Mes Devoirs";
     }
 
-    <div class="container mt-4">
-        <h2 class="mb-4">📚 Mes Documents</h2>
+               <div class="container mt-4">
+                   <h2 class="mb-4">📚 Mes Documents</h2>
 
-        @if (!Model.Any())
+                   @if (!Model.Any())
     {
-        <div class="alert alert-info">
-            Aucun devoir trouvé pour votre classe.
-        </div>
+                   <div class="alert alert-info">
+                       Aucun devoir trouvé pour votre classe.
+                   </div>
     }
     else
     {
-        <table class="table table-bordered table-striped">
-            <thead class="table-dark">
-                <tr>
-                    <th>Intitulé</th>
-                    <th>Module</th>
-                    <th>Date</th>
-                    <th>Fichier</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var devoir in Model)
-                {
-                <tr>
-                    <td>@devoir.Intitulé</td>
-                    <td>@devoir.Date_devoir.ToString("dd/MM/yyyy")</td>
-                    <td>
-                        @if (!string.IsNullOrEmpty(devoir.FichierPath))
-                            {
-                        <a class="btn btn-sm btn-primary" href="@Url.Content($"~/{devoir.FichierPath}")" target="_blank">
-                            Télécharger
-                        </a>
-                            }
-                            else
-                            {
-                        <span class="text-muted">Aucun fichier</span>
-                            }
-                    </td>
-                </tr>
-                }
-            </tbody>
-        </table>
+
+                   <table class="table table-bordered table-striped">
+                       <thead class="table-dark">
+                           <tr>
+                               <th>Intitulé</th>
+                               <th>Date</th>
+                               <th>Fichier</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           @foreach (var devoir in Model)
+        {
+                           <tr>
+                               <td>@devoir.Intitulé</td>
+                               <td>@devoir.Date_devoir.ToString("dd/MM/yyyy")</td>
+                               <td>
+                                   @if (!string.IsNullOrEmpty(devoir.FichierPath))
+                    {
+                                   <a class="btn btn-sm btn-primary" href="@Url.Content($"~/{devoir.FichierPath}")" target="_blank" download>
+                                       Télécharger
+                                   </a>
+                    }
+                    else
+                    {
+                                   <span class="text-muted">Aucun fichier</span>
+                    }
+                               </td>
+                           </tr>
+        }
+                       </tbody>
+                   </table>
+
     }
-    </div>
+               </div>
