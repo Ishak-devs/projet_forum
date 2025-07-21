@@ -220,7 +220,6 @@
                             courseElement.innerHTML = `
                                     <strong>${course.theme}</strong>
                                     <div class="prof-id" style="display:none">${course.profId}</div>
-                                    <small>${course.professeur}</small>
                                 `;
 
                             slot.appendChild(courseElement);
@@ -293,7 +292,6 @@
             courseElement.innerHTML = `
                     <strong>${pendingCourse.theme}</strong>
                     <div class="prof-id" style="display:none">${pendingCourse.Profid}</div>
-                    <small>${pendingCourse.ProfName.split('(')[0].trim()}</small>
                 `;
 
             slot.appendChild(courseElement);
