@@ -28,14 +28,41 @@ namespace Forum.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var lastEmail = HttpContext.Session.GetString("LastLoginEmail");
+
+            if (!string.IsNullOrEmpty(lastEmail))
+            {
+                var utilisateur = await _context.Utilisateurs
+                    .FirstOrDefaultAsync(u => u.Email == lastEmail);
+
+                if (utilisateur != null && utilisateur.bloquage)
+                {
+                    if (utilisateur.bloquage_temps.HasValue &&
+                        utilisateur.bloquage_temps.Value.AddMinutes(LockoutDurationMinutes) > DateTime.Now)
+                    {
+                        return RedirectToAction("ErreurPage");
+                    }
+                    else
+                    {
+                        // Blocage expiré, débloquer compte
+                        utilisateur.bloquage = false;
+                        utilisateur.bloquage_temps = null;
+                        await _context.SaveChangesAsync();
+                    }
+                }
+            }
+
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Index(LoginViewModel modele)
         {
+            // Stocker l'email de la tentative en session
+            HttpContext.Session.SetString("LastLoginEmail", modele.Email);
+
             if (!ModelState.IsValid)
                 return View(modele);
 
@@ -48,18 +75,16 @@ namespace Forum.Controllers
                 return View(modele);
             }
 
-            // Vérifier blocage
             if (utilisateur.bloquage)
             {
                 if (utilisateur.bloquage_temps.HasValue &&
                     utilisateur.bloquage_temps.Value.AddMinutes(LockoutDurationMinutes) > DateTime.Now)
                 {
-                    // Compte bloqué, renvoyer vers page d'erreur
                     return RedirectToAction("ErreurPage");
                 }
                 else
                 {
-                    // Fin blocage, débloquer compte
+                    // Blocage expiré, débloquer
                     utilisateur.bloquage = false;
                     utilisateur.bloquage_temps = null;
                     await _context.SaveChangesAsync();
@@ -79,6 +104,7 @@ namespace Forum.Controllers
                 await _context.SaveChangesAsync();
 
                 HttpContext.Session.Remove("erreur_saisie_" + modele.Email);
+                HttpContext.Session.Remove("LastLoginEmail");
 
                 HttpContext.Session.SetString("UserRole", utilisateur.Role);
                 HttpContext.Session.SetInt32("UserId", utilisateur.Id_utilisateur);
@@ -90,32 +116,22 @@ namespace Forum.Controllers
                 ModelState.Clear();
 
                 if (utilisateur.Role == "Admin" && utilisateur.Etablissements == null)
-                {
                     return RedirectToAction("Etablissement", "Signup");
-                }
                 else if (utilisateur.Role == "Admin")
-                {
                     return RedirectToAction("Admin", "Dashboard");
-                }
                 else if (utilisateur.Role == "Professeur")
-                {
                     return RedirectToAction("Professeur", "Dashboard");
-                }
                 else
-                {
                     return RedirectToAction("Etudiant", "Dashboard");
-                }
             }
             else
             {
-                // Mot de passe incorrect : incrémenter compteur en session
                 int erreurs = HttpContext.Session.GetInt32("erreur_saisie_" + modele.Email) ?? 0;
                 erreurs++;
                 HttpContext.Session.SetInt32("erreur_saisie_" + modele.Email, erreurs);
 
                 if (erreurs >= MaxLoginAttempts)
                 {
-                    // Bloquer compte
                     utilisateur.bloquage = true;
                     utilisateur.bloquage_temps = DateTime.Now;
                     await _context.SaveChangesAsync();

@@ -1,5 +1,6 @@
 @{
     Layout = null; // Cette ligne empêche l'utilisation d'une mise en page partagée
+    Response.StatusCode = 403; // Code HTTP pour "Interdit"
 }
 
 <!DOCTYPE html>
@@ -88,7 +89,7 @@
                     Pour des raisons de sécurité, votre compte a été temporairement bloqué après plusieurs tentatives de connexion infructueuses.
                 </p>
                 <p>
-                    Veuillez réessayer dans <span class="countdown">15 minutes</span>.
+                    Veuillez réessayer dans 15 minutes</>.
                 </p>
                 <p class="text-muted small mt-3">
                     Si vous pensez qu'il s'agit d'une erreur, veuillez contacter notre support technique.
