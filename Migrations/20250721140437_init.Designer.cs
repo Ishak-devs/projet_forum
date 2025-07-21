@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250721132836_init")]
+    [Migration("20250721140437_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -260,6 +260,12 @@ namespace Forum.Migrations
                         .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("varchar(15)");
+
+                    b.Property<bool>("bloquage")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("bloquage_temps")
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id_utilisateur");
 

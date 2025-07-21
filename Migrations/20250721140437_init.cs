@@ -124,7 +124,9 @@ namespace Forum.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Id_etablissement = table.Column<int>(type: "int", nullable: true),
                     Matiere = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    bloquage = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    bloquage_temps = table.Column<DateTime>(type: "datetime(6)", nullable: true)
                 },
                 constraints: table =>
                 {

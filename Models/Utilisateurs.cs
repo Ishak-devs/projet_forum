@@ -42,5 +42,9 @@ namespace Forum.Models
 
         [StringLength(30)]
         public string? Matiere { get; set; }
+
+        public bool bloquage { get; set; } =  false;
+
+        public DateTime? bloquage_temps { get; set; }
     }
 }

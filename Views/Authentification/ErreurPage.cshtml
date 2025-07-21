@@ -1,137 +1,136 @@
-@*@{
-    ViewData["Title"] = "Trop de tentatives";
-    Layout = null; // Pour ne pas utiliser le layout par d�faut
+@{
+    Layout = null; // Cette ligne empêche l'utilisation d'une mise en page partagée
 }
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Accès refusé - Compte bloqué</title>
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #fff;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-        }
-
-        .error-container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .countdown {
-            font-size: 3rem;
-            font-weight: bold;
-            margin: 30px 0;
-            color: #ff6b6b;
+            background-color: #f8f9fa;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        .lock-icon {
-            font-size: 5rem;
-            color: #ff6b6b;
+        .error-container {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .error-card {
+            max-width: 500px;
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border: none;
+            overflow: hidden;
+        }
+
+        .error-header {
+            background-color: #dc3545;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .error-body {
+            padding: 30px;
+            background-color: white;
+        }
+
+        .error-icon {
+            font-size: 3rem;
+            color: #dc3545;
             margin-bottom: 20px;
-            animation: pulse 2s infinite;
         }
 
-        .btn-retry {
+        .countdown {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #dc3545;
+            margin-top: 15px;
+        }
+
+        .btn-home {
+            background-color: #dc3545;
+            color: white;
             margin-top: 20px;
-            display: none;
+            transition: all 0.3s;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        .progress {
-            height: 10px;
-            margin: 20px 0;
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .progress-bar {
-            background-color: #ff6b6b;
-            transition: width 1s linear;
-        }
+            .btn-home:hover {
+                background-color: #bb2d3b;
+                color: white;
+            }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="error-container">
-            <div class="lock-icon">
-                <i class="fas fa-lock"></i>
+    <div class="error-container">
+        <div class="error-card">
+            <div class="error-header">
+                <h2><i class="bi bi-shield-lock"></i> Accès refusé</h2>
             </div>
-            <h1 class="mb-4">Acc�s temporairement bloqu�</h1>
-            <p class="lead">Vous avez d�pass� le nombre maximum de tentatives de connexion.</p>
-            <p>Pour des raisons de s�curit�, votre acc�s est temporairement suspendu.</p>
-
-            <div class="progress">
-                <div id="progressBar" class="progress-bar" role="progressbar" style="width: 100%"></div>
+            <div class="error-body text-center">
+                <div class="error-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-shield-lock" viewBox="0 0 16 16">
+                        <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z" />
+                        <path d="M9.5 6.5a1.5 1.5 0 0 1-1 1.415l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99a1.5 1.5 0 1 1 2-1.415z" />
+                    </svg>
+                </div>
+                <h3 class="mb-3">Compte temporairement bloqué</h3>
+                <p>
+                    Pour des raisons de sécurité, votre compte a été temporairement bloqué après plusieurs tentatives de connexion infructueuses.
+                </p>
+                <p>
+                    Veuillez réessayer dans <span class="countdown">15 minutes</span>.
+                </p>
+                <p class="text-muted small mt-3">
+                    Si vous pensez qu'il s'agit d'une erreur, veuillez contacter notre support technique.
+                </p>
+                <a href="/" class="btn btn-home btn-lg">
+                    <i class="bi bi-house-door"></i> Retour à l'accueil
+                </a>
             </div>
-
-            <div class="countdown" id="countdown">15:00</div>
-
-            <p>Veuillez r�essayer apr�s le compte � rebours.</p>
-
-            <button id="retryButton" class="btn btn-primary btn-retry" onclick="window.location.href='/Authentification'">
-                <i class="fas fa-undo me-2"></i>Nouvelle tentative
-            </button>
         </div>
     </div>
 
-    <script>// Dur�e du compte � rebours en secondes (15 minutes)
-        let timeLeft = 15 * 60;
-        const countdownElement = document.getElementById('countdown');
-        const progressBar = document.getElementById('progressBar');
-        const retryButton = document.getElementById('retryButton');
-
-        // Mettre � jour le compte � rebours chaque seconde
-        const countdownInterval = setInterval(() => {
-            timeLeft--;
-
-            // Calculer les minutes et secondes restantes
-            const minutes = Math.floor(timeLeft / 60);
-            const seconds = timeLeft % 60;
-
-            // Afficher le temps format� (MM:SS)
-            countdownElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-            // Mettre � jour la barre de progression
-            const progressPercentage = (timeLeft / (15 * 60)) * 100;
-            progressBar.style.width = `${progressPercentage}%`;
-
-            // Si le temps est �coul�
-            if (timeLeft <= 0) {
-                clearInterval(countdownInterval);
-                countdownElement.textContent = "00:00";
-                progressBar.style.width = "0%";
-
-                // Afficher le bouton de r�essai
-                retryButton.style.display = "inline-block";
-
-                // Mettre � jour le message
-                document.querySelector(".lead").textContent = "Vous pouvez maintenant r�essayer";
-                countdownElement.textContent = "Pr�t!";
-                countdownElement.style.color = "#4ecdc4";
-            }
-        }, 1000);</script>
-
+    <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Optionnel : Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <script>
+        // Script pour le compte à rebours (optionnel)
+        document.addEventListener('DOMContentLoaded', function () {
+            let minutes = 15;
+            let seconds = 0;
+            const countdownElement = document.querySelector('.countdown');
+
+            function updateCountdown() {
+                countdownElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                if (seconds === 0) {
+                    if (minutes === 0) {
+                        // Le compte à rebours est terminé
+                        return;
+                    }
+                    minutes--;
+                    seconds = 59;
+                } else {
+                    seconds--;
+                }
+
+                setTimeout(updateCountdown, 1000);
+            }
+
+            updateCountdown();
+        });
+    </script>
 </body>
-</html>*@
+</html>

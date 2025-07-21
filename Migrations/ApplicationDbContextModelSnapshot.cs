@@ -258,6 +258,12 @@ namespace Forum.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("varchar(15)");
 
+                    b.Property<bool>("bloquage")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("bloquage_temps")
+                        .HasColumnType("datetime(6)");
+
                     b.HasKey("Id_utilisateur");
 
                     b.HasIndex("Id_etablissement");
