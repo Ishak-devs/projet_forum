@@ -8,11 +8,13 @@ namespace Forum.Models
         [Key]
         public int Id_etablissement { get; set; }
 
-        //[Required]
-        //public int code_postal { get; set; }
+        [Required]
+        public int code_postal { get; set; }
 
         [Required]
         public string Region { get; set; }
+
+
 
         [Required]
         [MinLength(5, ErrorMessage = "L'académie doit contenir au moins 5 caractères.")]

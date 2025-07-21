@@ -24,6 +24,4 @@ namespace Forum.Models
         public virtual Promos Promos { get; set; }
     }
 
-
-
     }

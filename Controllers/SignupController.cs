@@ -202,7 +202,7 @@ namespace Forum.Controllers
 
             var newEtablissement = new Etablissements
             {
-                //code_postal = modele.code_postal,
+                code_postal = modele.code_postal,
                 academie = modele.academie,
                 nom_etablissement = modele.nom_etablissement,
                 Region = modele.Region,
