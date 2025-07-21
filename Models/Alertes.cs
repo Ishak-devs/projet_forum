@@ -20,7 +20,7 @@ namespace Forum.Models
         public DateTime date_alerte { get; set; } = DateTime.Now;
 
         [ForeignKey("Promos")]
-        public int Id_classe { get; set; }
+        public int Id_promos { get; set; }
         public virtual Promos Promos { get; set; }
     }
 

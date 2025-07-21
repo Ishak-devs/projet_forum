@@ -116,14 +116,15 @@ namespace Forum.Controllers
                         .Where(u => u.Role == "Etudiant")
                         .ToList();
 
-                    //var alertes = _context.Alertes
-                    //    .Where(a => a.Id_classe == classe.Id_promos)
-                    //    .OrderByDescending(a => a.date_alerte)
-                    //    .ToList();
+                    var alertes = _context.Alertes
+     .Where(a => a.Id_promos == classe.Id_promos)
+     .OrderByDescending(a => a.date_alerte)
+     .ToList();
+
 
                     ViewBag.Classe = classe;
                     ViewBag.Eleves = eleves;
-                    //ViewBag.Alertes = alertes;
+                    ViewBag.Alertes = alertes;
 
                     return View("Professeur");
                 }
@@ -146,10 +147,8 @@ namespace Forum.Controllers
 
 
         [HttpPost]
-        public IActionResult AjouterAlerte(string message, string alertType, int? Id_classe)
+        public IActionResult AjouterAlerte(string message, string alertType, int? Id_promos)
         {
-
-
             var userId = HttpContext.Session.GetInt32("UserId");
             if (!userId.HasValue)
             {
@@ -157,33 +156,36 @@ namespace Forum.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
+            if (Id_promos == null)
+            {
+                TempData["ErrorMessage"] = "Veuillez sélectionner une classe.";
+                return RedirectToAction("Admin");
+            }
 
             var nouvelleAlerte = new Alertes
             {
-                //Id_utilisateur = userId.Value,
                 Message = message,
                 Titre = alertType,
-                Id_classe = Id_classe.Value
+                Id_promos = Id_promos.Value
             };
 
             try
             {
-                _context.Alertes.Add(nouvelleAlerte); //add on db
-                _context.SaveChanges(); //save on db
+                _context.Alertes.Add(nouvelleAlerte);
+                _context.SaveChanges();
 
                 TempData["SuccessMessage"] = "L'alerte a été envoyée avec succès.";
                 return RedirectToAction("Admin");
             }
-
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Erreur lors de l'envoi de l'alerte.");
                 TempData["ErrorMessage"] = "Une erreur est survenue lors de l'envoi de l'alerte.";
                 return RedirectToAction("Admin");
             }
-        
         }
-        
+
+
 
         public IActionResult VoirAlertes()
         {

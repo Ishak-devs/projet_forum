@@ -21,7 +21,6 @@ namespace Forum.Migrations
                 {
                     Id_etablissement = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    code_postal = table.Column<int>(type: "int", nullable: false),
                     Region = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     academie = table.Column<string>(type: "longtext", nullable: false)
@@ -67,14 +66,14 @@ namespace Forum.Migrations
                     Message = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     date_alerte = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Id_classe = table.Column<int>(type: "int", nullable: false)
+                    Id_promos = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Alertes", x => x.Id_alerte);
                     table.ForeignKey(
-                        name: "FK_Alertes_Promos_Id_classe",
-                        column: x => x.Id_classe,
+                        name: "FK_Alertes_Promos_Id_promos",
+                        column: x => x.Id_promos,
                         principalTable: "Promos",
                         principalColumn: "Id_promos",
                         onDelete: ReferentialAction.Cascade);
@@ -227,9 +226,9 @@ namespace Forum.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Alertes_Id_classe",
+                name: "IX_Alertes_Id_promos",
                 table: "Alertes",
-                column: "Id_classe");
+                column: "Id_promos");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Evaluations_Id_module",

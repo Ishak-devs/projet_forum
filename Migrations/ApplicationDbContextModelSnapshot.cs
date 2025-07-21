@@ -29,7 +29,7 @@ namespace Forum.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_alerte"));
 
-                    b.Property<int>("Id_classe")
+                    b.Property<int>("Id_promos")
                         .HasColumnType("int");
 
                     b.Property<string>("Message")
@@ -46,7 +46,7 @@ namespace Forum.Migrations
 
                     b.HasKey("Id_alerte");
 
-                    b.HasIndex("Id_classe");
+                    b.HasIndex("Id_promos");
 
                     b.ToTable("Alertes");
                 });
@@ -66,9 +66,6 @@ namespace Forum.Migrations
                     b.Property<string>("academie")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<int>("code_postal")
-                        .HasColumnType("int");
 
                     b.Property<string>("nom_etablissement")
                         .IsRequired()
@@ -271,7 +268,7 @@ namespace Forum.Migrations
                 {
                     b.HasOne("Forum.Models.Promos", "Promos")
                         .WithMany()
-                        .HasForeignKey("Id_classe")
+                        .HasForeignKey("Id_promos")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
