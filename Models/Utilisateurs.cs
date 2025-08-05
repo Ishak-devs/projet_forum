@@ -19,6 +19,7 @@ namespace Forum.Models
         public string Nom { get; set; }
 
         [Required(ErrorMessage = "Le prénom est obligatoire")]
+        [MinLength(3, ErrorMessage = "Le prénom doit avoir au moins 3 caractères.")]
         [StringLength(50)]
         public string Prenom { get; set; }
 
