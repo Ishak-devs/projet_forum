@@ -8,7 +8,7 @@ namespace ClasseSpace.Tests
     public class UtilisateursTests
     {
         [Fact]
-        public void Nom_Doit_Avoir_Minimum_2_Caracteres()
+        public void Nom_Doit_Avoir_Minimum_8_Caracteres()
         {
             var utilisateur = new Utilisateurs { Nom = "AAAAAAA" };
 
