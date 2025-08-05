@@ -14,11 +14,13 @@ namespace Forum.Models
         public virtual Promos? Promos { get; set; }
 
         [Required(ErrorMessage = "Le nom est obligatoire")]
-        [MinLength(2, ErrorMessage = "Le nom doit contenir au moins 5 caractères.")]  
+        [MinLength(2, ErrorMessage = "Le nom doit contenir au moins 2 caractères.")]
         [StringLength(70)]
         public string Nom { get; set; }
 
-        [MinLength(5, ErrorMessage = "Le prénom doit avoir au moins 5 caractères.")]
+        [Required(ErrorMessage = "Le prénom est obligatoire")]
+        [MinLength(1, ErrorMessage = "Le prénom doit avoir au moins 2 caractères.")]
+        [StringLength(50)]
         public string Prenom { get; set; }
 
         [Required(ErrorMessage = "L'email est obligatoire")]
