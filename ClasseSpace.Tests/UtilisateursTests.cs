@@ -1,31 +1,33 @@
-using Xunit;
+Ôªøusing Xunit;
 using Forum.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 
 namespace ClasseSpace.Tests
 {
-    [Fact]
-    public void Utilisateur_Prenom_Doivent_Avoir_Au_Moins_5_Caracteres()
+    public class UtilisateursTests 
     {
-        // Arrange
-        var utilisateur = new Utilisateurs
+        [Fact]
+        public void Utilisateur_Prenom_Doivent_Avoir_Au_Moins_5_Caracteres()
         {
-            Nom = "TestNom",
-            Prenom = "Al", // Trop court (2 caractËres)
-            Email = "test@email.com",
-            Motdepasse = "motdepasse123"
-        };
+            
+            var utilisateur = new Utilisateurs
+            {
+                Nom = "TestNom",
+                Prenom = "Al", 
+                Email = "test@email.com",
+                Motdepasse = "motdepasse123"
+            };
 
-        var context = new ValidationContext(utilisateur);
-        var results = new List<ValidationResult>();
+            var context = new ValidationContext(utilisateur);
+            var results = new List<ValidationResult>();
 
-        // Act
-        var isValid = Validator.TryValidateObject(utilisateur, context, results, true);
+            // Act
+            var isValid = Validator.TryValidateObject(utilisateur, context, results, true);
 
-        // Assert
-        Assert.False(isValid);
-        Assert.Contains(results, r => r.ErrorMessage == "Le prÈnom doit avoir au moins 5 caractËres.");
+            // Assert
+            Assert.False(isValid);
+            Assert.Contains(results, r => r.ErrorMessage == "Le pr√©nom doit avoir au moins 5 caract√®res.");
+        }
     }
-
 }
