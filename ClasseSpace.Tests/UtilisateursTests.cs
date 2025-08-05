@@ -5,19 +5,27 @@ using System.Collections.Generic;
 
 namespace ClasseSpace.Tests
 {
-    public class UtilisateursTests
+    [Fact]
+    public void Utilisateur_Prenom_Doivent_Avoir_Au_Moins_5_Caracteres()
     {
-        [Fact]
-        public void Nom_Doigt_Avoir_Minimum_5_Caracteres()
+        // Arrange
+        var utilisateur = new Utilisateurs
         {
-            var utilisateur = new Utilisateurs { Nom = "ABCD" }; // 4 caractères, ça doit échouer
+            Nom = "TestNom",
+            Prenom = "Al", // Trop court (2 caractères)
+            Email = "test@email.com",
+            Motdepasse = "motdepasse123"
+        };
 
-            var context = new ValidationContext(utilisateur);
-            var results = new List<ValidationResult>();
-            var isValid = Validator.TryValidateObject(utilisateur, context, results, true);
+        var context = new ValidationContext(utilisateur);
+        var results = new List<ValidationResult>();
 
-            Assert.False(isValid); // On veut que la validation échoue
-            Assert.Contains(results, r => r.ErrorMessage.Contains("au moins 5 caractères"));
-        }
+        // Act
+        var isValid = Validator.TryValidateObject(utilisateur, context, results, true);
+
+        // Assert
+        Assert.False(isValid);
+        Assert.Contains(results, r => r.ErrorMessage == "Le prénom doit avoir au moins 5 caractères.");
     }
+
 }
